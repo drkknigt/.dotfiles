@@ -1,0 +1,198 @@
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+004.003  004.003: --- NVIM STARTING ---
+062.744  058.741: locale set
+101.838  039.094: inits 1
+101.906  000.068: window checked
+101.922  000.016: parsing arguments
+135.030  033.108: expanding arguments
+135.136  000.106: inits 2
+137.115  001.979: init highlight
+137.123  000.008: waiting for UI
+140.841  003.718: done waiting for UI
+140.909  000.068: init screen for UI
+140.992  000.083: init default mappings
+141.152  000.160: init default autocommands
+158.203  004.996  004.996: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/ftplugin.vim
+161.746  001.661  001.661: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/indent.vim
+177.098  001.518  001.518: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/filetype.lua
+219.038  000.074  000.074: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/LuaSnip/ftdetect/snippets.vim
+223.788  046.405  046.332: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/filetype.vim
+225.617  000.072  000.072: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/ftplugin.vim
+226.815  000.054  000.054: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/indent.vim
+230.835  002.803  002.803: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-sandwich/macros/sandwich/keymap/surround.vim
+263.518  015.872  015.872: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/gruvbox-baby/colors/gruvbox-baby.vim
+1773.231  1610.505  1543.780: sourcing /home/drkknght/.config/nvim/init.lua
+1773.312  014.997: sourcing vimrc file(s)
+1776.757  000.560  000.560: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/syntax/synload.vim
+1777.206  003.453  002.893: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/syntax/syntax.vim
+1787.053  001.840  001.840: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/plugin/gzip.vim
+1787.357  000.132  000.132: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/plugin/health.vim
+1788.222  000.750  000.750: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/plugin/man.vim
+1788.530  000.152  000.152: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/plugin/matchit.vim
+1789.660  001.013  001.013: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/plugin/matchparen.vim
+1789.985  000.191  000.191: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/plugin/netrwPlugin.vim
+1790.896  000.051  000.051: sourcing /home/drkknght/.local/share/nvim/rplugin.vim
+1790.929  000.827  000.776: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/plugin/rplugin.vim
+1791.923  000.870  000.870: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/plugin/shada.vim
+1792.237  000.142  000.142: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/plugin/spellfile.vim
+1792.518  000.154  000.154: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/plugin/tarPlugin.vim
+1792.785  000.144  000.144: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/plugin/tohtml.vim
+1793.073  000.165  000.165: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/plugin/tutor.vim
+1793.390  000.195  000.195: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/plugin/zipPlugin.vim
+1796.090  001.764  001.764: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/pack/dist/opt/matchit/plugin/matchit.vim
+1823.554  026.632  026.632: sourcing /home/drkknght/.config/nvim/plugin/packer_compiled.lua
+1825.901  014.165: loading rtp plugins
+1828.568  000.580  000.580: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/DAPInstall.nvim/plugin/dap-buddy.vim
+1830.614  001.585  001.585: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/LuaSnip/plugin/luasnip.vim
+1832.047  000.084  000.084: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/filetype.nvim/plugin/filetype.vim
+1836.166  003.568  003.568: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/fzf/plugin/fzf.vim
+1837.256  000.385  000.385: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/harpoon/plugin/mark.vim
+1839.650  001.759  001.759: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/iswap.nvim/plugin/iswap.vim
+1842.988  002.357  002.357: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/nvim-cmp/plugin/cmp.lua
+1844.014  000.500  000.500: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/nvim-dap/plugin/dap.lua
+1844.402  000.081  000.081: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/nvim-fzf/plugin/nvim_fzf.vim
+1849.488  004.246  004.246: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/nvim-treesitter/plugin/nvim-treesitter.lua
+1858.626  008.678  008.678: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects/plugin/nvim-treesitter-textobjects.vim
+1863.575  004.366  004.366: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag/plugin/nvim-ts-autotag.vim
+1865.047  000.890  000.890: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring/plugin/ts_context_commentstring.vim
+1867.641  002.065  002.065: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow/plugin/rainbow.vim
+1868.497  000.268  000.268: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/nvim-web-devicons/plugin/nvim-web-devicons.vim
+1869.372  000.284  000.284: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/plenary.nvim/plugin/plenary.vim
+1878.891  008.929  008.929: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim/plugin/symbols-outline.vim
+1892.443  012.864  012.864: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-devicons/plugin/webdevicons.vim
+1894.518  000.079  000.079: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/plugin/matchparen.vim
+1899.296  001.382  001.382: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup.vim
+1900.782  000.545  000.545: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup/perf.vim
+1906.534  002.626  002.626: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup/loader.vim
+1911.579  003.117  003.117: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup/matchparen.vim
+1919.836  026.766  019.017: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-matchup/plugin/matchup.vim
+1922.586  001.713  001.713: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-sandwich/plugin/operator/sandwich.vim
+1923.909  001.240  001.240: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-sandwich/plugin/sandwich.vim
+1924.831  000.835  000.835: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-sandwich/plugin/textobj/sandwich.vim
+1925.777  000.085  000.085: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/which-key.nvim/plugin/which-key.vim
+1927.475  017.448: loading packages
+1928.684  000.035  000.035: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-matchup/after/plugin/matchit.vim
+1931.479  002.476  002.476: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/cmp-buffer/after/plugin/cmp_buffer.lua
+1933.082  001.248  001.248: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/cmp-cmdline/after/plugin/cmp_cmdline.lua
+1935.217  001.734  001.734: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp/after/plugin/cmp_nvim_lsp.lua
+1936.869  001.294  001.294: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/cmp-path/after/plugin/cmp_path.lua
+1957.450  020.275  020.275: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/cmp_luasnip/after/plugin/cmp_luasnip.lua
+1957.877  003.340: loading after plugins
+1957.965  000.088: inits 3
+1969.266  011.301: reading ShaDa
+1971.802  000.524  000.524: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup/ts_engine.vim
+1983.484  000.185  000.185: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup/re.vim
+1984.950  014.976: opening buffers
+2056.776  020.879  020.879: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/opt/indent-blankline.nvim/plugin/indent_blankline.vim
+2061.023  055.193: BufEnter autocommands
+2061.058  000.035: editing files in windows
+2206.079  145.021: VimEnter autocommands
+2206.131  000.053: UIEnter autocommands
+2210.539  002.986  002.986: sourcing /tmp/.mount_nvimc3ZjWG/usr/share/nvim/runtime/autoload/provider/clipboard.vim
+2210.615  001.498: before starting main loop
+2274.229  063.614: first screen update
+2274.253  000.025: --- NVIM STARTED ---
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+004.014  004.014: --- NVIM STARTING ---
+062.729  058.716: locale set
+102.013  039.284: inits 1
+102.095  000.082: window checked
+102.112  000.017: parsing arguments
+135.176  033.064: expanding arguments
+135.264  000.087: inits 2
+137.301  002.038: init highlight
+137.310  000.009: waiting for UI
+140.728  003.418: done waiting for UI
+140.793  000.066: init screen for UI
+140.896  000.102: init default mappings
+141.041  000.145: init default autocommands
+164.707  004.686  004.686: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/ftplugin.vim
+168.093  001.679  001.679: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/indent.vim
+183.980  001.562  001.562: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/filetype.lua
+226.211  000.074  000.074: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/LuaSnip/ftdetect/snippets.vim
+230.871  046.641  046.567: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/filetype.vim
+232.554  000.067  000.067: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/ftplugin.vim
+233.725  000.055  000.055: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/indent.vim
+237.709  002.790  002.790: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-sandwich/macros/sandwich/keymap/surround.vim
+270.042  015.441  015.441: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/gruvbox-baby/colors/gruvbox-baby.vim
+1821.452  1652.314  1585.757: sourcing /home/drkknght/.config/nvim/init.lua
+1821.500  021.780: sourcing vimrc file(s)
+1825.057  000.581  000.581: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/syntax/synload.vim
+1825.517  003.534  002.953: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/syntax/syntax.vim
+1835.251  001.831  001.831: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/plugin/gzip.vim
+1835.592  000.178  000.178: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/plugin/health.vim
+1836.465  000.753  000.753: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/plugin/man.vim
+1836.777  000.149  000.149: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/plugin/matchit.vim
+1838.007  001.113  001.113: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/plugin/matchparen.vim
+1838.341  000.192  000.192: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/plugin/netrwPlugin.vim
+1839.285  000.053  000.053: sourcing /home/drkknght/.local/share/nvim/rplugin.vim
+1839.319  000.859  000.806: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/plugin/rplugin.vim
+1840.389  000.944  000.944: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/plugin/shada.vim
+1840.731  000.148  000.148: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/plugin/spellfile.vim
+1841.013  000.156  000.156: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/plugin/tarPlugin.vim
+1841.283  000.144  000.144: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/plugin/tohtml.vim
+1841.577  000.168  000.168: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/plugin/tutor.vim
+1841.851  000.151  000.151: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/plugin/zipPlugin.vim
+1844.558  001.772  001.772: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/pack/dist/opt/matchit/plugin/matchit.vim
+1888.391  043.018  043.018: sourcing /home/drkknght/.config/nvim/plugin/packer_compiled.lua
+1893.336  016.726: loading rtp plugins
+1896.110  000.680  000.680: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/DAPInstall.nvim/plugin/dap-buddy.vim
+1898.140  001.567  001.567: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/LuaSnip/plugin/luasnip.vim
+1899.701  000.093  000.093: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/filetype.nvim/plugin/filetype.vim
+1904.263  004.003  004.003: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/fzf/plugin/fzf.vim
+1905.425  000.441  000.441: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/harpoon/plugin/mark.vim
+1907.842  001.863  001.863: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/iswap.nvim/plugin/iswap.vim
+1911.416  002.562  002.562: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/nvim-cmp/plugin/cmp.lua
+1912.557  000.528  000.528: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/nvim-dap/plugin/dap.lua
+1912.953  000.084  000.084: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/nvim-fzf/plugin/nvim_fzf.vim
+1917.972  004.177  004.177: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/nvim-treesitter/plugin/nvim-treesitter.lua
+1927.175  008.731  008.731: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects/plugin/nvim-treesitter-textobjects.vim
+1932.223  004.399  004.399: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag/plugin/nvim-ts-autotag.vim
+1933.747  000.921  000.921: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring/plugin/ts_context_commentstring.vim
+1936.331  002.092  002.092: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow/plugin/rainbow.vim
+1937.177  000.272  000.272: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/nvim-web-devicons/plugin/nvim-web-devicons.vim
+1938.004  000.216  000.216: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/plenary.nvim/plugin/plenary.vim
+1947.959  009.380  009.380: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim/plugin/symbols-outline.vim
+1962.074  013.279  013.279: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-devicons/plugin/webdevicons.vim
+1964.430  000.124  000.124: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/plugin/matchparen.vim
+1969.392  001.515  001.515: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup.vim
+1970.907  000.585  000.585: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup/perf.vim
+1976.915  002.877  002.877: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup/loader.vim
+1982.282  003.428  003.428: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup/matchparen.vim
+1990.536  027.826  019.296: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-matchup/plugin/matchup.vim
+1993.269  001.666  001.666: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-sandwich/plugin/operator/sandwich.vim
+1994.587  001.238  001.238: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-sandwich/plugin/sandwich.vim
+1995.533  000.856  000.856: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-sandwich/plugin/textobj/sandwich.vim
+1996.410  000.073  000.073: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/which-key.nvim/plugin/which-key.vim
+1998.056  017.772: loading packages
+1999.264  000.035  000.035: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-matchup/after/plugin/matchit.vim
+2002.129  002.509  002.509: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/cmp-buffer/after/plugin/cmp_buffer.lua
+2003.793  001.310  001.310: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/cmp-cmdline/after/plugin/cmp_cmdline.lua
+2005.883  001.710  001.710: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp/after/plugin/cmp_nvim_lsp.lua
+2007.590  001.344  001.344: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/cmp-path/after/plugin/cmp_path.lua
+2028.053  020.124  020.124: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/cmp_luasnip/after/plugin/cmp_luasnip.lua
+2028.508  003.421: loading after plugins
+2028.596  000.088: inits 3
+2039.989  011.394: reading ShaDa
+2042.658  000.546  000.546: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup/ts_engine.vim
+2054.357  000.187  000.187: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/start/vim-matchup/autoload/matchup/re.vim
+2055.889  015.166: opening buffers
+2128.232  020.651  020.651: sourcing /home/drkknght/.local/share/nvim/site/pack/packer/opt/indent-blankline.nvim/plugin/indent_blankline.vim
+2132.539  055.999: BufEnter autocommands
+2132.574  000.035: editing files in windows
+2275.986  143.412: VimEnter autocommands
+2276.040  000.054: UIEnter autocommands
+2280.543  003.074  003.074: sourcing /tmp/.mount_nvimrYWfSW/usr/share/nvim/runtime/autoload/provider/clipboard.vim
+2280.618  001.504: before starting main loop
+2342.929  062.312: first screen update
+2342.954  000.025: --- NVIM STARTED ---
