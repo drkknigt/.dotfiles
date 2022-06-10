@@ -152,7 +152,7 @@ alias wifi='nmcli radio wifi'
 # alias rgrep='rg'
 setopt histignorespace           # skip cmds w/ leading space from history
 export HSTR_CONFIG=hicolor       # get more colors
-bindkey -s "\C-r" "hstr -- ^J"     # bind hstr to Ctrl-r (for Vi mode check doc)
+bindkey -s "^r" "history | fzf^M"     # bind hstr to Ctrl-r (for Vi mode check doc)
 bindkey -s '^s' 'tmux_create.py^M'
 bindkey -s '^L' 'tmux_session_switch.py^M'
 bindkey -s '^n' 'nvim^M'
