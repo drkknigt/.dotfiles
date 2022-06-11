@@ -151,6 +151,7 @@ bindkey -v
 alias hh=hstr                    # hh to be alias for hstr
 alias xdg-open='xdg-open 2>/dev/null'
 alias wifi='nmcli radio wifi'
+alias vpn='protonvpn-cli '
 # alias rgrep='rg'
 setopt histignorespace           # skip cmds w/ leading space from history
 export HSTR_CONFIG=hicolor       # get more colors
