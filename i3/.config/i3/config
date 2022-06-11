@@ -70,14 +70,14 @@ bindsym $mod+Control+w exec --no-startup-id rofi -show
 bindsym $mod+Control+v exec --no-startup-id 'vlc'
 bindsym $mod+b exec --no-startup-id 'brave-browser'
 bindsym $mod+o exec --no-startup-id 'nemo'
-bindsym $mod+n exec --no-startup-id alacritty --class "fzfmenu" -e /home/drkknght/bin/change_background.sh 0
-bindsym $mod+m exec  --no-startup-id alacritty --class "fzfmenu" -e /home/drkknght/bin/change_background.sh 1
+bindsym $mod+n exec --no-startup-id alacritty --class "fzfmenu" -e /home/drkknght/bin/background/change_background.sh 0
+bindsym $mod+m exec  --no-startup-id alacritty --class "fzfmenu" -e /home/drkknght/bin/background/change_background.sh 1
 bindsym $mod+Control+f exec --no-startup-id alacritty --class "fzfmenu" -e /home/drkknght/bin/system_scripts/file_exp.sh f
 bindsym $mod+Control+e exec --no-startup-id alacritty --class "fzfmenu" -e /home/drkknght/bin/system_scripts/file_exp.sh d
 bindsym $mod+Control+g exec --no-startup-id alacritty --class "fzfmenu" -e /home/drkknght/bin/system_scripts/kill.sh
 bindsym $mod+Control+m exec --no-startup-id alacritty --class "fzfmenu" -e /home/drkknght/bin/system_scripts/man_pages.sh
-# bindsym $mod+Shift+n exec --no-startup-id alacritty --class "fzfmenu" -e /home/drkknght/bin/wifi_fzf2.sh
-bindsym $mod+Control+n exec --no-startup-id alacritty --class "fzfmenu" -e /home/drkknght/bin/wifi_fzf.sh
+# bindsym $mod+Shift+n exec --no-startup-id alacritty --class "fzfmenu" -e /home/drkknght/bin/network/wifi_fzf2.sh
+bindsym $mod+Control+n exec --no-startup-id alacritty --class "fzfmenu" -e /home/drkknght/bin/network/wifi_fzf.sh
 bindsym -x '"\C-o": file="$(fzf --height 40% --reverse)" && [ -f "$file" ] && xdg-open "$file"'
 # bindsym $mod+g exec  /home/drkknght/bin/tmux_scripts/brightness.sh 5
 # bindsym $mod+- exec  /home/drkknght/bin/tmux_scripts/brightness.sh -5
