@@ -104,6 +104,8 @@ export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
 PATH=/home/drkknght/bin:$PATH
 PATH=/home/drkknght/bin/system_scripts:$PATH
 PATH=/home/drkknght/bin/navigation:$PATH
+PATH=/home/drkknght/bin/network:$PATH
+PATH=/home/drkknght/bin/background:$PATH
 
 
 export NVM_DIR="$HOME/.nvm"
