@@ -73,7 +73,7 @@ set.sidescrolloff = 8 -- set sidescroffoff to 8
 
 set.undofile = true -- sets undo file
 
-set.undodir = "/home/drkknght/.config/nvim/undodir" -- undo file location
+set.undodir = "~/undo/nvim/undodir" -- undo file location
 
 set.colorcolumn = "100" -- set colorcolumn to 100
 
