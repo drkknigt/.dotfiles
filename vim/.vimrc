@@ -25,7 +25,7 @@ set smartcase " Override the 'ignorecase' option if the search pattern contains 
 set guicursor+=a:blinkon0 " This option tells vim how the cursor should look like in the different modes
 set noswapfile " disable the swapfile 
 set nobackup " disable the backup file
-set undodir=~/.vim/undodir " set the undo directory
+set undodir=~/textedit/vim/undodir " set the undo directory
 set undofile " enable the undo file for the persistent undoes
 set nrformats+=alpha " This defines what bases Vim will consider for numbers when using the CTRL-A and CTRL-X
 set numberwidth=4 " Minimal number of columns to use for the line number.
