@@ -73,7 +73,7 @@ set.sidescrolloff = 8 -- set sidescroffoff to 8
 
 set.undofile = true -- sets undo file
 
-set.undodir = "$HOME/textedit/nvim/undodir" -- undo file location
+set.undodir = "textedit/nvim/undodir" -- undo file location
 
 set.colorcolumn = "100" -- set colorcolumn to 100
 
