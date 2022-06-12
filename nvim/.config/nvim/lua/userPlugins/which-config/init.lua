@@ -131,6 +131,7 @@ local mappings = {
 		q = { "<cmd>copen<cr>", "Quickfix open" },
 		e = { "<cmd>cclose<cr>", "Quickfix close" },
 		l = { "<cmd>lopen<cr>", "LocationList open" },
+		f = { "yiw<bar><cmd>FzfLua lines<cr><bar><ESC>pi", "LocationList open" },
 		o = { "<cmd>lclose<cr>", "LocationList close" },
 	},
 	-- k = {
