@@ -127,7 +127,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+x floating toggle
 bindsym $mod+Control+t exec "i3lock -c 000000"
 
 # change focus between tiling / floating windows
