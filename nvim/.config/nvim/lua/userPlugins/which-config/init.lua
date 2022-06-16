@@ -148,6 +148,7 @@ local mappings = {
 			"<cmd>lua vim.diagnostic.setloclist()<cr>",
 			"Document Diagnostics",
 		},
+        x = {"<cmd>!chmod +x %<cr>","make current file executable"},
 		w = {
 			"<cmd>lua vim.diagnostic.setqflist()<cr>",
 			"Workspace Diagnostics",
