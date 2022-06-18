@@ -17,9 +17,9 @@ fi
 
 if [ ${exp} = "f" ]
 then
-    file=$(fdfind --type ${exp} . $down $pat $doc | fzf --cycle --prompt='open files: ' --delimiter / --with-nth -1 --bind "tab:execute(setsid -f xdg-open {})")
+    file=$(fdfind --type ${exp} . $down $pat $doc "/home/drkknght" | fzf --cycle --prompt='open files: ' --delimiter / --with-nth -1 --bind "tab:execute(setsid -f xdg-open {})")
 else
-    file=$(fdfind --type ${exp} . ${pat} ${down} ${doc} | fzf --cycle --prompt='open directories: ' )
+    file=$(fdfind --type ${exp} . ${pat} ${down} ${doc} "/home/drkknght" | fzf --cycle --prompt='open directories: ' )
 fi
 
 # echo ~/$file
