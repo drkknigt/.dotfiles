@@ -130,7 +130,7 @@ nvim_tree.setup({
 				},
 			},
 		},
-		highlight_opened_files = "none",
+		highlight_opened_files = "name",
 	},
 	diagnostics = {
 		enable = true,
@@ -144,7 +144,8 @@ nvim_tree.setup({
 	},
 	update_focused_file = {
 		enable = true,
-		update_cwd = true,
+		update_cwd = false,
+        update_root = false,
 		ignore_list = {},
 	},
 	system_open = {
