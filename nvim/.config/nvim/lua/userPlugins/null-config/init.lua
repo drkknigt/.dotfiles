@@ -26,7 +26,7 @@ sources = {
 
 null_ls.setup({
 	on_attach = function()
-		vim.cmd([[ autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting() ]])
+		vim.cmd([[ autocmd BufWritePre <buffer> lua vim.lsp.buf.format() ]])
 	end,
 	sources = sources,
 	debug = false,

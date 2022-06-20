@@ -3,6 +3,7 @@ local servers = {
 	"emmet_ls",
 	"html",
 	"pyright",
+	"jedi_language_server",
 	"clangd",
 	"cssls",
 	"tsserver",
@@ -46,7 +47,7 @@ vim.cmd([[
 
 local function documentHighlight(client, bufnr)
 	-- Set autocommands conditional on server_capabilities
-	if client.resolved_capabilities.document_highlight then
+	if client.server_capabilities.documentHighlightProvider then
 		vim.api.nvim_exec(
 			[[
       hi LspReferenceRead cterm=bold ctermbg=red guibg=#464646
@@ -98,6 +99,7 @@ local on_attach = function(client, bufnr)
 	-- buf_set_keymap('n', '<leader>l', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
 	-- buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
 	buf_set_keymap("n", "K", '<cmd>lua vim.lsp.buf.hover({border = "single"})<CR>', opts)
+	buf_set_keymap("n", "Z", '<cmd>lua vim.lsp.buf.signature_help({border = "double"})<CR>', opts)
 	-- buf_set_keymap('n', 'K', '<cmd>Lspsaga hover_doc<CR>', opts)
 	-- buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
 	buf_set_keymap("n", "<leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
@@ -113,12 +115,17 @@ local on_attach = function(client, bufnr)
 	-- vim.lsp.buf.formatting_sync() -- synchronous formatting, bet,oter to avoid desync problems
 	-- vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()"
 	if server_table[client.name] ~= nil then
-		client.resolved_capabilities.document_formatting = false
-		client.resolved_capabilities.document_range_formatting = false
+		client.server_capabilities.documentFormattingProvider = false
+		client.server_capabilities.document_range_formatting = false
 	else
-		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
 	end
 
+	if client.name == "pyright" then
+		client.server_capabilities.hoverProvider = false
+		client.server_capabilities.signatureHelpProvider = false
+		client.server_capabilities.completionProvider = false
+	end
 	--- In lsp attach function
 	vim.diagnostic.config({
 		virtual_text = false,
@@ -314,13 +321,12 @@ local cfg = {
 
 	bind = true, -- This is mandatory, otherwise border config won't get registered.
 	-- If you want to hook lspsaga or other signature handler, pls set to false
-	doc_lines = 0, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
+	doc_lines = 5, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
 	-- set to 0 if you DO NOT want any API comments be shown
 	-- This setting only take effect in insert mode, it does not affect signature help in normal
 	-- mode, 10 by default
 
 	floating_window = false, -- show hint in a floating window, set to false for virtual text only mode
-
 	floating_window_above_cur_line = false, -- try to place the floating above the current line when possible Note:
 	-- will set to true when fully tested, set to false will use whichever side has more space
 	-- this setting will be helpful if you do not want the PUM and floating win overlap
@@ -330,9 +336,9 @@ local cfg = {
 	hint_scheme = "Comment",
 	use_lspsaga = true, -- set to true if you want to use lspsaga popup
 	hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
-	max_height = 12, -- max height of signature floating_window, if content is more than max_height, you can scroll down
+	max_height = 7, -- max height of signature floating_window, if content is more than max_height, you can scroll down
 	-- to view the hiding contents
-	max_width = 120, -- max_width of signature floating_window, line will be wrapped if exceed max_width
+	max_width = 52, -- max_width of signature floating_window, line will be wrapped if exceed max_width
 	handler_opts = {
 		border = "rounded", -- double, rounded, single, shadow, none
 	},
@@ -341,7 +347,7 @@ local cfg = {
 
 	auto_close_after = nil, -- autoclose signature float win after x sec, disabled if nil.
 	extra_trigger_chars = {}, -- Array of extra characters that will trigger signature completion, e.g., {"(", ","}
-	zindex = 100, -- by default it will be on top of all floating windows, set to <= 50 send it to bottom
+	-- zindex = 50, -- by default it will be on top of all floating windows, set to <= 50 send it to bottom
 
 	padding = " ", -- character to pad on left and right of signature can be ' ', or '|'  etc
 
