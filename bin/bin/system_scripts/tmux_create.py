@@ -27,17 +27,18 @@ def main():
     # directories = ' '.join(get_args())
     directories = ' '.join(
         [
-            '~/bin',
-            '/home/drkknght',
-            '~/path',
-            '/home',
-            '~/path/PATH_1/programming-1,python/projcts/',
+            # '~/bin',
+            # '/home/drkknght',
+            # '~/path',
+            # '/home',
+            # '~/path/PATH_1/programming-1,python/projcts/',
+            '~'
         ]
     )
     try:
         selected_directory = (
             check_output(
-                f'find {directories} -mindepth 1 -maxdepth 1 -type d | fzf --prompt="make-session:"',
+                f'find {directories} -mindepth 1 -maxdepth 6 -type d | fzf --prompt="make-session:"',
                 shell=True,
             )
             .decode()
