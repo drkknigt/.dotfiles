@@ -125,6 +125,7 @@ local on_attach = function(client, bufnr)
 		client.server_capabilities.hoverProvider = false
 		client.server_capabilities.signatureHelpProvider = false
 		client.server_capabilities.completionProvider = false
+		client.server_capabilities.definitionProvider = false
 	end
 	--- In lsp attach function
 	vim.diagnostic.config({
