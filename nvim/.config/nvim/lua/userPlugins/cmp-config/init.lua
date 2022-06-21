@@ -44,30 +44,30 @@ cmp.setup({
 		),
 		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 		["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-		["<C-z>"] = cmp.mapping({
+		["<C-b>"] = cmp.mapping({
 			i = cmp.mapping.abort(),
 			c = cmp.mapping.close(),
 		}),
-		["<C-b>"] = cmp.mapping({
-			i = function()
-				if cmp.visible() then
-					-- require("notify")("visible")
-					cmp.abort()
-				else
-					-- require("notify")("not visible")
-					cmp.complete()
-				end
-			end,
-			c = function()
-				if cmp.visible() then
-					-- require("notify")("visible")
-					cmp.close()
-				else
-					-- require("notify")("not visible")
-					cmp.complete()
-				end
-			end,
-		}),
+		-- ["<C-b>"] = cmp.mapping({
+		-- 	i = function()
+		-- 		if cmp.visible() then
+		-- 			-- require("notify")("visible")
+		-- 			cmp.abort()
+		-- 		else
+		-- 			-- require("notify")("not visible")
+		-- 			cmp.complete()
+		-- 		end
+		-- 	end,
+		-- 	c = function()
+		-- 		if cmp.visible() then
+		-- 			-- require("notify")("visible")
+		-- 			cmp.close()
+		-- 		else
+		-- 			-- require("notify")("not visible")
+		-- 			cmp.complete()
+		-- 		end
+		-- 	end,
+		-- }),
 		["<C-f>"] = cmp.mapping.confirm({ select = true }),
 	},
 	sources = cmp.config.sources({

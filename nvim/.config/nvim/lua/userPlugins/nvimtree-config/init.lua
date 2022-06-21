@@ -145,7 +145,7 @@ nvim_tree.setup({
 	update_focused_file = {
 		enable = true,
 		update_cwd = false,
-        update_root = false,
+		update_root = false,
 		ignore_list = {},
 	},
 	system_open = {
