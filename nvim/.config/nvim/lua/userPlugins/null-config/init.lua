@@ -30,5 +30,5 @@ null_ls.setup({
 	end,
 	sources = sources,
 	debug = false,
-	debounce = 250,
+	debounce = 150,
 })
