@@ -177,3 +177,5 @@ alias luamake=/home/drkknght/tools/lua-language-server/3rd/luamake/luamake
 fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
+
+export PATH="$HOME/.poetry/bin:$PATH"
