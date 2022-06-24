@@ -17,17 +17,18 @@ fi
 
 if [ ${exp} = "f" ]
 then
-    file=$(fdfind --type ${exp} . $down $pat $doc "$HOME" | fzf --cycle --prompt='open files: ' --delimiter / --with-nth -1 --bind "tab:execute(setsid -f xdg-open {})")
+    file=$(fdfind --type ${exp} . $down $pat $doc $HOME | fzf --cycle --prompt='open files: ' --delimiter / --with-nth -1 --bind "tab:execute(setsid -f xdg-open {})")
 else
-    file=$(fdfind --type ${exp} . ${pat} ${down} ${doc} "/home/drkknght" | fzf --cycle --prompt='open directories: ' )
+    file=$(fdfind --type ${exp} . ${pat} ${down} ${doc} $HOME | fzf --cycle --prompt='open directories: ' )
 fi
+echo $file
 
 # echo ~/$file
 if [ -z "$file" ]
 then
     exit
 else
-    setsid -f xdg-open ~/$file > /dev/null
+    setsid -f xdg-open $file > /dev/null
 fi
 exit
 
