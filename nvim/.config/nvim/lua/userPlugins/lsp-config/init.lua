@@ -110,7 +110,7 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "[d", '<cmd>lua vim.diagnostic.goto_prev({scope="line",float={border="single"}})<CR>', opts)
 	buf_set_keymap("n", "]d", '<cmd>lua vim.diagnostic.goto_next({scope="line",float={border="single"}})<CR>', opts)
 	-- buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-	local server_table = { ["tsserver"] = 1, ["pyright"] = 1, ["html"] = 1, ["sumneko_lua"] = 1 }
+	local server_table = { ["tsserver"] = 1, ["pyright"] = 1, ["html"] = 1, ["sumneko_lua"] = 1, ["bashls"] = 1 }
 	-- vim.lsp.buf.formatting() -- asynchronous formatting
 	-- vim.lsp.buf.formatting_sync() -- synchronous formatting, bet,oter to avoid desync problems
 	-- vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()"

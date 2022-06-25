@@ -156,7 +156,7 @@ alias vpn='protonvpn-cli '
 setopt histignorespace           # skip cmds w/ leading space from history
 export HSTR_CONFIG=hicolor       # get more colors
 bindkey -s "^r" "history | fzf^M"     # bind hstr to Ctrl-r (for Vi mode check doc)
-bindkey -s '^s' 'tmux_create.py^M'
+bindkey -s '^s' 'tmux_create.sh^M'
 bindkey -s '^L' 'tmux_session_switch.py^M'
 bindkey -s '^n' 'nvim^M'
 bindkey -s '^k' 'tmux_kill.py^M'
