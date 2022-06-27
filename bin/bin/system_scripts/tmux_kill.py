@@ -38,14 +38,12 @@ def delete_sessions():
         if total_sessions > 1:
             current_session_index = session_array.index(selected_session)
             if active == selected_session:
-                if current_session_index - 1 < 0:
-                    system(
-                        f'tmux switch-client -t "{session_array[current_session_index + 1]}" 2> /dev/null'
-                    )
+                if current_session_index + 1 > total_sessions:
+                    system(f'tmux switch-client -t "{session_array[0]}" 2> /dev/null')
                     system(f'tmux kill-session -t "{selected_session}"')
                 else:
                     system(
-                        f'tmux switch-client -t "{session_array[current_session_index - 1]}" 2> /dev/null'
+                        f'tmux switch-client -t "{session_array[current_session_index + 1]}" 2> /dev/null'
                     )
                     system(f'tmux kill-session -t "{selected_session}"')
             else:
