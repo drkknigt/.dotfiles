@@ -4,55 +4,54 @@ from subprocess import check_output
 from sys import exit
 
 
-def get_sessions():
+def session_info():
     try:
-        active = [
-            i[: i.find(':')] if 'attached' in i else ''
-            for i in check_output('tmux ls 2> /dev/null', shell=True)
+        session_list = check_output(
+            'tmux ls | cut -d ":" -f 1 | tr "\n" " "', shell=True
+        ).decode()
+        active_session = (
+            check_output('tmux ls | grep "attached" | cut -d ":" -f 1', shell=True)
             .decode()
-            .splitlines()
-        ][0]
-        sessions = '\n'.join(
-            i[: i.find(':')]
-            for i in check_output('tmux ls 2> /dev/null', shell=True)
-            .decode()
-            .splitlines()
+            .strip('\n')
         )
-    except:
-        exit('first session')
-    return sessions, sessions.count('\n') + 1, active
-
-
-def delete_sessions():
-    try:
-        sessions_list, total_sessions, active = get_sessions()
-        session_array = sessions_list.splitlines()
         selected_session = (
             check_output(
-                f'echo "{sessions_list}" | fzf --prompt="delete-session: "',
+                'tmux ls | cut -d ":" -f 1 | fzf --prompt="delete session: "',
                 shell=True,
             )
             .decode()
             .strip('\n')
         )
-        if total_sessions > 1:
-            current_session_index = session_array.index(selected_session)
-            if active == selected_session:
-                if current_session_index + 1 > total_sessions:
-                    system(f'tmux switch-client -t "{session_array[0]}" 2> /dev/null')
-                    system(f'tmux kill-session -t "{selected_session}"')
-                else:
-                    system(
-                        f'tmux switch-client -t "{session_array[current_session_index + 1]}" 2> /dev/null'
-                    )
-                    system(f'tmux kill-session -t "{selected_session}"')
-            else:
-                system(f'tmux kill-session -t "{selected_session}"')
+        if selected_session == '':
+            exit('no session selected')
+        return session_list, active_session, selected_session
+    except:
+        exit('exit')
+
+
+def delete_session():
+    session_list, active_session, selected_session = session_info()
+    session_array = session_list.split()
+    session_index = session_array.index(selected_session)
+    if selected_session == active_session:
+        if len(session_array) > 1:
+            new_session = (
+                session_index + 1 if (session_index != len(session_array) - 1) else 0
+            )
+            system(f'tmux switch-client -t "{session_array[new_session]}"')
+            system(f'tmux kill-session -t "{selected_session}"')
         else:
             system(f'tmux kill-session -t "{selected_session}"')
-    except:
-        exit('')
+    else:
+        system(f'tmux kill-session -t "{selected_session}"')
+
+
+def main():
+    if check_output('echo $TMUX', shell=True).decode() == '\n':
+        exit('empty')
+    else:
+        delete_session()
 
 
 if __name__ == "__main__":
-    delete_sessions()
+    main()
