@@ -28,7 +28,7 @@ end
 
 cmd("Be", kill_empty, { desc = "kill empty buffers" })
 
-cmd("Docs", "e ~/neovim/doc.txt", { desc = "load custom docs for neovim" })
+cmd("Docs", "e ~/.config/nvim/doc.txt", { desc = "load custom docs for neovim" })
 
 local function set_abb()
 	local file_type = vim.bo.file_type
