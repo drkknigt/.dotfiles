@@ -51,8 +51,24 @@ return require("packer").startup({
 		use({ "nathom/filetype.nvim" })
 		use("dstein64/vim-startuptime")
 
-		-- gruvbox-baby theme
+		use({
+			"SmiteshP/nvim-navic",
+			requires = "neovim/nvim-lspconfig",
+		})
 
+		-- lua with packer.nvim
+		use({
+			"max397574/better-escape.nvim",
+			event = "CursorHold",
+			config = function()
+				require("better_escape").setup({
+					mapping = { "jk", "kj" },
+					timeout = 101,
+				})
+			end,
+		})
+
+		-- gruvbox-baby theme
 		use({
 			"luisiacc/gruvbox-baby",
 			-- "folke/tokyonight.nvim",
@@ -94,6 +110,7 @@ return require("packer").startup({
 		use({ "hrsh7th/cmp-path", after = "nvim-cmp" })
 		use({ "hrsh7th/cmp-cmdline", after = "nvim-cmp" })
 		use({ "winston0410/cmd-parser.nvim", after = "nvim-cmp" })
+		use({ "ray-x/cmp-treesitter", after = "nvim-cmp" })
 
 		-- snippet engine
 
@@ -159,6 +176,15 @@ return require("packer").startup({
 			end,
 		})
 
+		-- lsp progress
+
+		use({
+			"j-hui/fidget.nvim",
+			event = "BufReadPre",
+			config = function()
+				require("fidget").setup({})
+			end,
+		})
 		-- surround text objects with chars
 
 		use({ "machakann/vim-sandwich" })
@@ -176,6 +202,7 @@ return require("packer").startup({
 		use({ "JoosepAlviste/nvim-ts-context-commentstring" })
 		use({ "mizlan/iswap.nvim" })
 		use({ "nvim-treesitter/nvim-treesitter-refactor" })
+		use({ "mfussenegger/nvim-ts-hint-textobject" })
 		--    config = function()
 		--        require 'userPlugins.iswaaap-config'
 		--    end

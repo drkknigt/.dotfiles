@@ -2,7 +2,7 @@ local ok, lsp_installer = pcall(require, "nvim-lsp-installer")
 local servers = {
 	"emmet_ls",
 	"html",
-	"pyright",
+	-- "pyright",
 	"jedi_language_server",
 	"clangd",
 	"cssls",
@@ -127,12 +127,20 @@ local on_attach = function(client, bufnr)
 		client.server_capabilities.completionProvider = false
 		client.server_capabilities.definitionProvider = false
 	end
+	if client.name == "jedi_language_server" then
+		client.server_capabilities.codeActionProvider = false
+	end
+
 	--- In lsp attach function
 	vim.diagnostic.config({
 		virtual_text = false,
 		severity_sort = true,
 		underline = false,
 	})
+	if client.server_capabilities.documentSymbolProvider then
+		local navic = require("nvim-navic")
+		navic.attach(client, bufnr)
+	end
 end
 
 -- Add additional capabilities supported by nvim-cmp

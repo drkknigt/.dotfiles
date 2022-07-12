@@ -148,7 +148,7 @@ local mappings = {
 			"<cmd>lua vim.diagnostic.setloclist()<cr>",
 			"Document Diagnostics",
 		},
-        x = {"<cmd>!chmod +x %<cr>","make current file executable"},
+		x = { "<cmd>!chmod +x %<cr>", "make current file executable" },
 		w = {
 			"<cmd>lua vim.diagnostic.setqflist()<cr>",
 			"Workspace Diagnostics",
@@ -225,6 +225,7 @@ local mappings = {
 		u = { ":lua _NCDU_TOGGLE()<cr>", "NCDU" },
 		t = { ":lua _HTOP_TOGGLE()<cr>", "Htop" },
 		p = { ":lua _PYTHON_TOGGLE()<cr>", "Python" },
+		g = { ":lua _LAZYGIT_TOGGLE()<cr>", "Python" },
 		l = { ":lua _LUA_TOGGLE()<cr>", "Python" },
 		f = { ":ToggleTerm direction=float<cr>", "Float" },
 		h = { ":ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
