@@ -44,7 +44,7 @@ local mode = {
 		dict["INSERT"] = "Insert  "
 		dict["VISUAL"] = "Visual  "
 		dict["COMAND"] = "Command  "
-		return dict[str] 
+		return dict[str]
 	end,
 }
 local lspserver = {
