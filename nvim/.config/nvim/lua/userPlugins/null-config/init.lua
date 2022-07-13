@@ -2,6 +2,7 @@ local null_ls = require("null-ls")
 sources = {
 	null_ls.builtins.formatting.black.with({ extra_args = { "--fast", "--skip-string-normalization" } }),
 	null_ls.builtins.diagnostics.flake8,
+	null_ls.builtins.diagnostics.mypy,
 	null_ls.builtins.formatting.isort,
 	require("userPlugins.null-config.builtins.formatting.jsbeautify"),
 	null_ls.builtins.diagnostics.eslint_d,
