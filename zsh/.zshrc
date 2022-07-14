@@ -158,8 +158,10 @@ export HSTR_CONFIG=hicolor       # get more colors
 bindkey -s "^r" "history | fzf^M"     # bind hstr to Ctrl-r (for Vi mode check doc)
 bindkey -s '^s' 'tmux_create.sh^M'
 bindkey -s '^L' 'tmux_session_switch.sh^M'
-bindkey -s '^n' 'nvim^M'
+bindkey -s '^v' 'nvim^M'
 bindkey -s '^k' 'tmux_kill.py^M'
+bindkey "^P" up-line-or-search
+bindkey "^N" down-line-or-search
 export EDITOR=nvim
 export VISUAL=nvim
 # source /usr/share/doc/fzf/examples/completion.zsh

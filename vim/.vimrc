@@ -1,7 +1,8 @@
 set nocompatible " vi compatible mode off
-colorscheme industry
+colorscheme desert
 set wrap " longer lines will wrap
 set ruler "  Show the line and column number of the cursor 
+set cursorline
 syntax on " show and highlight text in specific colors
 set rnu " enable relative numbers
 set showcmd " show current mode of vim in cursorline
@@ -32,10 +33,6 @@ set numberwidth=4 " Minimal number of columns to use for the line number.
 set splitright " When on, splitting a window will put the new window right of the current one
 set splitbelow " When on, splitting a window will put the new window below the current one
 set history=1000 " amount of commands saved in the history 
-" remap Esc to jk
-inoremap jk <Esc> 
-" remap Esc to kj
-inoremap kj <Esc>
 set colorcolumn=100 " set distance of the colorcolumn
 set background=dark " set the dark background
 set nohlsearch " dont hightlight searched words
@@ -44,22 +41,16 @@ set ttyfast " indicates fast terminal connection
 set ignorecase " while searching ignore case
 set shell=/bin/zsh " default shell for external cmds
 set laststatus=2 " display statusline always
-set statusline=%F%m%r%h%w=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c) " what to display on statusline
+set statusline=%F%m%r%h%w=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)  " what to display on statusline
 set is " incremental search
 set scrolloff=5 " Minimal number of screen lines to keep above and below the cursor
-set wildmode=longest,list,full " wildmenu options
+" set wildmode=longest,list,full " wildmenu options
 "set highlight options
 hi Normal ctermfg=yellow " highlight color 
 hi Pmenu ctermbg=NONE ctermfg=white
 hi PmenuSel ctermfg=yellow
 highlight Normal ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE  guibg=NONE cterm=NONE
 "quit all
-nnoremap ZQ :qall!<CR>
-" line object
-xnoremap il g_o^ 
-onoremap il :normal vil<CR>
-xnoremap al $o^
-onoremap al :normal val<CR>
 "enable matchit
 packadd! matchit
 "abbrevaition
@@ -72,5 +63,21 @@ set autoread " auto read changed file
 set completeopt=menu,menuone,preview,popup " completion menu options
 set magic " Enable extended regexes.
 set title " set title of window with file name
-
+set wildoptions=pum
+" remap Esc to jk
+" leader key
+hi Normal ctermbg=None
+hi CursorLine ctermbg=Black
+let mapleader =" "
+inoremap jk <Esc> 
+" remap Esc to kj
+inoremap kj <Esc>
+nnoremap <leader>e :40Lex<CR>
+nnoremap <leader>z :e $MYVIMRC<CR>
+nnoremap ZQ :qall!<CR>
+" line object
+xnoremap il g_o^ 
+onoremap il :normal vil<CR>
+xnoremap al $o^
+onoremap al :normal val<CR>
 
