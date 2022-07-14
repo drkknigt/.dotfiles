@@ -1,4 +1,5 @@
 local fn = vim.fn
+local present, impatient = pcall(require, "impatient")
 
 -- Automatically install packer
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
@@ -72,12 +73,12 @@ return require("packer").startup({
 		use({
 			"luisiacc/gruvbox-baby",
 			-- "folke/tokyonight.nvim",
-			event = "BufEnter",
-			config = function()
-				require("color-config")
-				vim.api.nvim_command("luafile ~/.config/nvim/lua/color-config/init.lua")
-				-- vim.api.nvim_command("luafile ~/.config/nvim/lua/userPlugins/lualine-config/init.lua")
-			end,
+			-- event = "BufEnter",
+			-- config = function()
+			-- require("color-config")
+			-- vim.api.nvim_command("luafile ~/.config/nvim/lua/color-config/init.lua")
+			-- vim.api.nvim_command("luafile ~/.config/nvim/lua/userPlugins/lualine-config/init.lua")
+			-- end,
 		})
 
 		-- vim matchup to match pairs and language constructs
@@ -102,7 +103,7 @@ return require("packer").startup({
 			"hrsh7th/nvim-cmp",
 			after = "lspkind.nvim",
 			config = function()
-				require("userPlugins.cmp-config")
+				pcall(require, "userPlugins.cmp-config")
 			end,
 		})
 		use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
@@ -241,8 +242,8 @@ return require("packer").startup({
 
 		use({
 			"nvim-lualine/lualine.nvim",
-			--			requires = { "kyazdani42/nvim-web-devicons", opt = true },
-			event = "BufEnter",
+			requires = { "kyazdani42/nvim-web-devicons", opt = true },
+			event = "VimEnter",
 			config = function()
 				require("userPlugins.lualine-config")
 			end,
@@ -328,7 +329,7 @@ return require("packer").startup({
 			"neovim/nvim-lspconfig",
 			after = "nvim-lsp-installer",
 			config = function()
-				require("userPlugins.lsp-config")
+				pcall(require, "userPlugins.lsp-config")
 			end,
 		})
 

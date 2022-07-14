@@ -124,4 +124,7 @@ cmd([[ runtime macros/sandwich/keymap/surround.vim ]])
 -- vim.g.nvim_tree_respect_buf_cwd = 1
 -- vim.g.nvim_tree_root_foler_modifier = ':p:r'
 -- vim.g.nvim_tree_highlight_opened_files = 2
-set.winbar = "%{%v:lua.require'userPlugins.winbar'.get_winbar()%}"
+local present, mod = pcall(require, "impatient")
+if present then
+	set.winbar = "%{%v:lua.require'userPlugins.winbar'.get_winbar()%}"
+end
