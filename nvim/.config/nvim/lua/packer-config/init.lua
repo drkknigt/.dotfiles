@@ -103,7 +103,7 @@ return require("packer").startup({
 			"hrsh7th/nvim-cmp",
 			after = "lspkind.nvim",
 			config = function()
-				pcall(require, "userPlugins.cmp-config")
+				pcall(require,"userPlugins.cmp-config")
 			end,
 		})
 		use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
