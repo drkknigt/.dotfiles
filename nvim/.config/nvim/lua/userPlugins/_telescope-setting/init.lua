@@ -169,15 +169,23 @@ local action_state = require("telescope.actions.state")
 
 local M = {}
 -- search dotfiles neovim
+-- M.search_nvim = function()
+-- 	require("telescope.builtin").find_files({
+-- 		file_ignore_patterns = { "%.git", "node_modules/.*", "BraveSoftware/" },
+-- 		prompt_title = "<--PLUGINS-->",
+-- 		cwd = "$HOME/.config/nvim/lua",
+-- 		hidden = true,
+-- 	})
+-- end
+
 M.search_dotfiles = function()
 	require("telescope.builtin").find_files({
 		file_ignore_patterns = { "%.git", "node_modules/.*", "BraveSoftware/" },
-		prompt_title = "<--PLUGINS-->",
-		cwd = "$HOME/.config/nvim/lua",
+		prompt_title = "<--DOTFILES-->",
+		cwd = "$HOME/.dotfiles",
 		hidden = true,
 	})
 end
-
 -- cd into a directory
 
 -- M.search_dir = function (opts)

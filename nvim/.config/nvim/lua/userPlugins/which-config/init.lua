@@ -208,6 +208,7 @@ local mappings = {
 		h = { "<cmd>lua require('userPlugins/_telescope-setting').search_dotfiles()<cr>", "dotfiles" },
 		-- d = {"<cmd>lua require('plugins/telescope-config').search_dir()<cr>","dotfiles"},
 	},
+	-- n = { "<cmd>lua require('userPlugins/_telescope-setting').search_nvim()<cr>", "nvim files" },
 	f = {
 		name = "fzf",
 		f = { "<cmd>FzfLua files<cr>", "find files fzf" },
