@@ -136,6 +136,8 @@ bindsym $mod+"slash" exec --no-startup-id alacritty --class "fzfmenu" -e /home/d
 
 # bindsym $mod+Shift+n exec --no-startup-id alacritty --class "fzfmenu" -e /home/drkknght/bin/network/wifi_fzf2.sh
 
+# mount devices
+bindsym $mod+m exec --no-startup-id alacritty --class "mount" -e /home/drkknght/bin/system_scripts/mount.sh
 
 bindsym $mod+n exec --no-startup-id alacritty --class "fzfmenu" -e /home/drkknght/bin/network/wifi_fzf.sh
 bindsym -x '"\C-o": file="$(fzf --height 40% --reverse)" && [ -f "$file" ] && xdg-open "$file"'
@@ -324,7 +326,6 @@ client.urgent           #2f343a #900000 #ffffff
 client.background #000000
 
 # assign program to workspaces
-for_window [floating] resize set 1200 500
 for_window [floating] move position center 
 for_window [class="Nemo"] move to workspace $ws3
 for_window [class="Brave-browser"] move to workspace $ws2
@@ -334,8 +335,9 @@ for_window [instance="startup"] move to workspace $ws1
 for_window [class="vlc"] move to workspace $ws4
 for_window [class="Zathura"] move to workspace $ws5
 for_window [instance="fzfmenu"] floating enable
-for_window [instance="wifi_fzf"] floating enable
-for_window [class="wifi_fzf"] resize set 500 500
+for_window [instance="mount"] floating enable
+for_window [instance="mount"] resize set 500 400
+for_window [instance="fzfmenu"] resize set 1200 500
 for_window [class="Gnome-terminal"] floating enable 
 for_window [class="^.*"] focus
 
