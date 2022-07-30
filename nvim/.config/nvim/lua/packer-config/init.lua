@@ -85,7 +85,6 @@ return require("packer").startup({
 
 		use({
 			"andymass/vim-matchup",
-			event = "CursorHold",
 		})
 
 		-- staline
@@ -103,7 +102,7 @@ return require("packer").startup({
 			"hrsh7th/nvim-cmp",
 			after = "lspkind.nvim",
 			config = function()
-				pcall(require,"userPlugins.cmp-config")
+				pcall(require, "userPlugins.cmp-config")
 			end,
 		})
 		use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
@@ -246,6 +245,7 @@ return require("packer").startup({
 			event = "VimEnter",
 			config = function()
 				require("userPlugins.lualine-config")
+				-- vim.api.nvim_set_hl(0, "Statusline", { bg = "Black" })
 			end,
 		})
 
@@ -327,7 +327,7 @@ return require("packer").startup({
 
 		use({
 			"neovim/nvim-lspconfig",
-			after = "nvim-lsp-installer",
+			after = "mason.nvim",
 			config = function()
 				pcall(require, "userPlugins.lsp-config")
 			end,
@@ -335,11 +335,12 @@ return require("packer").startup({
 
 		--  -- An implementaiont of the Popup API from vim in Neovim.
 
-		use({ "nvim-lua/popup.nvim", after = "nvim-lsp-installer" })
+		use({ "nvim-lua/popup.nvim", after = "mason.nvim" })
 
 		--  -- plugin to install language serves with ease
 
-		use({ "williamboman/nvim-lsp-installer", event = "CursorHold" })
+		use({ "williamboman/mason.nvim", event = "CursorHold" })
+		use({ "williamboman/mason-lspconfig.nvim", event = "CursorHold" })
 		--
 		-- This tiny plugin adds vscode-liek pictorgrams to neoivm built in lsp
 		--

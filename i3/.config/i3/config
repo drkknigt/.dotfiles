@@ -129,7 +129,7 @@ bindsym $mod+f exec --no-startup-id alacritty --class "fzfmenu" -e /home/drkkngh
 bindsym $mod+d exec --no-startup-id alacritty --class "fzfmenu" -e /home/drkknght/bin/system_scripts/file_exp.sh d
 
 # kill any process
-bindsym $mod+x exec --no-startup-id alacritty --class "fzfmenu" -e /home/drkknght/bin/system_scripts/kill.sh
+bindsym $mod+x exec --no-startup-id alacritty --class "fzfmenu" -e htop
 
 # open man pages
 bindsym $mod+"slash" exec --no-startup-id alacritty --class "fzfmenu" -e /home/drkknght/bin/system_scripts/man_pages.sh

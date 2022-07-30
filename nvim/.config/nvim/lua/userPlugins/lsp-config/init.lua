@@ -1,4 +1,4 @@
-local ok, lsp_installer = pcall(require, "nvim-lsp-installer")
+local ok, lsp_installer = pcall(require, "mason")
 local servers = {
 	"emmet_ls",
 	"html",
@@ -12,14 +12,18 @@ local servers = {
 	"bashls",
 	"yamlls",
 }
-lsp_installer.setup({
-	automatic_installation = true,
+local ok_2, mason_config = pcall(require, "mason-lspconfig")
+mason_config.setup({
 	ensure_installed = servers,
+	automatic_installation = true,
+})
+
+lsp_installer.setup({
 	ui = {
 		icons = {
-			server_installed = "✓",
-			server_pending = "➜",
-			server_uninstalled = "✗",
+			package_installed = "✓",
+			package_pending = "➜",
+			package_uninstalled = "✗",
 		},
 	},
 })

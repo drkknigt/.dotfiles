@@ -1,4 +1,4 @@
-require('jaq-nvim').setup{
+require("jaq-nvim").setup({
 	-- Commands used with 'Jaq'
 	cmds = {
 		-- Default UI used (see `Usage` for options)
@@ -12,19 +12,19 @@ require('jaq-nvim').setup{
 			python = "python3 %",
 			rust = "rustc % && ./$fileBase && rm $fileBase",
 			cpp = "g++ % -o $fileBase && ./$fileBase",
-			c = "g++ % -o $fileBase && ./$fileBase",
+			c = "clang % -o $fileBase && ./$fileBase",
 			go = "go run %",
 			sh = "sh %",
-            lua = 'lua5.3 %',
-            sh = 'bash %',
-            zsh = 'zsh %',
+			lua = "lua5.3 %",
+			sh = "bash %",
+			zsh = "zsh %",
 		},
 
 		-- Uses internal commands such as 'source' and 'luafile'
 		internal = {
 			lua = "luafile %",
-			vim = "source %"
-		}
+			vim = "source %",
+		},
 	},
 
 	-- UI settings
@@ -35,18 +35,18 @@ require('jaq-nvim').setup{
 		-- Floating Window settings
 		float = {
 			-- Floating window border (see ':h nvim_open_win')
-			border    = "double",
+			border = "double",
 
 			-- Num from `0 - 1` for measurements
-			height    = 0.8,
-			width     = 0.8,
+			height = 0.8,
+			width = 0.8,
 
 			-- Highlight group for floating window/border (see ':h winhl')
 			border_hl = "FloatBorder",
-			float_hl  = "Normal",
+			float_hl = "Normal",
 
 			-- Floating Window Transparency (see ':h winblend')
-			blend     = 0
+			blend = 0,
 		},
 
 		terminal = {
@@ -54,19 +54,19 @@ require('jaq-nvim').setup{
 			position = "bot",
 
 			-- Size of terminal
-			size     = 10
+			size = 10,
 		},
-        toggleterm = {
-            position = "horizontal",
-            size = 10
-        },
+		toggleterm = {
+			position = "horizontal",
+			size = 10,
+		},
 
 		quickfix = {
 			-- Position of quickfix window
 			position = "bot",
 
 			-- Size of quickfix window
-			size     = 10
-		}
-	}
-}
+			size = 10,
+		},
+	},
+})

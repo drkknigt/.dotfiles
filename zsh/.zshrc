@@ -9,6 +9,7 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#747474,bold"
+source ~/.fzf/shell/key-bindings.zsh
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -156,13 +157,14 @@ alias vpn='protonvpn-cli '
 # alias rgrep='rg'
 setopt histignorespace           # skip cmds w/ leading space from history
 export HSTR_CONFIG=hicolor       # get more colors
-bindkey -s "^r" "history | fzf^M"     # bind hstr to Ctrl-r (for Vi mode check doc)
+# bindkey -s "^r" "history | fzf^M"     # bind hstr to Ctrl-r (for Vi mode check doc)
 bindkey -s '^s' 'tmux_create.sh^M'
 bindkey -s '^L' 'tmux_session_switch.sh^M'
 bindkey -s '^v' 'nvim^M'
 bindkey -s '^k' 'tmux_kill.py^M'
 bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search
+bindkey "^]" end-of-line
 export EDITOR=nvim
 export VISUAL=nvim
 # source /usr/share/doc/fzf/examples/completion.zsh

@@ -13,7 +13,7 @@ set.rnu = true -- set relative line numbers in every file
 
 set.clipboard = { "unnamed", "unnamedplus" } --  Vim will use the clipboard reg '*' for all yank, delete, change and put operations and always use '*' instead of '+' reg
 
-set.path = set.path + "~/.config/nvim/**" -- list of directories searched with gf,find,sfind,tabfind cmds
+set.path = set.path + "~/.config/nvim/**/" -- list of directories searched with gf,find,sfind,tabfind cmds
 
 set.shiftround = true -- roune the surrounding indent of shiftwidth
 
@@ -102,6 +102,8 @@ set.autochdir = true
 -- set.virtualedit = all
 
 set.laststatus = 3 -- neovim specific to get a global statusline
+
+set.statusline = "   %F"
 
 --set.fillchars = {fold='\',vert='\|',eob='\',msgsep='‾'} -- characters to fille the statuslines and vertical separators.
 set.fillchars = {

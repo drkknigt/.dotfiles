@@ -3,7 +3,7 @@ require("bufferline").setup({
 		diagnostics = "nvim_lsp",
 	},
 	numbers = "buffer_id",
-	indicator_icon = "+ ",
+	indicator_icon = "} ",
 	left_trunc_marker = "",
 	right_trunc_marker = "",
 	offsets = {

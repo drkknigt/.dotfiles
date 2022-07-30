@@ -2,9 +2,9 @@
 vim.g.did_load_filetypes = 1
 vim.g.do_filetype_lua = 1
 local present, impatient = pcall(require, "impatient")
-if present then
-	impatient.enable_profile()
-end
+-- if present then
+-- 	impatient.enable_profile()
+-- end
 local disabled_built_ins = {
 	"ftplugin",
 	"netrw",
@@ -36,7 +36,7 @@ end
 
 -- general config loading
 
-require("settings")
+pcall(require, "settings")
 require("packer-config")
 if present then
 	require("userFunctions")
