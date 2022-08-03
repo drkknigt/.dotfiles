@@ -170,7 +170,7 @@ local mappings = {
 		c = { "<cmd>luafile ~/.config/nvim/lua/color-config/init.lua<cr>", "CodeLens Action" },
 		l = { "<cmd>lua vim.lsp.buf.references()<cr>", "document references" },
 		-- r = { "<cmd>Lspsaga rename<cr>", "Rename" },
-		q = { "<cmd>lua require'lspsaga.provider'.lsp_finder()<cr>", "lsp finder" },
+		q = { "<cmd>Lspsaga lsp_finder<cr>", "lsp finder" },
 		s = { "<cmd>lua vim.lsp.buf.document_symbol()<cr>", "Document Symbols" },
 		e = { "<cmd>lua vim.diagnostic.open_float(0,{scope='line',border='single'})<cr>", "document errors" },
 		S = { "<cmd>lua vim.lsp.buf.workspace_symbol()<cr>", "Document Symbols" },
