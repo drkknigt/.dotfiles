@@ -127,6 +127,9 @@ bindsym $mod+"bracketright" exec  --no-startup-id alacritty -t "fzfmenu" -e /hom
 # fuzzy find the file and open it
 bindsym $mod+f exec --no-startup-id alacritty -t "fzfmenu" -e /home/drkknght/bin/system_scripts/file_exp.sh f
 
+# see all the keymaps for i3wm
+bindsym $mod+Control+f exec --no-startup-id alacritty -t "fzfmenu" -e /home/drkknght/bin/system_scripts/keymap.sh
+
 # fuzzy find the directory and open it
 bindsym $mod+d exec --no-startup-id alacritty -t "fzfmenu" -e /home/drkknght/bin/system_scripts/file_exp.sh d
 

@@ -162,6 +162,7 @@ bindkey -s '^s' 'tmux_create.sh^M'
 bindkey -s '^L' 'tmux_session_switch.sh^M'
 bindkey -s '^v' 'nvim^M'
 bindkey -s '^k' 'tmux_kill.py^M'
+bindkey -s '^y' '~/bin/system_scripts/dotfiles.sh^M'
 bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search
 bindkey "^]" end-of-line
