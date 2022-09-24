@@ -1,5 +1,5 @@
 local set = vim.opt -- api to interact with vim options
-local macro = vim.fn -- api to intereact with vim registers
+local macro = vim.fn -- Invokes |vim-function| or |user-function| {func} with arguments {...}.
 local cmd = vim.cmd -- execute vim commands
 local api = vim.api -- vim api
 
@@ -91,7 +91,7 @@ set.hls = false -- dont highlight all search patterns
 
 set.is = true -- incremental search highlight
 
-set.nrformats = set.nrformats + "alpha"
+set.nrformats = set.nrformats
 
 set.matchpairs = set.matchpairs + "<:>"
 

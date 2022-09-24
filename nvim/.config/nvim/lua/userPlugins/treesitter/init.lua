@@ -33,7 +33,7 @@ require("nvim-treesitter.configs").setup({
 		-- termcolors = {} -- table of colour name strings
 	},
 
-	ensure_installed = { "python", "lua", "bash", "javascript", "clojure", "go", "c", "html", "css", "cpp" },
+	ensure_installed = { "vim", "python", "lua", "bash", "javascript", "clojure", "go", "c", "html", "css", "cpp" },
 
 	highlight = { -- enable highlighting for all file types
 		enable = true, -- you can also use a table with list of langs here (e.g. { "python", "javascript" })

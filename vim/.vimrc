@@ -72,7 +72,7 @@ let mapleader =" "
 inoremap jk <Esc> 
 " remap Esc to kj
 inoremap kj <Esc>
-nnoremap <leader>e :30Lex<CR>
+nnoremap <silent> <leader>e :30Lex<CR>
 nnoremap <leader>z :e $MYVIMRC<CR>
 nnoremap ZQ :qall!<CR>
 " line object

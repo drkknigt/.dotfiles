@@ -173,8 +173,8 @@ bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Control+h move left
-bindsym $mod+Control+k move down
-bindsym $mod+Control+j move up
+bindsym $mod+Control+k move up
+bindsym $mod+Control+j move down
 bindsym $mod+Control+l move right
 
 # alternatively, you can use the cursor keys:

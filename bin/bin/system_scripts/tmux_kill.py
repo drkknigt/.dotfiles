@@ -6,9 +6,7 @@ from sys import exit
 
 def session_info():
     try:
-        session_list = check_output(
-            'tmux ls | cut -d ":" -f 1 | tr "\n" " "', shell=True
-        ).decode()
+        session_list = check_output('tmux ls | cut -d ":" -f 1 ', shell=True).decode()
         active_session = (
             check_output('tmux ls | grep "attached" | cut -d ":" -f 1', shell=True)
             .decode()
@@ -31,7 +29,7 @@ def session_info():
 
 def delete_session():
     session_list, active_session, selected_session = session_info()
-    session_array = session_list.split()
+    session_array = session_list.split('\n')
     session_index = session_array.index(selected_session)
     if selected_session == active_session:
         if len(session_array) > 1:
