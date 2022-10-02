@@ -84,8 +84,8 @@ require("nvim-treesitter.configs").setup({
 			enable = true,
 			border = "single",
 			peek_definition_code = {
-				["<leader>df"] = "@function.outer",
-				["<leader>dF"] = "@class.outer",
+				["<leader>Df"] = "@function.outer",
+				["<leader>DF"] = "@class.outer",
 			},
 		},
 		move = {

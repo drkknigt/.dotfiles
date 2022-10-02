@@ -36,7 +36,7 @@ end
 
 -- general config loading
 
-pcall(require, "settings")
+require("settings")
 require("packer-config")
 if present then
 	require("userFunctions")

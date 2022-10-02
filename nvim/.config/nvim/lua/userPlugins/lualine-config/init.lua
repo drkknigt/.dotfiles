@@ -32,7 +32,7 @@ local diagnostics = {
 local diff = {
 	"diff",
 	colored = false,
-	symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
+	symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
 	cond = hide_in_width,
 }
 
@@ -97,16 +97,16 @@ local progress = function()
 	-- local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
 	-- local line_ratio = current_line / total_lines
 	-- local index = math.ceil(line_ratio * #chars)
-	return "Line " .. string.format("%02d/%02d", current_line, total_lines)
+	return string.format("%s %02d/%02d", "", current_line, total_lines)
 	-- return chars[index]
 end
 
 local column_no = function()
-	return "Col: " .. string.format("%02d", tostring(vim.api.nvim_win_get_cursor(0)[2] + 1))
+	return string.format("%s %02d", "ﴳ", tostring(vim.api.nvim_win_get_cursor(0)[2] + 1))
 end
 
 local spaces = function()
-	return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
+	return string.format(" %s %s", "{}", vim.api.nvim_buf_get_option(0, "shiftwidth"))
 end
 
 lualine.setup({

@@ -1,5 +1,6 @@
 local cmd = vim.api.nvim_create_user_command
 local command = vim.api.nvim_command
+local buffer_delete = vim.api.nvim_buf_delete
 
 -- delete buffers lua function
 
@@ -8,6 +9,8 @@ local function kill_buffers(value)
 	local current_buf_no = vim.api.nvim_get_current_buf()
 	for i, v in pairs(buf_list) do
 		if v ~= current_buf_no then
+			-- buffer_delete(v, { force, unlord })
+			-- command(string.format("bd! %s", v))
 			pcall(vim.api.nvim_command, "bd! " .. v)
 		end
 	end
@@ -21,6 +24,8 @@ local function kill_empty(value)
 	local current_buf_no = vim.api.nvim_get_current_buf()
 	for i, v in pairs(buf_list) do
 		if #vim.api.nvim_buf_get_name(v) == 0 then
+			-- buffer_delete(v, { force })
+			-- command(string.format("bd! %s", v))
 			pcall(vim.api.nvim_command, "bd! " .. v)
 		end
 	end

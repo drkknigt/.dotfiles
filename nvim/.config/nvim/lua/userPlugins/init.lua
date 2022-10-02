@@ -5,6 +5,7 @@
 -- require('userPlugins/goto-config')
 -- require('userPlugins/lspsaga-config')
 require("userPlugins/treesitter")
+-- require("statusline")
 -- require('userPlugins/lualine-config')
 -- require('hop').setup()
 require("userPlugins/tabbar-config")

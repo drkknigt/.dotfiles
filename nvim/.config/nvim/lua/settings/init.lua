@@ -13,7 +13,7 @@ set.rnu = true -- set relative line numbers in every file
 
 set.clipboard = { "unnamed", "unnamedplus" } --  Vim will use the clipboard reg '*' for all yank, delete, change and put operations and always use '*' instead of '+' reg
 
-set.path = set.path + "~/.config/nvim/**/" -- list of directories searched with gf,find,sfind,tabfind cmds
+-- set.path = set.path + "~/.config/nvim/**" -- list of directories searched with gf,find,sfind,tabfind cmds
 
 set.shiftround = true -- roune the surrounding indent of shiftwidth
 
@@ -122,11 +122,12 @@ cmd([[abb py! #!/usr/bin/env python3]])
 cmd([[filetype plugin indent on ]])
 
 -- sandwhich vim
+cmd([[ set path+=~/.config/nvim/** ]])
 cmd([[ runtime macros/sandwich/keymap/surround.vim ]])
 -- vim.g.nvim_tree_respect_buf_cwd = 1
 -- vim.g.nvim_tree_root_foler_modifier = ':p:r'
 -- vim.g.nvim_tree_highlight_opened_files = 2
-local present, mod = pcall(require, "impatient")
-if present then
-	set.winbar = "%{%v:lua.require'userPlugins.winbar'.get_winbar()%}"
-end
+-- local present, mod = pcall(require, "impatient")
+-- if present then
+-- 	set.winbar = "%{%v:lua.require'userPlugins.winbar'.get_winbar()%}"
+-- end

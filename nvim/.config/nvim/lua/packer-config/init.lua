@@ -25,6 +25,7 @@ if not status_ok then
 end
 
 -- Have packer use a popup window
+
 packer.init({
 	-- profile = {
 	--     enable = true,
@@ -37,11 +38,11 @@ packer.init({
 	},
 })
 
+-- install all the plugins
+
 return require("packer").startup({
 	function(use)
 		-- My plugins here
-		-- use 'foo1/bar1.nvim'
-		-- use 'foo2/bar2.nvim'
 		-- packer manages itself
 
 		use("wbthomason/packer.nvim")
@@ -52,12 +53,13 @@ return require("packer").startup({
 		use({ "nathom/filetype.nvim" })
 		use("dstein64/vim-startuptime")
 
+		-- winbar file info
 		use({
 			"SmiteshP/nvim-navic",
 			requires = "neovim/nvim-lspconfig",
 		})
 
-		-- lua with packer.nvim
+		-- better escape mode
 		use({
 			"max397574/better-escape.nvim",
 			event = "CursorHold",
@@ -70,9 +72,10 @@ return require("packer").startup({
 		})
 
 		-- gruvbox-baby theme
+
 		use({
 			"luisiacc/gruvbox-baby",
-			-- "folke/tokyonight.nvim",
+			"folke/tokyonight.nvim",
 			-- event = "BufEnter",
 			-- config = function()
 			-- require("color-config")
@@ -82,10 +85,6 @@ return require("packer").startup({
 		})
 
 		-- vim matchup to match pairs and language constructs
-
-		use({
-			"andymass/vim-matchup",
-		})
 
 		-- staline
 		-- use({
@@ -249,6 +248,10 @@ return require("packer").startup({
 			end,
 		})
 
+		-- matchup
+		use({
+			"andymass/vim-matchup",
+		})
 		-- tab bar line
 		use({ "akinsho/bufferline.nvim", tag = "v2.*", requires = "kyazdani42/nvim-web-devicons" }) --,event = 'BufEnter',
 		--     config = function()
@@ -352,7 +355,7 @@ return require("packer").startup({
 			"simrat39/symbols-outline.nvim",
 			event = "CursorHold",
 			config = function()
-				require("userPlugins.symbolline-config")
+				require("symbols-outline").setup()
 			end,
 		})
 		-- use {'simrat39/symbols-outline.nvim'}

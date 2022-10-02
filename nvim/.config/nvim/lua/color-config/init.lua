@@ -15,10 +15,11 @@ vim.g.gruvbox_baby_telescope_theme = 1
 vim.g.gruvbox_baby_transparent_mode = 1
 
 -- Load the colorscheme
-vim.api.nvim_command("colorscheme gruvbox-baby")
+vim.api.nvim_command("colorscheme tokyonight")
 api.nvim_set_hl(0, "NormalFloat", { bg = "None", fg = "None" })
 api.nvim_set_hl(0, "LineNr", { fg = "#ed9f2b" })
-api.nvim_set_hl(0, "WhichKeyFloat", { fg = "None" })
+api.nvim_set_hl(0, "WhichKeyFloat", { fg = "None", bg = "None" })
+api.nvim_set_hl(0, "WinBar", { fg = "Gray" })
 -- api.nvim_set_hl(0,'Search',{bg='#ed9f2b'})
 api.nvim_set_hl(0, "Cursor", { bg = bg })
 api.nvim_set_hl(0, "CursorLineNr", { fg = "#b8afae" })

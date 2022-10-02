@@ -126,8 +126,8 @@ local mappings = {
 	q = {
 		name = "Lists",
 		w = {
-			'ma:let @z=line(".")<bar>:silent grep! <cword> %<cr><bar>:copen<cr>/<C-r>z<cr>0',
-			"find word under cursor",
+			":exe 'silent grep! <cword> %' | exe 'copen'<cr>",
+			"find word under the cursor",
 		},
 		q = { "<cmd>copen<cr>", "Quickfix open" },
 		e = { "<cmd>cclose<cr>", "Quickfix close" },
