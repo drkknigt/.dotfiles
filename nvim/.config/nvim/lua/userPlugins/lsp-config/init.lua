@@ -141,12 +141,18 @@ local on_attach = function(client, bufnr)
 		severity_sort = true,
 		underline = false,
 	})
-	if client.server_capabilities.documentSymbolProvider then
-		local navic = require("nvim-navic")
-		navic.attach(client, bufnr)
-	end
+
+	-- initialise navic
+
+	-- if client.server_capabilities.documentSymbolProvider then
+	-- 	local navic = require("nvim-navic")
+	-- 	navic.attach(client, bufnr)
+	-- end
 end
-vim.o.winbar = " %= %t %{%v:lua.require'nvim-navic'.get_location()%}"
+
+-- winbar format
+
+-- vim.o.winbar = " %= %t %{%v:lua.require'nvim-navic'.get_location()%}"
 -- vim.o.winbar = "%{%v:lua.require'userPlugins.winbar'.string()%}"
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()

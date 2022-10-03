@@ -12,7 +12,7 @@ require("jaq-nvim").setup({
 			python = "python3 %",
 			rust = "rustc % && ./$fileBase && rm $fileBase",
 			cpp = "g++ % -o $fileBase && ./$fileBase",
-			c = "clang % -o $fileBase && ./$fileBase",
+			c = "clang-14 % -o $fileBase && ./$fileBase",
 			go = "go run %",
 			sh = "sh %",
 			lua = "lua5.3 %",

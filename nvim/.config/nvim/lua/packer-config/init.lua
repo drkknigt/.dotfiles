@@ -54,10 +54,6 @@ return require("packer").startup({
 		use("dstein64/vim-startuptime")
 
 		-- winbar file info
-		use({
-			"SmiteshP/nvim-navic",
-			requires = "neovim/nvim-lspconfig",
-		})
 
 		-- better escape mode
 		use({
@@ -385,10 +381,19 @@ return require("packer").startup({
 		-- lsp saga gives ui to certain lsp task
 
 		use({
-			"tami5/lspsaga.nvim",
+			"glepnir/lspsaga.nvim",
+			branch = "main",
 			event = "CursorHold",
 			config = function()
-				require("userPlugins.lspsaga-config")
+				-- require("userPlugins.lspsaga-config")
+				local saga = require("lspsaga")
+				saga.init_lsp_saga({
+					symbol_in_winbar = {
+						enable = true,
+						show_file = true,
+						file_formatter = "%:.",
+					},
+				})
 			end,
 		})
 
