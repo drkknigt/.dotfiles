@@ -49,8 +49,8 @@ map("n", "<leader>r", ":Jaq<CR>", { noremap = true, silent = true })
 -- map('n','<leader>fl',':FzfLua live_grep<CR>',{noremap=true,silent=true})
 -- map("n", "<leader>y", '"+yy', { noremap = true, silent = true })
 map("n", "<leader>y", "magg\"+yG'a", { noremap = true, silent = true })
-map("n", "n", "nzz", { noremap = true, silent = true })
-map("n", "N", "Nzz", { noremap = true, silent = true })
+-- map("n", "n", "nzz", { noremap = true, silent = true })
+-- map("n", "N", "Nzz", { noremap = true, silent = true })
 map("x", "J", ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
 map("x", "K", ":move '<-2<CR>gv-gv", { noremap = true, silent = true })
 map("x", "<A-j>", ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
@@ -102,3 +102,9 @@ map("n", "]e", ":s/\\w\\+/\\0,/g<bar>normal I= [<Esc>A]<Esc>I", { noremap = true
 -- map("n","dib","/(\\([a-zA-Z0-9,'-_]*\\|\\n\\))\\{-}<cr>:normal di(<cr>",{noremap=true,silent=true})
 -- map("n","diB","/{\\([a-zA-Z0-9,'-_]*\\|\\n\\)}\\{-}<cr>:normal di{<cr>",{noremap=true,silent=true})
 -- map("n","daB","/{\\([a-zA-Z0-9,'-_]*\\|\\n\\)}\\{-}<cr>:normal da{<cr>",{noremap=true,silent=true})
+
+-- local makeArray = vim.api.nvim_create_augroup("makeArray", { clear = true })
+-- vim.api.nvim_create_autocmd("BufEnter", {
+-- 	command = map("n", "]a", ":s/\\w\\+/'\\0',/g<bar>normal I= [<Esc>A]<Esc>I", { noremap = true, silent = true }),
+-- 	group = makeArray,
+-- })

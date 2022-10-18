@@ -1,8 +1,7 @@
 local ok, lsp_installer = pcall(require, "mason")
 local servers = {
 	"emmet_ls",
-	"html",
-	-- "pyright",
+	"html", -- "pyright",
 	"jedi_language_server",
 	"clangd",
 	"cssls",
@@ -13,10 +12,7 @@ local servers = {
 	"yamlls",
 }
 local ok_2, mason_config = pcall(require, "mason-lspconfig")
-mason_config.setup({
-	ensure_installed = servers,
-	automatic_installation = true,
-})
+mason_config.setup({ ensure_installed = servers, automatic_installation = true })
 
 lsp_installer.setup({
 	ui = {
@@ -34,13 +30,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 	underline = false,
 	show_diagnostic_autocmds = { "BufWritePost" },
 }, vim.lsp.handlers.hover, { focusable = false })
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-	border = "single",
-})
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
 
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-	border = "double",
-})
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "double" })
 
 vim.cmd([[ 
     sign define DiagnosticSignError text=✖ linehl= texthl=DiagnosticSignError numhl=
@@ -114,7 +106,13 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "[d", '<cmd>lua vim.diagnostic.goto_prev({scope="line",float={border="single"}})<CR>', opts)
 	buf_set_keymap("n", "]d", '<cmd>lua vim.diagnostic.goto_next({scope="line",float={border="single"}})<CR>', opts)
 	-- buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-	local server_table = { ["tsserver"] = 1, ["pyright"] = 1, ["html"] = 1, ["sumneko_lua"] = 1, ["bashls"] = 1 }
+	local server_table = {
+		["tsserver"] = 1,
+		["pyright"] = 1,
+		["html"] = 1,
+		["sumneko_lua"] = 1,
+		["bashls"] = 1,
+	}
 	-- vim.lsp.buf.formatting() -- asynchronous formatting
 	-- vim.lsp.buf.formatting_sync() -- synchronous formatting, bet,oter to avoid desync problems
 	-- vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()"
@@ -284,9 +282,7 @@ require("lspconfig").sumneko_lua.setup({
 				preloadFileSize = 150,
 			},
 			-- Do not send telemetry data containing a randomized but unique identifier
-			telemetry = {
-				enable = false,
-			},
+			telemetry = { enable = false },
 		},
 	},
 
@@ -295,9 +291,7 @@ require("lspconfig").sumneko_lua.setup({
 	-- },
 
 	on_attach = on_attach,
-	flags = {
-		debounce_text_changes = 150,
-	},
+	flags = { debounce_text_changes = 150 },
 	capabilities = capabilities,
 })
 
@@ -321,9 +315,7 @@ for _, lsp in pairs(servers) do
 		require("lspconfig")[lsp].setup({
 			settings = lsp_settings[lsp],
 			on_attach = on_attach,
-			flags = {
-				debounce_text_changes = 150,
-			},
+			flags = { debounce_text_changes = 150 },
 			capabilities = capabilities,
 		})
 	end

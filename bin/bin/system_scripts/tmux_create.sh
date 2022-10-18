@@ -1,13 +1,16 @@
 #!/usr/bin/env zsh
-
+#
 selected_directory=$(find ~ -mindepth 1 -maxdepth 6 -type d | fzf --prompt="make-session: ")
 
 if [ -z "$selected_directory" ]; then exit 0;fi
 session_name=$(basename $selected_directory | cut -d '.' -f 2)
 if [ "$session_name" = "$(tmux ls 2> /dev/null | grep 'attached' | cut -d ':' -f 1)" ];
 then
+    echo "you are already in this session"
     exit 0
 fi
+tmux ls | grep -i "$session_name" &> /dev/null
+if [ "0" = "$?" ]; then echo "session with this directory already running"; exit 0 ; fi
 
 
 if [ -z "$TMUX" ]; then
