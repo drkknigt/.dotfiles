@@ -1,5 +1,5 @@
 set nocompatible " vi compatible mode off
-colorscheme desert
+colorscheme default
 set wrap " longer lines will wrap
 set ruler "  Show the line and column number of the cursor 
 set cursorline
@@ -50,6 +50,7 @@ hi Normal ctermfg=yellow " highlight color
 hi Pmenu ctermbg=NONE ctermfg=white
 hi PmenuSel ctermfg=yellow
 highlight Normal ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE  guibg=NONE cterm=NONE
+highlight CursorLine ctermfg=NONE ctermbg=5 guifg=NONE guibg=NONE  guibg=NONE cterm=NONE
 "quit all
 "enable matchit
 packadd! matchit

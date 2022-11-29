@@ -163,13 +163,13 @@ return require("packer").startup({
 
 		-- mkdir for nvim
 
-		use({
-			"jghauser/mkdir.nvim",
-			event = "CursorHold",
-			config = function()
-				require("mkdir")
-			end,
-		})
+		-- use({
+		-- 	"jghauser/mkdir.nvim",
+		-- 	event = "CursorHold",
+		-- 	config = function()
+		-- 		require("mkdir")
+		-- 	end,
+		-- })
 
 		-- lsp progress
 
