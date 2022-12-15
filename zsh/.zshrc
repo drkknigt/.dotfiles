@@ -107,6 +107,7 @@ PATH=/home/drkknght/bin/system_scripts:$PATH
 PATH=/home/drkknght/bin/navigation:$PATH
 PATH=/home/drkknght/bin/network:$PATH
 PATH=/home/drkknght/bin/background:$PATH
+PATH=/home/drkknght/usr/bin:$PATH
 
 
 export NVM_DIR="$HOME/.nvm"

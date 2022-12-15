@@ -335,6 +335,7 @@ for_window [floating] move position center
 for_window [class="Nemo"] move to workspace $ws3
 for_window [class="Brave-browser"] move to workspace $ws2
 for_window [class="Zettlr"] move to workspace $ws6
+for_window [class="Joplin"] move to workspace $ws6
 for_window [class="Code"] move to workspace $ws7
 for_window [instance="startup"] move to workspace $ws1
 for_window [title="startup"] move to workspace $ws1
