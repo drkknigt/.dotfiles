@@ -158,8 +158,7 @@ bindsym -x '"\C-o": file="$(fzf --height 40% --reverse)" && [ -f "$file" ] && xd
 # bindsym $mod+- exec  /home/drkknght/bin/tmux_scripts/brightness.sh -5
 
 # connect and disconnect wifi
-bindsym $mod+"semicolon" exec "nmcli radio wifi on"
-bindsym $mod+"apostrophe" exec "nmcli radio wifi off" 
+bindsym $mod+i exec /home/drkknght/bin/system_scripts/wifi_connect.sh
 
 # bindsym $mod+Control+d exec /home/drkknght/bin/fd.sh
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -364,3 +363,6 @@ gaps inner 8
 gaps outer 8
 
 
+# scratchpad
+bindsym $mod+Control+s move scratchpad
+bindsym $mod+Control+d scratchpad show
