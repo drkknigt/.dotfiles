@@ -163,10 +163,12 @@ bindkey -s '^s' 'tmux_create.sh^M'
 bindkey -s '^L' 'tmux_session_switch.sh^M'
 bindkey -s '^v' 'nvim^M'
 bindkey -s '^k' 'tmux_kill.py^M'
-bindkey -s '^y' '~/bin/system_scripts/dotfiles.sh^M'
+bindkey -s '^y' '~/bin/system_scripts/dotfiles.sh 0^M'
+bindkey -s '^o' '~/bin/system_scripts/dotfiles.sh 1^M'
 bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search
 bindkey "^]" end-of-line
+bindkey "^a" beginning-of-line
 export EDITOR=nvim
 export VISUAL=nvim
 # source /usr/share/doc/fzf/examples/completion.zsh
