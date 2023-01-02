@@ -328,7 +328,7 @@ return require("packer").startup({
 			"neovim/nvim-lspconfig",
 			after = "mason.nvim",
 			config = function()
-				pcall(require, "userPlugins.lsp-config")
+				require("userPlugins.lsp-config")
 			end,
 		})
 
