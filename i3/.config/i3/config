@@ -154,7 +154,7 @@ bindsym $mod+"slash" exec --no-startup-id alacritty -t "fzfmenu" -e /home/drkkng
 bindsym $mod+m exec --no-startup-id alacritty -t "mount" -e /home/drkknght/bin/system_scripts/mount.sh
 
 bindsym $mod+n exec --no-startup-id alacritty -t "fzfmenu" -e /home/drkknght/bin/network/wifi_fzf.sh
-bindsym -x '"\C-o": file="$(fzf --height 40% --reverse)" && [ -f "$file" ] && xdg-open "$file"'
+#bindsym -x '"\C-o": file="$(fzf --height 40% --reverse)" && [ -f "$file" ] && xdg-open "$file"'
 # bindsym $mod+g exec  /home/drkknght/bin/tmux_scripts/brightness.sh 5
 # bindsym $mod+- exec  /home/drkknght/bin/tmux_scripts/brightness.sh -5
 
