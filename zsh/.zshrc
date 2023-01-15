@@ -180,6 +180,7 @@ LANG="en_US.utf8"
 export LANG
 
 alias luamake=/home/drkknght/tools/lua-language-server/3rd/luamake/luamake
+alias ssha='eval $(ssh-agent) && ssh-add'
 
 
 # append completions to fpath
