@@ -196,3 +196,10 @@ cdd(){
    direc=$(fdfind -H --type d . "/home/drkknght/" | fzf --cycle --prompt='change directory: ')
    cd $direc
 }
+add(){
+    temp=0
+    for i in $@;do
+        temp=$(( $temp + $i ))
+    done
+    echo $temp
+}
