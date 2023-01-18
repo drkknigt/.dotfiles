@@ -82,22 +82,17 @@ local opts = {
 local mappings = {
 	["a"] = { "<cmd>:ISwap<cr>", "swap" },
 	["w"] = { "<cmd>w<cr>", "save file" },
-	["B"] = {
-		"<cmd>lua require('telescope.builtin').buffers()<cr>",
-		"Buffers",
-	},
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	-- ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-	["P"] = { '<cmd>lua require("telescope").extensions.project.project{display_type = "full"}<cr>', "Projects" },
 
 	p = {
 		name = "Packer",
-		o = { "<cmd>e ~/.config/nvim/lua/packer-config/init.lua<cr>", "Install" },
+		z = { "<cmd>e ~/.config/nvim/lua/lazy-nvim/init.lua<cr>", "Install" },
 		s = { "<cmd>luafile %<cr>", "source lua file" },
-		d = { "<cmd>PackerStatus<cr>", "Status" },
-		i = { "<cmd>PackerInstall<cr>", "Sync" },
-		u = { "<cmd>PackerUpdate<cr>", "packer Update" },
-		c = { "<cmd>PackerCompile<cr>", "packer compile" },
+		i = { "<cmd>Lazy install<cr>", "Sync" },
+		u = { "<cmd>Lazy update<cr>", "packer Update" },
+		c = { "<cmd>Lazy clean<cr>", "packer compile" },
+		p = { "<cmd>Lazy home<cr>", "packer compile" },
 	},
 
 	g = {
@@ -167,7 +162,6 @@ local mappings = {
 		},
 		p = { "<cmd>lua require('goto-preview').goto_preview_definition()<cr>", "goto-preview" },
 		f = { "<cmd>so $HOME/.config/nvim/early.vim<CR>", "goto last open file" },
-		c = { "<cmd>luafile ~/.config/nvim/lua/color-config/init.lua<cr>", "CodeLens Action" },
 		l = { "<cmd>lua vim.lsp.buf.references()<cr>", "document references" },
 		-- r = { "<cmd>Lspsaga rename<cr>", "Rename" },
 		q = { "<cmd>Lspsaga lsp_finder<cr>", "lsp finder" },

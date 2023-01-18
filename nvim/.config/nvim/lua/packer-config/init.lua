@@ -324,22 +324,22 @@ return require("packer").startup({
 
 		-- This plugin allows for declaratiely configuring, launching, and initializing language serves you have installed on your system
 
-		use({
-			"neovim/nvim-lspconfig",
-			after = "mason.nvim",
-			config = function()
-				require("userPlugins.lsp-config")
-			end,
-		})
+		-- use({
+		-- 	"neovim/nvim-lspconfig",
+		-- 	after = "mason.nvim",
+		-- 	config = function()
+		-- 		require("userPlugins.lsp-config")
+		-- 	end,
+		-- })
 
 		--  -- An implementaiont of the Popup API from vim in Neovim.
 
-		use({ "nvim-lua/popup.nvim", after = "mason.nvim" })
+		use({ "nvim-lua/popup.nvim" })
 
 		--  -- plugin to install language serves with ease
 
-		use({ "williamboman/mason.nvim", event = "CursorHold" })
-		use({ "williamboman/mason-lspconfig.nvim", event = "CursorHold" })
+		-- use({ "williamboman/mason.nvim", event = "CursorHold" })
+		-- use({ "williamboman/mason-lspconfig.nvim", event = "CursorHold" })
 		--
 		-- This tiny plugin adds vscode-liek pictorgrams to neoivm built in lsp
 		--

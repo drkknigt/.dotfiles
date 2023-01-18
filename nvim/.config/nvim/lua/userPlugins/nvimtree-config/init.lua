@@ -80,6 +80,7 @@ nvim_tree.setup({
 		"startify",
 		"dashboard",
 		"alpha",
+        "telescope",
 	},
 	-- auto_close = true,
 	open_on_tab = false,
@@ -130,7 +131,6 @@ nvim_tree.setup({
 				},
 			},
 		},
-		highlight_opened_files = "name",
 	},
 	diagnostics = {
 		enable = true,
@@ -144,7 +144,7 @@ nvim_tree.setup({
 	},
 	update_focused_file = {
 		enable = true,
-		update_cwd = false,
+		update_cwd = true,
 		update_root = false,
 		ignore_list = {},
 	},
