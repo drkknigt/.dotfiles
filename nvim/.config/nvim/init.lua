@@ -1,5 +1,4 @@
 -- disable_built_ins
-local present, impatient = pcall(require, "impatient")
 local disabled_built_ins = {
 	"ftplugin",
 	"netrw",
