@@ -154,14 +154,26 @@ require("lazy").setup({
 	},
 
 	-- surround text objects with chars
+	-- {
+	-- 	"machakann/vim-sandwich",
+	-- 	event = "CursorHold",
+	-- 	config = function()
+	-- 		vim.cmd([[ runtime macros/sandwich/keymap/surround.vim ]])
+	-- 		vim.cmd([[let g:sandwich_no_default_key_mappings = 1 ]])
+	-- 		vim.g.sandwich_no_default_key_mappings = 1
+	-- 	end,
+	-- },
+
 	{
-		"machakann/vim-sandwich",
+		"kylechui/nvim-surround",
 		event = "CursorHold",
+		version = "*", -- Use for stability; omit to use `main` branch for the latest features
 		config = function()
-			vim.cmd([[ runtime macros/sandwich/keymap/surround.vim ]])
+			require("nvim-surround").setup({
+				-- Configuration here, or leave empty to use defaults
+			})
 		end,
 	},
-
 	-- developer icons to display icons and fonts related to programming
 
 	{ "kyazdani42/nvim-web-devicons", event = "CursorHold" },
@@ -207,7 +219,7 @@ require("lazy").setup({
 		dependencies = {
 			"kyazdani42/nvim-web-devicons",
 		},
-		event = "BufReadPre",
+		event = "BufEnter",
 		config = function()
 			require("userPlugins.lualine-config")
 			-- vim.api.nvim_set_hl(0, "Statusline", { bg = "Black" })

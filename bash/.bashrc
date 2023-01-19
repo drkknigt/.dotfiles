@@ -138,4 +138,7 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+if [ -d /home/drkknght/.cargo/ ] then
+    . "$HOME/.cargo/env"
+fi
 

@@ -86,7 +86,7 @@ local mappings = {
 	-- ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
 
 	p = {
-		name = "Packer",
+		name = "Lazy-nvim",
 		z = { "<cmd>e ~/.config/nvim/lua/lazy-nvim/init.lua<cr>", "Install" },
 		s = { "<cmd>luafile %<cr>", "source lua file" },
 		i = { "<cmd>Lazy install<cr>", "Sync" },
@@ -144,6 +144,9 @@ local mappings = {
 			"<cmd>lua vim.diagnostic.setloclist()<cr>",
 			"Document Diagnostics",
 		},
+
+		c = { "<cmd>Codeium Enable<cr>", "enable codeium" },
+		b = { "<cmd>Codeium Disable<cr>", "disable codeium" },
 		x = { "<cmd>!chmod +x %<cr>", "make current file executable" },
 		w = {
 			"<cmd>lua vim.diagnostic.setqflist()<cr>",

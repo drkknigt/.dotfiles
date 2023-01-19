@@ -27,3 +27,6 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 export PATH="$HOME/.poetry/bin:$PATH"
+if [ -d /home/drkknght/.cargo/ ] then
+    . "$HOME/.cargo/env"
+fi
