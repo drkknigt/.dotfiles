@@ -9,11 +9,51 @@ if not vim.loop.fs_stat(lazypath) then
 		lazypath,
 	})
 end
+local opts = {
+	performance = {
+		rtp = {
+			---@type string[] list any plugins you want to disable here
+			disabled_plugins = {
+				"tohtml",
+				"tutor",
+				"ftplugin",
+				"netrw",
+				"netrwPlugin",
+				"netrwSettings",
+				"netrwFileHandlers",
+				"gzip",
+				"zip",
+				"zipPlugin",
+				"tar",
+				"rplugin",
+				"tarPlugin",
+				"getscript",
+				"getscriptPlugin",
+				"vimball",
+				"vimballPlugin",
+				"2html_plugin",
+				"logipat",
+				"rrhelper",
+				"spellfile_plugin",
+				"matchit",
+				"matchparen",
+				"logiPat",
+				"rrhelper",
+			},
+		},
+	},
+	-- lazy can generate helptags from the headings in markdown readme files,
+	-- so :help works even for plugins that don't have vim docs.
+	-- when the readme opens with :help it will be correctly displayed as markdown
+}
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	-- startup time and optimization plugins
 
-	{ "dstein64/vim-startuptime", event = CursorHold },
+	{
+		"dstein64/vim-startuptime",
+		event = "CursorHold",
+	},
 
 	-- better escape mode
 	{
@@ -114,7 +154,13 @@ require("lazy").setup({
 	},
 
 	-- surround text objects with chars
-	{ "machakann/vim-sandwich" },
+	{
+		"machakann/vim-sandwich",
+		event = "CursorHold",
+		config = function()
+			vim.cmd([[ runtime macros/sandwich/keymap/surround.vim ]])
+		end,
+	},
 
 	-- developer icons to display icons and fonts related to programming
 
@@ -161,7 +207,7 @@ require("lazy").setup({
 		dependencies = {
 			"kyazdani42/nvim-web-devicons",
 		},
-		event = "BufEnter",
+		event = "BufReadPre",
 		config = function()
 			require("userPlugins.lualine-config")
 			-- vim.api.nvim_set_hl(0, "Statusline", { bg = "Black" })
@@ -341,4 +387,26 @@ require("lazy").setup({
 			require("bqf").setup()
 		end,
 	},
-})
+
+	-- code window
+	{
+		"gorbit99/codewindow.nvim",
+		event = "CursorHold",
+		config = function()
+			local codewindow = require("codewindow")
+			codewindow.setup()
+			codewindow.apply_default_keybinds()
+		end,
+	},
+	-- ai code completion
+
+	{
+		"Exafunction/codeium.vim",
+		event = "CursorHold",
+		config = function()
+			vim.keymap.set("i", "<C-_>", function()
+				return vim.fn["codeium#Accept"]()
+			end, { expr = true })
+		end,
+	},
+}, opts)

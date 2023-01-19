@@ -32,7 +32,7 @@ cmp.setup({
 		end,
 	},
 	mapping = {
-		["<C-e>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+		["<C-q>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
 		["<C-v>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
 		["<C-n>"] = cmp.mapping(
 			cmp.mapping.select_next_item({ behaviour = types.cmp.SelectBehavior.Insert }),
