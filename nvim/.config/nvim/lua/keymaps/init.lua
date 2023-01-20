@@ -8,6 +8,7 @@ map("n", "<leader>hh", ":call matchadd('LineHighlight','\\%'.line('.').'l')<cr>"
 map("n", "<leader>hv", ":set nohls<bar>call clearmatches()<cr>", { silent = true, noremap = true })
 map("n", "<leader>bo", ":Bo<cr>", { silent = true, noremap = true })
 map("n", "<leader>be", ":Be<cr>", { silent = true, noremap = true })
+map("n", "<leader>pi", ":Lazy install ", { silent = true, noremap = true })
 map("n", "<C-y>", ':lua vim.lsp.buf.signature_help({border = "single"})<CR>', { noremap = true, silent = true })
 map("i", "jk", "<Esc>", { silent = true })
 map("i", "kj", "<Esc>", { silent = true })

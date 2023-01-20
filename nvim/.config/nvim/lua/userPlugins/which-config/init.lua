@@ -89,10 +89,10 @@ local mappings = {
 		name = "Lazy-nvim",
 		z = { "<cmd>e ~/.config/nvim/lua/lazy-nvim/init.lua<cr>", "Install" },
 		s = { "<cmd>luafile %<cr>", "source lua file" },
-		i = { "<cmd>Lazy install<cr>", "Sync" },
-		u = { "<cmd>Lazy update<cr>", "packer Update" },
-		c = { "<cmd>Lazy clean<cr>", "packer compile" },
-		p = { "<cmd>Lazy home<cr>", "packer compile" },
+		i = { "<cmd>Lazy install<cr>", "Lazy run install clean and update" },
+		u = { "<cmd>Lazy update<cr>", "Lazy Update" },
+		c = { "<cmd>Lazy clean<cr>", "Lazy-clean" },
+		p = { "<cmd>Lazy home<cr>", "open lazy-nvim" },
 	},
 
 	g = {
