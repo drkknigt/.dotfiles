@@ -158,16 +158,6 @@ capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- Provide settings first!
 -- emmet_ls
-require("lspconfig/configs").emmet_ls = {
-	default_config = {
-		cmd = { "emmet_ls", "--stdio" },
-		filetypes = { "html", "css" }, -- Add the languages you use, see language support
-		root_dir = function(_)
-			return vim.loop.cwd()
-		end,
-		settings = {},
-	},
-}
 
 -- LSP Server specific settings
 local lsp_settings = {}
@@ -181,6 +171,24 @@ lsp_settings["pyright"] = {
 		},
 	},
 }
+lsp_settings["html"] = {
+	root_dir = require("lspconfig").util.root_pattern("package.json"),
+}
+
+nvim_lsp.emmet_ls.setup({
+	-- on_attach = on_attach,
+	capabilities = capabilities,
+	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" },
+	root_dir = require("lspconfig").util.root_pattern("package.json"),
+	init_options = {
+		html = {
+			options = {
+				-- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+				["bem.enabled"] = true,
+			},
+		},
+	},
+})
 -- local runtime_path = vim.split(package.path, ";")
 -- lsp_settings["sumneko_lua"] = {
 -- 	lua = {
@@ -295,23 +303,8 @@ require("lspconfig").sumneko_lua.setup({
 	capabilities = capabilities,
 })
 
--- local lsp_installer = require("nvim-lsp-installer")
--- lsp_installer.on_server_ready(function(server)
---     local opts = {
---         --settings = lsp_settings[server.name],
---         settings = lsp_settings[server.name],
---         on_attach = on_attach,
---
---         flags = {
---             debounce_text_changes = 250,
---         },
---         capabilities = capabilities,
---     }
---
---     server:setup(opts)
--- end)
 for _, lsp in pairs(servers) do
-	if lsp ~= "sumneko_lua" then
+	if lsp ~= "sumneko_lua" and lsp ~= "emmet_ls" then
 		require("lspconfig")[lsp].setup({
 			settings = lsp_settings[lsp],
 			on_attach = on_attach,
@@ -320,6 +313,18 @@ for _, lsp in pairs(servers) do
 		})
 	end
 end
+require("lspconfig").tsserver.setup({
+	root_dir = require("lspconfig").util.root_pattern("package.json"),
+	on_attach = on_attach,
+	flags = { debounce_text_changes = 150 },
+	capabilities = capabilities,
+})
+require("lspconfig").html.setup({
+	root_dir = require("lspconfig").util.root_pattern("package.json"),
+	on_attach = on_attach,
+	flags = { debounce_text_changes = 150 },
+	capabilities = capabilities,
+})
 
 local status_ok, signature = pcall(require, "lsp_signature")
 if not status_ok then

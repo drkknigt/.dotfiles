@@ -42,12 +42,12 @@ require("nvim-treesitter.configs").setup({
 	},
 	incremental_selection = {
 		enable = true, -- you can also use a table with list of langs here (e.g. { "python", "javascript" })
-		-- keymaps = {                       -- mappings for incremental selection (visual mappings)
-		--   init_selection = "grN",         -- maps in normal mode to init the node/scope selection
-		--   node_incremental = "grn",       -- increment to the upper named parent
-		--   scope_incremental = "grc",      -- increment to the upper scope (as defined in locals.scm)
-		--   node_decremental = "grm",       -- decrement to the previous node
-		-- }
+		keymaps = {
+			init_selection = "<c-space>",
+			node_incremental = "<c-space>",
+			scope_incremental = "<c-s>",
+			node_decremental = "<c-backspace>",
+		},
 	},
 	textobjects = {
 		--     swap = {
@@ -66,6 +66,8 @@ require("nvim-treesitter.configs").setup({
 			keymaps = {
 				-- You can use the capture groups defined here:
 				-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects/blob/master/queries/c/textobjects.scm
+				["aa"] = "@parameter.outer",
+				["ia"] = "@parameter.inner",
 				["af"] = "@function.outer",
 				["if"] = "@function.inner",
 				["ak"] = "@conditional.outer",
@@ -84,8 +86,8 @@ require("nvim-treesitter.configs").setup({
 			enable = true,
 			border = "single",
 			peek_definition_code = {
-				["<leader>Df"] = "@function.outer",
-				["<leader>DF"] = "@class.outer",
+				["<leader>fd"] = "@function.outer",
+				["<leader>fD"] = "@class.outer",
 			},
 		},
 		move = {
@@ -94,28 +96,28 @@ require("nvim-treesitter.configs").setup({
 			goto_next_start = {
 				["]f"] = "@function.outer",
 				["]c"] = "@class.outer",
-				["]k"] = "@conditional.outer",
+				["]q"] = "@conditional.outer",
 				["]r"] = "@loop.outer",
 				["]s"] = "@statement.outer",
 			},
 			goto_next_end = {
 				["<leader>nf"] = "@function.outer",
 				["<leader>nc"] = "@class.outer",
-				["<leader>nk"] = "@conditional.outer",
+				["<leader>nq"] = "@conditional.outer",
 				["<leader>nr"] = "@loop.outer",
 				["<leader>ns"] = "@statement.outer",
 			},
 			goto_previous_start = {
 				["[f"] = "@function.outer",
 				["[c"] = "@class.outer",
-				["[k"] = "@conditional.outer",
+				["[q"] = "@conditional.outer",
 				["[r"] = "@loop.outer",
 				["[s"] = "@statement.outer",
 			},
 			goto_previous_end = {
 				["<leader>mf"] = "@function.outer",
 				["<leader>mc"] = "@class.outer",
-				["<leader>mk"] = "@conditional.outer",
+				["<leader>mq"] = "@conditional.outer",
 				["<leader>mr"] = "@loop.outer",
 				["<leader>ms"] = "@statement.outer",
 			},

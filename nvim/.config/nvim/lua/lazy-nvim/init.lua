@@ -311,14 +311,14 @@ require("lazy").setup({
 		event = "CursorHold",
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
-
-			{
-				"neovim/nvim-lspconfig",
-				config = function()
-					require("userPlugins.lsp-config")
-				end,
-			},
 		},
+	},
+	{
+		"neovim/nvim-lspconfig",
+		event = "CursorHold",
+		config = function()
+			require("userPlugins.lsp-config")
+		end,
 	},
 
 	-- This tiny plugin adds vscode-liek pictorgrams to neoivm built in lsp

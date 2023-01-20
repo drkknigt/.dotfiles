@@ -164,7 +164,7 @@ local mappings = {
 			"Prev Diagnostic",
 		},
 		p = { "<cmd>lua require('goto-preview').goto_preview_definition()<cr>", "goto-preview" },
-		f = { "<cmd>so $HOME/.config/nvim/early.vim<CR>", "goto last open file" },
+		f = { "<cmd>LspStart<CR>", "goto last open file" },
 		l = { "<cmd>lua vim.lsp.buf.references()<cr>", "document references" },
 		-- r = { "<cmd>Lspsaga rename<cr>", "Rename" },
 		q = { "<cmd>Lspsaga lsp_finder<cr>", "lsp finder" },
