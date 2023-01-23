@@ -450,6 +450,7 @@ require("lazy").setup({
 			local codewindow = require("codewindow")
 			codewindow.setup({
 				show_cursor = true,
+				exclude_filetypes = { "NvimTree", "Outline", "TelescopePrompt", "fzf", "qf" },
 			})
 			codewindow.apply_default_keybinds()
 		end,
