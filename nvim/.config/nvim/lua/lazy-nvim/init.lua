@@ -73,7 +73,7 @@ require("lazy").setup({
 		dependencies = {
 			"kyazdani42/nvim-web-devicons",
 		},
-		event = "CursorHold",
+		event = "VeryLazy",
 		config = function()
 			require("userPlugins.nvimtree-config")
 		end,
@@ -184,7 +184,7 @@ require("lazy").setup({
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		event = "CursorHold",
+		event = "VeryLazy",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			"JoosepAlviste/nvim-ts-context-commentstring",
@@ -208,7 +208,7 @@ require("lazy").setup({
 	-- hop for easy motion
 	{
 		"phaazon/hop.nvim",
-		event = "InsertEnter",
+		event = "CursorHold",
 		config = function()
 			require("hop").setup()
 		end,
@@ -230,7 +230,7 @@ require("lazy").setup({
 	-- matchup
 	{
 		"andymass/vim-matchup",
-		event = "CursorHold",
+		event = "VeryLazy",
 	},
 
 	-- tab bar line
@@ -338,7 +338,7 @@ require("lazy").setup({
 	-- indent line
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		event = "CursorHold",
+		event = "VeryLazy",
 		config = function()
 			require("userPlugins.indentline-config")
 		end,
@@ -357,7 +357,7 @@ require("lazy").setup({
 	{
 		"glepnir/lspsaga.nvim",
 		branch = "main",
-		event = "CursorHold",
+		event = "VeryLazy",
 		config = function()
 			-- require("userPlugins.lspsaga-config")
 			require("lspsaga").setup({
@@ -439,10 +439,12 @@ require("lazy").setup({
 	-- code window
 	{
 		"gorbit99/codewindow.nvim",
-		event = "CursorHold",
+		event = "VeryLazy",
 		config = function()
 			local codewindow = require("codewindow")
-			codewindow.setup()
+			codewindow.setup({
+				show_cursor = true,
+			})
 			codewindow.apply_default_keybinds()
 		end,
 	},
