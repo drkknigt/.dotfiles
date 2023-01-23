@@ -85,3 +85,9 @@ api.nvim_set_hl(0, "LspSignatureActiveParameter", { bg = "green" })
 api.nvim_set_hl(0, "Statusline", { bg = "Black", fg = "gray" })
 api.nvim_set_hl(0, "Title", { fg = "green" })
 -- api.nvim_set_hl(0, "DiagnosticUnderlineError", { sp = "red", gui = undercurl, cterm = undercurl })
+-- colors for gruvbox to make transparent
+
+api.nvim_set_hl(0, "GruvboxYellowSign", { fg = "#fabb2f", bg = "None" })
+api.nvim_set_hl(0, "GruvboxRedSign", { fg = "#fb4934", bg = "None" })
+api.nvim_set_hl(0, "GruvboxAquaSign", { fg = "#8ec07c", bg = "None" })
+api.nvim_set_hl(0, "GruvboxBlueSign", { fg = "#83a598", bg = "None" })
