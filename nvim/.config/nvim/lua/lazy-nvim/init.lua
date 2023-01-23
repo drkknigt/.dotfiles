@@ -82,7 +82,7 @@ require("lazy").setup({
 
 	{
 		"luisiacc/gruvbox-baby",
-		event = "VeryLazy",
+		event = "BufEnter",
 		config = function()
 			require("color-config")
 		end,
