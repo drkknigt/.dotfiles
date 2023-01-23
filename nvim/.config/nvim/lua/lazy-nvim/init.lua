@@ -80,7 +80,8 @@ require("lazy").setup({
 	},
 	-- themes for neovim
 
-	{ "luisiacc/gruvbox-baby", "folke/tokyonight.nvim", lazy = false, priority = 1000 },
+	{ "luisiacc/gruvbox-baby", event = "VeryLazy" },
+	{ "folke/tokyonight.nvim", lazy = true },
 
 	-- This tiny plugin adds vscode-liek pictorgrams to neoivm built in lsp
 
@@ -207,7 +208,7 @@ require("lazy").setup({
 	-- hop for easy motion
 	{
 		"phaazon/hop.nvim",
-		event = "CursorHold",
+		event = "InsertEnter",
 		config = function()
 			require("hop").setup()
 		end,
@@ -219,7 +220,7 @@ require("lazy").setup({
 		dependencies = {
 			"kyazdani42/nvim-web-devicons",
 		},
-		event = "BufEnter",
+		event = "VeryLazy",
 		config = function()
 			require("userPlugins.lualine-config")
 			-- vim.api.nvim_set_hl(0, "Statusline", { bg = "Black" })
@@ -237,7 +238,7 @@ require("lazy").setup({
 		"akinsho/bufferline.nvim",
 		version = "v2.*",
 		dependencies = "kyazdani42/nvim-web-devicons",
-		event = "BufReadPre",
+		event = "VeryLazy",
 
 		config = function()
 			require("userPlugins.tabbar-config")
@@ -267,7 +268,7 @@ require("lazy").setup({
 	-- hex  and color highligher
 	{
 		"norcalli/nvim-colorizer.lua",
-		event = "CursorHold",
+		event = "InsertEnter",
 		config = function()
 			require("userPlugins.colorizer-config")
 		end,
@@ -449,11 +450,20 @@ require("lazy").setup({
 
 	{
 		"Exafunction/codeium.vim",
-		event = "CursorHold",
+		event = "InsertEnter",
 		config = function()
 			vim.keymap.set("i", "<C-_>", function()
 				return vim.fn["codeium#Accept"]()
 			end, { expr = true })
+			-- vim.keymap.set("i", "<c-q>", function()
+			-- 	return vim.fn["codeium#CycleCompletions"](1)
+			-- end, { expr = true })
+			-- vim.keymap.set("i", "<c-,>", function()
+			-- 	return vim.fn["codeium#CycleCompletions"](-1)
+			-- end, { expr = true })
+			-- vim.keymap.set("i", "<c-x>", function()
+			-- 	return vim.fn["codeium#Clear"]()
+			-- end, { expr = true })
 		end,
 	},
 }, opts)

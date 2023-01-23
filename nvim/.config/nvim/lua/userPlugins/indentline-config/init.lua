@@ -17,6 +17,6 @@ require("indent_blankline").setup({
 	--     "IndentBlanklineIndent6",
 	-- },
 	-- show_current_blankline = " ",
-	show_current_context = true,
-	show_current_context_start = false,
+	-- show_current_context = true,
+	-- show_current_context_start = false,
 })
