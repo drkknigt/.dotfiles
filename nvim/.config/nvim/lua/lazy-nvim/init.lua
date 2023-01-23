@@ -80,7 +80,13 @@ require("lazy").setup({
 	},
 	-- themes for neovim
 
-	{ "luisiacc/gruvbox-baby", event = "VeryLazy" },
+	{
+		"luisiacc/gruvbox-baby",
+		event = "VeryLazy",
+		config = function()
+			require("color-config")
+		end,
+	},
 	{ "folke/tokyonight.nvim", lazy = true },
 
 	-- This tiny plugin adds vscode-liek pictorgrams to neoivm built in lsp
