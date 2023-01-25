@@ -223,6 +223,7 @@ require("lazy").setup({
 		event = "CursorHold",
 		config = function()
 			require("hop").setup()
+			vim.api.nvim_set_hl(0, "Statusline", { bg = "Black", fg = "gray" })
 		end,
 	},
 
@@ -465,7 +466,7 @@ require("lazy").setup({
 
 	{
 		"Exafunction/codeium.vim",
-		event = "InsertEnter",
+		event = "VeryLazy",
 		config = function()
 			vim.keymap.set("i", "<C-_>", function()
 				return vim.fn["codeium#Accept"]()

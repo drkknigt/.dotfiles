@@ -82,7 +82,7 @@ api.nvim_set_hl(0, "NvimTreeWinSeparator", { fg = "#ed9f2b" })
 api.nvim_set_hl(0, "NvimTreeOpenedFile", { bg = "#773347" })
 api.nvim_set_hl(0, "lualine_b_insert", { bg = None })
 api.nvim_set_hl(0, "LspSignatureActiveParameter", { bg = "green" })
-api.nvim_set_hl(0, "Statusline", { bg = "Black", fg = "gray" })
+api.nvim_set_hl(0, "Statusline", { bg = None, fg = "gray" })
 api.nvim_set_hl(0, "Title", { fg = "green" })
 -- api.nvim_set_hl(0, "DiagnosticUnderlineError", { sp = "red", gui = undercurl, cterm = undercurl })
 -- colors for gruvbox to make transparent
