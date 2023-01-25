@@ -87,13 +87,13 @@ require("lazy").setup({
 			require("color-config")
 		end,
 	},
-	{
-		"ellisonleao/gruvbox.nvim",
-		lazy = true,
-		-- config = function()
-		-- require("color-config")
-		-- end,
-	},
+	-- {
+	-- 	"ellisonleao/gruvbox.nvim",
+	-- 	lazy = true,
+	-- 	-- config = function()
+	-- 	-- require("color-config")
+	-- 	-- end,
+	-- },
 
 	-- This tiny plugin adds vscode-liek pictorgrams to neoivm built in lsp
 
