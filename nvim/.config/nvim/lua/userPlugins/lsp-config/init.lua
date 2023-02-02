@@ -325,7 +325,13 @@ require("lspconfig").html.setup({
 	flags = { debounce_text_changes = 150 },
 	capabilities = capabilities,
 })
-
+require("lspconfig").jedi_language_server.setup({
+	root_dir = require("lspconfig").util.root_pattern("package.json"),
+	single_file_support = true,
+	on_attach = on_attach,
+	flags = { debounce_text_changes = 150 },
+	capabilities = capabilities,
+})
 local status_ok, signature = pcall(require, "lsp_signature")
 if not status_ok then
 	return
