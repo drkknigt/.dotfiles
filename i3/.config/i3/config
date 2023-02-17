@@ -1,5 +1,6 @@
 # set mod key
 set $mod Mod1
+# exec_always --no-startup-id i3-autolayout autolayout
 
 # exec --no-startup-id picom -CGB
 # Font for window titles. Will also be used by the bar unless a different font
@@ -40,11 +41,11 @@ exec_always xautolock -time 45 -locker "i3lock -c 251a2a && xset dpms force stan
 set $refresh_i3status killall -SIGUSR1 i3status
 
 # assign extra keys on keyboard for volume control
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym F2 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym F1 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym F3 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-bindsym XF86Mail exec --no-startup-id alacritty -t "mount" -e /home/drkknght/bin/system_scripts/resolution.sh
+bindsym F5 exec --no-startup-id alacritty -t "mount" -e /home/drkknght/bin/system_scripts/resolution.sh
 
 # binding to increase/decrease the brightness levels of the system
 bindsym $mod+"plus" exec --no-startup-id brightnessctl set +3%
@@ -59,7 +60,7 @@ exec_always --no-startup-id xrandr --output eDP-1 --mode 1366x768  --gamma 0.7:0
 #exec_always --no-startup-id compton --vsync opengl-swc --backend glx
 
 # picom compositor settings
-exec_always --no-startup-id picom 
+exec_always --no-startup-id picom --experimental-backends
 
 # battery down notifcation
 exec_always --no-startup-id killall check_battery.sh;/home/drkknght/bin/system_scripts/check_battery.sh
@@ -185,6 +186,8 @@ bindsym $mod+Control+k move up
 bindsym $mod+Control+j move down
 bindsym $mod+Control+l move right
 
+bindsym button9 move left 
+
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
@@ -196,6 +199,7 @@ bindsym $mod+u split h
 
 # swithc off the computer!
 bindsym $mod+Control+e exec  systemctl poweroff
+bindsym F4 exec  systemctl suspend
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -206,6 +210,7 @@ bindsym $mod+a fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+y layout stacking
 bindsym $mod+w layout tabbed
+# bindsym $mod+w exec i3-autolayout tabmode
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
