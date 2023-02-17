@@ -5,7 +5,7 @@ items:
           name: 3024 (dark)
           author: Chris Kempson
           primary:
-              background: '#090300'
+              background: '#db2fff'
               foreground: '#a5a2a2'
           cursor:
               text: '#090300'
@@ -32,7 +32,7 @@ items:
 colors:
     # Default colors
     primary:
-        background: '#282828'
+        background: '#252236'
         foreground: '#fdf4c1'
 
     # Normal colors

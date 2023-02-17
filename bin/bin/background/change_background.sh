@@ -1,31 +1,30 @@
 #!/usr/bin/env zsh
 source /home/drkknght/.zshrc
 monitor1=$1
-# wallpaper1=$(sed -n 2p ~/.config/nitrogen/bg-saved.cfg)
-# wallpaper2=$(sed -n 7p ~/.config/nitrogen/bg-saved.cfg)
-# wallpaper1=$(echo "${wallpaper1}" | sed -e 's/[]$.*[\^]/\\&/g' )
-# wallpaper2=$(echo "${wallpaper2}" | sed -e 's/[]$.*[\^]/\\&/g' )
-bg1=$(cut -d ' ' -f 4 ~/.fehbg | grep '/home' | cut -d "'" -f 2)
-bg2=$(cut -d ' ' -f 5 ~/.fehbg | grep '/home' | cut -d "'" -f 2)
-# fdfind --type f  '.*\.j[a-zA-Z]+$' ~/Downloads | fzf 
-# print -rl -- ${(ko)commands} | fzf | (nohup ${SHELL:-"/bin/sh"} &) >/dev/null 2>&1
-# nitrogen --set-zoom --head=$1 $(fdfind '.+\.j.+$' Downloads | fzf)
-curret=$(fdfind '.+\.(jpg|jpeg)$' ~/Downloads ~/Pictures ~/Videos | fzf --cycle --prompt='change-background: ' --bind "tab:execute(nitrogen  --set-zoom-fill --head=${monitor1} {})")
+bgo=$(grep -Pi '^feh' ~/.fehbg | cut -d " " -f4 | cut -d  "'" -f2 )
+bgt=$(grep -Pi '^feh' ~/.fehbg | cut -d " " -f5 | cut -d "'" -f2 )
+
+curret="$(fdfind '.+\.(jpg|jpeg)$' ~/Downloads ~/Pictures ~/Videos | fzf --cycle --prompt='change-background: ' --bind "tab:execute(nitrogen  --set-zoom-fill --head=${monitor1} {})")"
+
+echo "picked" $curret
+echo "bg1" $bgo
+echo "bg2" $bgt
+
 if [ -z "$curret" ]
 then
     echo 'empty'
     exit
 fi
+
 if [ ${monitor1} = 0 ]
 then
     # sed -i -e "s|${wallpaper1}|file=${curret}|g" ~/.config/nitrogen/bg-saved.cfg
     # echo '1st monitor'
-    echo 'doing'
-    feh --bg-fill $curret --bg-fill $bg2
-    exit
+    echo "1st monitor"
+    echo "bg2" $bgt
+    feh --bg-fill "$curret" --bg-fill "$bgt"
 else
-    # echo '2nd monitor'
-    # sed -i -e "s|${wallpaper2}|file=${curret}|g" ~/.config/nitrogen/bg-saved.cfg
-    feh --bg-fill $bg1 --bg-fill $curret
-    echo 'hi'
+    echo "2st monitor"
+    echo "bg1" $bgo
+    feh --bg-fill "$bgo" --bg-fill "$curret"
 fi
