@@ -97,8 +97,6 @@ require("lazy").setup({
 
 	-- This tiny plugin adds vscode-liek pictorgrams to neoivm built in lsp
 
-	{ "onsails/lspkind.nvim", event = "CursorHold" },
-
 	-- completion resources
 
 	{
@@ -509,5 +507,10 @@ require("lazy").setup({
 				exclude = {}, -- tabout will ignore these filetypes
 			})
 		end,
+	},
+	{
+		"ckolkey/ts-node-action",
+		event = "CursorHold",
+		dependencies = { "nvim-treesitter" },
 	},
 }, opts)
