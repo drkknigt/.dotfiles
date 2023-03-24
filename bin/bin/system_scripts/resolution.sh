@@ -8,3 +8,4 @@ resolution_value=$(echo "$resolution_selected" | cut -d" " -f1 | cut -d'"' -f1)
 xrandr --newmode $(echo $resolution_selected ) 2> /dev/null
 xrandr --addmode "$second_monitor" "$resolution_value"
 xrandr --output "$second_monitor" --right-of "$first_monitor" --mode "$resolution_value" --rate 60
+~/.fehbg

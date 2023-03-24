@@ -10,3 +10,5 @@ gpu-manager.service
 cups.service
 cups-browsed.service
 avahi-daemon.service
+apt-daily-upgrade.timer
+apt-daily.timer

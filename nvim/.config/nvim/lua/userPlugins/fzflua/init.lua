@@ -600,7 +600,7 @@ require("fzf-lua").setup({
 			["ctrl-u"] = "unix-line-discard",
 			["ctrl-f"] = "half-page-down",
 			["ctrl-b"] = "half-page-up",
-			["ctrl-a"] = "beginning-of-line",
+			["ctrl-a"] = "select-all",
 			["ctrl-e"] = "end-of-line",
 			["ctrl-g"] = "toggle-all",
 			-- Only valid with fzf previewers (bat/cat/git/etc)
