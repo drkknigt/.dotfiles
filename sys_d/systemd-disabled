@@ -15,4 +15,3 @@ apt-daily.timer
 tor.service
 ubuntu-system-adjustments.service
 zfs-load-module.service
-systemd-resolved.service
