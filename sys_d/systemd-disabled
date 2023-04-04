@@ -12,3 +12,7 @@ cups-browsed.service
 avahi-daemon.service
 apt-daily-upgrade.timer
 apt-daily.timer
+tor.service
+ubuntu-system-adjustments.service
+zfs-load-module.service
+systemd-resolved.service
