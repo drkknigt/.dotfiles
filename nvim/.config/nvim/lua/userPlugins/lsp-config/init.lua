@@ -7,7 +7,7 @@ local servers = {
 	"cssls",
 	"tsserver",
 	"vimls",
-	"sumneko_lua",
+	"lua_ls",
 	"bashls",
 	"yamlls",
 }
@@ -110,7 +110,7 @@ local on_attach = function(client, bufnr)
 		["tsserver"] = 1,
 		["pyright"] = 1,
 		["html"] = 1,
-		["sumneko_lua"] = 1,
+		["lua_ls"] = 1,
 		["bashls"] = 1,
 	}
 	-- vim.lsp.buf.formatting() -- asynchronous formatting
@@ -190,7 +190,7 @@ nvim_lsp.emmet_ls.setup({
 	},
 })
 -- local runtime_path = vim.split(package.path, ";")
--- lsp_settings["sumneko_lua"] = {
+-- lsp_settings["lua_ls"] = {
 -- 	lua = {
 --         cmd = {"lua-language-server"},
 -- 		runtime = {
@@ -211,7 +211,7 @@ nvim_lsp.emmet_ls.setup({
 
 -- local runtime_path = vim.split(package.path, ";")
 -- 	Lua = {
--- lsp_settings["sumneko_lua"] = {
+-- lsp_settings["lua_ls"] = {
 -- 		completion = { enable = false, callSnippet = "Both" },
 -- 		runtime = {
 -- 			--   -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
@@ -254,7 +254,7 @@ local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 -- table.insert(runtime_path, current_wd)
-require("lspconfig").sumneko_lua.setup({
+require("lspconfig").lua_ls.setup({
 	-- cmd = { "lua-language-server" },
 	-- root_dir = root_pattern(".luarc.json", ".git", "init.lua"),
 	root_dir = function(fname)
@@ -304,7 +304,7 @@ require("lspconfig").sumneko_lua.setup({
 })
 
 for _, lsp in pairs(servers) do
-	if lsp ~= "sumneko_lua" and lsp ~= "emmet_ls" then
+	if lsp ~= "lua_ls" and lsp ~= "emmet_ls" then
 		require("lspconfig")[lsp].setup({
 			settings = lsp_settings[lsp],
 			on_attach = on_attach,
