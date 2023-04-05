@@ -15,3 +15,4 @@ apt-daily.timer
 tor.service
 ubuntu-system-adjustments.service
 zfs-load-module.service
+modprobe@chromeos_pstore.service
