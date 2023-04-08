@@ -16,3 +16,5 @@ tor.service
 ubuntu-system-adjustments.service
 zfs-load-module.service
 modprobe@chromeos_pstore.service
+rsyslog.service
+grub-common.service
