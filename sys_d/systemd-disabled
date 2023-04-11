@@ -18,3 +18,5 @@ zfs-load-module.service
 modprobe@chromeos_pstore.service
 rsyslog.service
 grub-common.service
+networking.service
+libvirt-guests.service
