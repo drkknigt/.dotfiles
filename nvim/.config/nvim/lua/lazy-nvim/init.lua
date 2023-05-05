@@ -148,8 +148,8 @@ require("lazy").setup({
 			{
 				"L3MON4D3/LuaSnip",
 				dependencies = { "rafamadriz/friendly-snippets" },
-				version = "<CurrentMajor>.*",
-				build = "make install_jsregexp",
+				version = "1.*",
+				-- build = "make install_jsregexp",
 			},
 			"saadparwaiz1/cmp_luasnip",
 		},
@@ -370,7 +370,7 @@ require("lazy").setup({
 	{
 		"williamboman/mason.nvim",
 		event = "CursorHold",
-		build = ":MasonUpdate",
+		-- build = ":MasonUpdate",
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
 		},
