@@ -100,6 +100,8 @@ map("n", "<leader>nv", "/\\w\\+\\s*=\\s*<cr>", { noremap = true, silent = true }
 map("n", "<leader>mv", "?\\w\\+\\s*=\\s*<cr>", { noremap = true, silent = true })
 map("n", "]a", ":s/\\w\\+/'\\0',/g<bar>normal I= [<Esc>A]<Esc>I", { noremap = true, silent = true })
 map("n", "]e", ":s/\\w\\+/\\0,/g<bar>normal I= [<Esc>A]<Esc>I", { noremap = true, silent = true })
+map("n", "<leader>hs", ":lua require('tsht').move({side = 'start'})<cr>", { noremap = true, silent = true })
+map("n", "<leader>he", ":lua require('tsht').move({side = 'end'})<cr>", { noremap = true, silent = true })
 -- map("n","dab","/(\\([a-zA-Z0-9,'-_]*\\|\\n\\))\\{-}<cr>:normal da(<cr>",{noremap=true,silent=true})
 -- map("n","dib","/(\\([a-zA-Z0-9,'-_]*\\|\\n\\))\\{-}<cr>:normal di(<cr>",{noremap=true,silent=true})
 -- map("n","diB","/{\\([a-zA-Z0-9,'-_]*\\|\\n\\)}\\{-}<cr>:normal di{<cr>",{noremap=true,silent=true})

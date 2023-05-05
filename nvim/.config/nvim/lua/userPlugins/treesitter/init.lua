@@ -5,6 +5,7 @@ require("nvim-treesitter.configs").setup({
 	},
 	matchup = {
 		enable = true,
+		include_match_words = true,
 	},
 	autopairs = {
 		enable = true,
@@ -34,6 +35,7 @@ require("nvim-treesitter.configs").setup({
 	},
 
 	ensure_installed = { "vim", "python", "lua", "bash", "javascript", "clojure", "go", "c", "html", "css", "cpp" },
+	sync_install = false,
 
 	highlight = { -- enable highlighting for all file types
 		enable = true, -- you can also use a table with list of langs here (e.g. { "python", "javascript" })
@@ -151,3 +153,10 @@ require("nvim-treesitter.configs").setup({
 	},
 })
 -- iswap
+
+local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
+
+-- Repeat movement with ; and ,
+-- ensure ; goes forward and , goes backward regardless of the last direction
+vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
+vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)

@@ -52,13 +52,14 @@ require("lazy").setup({
 
 	{
 		"dstein64/vim-startuptime",
-		event = "CursorHold",
+		event = "VeryLazy",
+		commit = "cb4c112b9e0f224236ee4eab6bf5153406b3f88b",
 	},
 
 	-- better escape mode
 	{
 		"max397574/better-escape.nvim",
-		event = "CursorHold",
+		event = "VeryLazy",
 		config = function()
 			require("better_escape").setup({
 				mapping = { "jk", "kj" },
@@ -78,6 +79,7 @@ require("lazy").setup({
 			require("userPlugins.nvimtree-config")
 		end,
 	},
+
 	-- themes for neovim
 
 	{
@@ -87,14 +89,48 @@ require("lazy").setup({
 			require("color-config")
 		end,
 	},
-	-- {
-	-- 	"ellisonleao/gruvbox.nvim",
-	-- 	lazy = true,
-	-- 	-- config = function()
-	-- 	-- require("color-config")
-	-- 	-- end,
-	-- },
-
+	{
+		"ellisonleao/gruvbox.nvim",
+		event = "VeryLazy",
+		-- config = function()
+		-- require("color-config")
+		-- end,
+	},
+	{
+		"Mofiqul/vscode.nvim",
+		event = "VeryLazy",
+		-- config = function()
+		-- require("color-config")
+		-- end,
+	},
+	{
+		"folke/tokyonight.nvim",
+		event = "VeryLazy",
+		-- config = function()
+		-- require("color-config")
+		-- end,
+	},
+	{
+		"nvimdev/zephyr-nvim",
+		event = "VeryLazy",
+		-- config = function()
+		-- require("color-config")
+		-- end,
+	},
+	{
+		"catppuccin/nvim",
+		event = "VeryLazy",
+		-- config = function()
+		-- require("color-config")
+		-- end,
+	},
+	{
+		"shaunsingh/nord.nvim",
+		event = "VeryLazy",
+		-- config = function()
+		-- require("color-config")
+		-- end,
+	},
 	-- This tiny plugin adds vscode-liek pictorgrams to neoivm built in lsp
 
 	-- completion resources
@@ -109,9 +145,13 @@ require("lazy").setup({
 			"hrsh7th/cmp-cmdline",
 			"winston0410/cmd-parser.nvim",
 			"ray-x/cmp-treesitter",
-			"L3MON4D3/LuaSnip",
+			{
+				"L3MON4D3/LuaSnip",
+				dependencies = { "rafamadriz/friendly-snippets" },
+				version = "<CurrentMajor>.*",
+				build = "make install_jsregexp",
+			},
 			"saadparwaiz1/cmp_luasnip",
-			"rafamadriz/friendly-snippets",
 		},
 		config = function()
 			pcall(require, "userPlugins.cmp-config")
@@ -127,6 +167,7 @@ require("lazy").setup({
 
 	{
 		"nvim-telescope/telescope.nvim",
+		tag = "0.1.1",
 		event = "CursorHold",
 		dependencies = {
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
@@ -153,7 +194,13 @@ require("lazy").setup({
 	},
 
 	-- lsp -sgnature for functions and methods
-	{ "ray-x/lsp_signature.nvim", event = "CursorHold" },
+	{
+		"ray-x/lsp_signature.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("userPlugins.signature")
+		end,
+	},
 
 	-- lsp progress
 	{
@@ -221,7 +268,6 @@ require("lazy").setup({
 		event = "CursorHold",
 		config = function()
 			require("hop").setup()
-			vim.api.nvim_set_hl(0, "Statusline", { bg = "Black", fg = "gray" })
 		end,
 	},
 
@@ -242,12 +288,15 @@ require("lazy").setup({
 	{
 		"andymass/vim-matchup",
 		event = "VeryLazy",
+		config = function()
+			vim.g.mathcup_matchparen_offscreen = { mehtod = "popup" }
+		end,
 	},
 
 	-- tab bar line
 	{
 		"akinsho/bufferline.nvim",
-		version = "v2.*",
+		version = "*",
 		dependencies = "kyazdani42/nvim-web-devicons",
 		event = "VeryLazy",
 
@@ -288,7 +337,7 @@ require("lazy").setup({
 	-- flaoting terminal
 	{
 		"akinsho/toggleterm.nvim",
-		version = "v1.*",
+		version = "*",
 		event = "CursorHold",
 		config = function()
 			require("userPlugins.terminal-config")
@@ -314,13 +363,14 @@ require("lazy").setup({
 	--		},
 
 	-- An implementaiont of the Popup API from vim in Neovim.
-	{ "nvim-lua/popup.nvim", event = "CursorHold" },
+	{ "nvim-lua/popup.nvim", event = "VeryLazy" },
 
 	-- plugin to install language serves with ease
 	--
 	{
 		"williamboman/mason.nvim",
 		event = "CursorHold",
+		build = ":MasonUpdate",
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
 		},
@@ -334,7 +384,7 @@ require("lazy").setup({
 	},
 
 	-- This tiny plugin adds vscode-liek pictorgrams to neoivm built in lsp
-	{ "onsails/lspkind.nvim", event = "CursorHold" },
+	{ "onsails/lspkind.nvim", event = "CursorHold", event = "VeryLazy" },
 
 	-- tags and symbols in the file
 
@@ -438,12 +488,15 @@ require("lazy").setup({
 		end,
 	},
 
-	-- preety quickfix window and easier navigation
+	-- preety quickfix window and easier navigation and basic auto cmds and user defined functions
 	{
 		"kevinhwang91/nvim-bqf",
 		event = "CursorHold",
 		config = function()
 			require("bqf").setup()
+			require("autocmds")
+			require("userFunctions")
+			vim.api.nvim_set_hl(0, "Statusline", { bg = "Black", fg = "gray" })
 		end,
 	},
 
