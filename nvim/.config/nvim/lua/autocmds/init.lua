@@ -27,9 +27,9 @@ local function set_abb()
 end
 
 -- local file_type = vim.bo.file_type
-camd = "lua print(" .. vim.bo.filetype .. ")"
-local setABB = api.nvim_create_augroup("setAbb", { clear = true })
-api.nvim_create_autocmd("BufEnter", { command = camd, group = setAbb })
+-- camd = "lua print(" .. vim.bo.filetype .. ")"
+-- local setABB = api.nvim_create_augroup("setAbb", { clear = true })
+-- api.nvim_create_autocmd("BufEnter", { command = camd, group = setAbb })
 -- nvim lsp action symbols
 --lsp actions bulb symbol
 -- local lspAction = api.nvim_create_augroup("LspAction",{clear = true})
