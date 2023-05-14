@@ -1,12 +1,13 @@
 set nocompatible " vi compatible mode off
 colorscheme default
 set wrap " longer lines will wrap
-set dictionary=/usr/share/dict/words
+set dictionary=/usr/share/dict/words " set words for ins-completion in dictionary mode
+set thesaurus=/usr/share/dict/words  " set words for ins-completion in thesaurus mode
 set ruler "  Show the line and column number of the cursor 
-set cursorline
+set cursorline " set the cursorline to identify where the cursor is
 syntax on " show and highlight text in specific colors
 set rnu " enable relative numbers
-set showcmd " show current mode of vim in cursorline
+set showcmd " Show (partial) command in the last line of the screen
 set hidden " seamlessly move across the buffers without saving the buffers
 set smd " show current mode of vim in cursorline
 set wildmenu " command line completion menu in enhanced mode
@@ -57,15 +58,14 @@ highlight CursorLine ctermfg=NONE ctermbg=5 guifg=NONE guibg=NONE  guibg=NONE ct
 packadd! matchit
 "abbrevaition
 abbreviate py! #!/usr/bin/env python3 
-set history=1000 " set history items to 1000
-set shortmess-=S " show current searched number
+set shortmess-=S " show current searched items with  number of items found
 set autochdir " autochange directory
 set autoshelldir " change current working directory for terminal
 set autoread " auto read changed file
-set completeopt=menu,menuone,preview,popup " completion menu options
+set completeopt=menu,menuone,preview,popup " A comma-separated list of options for Insert mode completion
 set magic " Enable extended regexes.
 set title " set title of window with file name
-set wildoptions=pum
+set wildoptions=pum "layout of the wildmenu
 " remap Esc to jk
 " leader key
 hi Normal ctermbg=None

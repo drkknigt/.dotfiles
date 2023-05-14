@@ -40,7 +40,7 @@ local mode = {
 	"mode",
 	fmt = function(str)
 		local dict = {}
-		dict["NORMAL"] = "Normal  "
+		dict["NORMAL"] = "Normal 󰙈 "
 		dict["INSERT"] = "Insert  "
 		dict["VISUAL"] = "Visual  "
 		dict["COMAND"] = "Command  "
@@ -87,7 +87,7 @@ local location = {
 local fileformat = {
 	"fileformat",
 	icons_enabled = true,
-	symbols = { unix = "" },
+	symbols = { unix = "" },
 }
 
 -- cool function for progress
@@ -97,12 +97,12 @@ local progress = function()
 	-- local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
 	-- local line_ratio = current_line / total_lines
 	-- local index = math.ceil(line_ratio * #chars)
-	return string.format("%s %02d/%02d", "", current_line, total_lines)
+	return string.format("%s %02d/%02d", "", current_line, total_lines)
 	-- return chars[index]
 end
 
 local column_no = function()
-	return string.format("%s %02d", "ﴳ", tostring(vim.api.nvim_win_get_cursor(0)[2] + 1))
+	return string.format("%s %02d", "", tostring(vim.api.nvim_win_get_cursor(0)[2] + 1))
 end
 
 local spaces = function()
