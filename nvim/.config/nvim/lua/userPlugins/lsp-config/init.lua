@@ -73,6 +73,48 @@ end
 pcall(require, "modules.lsp.handlers")
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
+local navic = require("nvim-navic")
+navic.setup({
+	icons = {
+		File = "󰈙 ",
+		Module = " ",
+		Namespace = "󰌗 ",
+		Package = " ",
+		Class = "󰌗 ",
+		Method = "󰆧 ",
+		Property = " ",
+		Field = " ",
+		Constructor = " ",
+		Enum = "󰕘",
+		Interface = "󰕘",
+		Function = "󰊕 ",
+		Variable = "󰆧 ",
+		Constant = "󰏿 ",
+		String = "󰀬 ",
+		Number = "󰎠 ",
+		Boolean = "◩ ",
+		Array = "󰅪 ",
+		Object = "󰅩 ",
+		Key = "󰌋 ",
+		Null = "󰟢 ",
+		EnumMember = " ",
+		Struct = "󰌗 ",
+		Event = " ",
+		Operator = "󰆕 ",
+		TypeParameter = "󰊄 ",
+	},
+	lsp = {
+		auto_attach = true,
+		preference = nil,
+	},
+	highlight = false,
+	separator = " > ",
+	depth_limit = 0,
+	depth_limit_indicator = "..",
+	safe_output = true,
+	click = false,
+})
+
 local on_attach = function(client, bufnr)
 	local function buf_set_keymap(...)
 		vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -147,6 +189,7 @@ local on_attach = function(client, bufnr)
 	-- 	local navic = require("nvim-navic")
 	-- 	navic.attach(client, bufnr)
 	-- end
+	navic.attach(client, bufnr)
 end
 
 -- winbar format
