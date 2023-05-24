@@ -93,6 +93,7 @@ local mappings = {
 		u = { "<cmd>Lazy update<cr>", "Lazy Update" },
 		c = { "<cmd>Lazy clean<cr>", "Lazy-clean" },
 		p = { "<cmd>Lazy home<cr>", "open lazy-nvim" },
+		t = { "<cmd>StartupTime<cr>", "open lazy-nvim" },
 	},
 
 	g = {
