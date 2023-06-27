@@ -9,6 +9,7 @@ local servers = {
 	"vimls",
 	"lua_ls",
 	"bashls",
+	"gopls",
 	"yamlls",
 }
 local ok_2, mason_config = pcall(require, "mason-lspconfig")
@@ -375,4 +376,21 @@ require("lspconfig").jedi_language_server.setup({
 	on_attach = on_attach,
 	flags = { debounce_text_changes = 150 },
 	capabilities = capabilities,
+})
+require("lspconfig").gopls.setup({
+	root_dir = require("lspconfig").util.root_pattern("package.json", ".git", "go.work", "go.mod"),
+	cmd = { "gopls" },
+	filetypes = { "go", "gomod", "gowork", "gotmpl" },
+	on_attach = on_attach,
+	flags = { debounce_text_changes = 150 },
+	capabilities = capabilities,
+	settings = {
+		gopls = {
+			completeUnimported = true,
+			usePlaceholders = true,
+			analyses = {
+				unusedparams = true,
+			},
+		},
+	},
 })

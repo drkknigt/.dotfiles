@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env zsh
+source ~/.zshrc
 
 if [ $1 = '0' ]
 then
@@ -12,7 +13,7 @@ zoom_options=$(seq -100 10 100 |  awk '{print $0"% zoom"}' | fzf --prompt="scale
 
 if [[ -n $zoom_options ]]; then
     
-  zoom_percentage=$(( -1 * "zoom_options" ))
+  zoom_percentage=$(( -1 * $zoom_options ))
   scale_factor=$(echo "scale=1; (100+$zoom_percentage) / 100" | bc)
   xrandr --output eDP --scale "$scale_factorx$scale_factor"
   

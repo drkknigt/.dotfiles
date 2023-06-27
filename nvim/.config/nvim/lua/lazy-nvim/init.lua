@@ -746,4 +746,11 @@ require("lazy").setup({
 	-- 		},
 	-- 	},
 	-- },
+	-- {
+	-- 	"VidocqH/lsp-lens.nvim",
+	-- 	event = "VeryLazy",
+	-- 	config = function()
+	-- 		require("lsp-lens").setup()
+	-- 	end,
+	-- },
 }, opts)

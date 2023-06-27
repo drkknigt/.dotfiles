@@ -189,6 +189,7 @@ fpath=(${ASDF_DIR}/completions $fpath)
 autoload -Uz compinit && compinit
 
 export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="/usr/local/go/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"

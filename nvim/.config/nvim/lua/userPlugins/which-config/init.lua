@@ -166,8 +166,8 @@ local mappings = {
 			"Prev Diagnostic",
 		},
 		p = { "<cmd>lua require('goto-preview').goto_preview_definition()<cr>", "goto-preview" },
-		l = { "<cmd>LspStart<CR>", "goto last open file" },
-		q = { "<cmd>LspStop<CR>", "goto last open file" },
+		l = { "<cmd>LspStart<CR>", "Start lsp" },
+		q = { "<cmd>LspStop<CR>", "Stop lsp" },
 		r = { "<cmd>lua vim.lsp.buf.references()<cr>", "document references" },
 		-- r = { "<cmd>Lspsaga rename<cr>", "Rename" },
 		f = { "<cmd>Lspsaga lsp_finder<cr>", "lsp finder" },
@@ -224,6 +224,7 @@ local mappings = {
 	t = {
 		name = "Terminal",
 		n = { ":lua _NODE_TOGGLE()<cr>", "Node" },
+		m = { ":TermExec cmd='glow -p %'<cr>", "Glow" },
 		u = { ":lua _NCDU_TOGGLE()<cr>", "NCDU" },
 		t = { ":lua _HTOP_TOGGLE()<cr>", "Htop" },
 		p = { ":lua _PYTHON_TOGGLE()<cr>", "Python" },

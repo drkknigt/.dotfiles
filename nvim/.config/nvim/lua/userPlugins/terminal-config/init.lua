@@ -67,3 +67,8 @@ local lua = Terminal:new({ cmd = "lua", hidden = true })
 function _LUA_TOGGLE()
 	lua:toggle()
 end
+
+local glow = Terminal:new({ cmd = "glow " .. vim.fn.expand("%"), hidden = true })
+function _GLOW()
+	glow:toggle()
+end
