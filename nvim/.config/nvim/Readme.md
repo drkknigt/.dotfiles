@@ -140,10 +140,13 @@ This repo hosts my Nvim configuration for Linux.**
 + Debugging with ease using [nvim-dap](https://www.github.com/mfussenegger/nvim-dap)
 + Profile nvim startuptime [vim-startuptime](https://www.github.com/dstein64/vim-startuptime).
 + AND MUCH MORE
-```viml
- <leader-key> = <Space\>
------------------------
-```
+
+# MAIN KEYMAPS I USE  
+Most of the shortcuts i use start with Space-bar (my leader key), the shortcuts do not interfere with 
+the builtin vim mappings . I dont reassign the builtin mappings because i think vim mappings should never be  
+replaced as they are the core of editor. Learn vim first and then start using plugins.  
+
+# SHORTCUTS
 
 ### vim-startuptime: 
 ```viml
