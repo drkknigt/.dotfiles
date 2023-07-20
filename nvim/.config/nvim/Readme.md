@@ -295,47 +295,49 @@ replaced as they are the core of editor. Learn vim first and then start using pl
 ```
 
 ### Fzf-lua:
-```viml
-1.   <F1>       : "toggle-help",
-2.   <F2>       : "toggle-fullscreen",
-3.   <F3>       : "toggle-preview-wrap",
-4.   <C-o>      : "toggle-preview",
-5.   <F5>       : "toggle-preview-ccw",
-6.   <F6>       : "toggle-preview-cw",
-7.   <C-z>      : "preview-page-down",
-8.   <C-u>      : "preview-page-up",
-9.   <S-l>      : "preview-page-reset",
-10.  ctrl-d     : "abort",
-11.  ctrl-u     : "unix-line-discard",
-12.  ctrl-f     : "half-page-down",
-13.  ctrl-b     : "half-page-up",
-14.  ctrl-a     : "select-all",
-15.  ctrl-e     : "end-of-line",
-16.  ctrl-g     : "toggle-all",
-17.  f3         : "toggle-preview-wrap",
-18.  f4         : "toggle-preview",
-19.  shift-down : "preview-page-down",
-20.  shift-up   : "preview-page-up",
-21.  default    : actions.file_edit_or_qf,
-22.  ctrl-s     : actions.file_split,
-23.  ctrl-v     : actions.file_vsplit,
-24.  ctrl-t     : actions.file_tabedit,
-25.  ctrl-f     : actions.file_sel_to_qf,
-26.  default    : actions.buf_edit,
-27.  ctrl-s     : actions.buf_split,
-28.  ctrl-v     : actions.buf_vsplit,
-29.  ctrl-t     : actions.buf_tabedit,
-30.  ctrl-t     : actions.buf_tabedit,
-31.  <leader>qf : search for current word under cursor in all buffers
-32.  <leader>ff : search for files in current dir
-33.  <leader>fs : live grep with fzf
-34.  <leader>fc : colorscheme select with fzf
-35.  <leader>fb : search for lines in current buffer
-36.  <leader>fl : search for lines in bufferlist
-37.  <leader>fr : resume fzf 
-38.  <leader>fh : search for files from home directory
-39.  <leader>fw : search for current word under the cursor in active buffer
-```
+
+|     Shortcut              |   Mode     |       Description                                                           |  
+|---------------------------|------------|-----------------------------------------------------------------------------|  
+| 1.   `<F1>`       | Normal |   "toggle-help", |
+| 2.   `<F2>`       | Normal |   "toggle-fullscreen", |
+| 3.   `<F3>`       | Normal |   "toggle-preview-wrap", |
+| 4.   `<C-o>`      | Normal |   "toggle-preview", |
+| 5.   `<F5>`       | Normal |   "toggle-preview-ccw", |
+| 6.   `<F6>`       | Normal |   "toggle-preview-cw", |
+| 7.   `<C-z>`      | Normal |   "preview-page-down", |
+| 8.   `<C-u>`      | Normal |   "preview-page-up", |
+| 9.   `<S-l>`      | Normal |   "preview-page-reset", |
+| 10.  ctrl-d     | Normal |   "abort", |
+| 11.  ctrl-u     | Normal |   "unix-line-discard", |
+| 12.  ctrl-f     | Normal |   "half-page-down", |
+| 13.  ctrl-b     | Normal |   "half-page-up", |
+| 14.  ctrl-a     | Normal |   "select-all", |
+| 15.  ctrl-e     | Normal |   "end-of-line", |
+| 16.  ctrl-g     | Normal |   "toggle-all", |
+| 17.  f3         | Normal |   "toggle-preview-wrap", |
+| 18.  f4         | Normal |   "toggle-preview", |
+| 19.  shift-down | Normal |   "preview-page-down", |
+| 20.  shift-up   | Normal |   "preview-page-up", |
+| 21.  default    | Normal |   actions.file_edit_or_qf, |
+| 22.  ctrl-s     | Normal |   actions.file_split, |
+| 23.  ctrl-v     | Normal |   actions.file_vsplit, |
+| 24.  ctrl-t     | Normal |   actions.file_tabedit, |
+| 25.  ctrl-f     | Normal |   actions.file_sel_to_qf, |
+| 26.  default    | Normal |   actions.buf_edit, |
+| 27.  ctrl-s     | Normal |   actions.buf_split, |
+| 28.  ctrl-v     | Normal |   actions.buf_vsplit, |
+| 29.  ctrl-t     | Normal |   actions.buf_tabedit, |
+| 30.  ctrl-t     | Normal |   actions.buf_tabedit, |
+| 31.  `<leader>`qf | Normal |   search for current word under cursor in all buffers |
+| 32.  `<leader>`ff | Normal |   search for files in current dir |
+| 33.  `<leader>`fs | Normal |   live grep with fzf |
+| 34.  `<leader>`fc | Normal |   colorscheme select with fzf |
+| 35.  `<leader>`fb | Normal |   search for lines in current buffer |
+| 36.  `<leader>`fl | Normal |   search for lines in bufferlist |
+| 37.  `<leader>`fr | Normal |   resume fzf  |
+| 38.  `<leader>`fh | Normal |   search for files from home directory |
+| 39.  `<leader>`fw | Normal |   search for current word under the cursor in active buffer |
+
         
 
 ### lsp-signature:
