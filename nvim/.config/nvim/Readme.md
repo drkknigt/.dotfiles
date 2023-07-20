@@ -346,14 +346,16 @@ replaced as they are the core of editor. Learn vim first and then start using pl
 
 
 
-### nvim-surround:
-```viml
+### nvim-surround:  
 
-1.  ysi[object]               : surround object with object surround
-2.  ysi[object]               : surround object with object surround
-3.  yss                       : surround line
-4.  css                       : change surround
-5.  dss                       : delete surround
+|     Shortcut              |   Mode     |       Description                                                           |  
+|---------------------------|------------|-----------------------------------------------------------------------------|  
+| 1.  ysi[object]               | Normal |  surround object with object surround |
+| 2.  ysi[object]               | Normal |  surround object with object surround |
+| 3.  yss                       | Normal |  surround line |
+| 4.  css                       | Normal |  change surround |
+| 5.  dss                       | Normal |  delete surround |
+
 
 
 
