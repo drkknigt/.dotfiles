@@ -105,7 +105,29 @@ This repo hosts my Nvim configuration for Linux.**
     
 
 
-## PLUGINS and their Mappings
+## Featured Plugins and Functionalities 
++ Plugin management is handled efficiently through [Lazy.nvim](https://github.com/folke/lazy.nvim).
++ Auto-completion for code, snippets, and words is powered by [nvim-cmp](https://github.com/hrsh7th/nvim-cmp).
++ The Language Server Protocol (LSP) support is enabled with  [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig).
++ Seamless Git integration is achieved with [Git-signs](https://github.com/lewis6991/gitsigns.nvim).
++ Better escaping from insert mode via [better-escape.vim](https://github.com/nvim-zh/better-escape.vim).
++ Ultra-fast project-wide fuzzy searching via [Telescope](https://github.com/nvim-telescope/telescope.nvim).
++ Faster code commenting with [Comment.nvim](https://github.com/numToStr/Comment.nvim).
++ auto complete tags and brackets with [nvim-autopairs](https://github.com/windwp/nvim-autopairs).
++ Effortlessly manage matching pairs (add, replace, or delete) with  [nvim-surround](https://github.com/kylechui/nvim-surround).
++ jump around the buffer content like spiderman via [hop.nvim](https://github.com/phaazon/hop.nvim).
++ Simplify snippet insertion with the power of [Luasnip](https://github.com/rafamadriz/L3MON4D3/LuaSnip).
++ Beautiful statusline with [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim).
++ File tree explorer via [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua).
++ Better quickfix list with [nvim-bqf](https://github.com/kevinhwang91/nvim-bqf).
++ Command line auto-completion via [cmp-cmdline](https://github.com/hrsh7th/cmp-cmdline).
++ Customize user-defined mapping hints with [which-key.nvim](https://github.com/folke/which-key.nvim).
++ Execute code with [jaq-nvim](https://github.com/is0n/jaq-nvim).
++ Code highlighting and advanced code manipulation via [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter).
++ Beautiful colorscheme via [gruvbox-baby](https://github.com/luisiacc/gruvbox-baby) and other colorschemes.
++ Easily navigate throught code tags with [symbol-outline](https://github.com/simrat39/symbols-outline.nvim).
++ Ensure consistent Code formatting and code linting via [Null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim).
++ Undo management via [undo-tree](https://github.com/mbbill/undotree)
 
 ```viml
  <leader-key> = <Space\>
