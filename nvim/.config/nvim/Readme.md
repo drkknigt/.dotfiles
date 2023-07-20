@@ -166,74 +166,64 @@ replaced as they are the core of editor. Learn vim first and then start using pl
 | 2.   g?        | Normal  | : show the mappings       |
 | 3.   <C-]>     | Normal  | : change directory        |
 | 4.   <C-e>     | Normal  | : OPen in place           |
-
-
-|     Shortcut              |   Mode     |       Description                                                           |  
-|---------------------------|------------|-----------------------------------------------------------------------------|  
-1.   <leader>e : open nvim file explorer
-2.   g?        : show the mappings
-3.   <C-]>     : change directory
-4.   <C-e>     : OPen in place
-5.   <C-k>     : info on the file
-6.   <2-LeftMouse> : Open                  
-7.   <2-RightMouse> : CD                    
-8.   <C-]>     : CD                    
-9.   <C-E>     : Open: In Place        
-10.  <C-K>     : Info                  
-11.  <C-R>     : Rename: Omit Filename 
-12.  <C-T>     : Open: New Tab         
-13.  <C-V>     : Open: Vertical Split  
-14.  <C-X>     : Open: Horizontal Split
-15.  <BS>      : Close Directory       
-16.  <CR>      : Open                  
-17.  <Tab>     : Open Preview          
-18.  -         : Up                    
-19.  .         : Run Command           
-20.  >         : Next Sibling          
-21.  <         : Previous Sibling      
-22.  B         : Toggle No Buffer      
-23.  C         : Toggle Git Clean      
-24.  D         : Trash                 
-25.  E         : Expand All            
-26.  F         : Clean Filter          
-27.  H         : Toggle Dotfiles       
-28.  I         : Toggle Git Ignore     
-29.  J         : Last Sibling          
-30.  K         : First Sibling         
-31.  O         : Open: No Window Picker
-32.  P         : Parent Directory      
-33.  R         : Refresh               
-34.  S         : Search                
-35.  U         : Toggle Hidden         
-36.  W         : Collapse              
-37.  Y         : Copy Relative Path    
-38.  a         : Create                
-39.  bmv       : Move Bookmarked       
-40.  c         : Copy                  
-41.  ]c        : Next Git              
-42.  [c        : Prev Git              
-43.  d         : Delete                
-44.  ]e        : Next Diagnostic       
-45.  e         : CD                    
-46.  [e        : Prev Diagnostic       
-47.  f         : Filter                
-48.  g?        : Help                  
-49.  gy        : Copy Absolute Path    
-50.  h         : Close Directory       
-51.  l         : Open                  
-52.  m         : Toggle Bookmark       
-53.  o         : Open                  
-54.  p         : Paste                 
-55.  q         : Close                 
-56.  r         : Rename                
-57.  s         : Run System            
-58.  u         : Up                    
-59.  v         : Open: Vertical Split  
-60.  x         : Cut                   
-61.  y         : Copy Name             
-62.  z         : Open: Horizontal Split
-
-```
+| 5.   <C-k>     | Normal  |: info on the file         |
+| 6.   <2-LeftMouse> | Normal | : Open      |            
+| 7.   <2-RightMouse> | Normal |  : CD      |              
+| 8.   <C-]>     | Normal   | : CD     |               
+| 9.   <C-E>     | Normal   | : Open: In Place |        
+| 10.  <C-K>     | Normal   |: Info  |                
+| 11.  <C-R>     | Normal   |: Rename: Omit Filename |
+| 12.  <C-T>     | Normal   | : Open: New Tab       |        
+| 13.  <C-V>     | Normal   |: Open: Vertical Split | 
+| 14.  <C-X>     | Normal   |: Open: Horizontal Split  |
+| 15.  <BS>      | Normal   |: Close Directory         |
+| 16.  <CR>      | Normal   |: Open                    |
+| 17.  <Tab>     | Normal   |: Open Preview            |
+| 18.  -         | Normal   |: Up                      |
+| 19.  .         | Normal   |: Run Command             |
+| 20.  >         | Normal   |: Next Sibling            |
+| 21.  <         | Normal   |: Previous Sibling        |
+| 22.  B         | Normal   |: Toggle No Buffer        |
+| 23.  C         | Normal   |: Toggle Git Clean        |
+| 24.  D         | Normal   |: Trash                   |
+| 25.  E         | Normal   |: Expand All              |
+| 26.  F         | Normal   |: Clean Filter            |
+| 27.  H         | Normal   |: Toggle Dotfiles         |
+| 28.  I         | Normal   |: Toggle Git Ignore       |
+| 29.  J         | Normal   |: Last Sibling            |
+| 30.  K         | Normal   |: First Sibling           |
+| 31.  O         | Normal   |: Open: No Window Picker  |
+| 32.  P         | Normal   |: Parent Directory        |
+| 33.  R         | Normal   |: Refresh                 |
+| 34.  S         | Normal   |: Search                  |
+| 35.  U         | Normal   |: Toggle Hidden           |
+| 36.  W         | Normal   |: Collapse                |
+| 37.  Y         | Normal   |: Copy Relative Path      |
+| 38.  a         | Normal   |: Create                  |
+| 39.  bmv       | Normal   |: Move Bookmarked         |
+| 40.  c         | Normal   |: Copy                    |
+| 41.  ]c        | Normal   |: Next Git                |
+| 42.  [c        | Normal   |: Prev Git                |
+| 43.  d         | Normal   |: Delete                  |
+| 44.  ]e        | Normal   |: Next Diagnostic         |
+| 45.  e         | Normal   |: CD                      |
+| 46.  [e        | Normal   |: Prev Diagnostic         |
+| 47.  f         | Normal   |: Filter                  |
+| 48.  g?        | Normal   |: Help                    |
+| 49.  gy        | Normal   |: Copy Absolute Path      |
+| 50.  h         | Normal   |: Close Directory         |
+| 51.  l         | Normal   |: Open                    |
+| 52.  m         | Normal   |: Toggle Bookmark         |
+| 53.  o         | Normal   |: Open                    |
+| 54.  p         | Normal   |: Paste                   |
+| 55.  q         | Normal   |: Close                   |
+| 56.  r         | Normal   |: Rename                  |
+| 57.  s         | Normal   |: Run System              |
+| 58.  u         | Normal   |: Up                      |
+| 59.  v         | Normal   |: Open: Vertical Split    |
+| 60.  x         | Normal   |: Cut                     |
+| 61.  y         | Normal   |: Copy Name               |
+| 62.  z         | Normal   |: Open: Horizontal Split  |
 
 ### themes: 
 ```viml
