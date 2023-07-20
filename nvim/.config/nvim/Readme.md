@@ -158,8 +158,18 @@ replaced as they are the core of editor. Learn vim first and then start using pl
 | 4. :Startuptime --tries N |    Ex      | : `--tries` specifies how many startup times are averaged.                  |
 
 
-### nvim-tree:
-```viml
+### nvim-tree:  
+
+|     Shortcut              |   Mode     |       Description                                                           |  
+|---------------------------|------------|-----------------------------------------------------------------------------|  
+| 1.   <leader>e | Normal  | : open nvim file explorer |
+| 2.   g?        | Normal  | : show the mappings       |
+| 3.   <C-]>     | Normal  | : change directory        |
+| 4.   <C-e>     | Normal  | : OPen in place           |
+
+
+|     Shortcut              |   Mode     |       Description                                                           |  
+|---------------------------|------------|-----------------------------------------------------------------------------|  
 1.   <leader>e : open nvim file explorer
 2.   g?        : show the mappings
 3.   <C-]>     : change directory
