@@ -128,7 +128,18 @@ This repo hosts my Nvim configuration for Linux.**
 + Easily navigate throught code tags with [symbol-outline](https://github.com/simrat39/symbols-outline.nvim).
 + Ensure consistent Code formatting and code linting via [Null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim).
 + Undo management via [undo-tree](https://github.com/mbbill/undotree)
-
++ Effortlessly manage and navigate between project files with the [harpoon](https://github.com/ThePrimeagen/harpoon) plugin.
++ Get out of brackets and quotes easily with [tabout.nvim](https://github.com/abecodes/tabout.nvim)
++ Get the preview of the source code as a Map with [codewindow](https://www.github.com/gorbit99/codewindow.nvim).
++ Beautiful preview of definitions with [goto-previw](https://www.github.com/rmagatti/goto-preview).
++ Install language servers and linters and formatters with ease with [mason.nvim](https://www.github.com/williamboman/mason.nvim).
++ Open and run terminals and terminal apps with ease with [toggleterm.nvim](https://www.github.com/akinsho/toggleterm.nvim).
++ Color highlighter with [nvim-colorizer](https://www.github.com/norcalli/nvim-colorizer.lua).
++ Match parenthesis and code blocks with ease with [vim-mathcup](https://www.github.com/andymass/vim-matchup).
++ Check the lsp progress as file loads with [fidget.nvim](https://www.github.com/j-hui/fidget.nvim).
++ Debugging with ease using [nvim-dap](https://www.github.com/mfussenegger/nvim-dap)
++ Profile nvim startuptime [vim-startuptime](https://www.github.com/dstein64/vim-startuptime).
++ AND MUCH MORE
 ```viml
  <leader-key> = <Space\>
 -----------------------
