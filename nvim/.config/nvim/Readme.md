@@ -141,7 +141,7 @@ This repo hosts my Nvim configuration for Linux.**
 + Profile nvim startuptime [vim-startuptime](https://www.github.com/dstein64/vim-startuptime).
 + AND MUCH MORE
 
-### themes:  
+### Themes:  
 1. gruvbox
 2. gruvbox baby
 3. vscode
@@ -174,23 +174,23 @@ replaced as they are the core of editor. Learn vim first and then start using pl
 
 |     Shortcut              |   Mode     |       Description                                                           |  
 |---------------------------|------------|-----------------------------------------------------------------------------|  
-| 1.   <leader>e | Normal  | : open nvim file explorer |
+| 1.   `<leader>e` | Normal  | : open nvim file explorer |
 | 2.   g?        | Normal  | : show the mappings       |
-| 3.   <C-]>     | Normal  | : change directory        |
-| 4.   <C-e>     | Normal  | : OPen in place           |
-| 5.   <C-k>     | Normal  |: info on the file         |
-| 6.   <2-LeftMouse> | Normal | : Open      |            
-| 7.   <2-RightMouse> | Normal |  : CD      |              
-| 8.   <C-]>     | Normal   | : CD     |               
-| 9.   <C-E>     | Normal   | : Open: In Place |        
-| 10.  <C-K>     | Normal   |: Info  |                
-| 11.  <C-R>     | Normal   |: Rename: Omit Filename |
-| 12.  <C-T>     | Normal   | : Open: New Tab       |        
-| 13.  <C-V>     | Normal   |: Open: Vertical Split | 
-| 14.  <C-X>     | Normal   |: Open: Horizontal Split  |
-| 15.  <BS>      | Normal   |: Close Directory         |
-| 16.  <CR>      | Normal   |: Open                    |
-| 17.  <Tab>     | Normal   |: Open Preview            |
+| 3.   `<C-]>`     | Normal  | : change directory        |
+| 4.   `<C-e>`     | Normal  | : OPen in place           |
+| 5.   `<C-k>`     | Normal  |: info on the file         |
+| 6.   `<2-LeftMouse>` | Normal | : Open      |            
+| 7.   `<2-RightMouse>` | Normal |  : CD      |              
+| 8.   `<C-]>`     | Normal   | : CD     |               
+| 9.   `<C-E>`     | Normal   | : Open: In Place |        
+| 10.  `<C-K>`     | Normal   |: Info  |                
+| 11.  `<C-R>`     | Normal   |: Rename: Omit Filename |
+| 12.  `<C-T>`     | Normal   | : Open: New Tab       |        
+| 13.  `<C-V>`     | Normal   |: Open: Vertical Split | 
+| 14.  `<C-X>`     | Normal   |: Open: Horizontal Split  |
+| 15.  `<BS>`      | Normal   |: Close Directory         |
+| 16.  `<CR>`      | Normal   |: Open                    |
+| 17.  `<Tab>`     | Normal   |: Open Preview            |
 | 18.  -         | Normal   |: Up                      |
 | 19.  .         | Normal   |: Run Command             |
 | 20.  >         | Normal   |: Next Sibling            |
@@ -239,18 +239,17 @@ replaced as they are the core of editor. Learn vim first and then start using pl
 
 
 ### nvim-cmp: 
-```viml
-        
-1. <C-d>                  : scroll down docs
-2. <C-v>                  : scroll up docs
-3. <C-n>                  : select next item
-4. <C-p>                  : select previous item
-5. <C-y>                  : disable the cmp completion
-6. <C-b>                  : abort the cmp suggestion or completion
-7. <C-space>              : toggle the cmp completion
-8. <C-f>                  : confirm or select the current selection completion option
-```
-        
+|     Shortcut              |   Mode     |       Description                                                           |  
+|---------------------------|------------|-----------------------------------------------------------------------------|  
+| 1. `<C-d>`   | Normal |                  : scroll down docs |
+| 2. `<C-v>`   | Normal |                  : scroll up docs |
+| 3. `<C-n>`   | Normal |                  : select next item |
+| 4. `<C-p>`   | Normal |                  : select previous item |
+| 5. `<C-y>`   | Normal |                  : disable the cmp completion |
+| 6. `<C-b>`   | Normal |                  : abort the cmp suggestion or completion |
+| 7. `<C-space>`   | Normal |              : toggle the cmp completion |
+| 8. `<C-f>`   | Normal |                  : confirm or select the current selection completion option |
+
 
 ### Telescope:
 ```viml
