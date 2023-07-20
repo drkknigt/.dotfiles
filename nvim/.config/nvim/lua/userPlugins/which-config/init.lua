@@ -169,6 +169,7 @@ local mappings = {
 		l = { "<cmd>LspStart<CR>", "Start lsp" },
 		q = { "<cmd>LspStop<CR>", "Stop lsp" },
 		r = { "<cmd>lua vim.lsp.buf.references()<cr>", "document references" },
+		g = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "document references" },
 		-- r = { "<cmd>Lspsaga rename<cr>", "Rename" },
 		f = { "<cmd>Lspsaga lsp_finder<cr>", "lsp finder" },
 		s = { "<cmd>lua vim.lsp.buf.document_symbol()<cr>", "Document Symbols" },

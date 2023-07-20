@@ -707,5 +707,6 @@ replaced as they are the core of editor. Learn vim first and then start using pl
 | 72.  `<leader>`ls | Normal |                             document symbols |
 | 73.  `<leader>`le | Normal |                             document diagnostic hover on current line |
 | 74.  `<leader>`lS | Normal |                             document symbols for workspace |
+| 74.  `<leader>`lg | Normal |                             document implementation |
 
 
