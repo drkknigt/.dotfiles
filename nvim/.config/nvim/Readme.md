@@ -14,7 +14,7 @@ This repo hosts my Nvim configuration for Linux.**
 
 ## FOLDER STRUCTURE
                   
-.config/nvim/  
+#### .config/nvim/  
 ```  
 ├── Readme.md                                          # description for the nvim config
 ├── init.lua                                           # entry point for nvim config
