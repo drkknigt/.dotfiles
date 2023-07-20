@@ -18,88 +18,88 @@ This repo hosts my Nvim configuration for Linux.**
 ```  
 ├── Readme.md                                          # description for the nvim config
 ├── init.lua                                           # entry point for nvim config
-├── lazy-lock.json  
-├── lua  
-│   ├── core  
-│   │   ├── autocmds  
+├── lazy-lock.json                                     # lazy-nvim stuff  
+├── lua                                                # lua editor configs and plugin configs
+│   ├── core                                           # core editor config
+│   │   ├── autocmds                                   # user defined autocmds
 │   │   │   └── init.lua  
-│   │   ├── color-config  
+│   │   ├── color-config                               # colorscheme config
 │   │   │   └── init.lua  
-│   │   ├── keymaps  
+│   │   ├── keymaps                                    # user defined mappings for editor
 │   │   │   └── init.lua  
-│   │   ├── lazy-nvim  
+│   │   ├── lazy-nvim                                  # plugin manager
 │   │   │   └── init.lua  
-│   │   ├── packer-config  
+│   │   ├── packer-config                              # plugin manager
 │   │   │   └── init.lua  
-│   │   ├── settings  
+│   │   ├── settings                                   # core editor settings
 │   │   │   └── init.lua  
-│   │   ├── statusline  
+│   │   ├── statusline                                 # user defined statusline
 │   │   │   ├── icons.lua  
 │   │   │   └── init.lua  
-│   │   └── userFunctions  
+│   │   └── userFunctions                              # user defined functions
 │   │       └── init.lua  
-│   └── userPlugins  
-│       ├── autopairs-config  
+│   └── userPlugins                                    # directory for plugins configuration
+│       ├── autopairs-config                           # pair tags and brackets
 │       │   └── init.lua  
-│       ├── cmp-config  
+│       ├── cmp-config                                 # completion plugins 
 │       │   └── init.lua  
-│       ├── colorizer-config  
+│       ├── colorizer-config                           # color highlighter
 │       │   └── init.lua  
-│       ├── comment-config  
+│       ├── comment-config                             # comment code config
 │       │   └── init.lua  
-│       ├── fzflua  
+│       ├── fzflua                                     # fast fuzzy finder fzf config
 │       │   └── init.lua  
-│       ├── gitsigns-config  
+│       ├── gitsigns-config                            # git signs for git stuff
 │       │   └── init.lua  
-│       ├── goto-config  
+│       ├── goto-config                                # fancy goto definition
 │       │   └── init.lua  
-│       ├── harpoon  
+│       ├── harpoon                                    # marks on steriods 
 │       │   └── init.lua  
-│       ├── indentline-config  
+│       ├── indentline-config                          # indent visuals
 │       │   └── init.lua  
 │       ├── init.lua  
-│       ├── iswaaap-config  
+│       ├── iswaaap-config                             # swap parameters with treesitter
 │       │   └── init.lua  
-│       ├── jaq-config  
+│       ├── jaq-config                                 # run code in nvim
 │       │   └── init.lua  
-│       ├── lsp-config  
+│       ├── lsp-config                                 # language server config
 │       │   └── init.lua  
-│       ├── lspkind-config  
+│       ├── lspkind-config                             # fancy symbol icons
 │       │   └── init.lua  
-│       ├── lspsaga-config  
+│       ├── lspsaga-config                             # lsp-saga config
 │       │   └── init.lua  
-│       ├── lualine-config  
+│       ├── lualine-config                             # fancy statusline
 │       │   ├── custom.lua  
 │       │   └── init.lua
 |       |   └── ayu_mirage.lua
-│       ├── mkdir-config  
+│       ├── mkdir-config                               # make dir within nvim 
 │       │   └── init.lua  
-│       ├── null-config  
+│       ├── null-config                                # formatters and linters config
 │       │   ├── builtins  
 │       │   │   └── formatting  
 │       │   │       └── jsbeautify.lua  
 │       │   └── init.lua  
-│       ├── nvimtree-config  
+│       ├── nvimtree-config                            # main file explorer
 │       │   └── init.lua  
-│       ├── signature  
+│       ├── signature                                  # lsp signature config
 │       │   └── init.lua  
-│       ├── staline-config  
+│       ├── staline-config                             # fancy statusline
 │       │   └── init.lua  
-│       ├── symbolline-config  
+│       ├── symbolline-config                          # lsp and treesitter symbols
 │       │   └── init.lua  
-│       ├── tabbar-config  
+│       ├── tabbar-config                              # fancy tab bar
 │       │   └── init.lua  
-│       ├── _telescope-setting  
+│       ├── _telescope-setting                         # telescope config ( fzf alternative)
 │       │   └── init.lua  
-│       ├── terminal-config  
+│       ├── terminal-config                            # terminal within nvim
 │       │   └── init.lua  
-│       ├── treesitter  
+│       ├── treesitter                                 # treesitter plugins and config
 │       │   └── init.lua  
-│       ├── which-config  
+│       ├── which-config                               # track keybindings while typing
 │       │   └── init.lua  
-│       └── winbar  
+│       └── winbar                                     # winbar config
 │           └── init.lua  
-└── snapshots  
+└── snapshots                                          # editor snapshots
     └── snap_1
 ```
     
