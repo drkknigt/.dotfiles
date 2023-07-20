@@ -292,8 +292,6 @@ replaced as they are the core of editor. Learn vim first and then start using pl
 | 36. <leader>sh   | Normal | search dotfiles in telescope |
 
 
-```
-
 ### Fzf-lua:
 
 |     Shortcut              |   Mode     |       Description                                                           |  
@@ -340,10 +338,12 @@ replaced as they are the core of editor. Learn vim first and then start using pl
 
         
 
-### lsp-signature:
-```viml
-1. <C-y>                     : toggle the signature toggle
-```
+### lsp-signature:  
+
+|     Shortcut              |   Mode     |       Description                                                           |  
+|---------------------------|------------|-----------------------------------------------------------------------------|  
+| 1. `<C-y>`                | Normal / insert |      toggle the signature toggle |
+
 
 
 ### nvim-surround:
@@ -354,7 +354,7 @@ replaced as they are the core of editor. Learn vim first and then start using pl
 3.  yss                       : surround line
 4.  css                       : change surround
 5.  dss                       : delete surround
-```
+
 
 
        
