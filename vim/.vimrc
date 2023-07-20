@@ -66,6 +66,7 @@ set completeopt=menu,menuone,preview,popup " A comma-separated list of options f
 set magic " Enable extended regexes.
 set title " set title of window with file name
 set wildoptions=pum "layout of the wildmenu
+set cpoptions+=>
 " remap Esc to jk
 " leader key
 hi Normal ctermbg=None

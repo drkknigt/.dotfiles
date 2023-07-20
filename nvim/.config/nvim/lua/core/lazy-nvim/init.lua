@@ -81,12 +81,11 @@ require("lazy").setup({
 	},
 
 	-- themes for neovim
-
 	{
 		"luisiacc/gruvbox-baby",
 		event = "BufEnter",
 		config = function()
-			require("color-config")
+			require("core.color-config")
 		end,
 	},
 	{
@@ -137,6 +136,10 @@ require("lazy").setup({
 		config = function()
 			require("monokai-pro").setup()
 		end,
+	},
+	{
+		"xero/miasma.nvim",
+		event = "VeryLazy",
 	},
 	-- This tiny plugin adds vscode-liek pictorgrams to neoivm built in lsp
 
@@ -213,6 +216,7 @@ require("lazy").setup({
 	{
 		"j-hui/fidget.nvim",
 		event = "BufReadPre",
+		branch = "legacy",
 		config = function()
 			require("fidget").setup({})
 		end,
@@ -501,8 +505,8 @@ require("lazy").setup({
 		event = "CursorHold",
 		config = function()
 			require("bqf").setup()
-			require("autocmds")
-			require("userFunctions")
+			require("core.autocmds")
+			require("core.userFunctions")
 			vim.api.nvim_set_hl(0, "Statusline", { bg = "Black", fg = "gray" })
 		end,
 	},
@@ -574,6 +578,10 @@ require("lazy").setup({
 		dependencies = { "nvim-treesitter" },
 	},
 
+	{
+		"mbbill/undotree",
+		event = "VeryLazy",
+	},
 	-- {
 	-- 	"SmiteshP/nvim-navic",
 	-- 	event = "VeryLazy",
@@ -753,4 +761,5 @@ require("lazy").setup({
 	-- 		require("lsp-lens").setup()
 	-- 	end,
 	-- },
+	{ "ThePrimeagen/harpoon", event = "VeryLazy" },
 }, opts)

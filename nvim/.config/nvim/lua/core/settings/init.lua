@@ -107,6 +107,8 @@ set.laststatus = 3 -- neovim specific to get a global statusline
 
 set.statusline = "   %F"
 
+set.cpoptions = set.cpoptions + ">"
+
 --set.fillchars = {fold='\',vert='\|',eob='\',msgsep='‾'} -- characters to fille the statuslines and vertical separators.
 set.fillchars = {
 	vert = "│",

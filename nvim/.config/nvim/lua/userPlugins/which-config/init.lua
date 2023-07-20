@@ -87,7 +87,7 @@ local mappings = {
 
 	p = {
 		name = "Lazy-nvim",
-		z = { "<cmd>e ~/.config/nvim/lua/lazy-nvim/init.lua<cr>", "Install" },
+		z = { "<cmd>e ~/.config/nvim/lua/core/lazy-nvim/init.lua<cr>", "open plugin config" },
 		s = { "<cmd>luafile %<cr>", "source lua file" },
 		i = { "<cmd>Lazy install<cr>", "Lazy run install clean and update" },
 		u = { "<cmd>Lazy update<cr>", "Lazy Update" },
@@ -157,14 +157,14 @@ local mappings = {
 		-- f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
 		i = { "<cmd>LspInfo<cr>", "Info" },
 		I = { "<cmd>Mason<cr>", "Installer Info" },
-		j = {
-			"<cmd>lua vim.diagnostic.goto_next({scope='line',float={border='single'}})<CR>",
-			"Next Diagnostic",
-		},
-		k = {
-			"<cmd>lua vim.diagnostic.goto_prev({scope='line',float={border='single'}})<cr>",
-			"Prev Diagnostic",
-		},
+		-- j = {
+		-- "<cmd>lua vim.diagnostic.goto_next({scope='line',float={border='single'}})<CR>",
+		-- "Next Diagnostic",
+		-- },
+		-- k = {
+		-- "<cmd>lua vim.diagnostic.goto_prev({scope='line',float={border='single'}})<cr>",
+		-- "Prev Diagnostic",
+		-- },
 		p = { "<cmd>lua require('goto-preview').goto_preview_definition()<cr>", "goto-preview" },
 		l = { "<cmd>LspStart<CR>", "Start lsp" },
 		q = { "<cmd>LspStop<CR>", "Stop lsp" },
@@ -174,6 +174,7 @@ local mappings = {
 		s = { "<cmd>lua vim.lsp.buf.document_symbol()<cr>", "Document Symbols" },
 		e = { "<cmd>lua vim.diagnostic.open_float(0,{scope='line',border='single'})<cr>", "document errors" },
 		S = { "<cmd>lua vim.lsp.buf.workspace_symbol()<cr>", "Document Symbols" },
+		u = { "<cmd>UndotreeToggle<cr>", "Document Symbols" },
 		-- S = {
 		--   "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
 		--   "Workspace Symbols",
@@ -219,6 +220,7 @@ local mappings = {
 		l = { "<cmd>FzfLua lines<cr>", "fzf lines" },
 		r = { "<cmd>FzfLua resume<cr>", "fzf resume" },
 		h = { ":lua require('fzf-lua').files({cwd = '~'})<CR>", "find files fzf" },
+		w = { "yiw<bar><cmd>FzfLua blines<cr><bar><ESC>pi", "paste" },
 	},
 
 	t = {
@@ -228,11 +230,17 @@ local mappings = {
 		u = { ":lua _NCDU_TOGGLE()<cr>", "NCDU" },
 		t = { ":lua _HTOP_TOGGLE()<cr>", "Htop" },
 		p = { ":lua _PYTHON_TOGGLE()<cr>", "Python" },
-		g = { ":lua _LAZYGIT_TOGGLE()<cr>", "Python" },
-		l = { ":lua _LUA_TOGGLE()<cr>", "Python" },
+		g = { ":lua _LAZYGIT_TOGGLE()<cr>", "Lazygit" },
+		l = { ":lua _LUA_TOGGLE()<cr>", "Lua" },
 		f = { ":ToggleTerm direction=float<cr>", "Float" },
 		h = { ":ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
 		v = { ":ToggleTerm size=60 direction=vertical<cr>", "Vertical" },
+	},
+	h = {
+		o = { ":lua require('harpoon.ui').toggle_quick_menu()<cr>", "open harpoon" },
+		a = { ":lua require('harpoon.mark').add_file()<cr>", "add file to harpoon" },
+		z = { ":lua require('harpoon.ui').nav_next()<cr>", "next file in harpoon" },
+		x = { ":lua require('harpoon.ui').nav_prev()<cr>", "next file in harpoon" },
 	},
 }
 
