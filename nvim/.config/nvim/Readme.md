@@ -241,55 +241,56 @@ replaced as they are the core of editor. Learn vim first and then start using pl
 ### nvim-cmp: 
 |     Shortcut              |   Mode     |       Description                                                           |  
 |---------------------------|------------|-----------------------------------------------------------------------------|  
-| 1. `<C-d>`   | Normal |                   scroll down docs |
-| 2. `<C-v>`   | Normal |                   scroll up docs |
-| 3. `<C-n>`   | Normal |                   select next item |
-| 4. `<C-p>`   | Normal |                   select previous item |
-| 5. `<C-y>`   | Normal |                   disable the cmp completion |
-| 6. `<C-b>`   | Normal |                   abort the cmp suggestion or completion |
-| 7. `<C-space>`   | Normal |               toggle the cmp completion |
-| 8. `<C-f>`   | Normal |                   confirm or select the current selection completion option |
+| 1. `<C-d>`   | Insert |                   scroll down docs |
+| 2. `<C-v>`   | Insert |                   scroll up docs |
+| 3. `<C-n>`   | Insert |                   select next item |
+| 4. `<C-p>`   | INsert |                   select previous item |
+| 5. `<C-y>`   | Insert |                   disable the cmp completion |
+| 6. `<C-b>`   | Insert |                   abort the cmp suggestion or completion |
+| 7. `<C-space>`   | Insert |               toggle the cmp completion |
+| 8. `<C-f>`   | Insert |                   confirm or select the current selection completion option |
 
 
 ### Telescope:
 |     Shortcut              |   Mode     |       Description                                                           |  
 |---------------------------|------------|-----------------------------------------------------------------------------|  
-| 1. <c-o>         | Normal | action_layout.toggle_preview, |
-| 2. <c-e>         | Normal | actions.close, |
-| 3. <Tab>         | Normal | actions.toggle_selection + actions.move_selection_next, |
-| 4. <S-Tab>       | Normal | actions.toggle_selection + actions.move_selection_previous, |
-| 5. <Tab>         | insert | actions.toggle_selection, |
-| 6. <S-Tab>       | insert | actions.toggle_selection + actions.move_selection_previous, |
-| 7. <c-o>         | insert | action_layout.toggle_preview, |
-| 8. <c-e>         | insert | actions.close, |
-| 9. <c-j>         | insert | actions.move_selection_next, |
-| 10. <c-k>        | insert | actions.move_selection_previous, |
-| 11. <C-q>        | insert | actions.smart_send_to_qflist, |
-| 12. <C-i>        | insert | actions.smart_send_to_qflist, |
-| 13. <C-f>        | insert | actions.smart_send_to_qflist + actions.open_qflist, |
-| 14. <C-c>        | insert | close telescope |
-| 15. <C-/>        | insert | show/toggle keymaps for particular telescope window in insert mode |
+| 1. `<c-o>`         | Normal | action_layout.toggle_preview, |
+| 2. `<c-e>`         | Normal | actions.close, |
+| 3. `<Tab>`         | Normal | actions.toggle_selection + actions.move_selection_next, |
+| 4. `<S-Tab>`       | Normal | actions.toggle_selection + actions.move_selection_previous, |
+| 5. `<Tab>`         | insert | actions.toggle_selection, |
+| 6. `<S-Tab>`       | insert | actions.toggle_selection + actions.move_selection_previous, |
+| 7. `<c-o>`         | insert | action_layout.toggle_preview, |
+| 8. `<c-e>`         | insert | actions.close, |
+| 9. `<c-j>`         | insert | actions.move_selection_next, |
+| 10. `<c-k>`        | insert | actions.move_selection_previous, |
+| 11. `<C-q>`        | insert | actions.smart_send_to_qflist, |
+| 12. `<C-i>`        | insert | actions.smart_send_to_qflist, |
+| 13. `<C-f>`        | insert | actions.smart_send_to_qflist + actions.open_qflist, |
+| 14. `<C-c>`        | insert | close telescope |
+| 15. `<C-/>`        | insert | show/toggle keymaps for particular telescope window in insert mode |
 | 16. ?            | Normal | show/toggle keymaps for particular telescope window in normal mode |
-| 17. <leader>go   | Normal | Telescope git status |
-| 18. <leader>gb   | Normal | Telescope git branches |
-| 19. <leader>gc   | Normal | Telescope git commits |
-| 20. <leader>sd   | Normal | file browser home directory |
-| 21. <leader>sm   | Normal | show manual pages in telescope |
-| 22. <leader>so   | Normal | show old files in telescope |
-| 23. <leader>sf   | Normal | fild files in telescope |
-| 24. <leader>sR   | Normal | show registers in telescope |
-| 25. <leader>sr   | Normal | resume telescope to last place |
-| 26. <leader>sk   | Normal | show all keympas in telescope |
-| 27. <leader>sc   | Normal | show all commands in telescope |
-| 28. <leader>sp   | Normal | show all projects in telescope |
-| 29. <leader>sq   | Normal | show quickfix in telescope |
-| 30. <leader>si   | Normal | show internet bookmarks in telescope |
-| 31. <leader>sb   | Normal | show buffers in telescope |
-| 32. <leader>se   | Normal | file browser current |
-| 33. <leader>ss   | Normal | live grep |
-| 34. <leader>sE   | Normal | env vairables in telescope |
-| 35. <leader>sl   | Normal | fuzzy find buffer content in telescope |
-| 36. <leader>sh   | Normal | search dotfiles in telescope |
+| 17. `<leader>`go   | Normal | Telescope git status |
+| 18. `<leader>`gb   | Normal | Telescope git branches |
+| 19. `<leader>`gc   | Normal | Telescope git commits |
+| 20. `<leader>`sd   | Normal | file browser home directory |
+| 21. `<leader>`sm   | Normal | show manual pages in telescope |
+| 22. `<leader>`so   | Normal | show old files in telescope |
+| 23. `<leader>`sf   | Normal | fild files in telescope |
+| 24. `<leader>`sR   | Normal | show registers in telescope |
+| 25. `<leader>`sr   | Normal | resume telescope to last place |
+| 26. `<leader>`sk   | Normal | show all keympas in telescope |
+| 27. `<leader>`sc   | Normal | show all commands in telescope |
+| 28. `<leader>`sp   | Normal | show all projects in telescope |
+| 29. `<leader>`sq   | Normal | show quickfix in telescope |
+| 30. `<leader>`si   | Normal | show internet bookmarks in telescope |
+| 31. `<leader>`sb   | Normal | show buffers in telescope |
+| 32. `<leader>`se   | Normal | file browser current |
+| 33. `<leader>`ss   | Normal | live grep |
+| 34. `<leader>`sE   | Normal | env vairables in telescope |
+| 35. `<leader>`sl   | Normal | fuzzy find buffer content in telescope |
+| 36. `<leader>`sh   | Normal | search dotfiles in telescope |
+
 
 
 ### Fzf-lua:
@@ -584,10 +585,10 @@ replaced as they are the core of editor. Learn vim first and then start using pl
 
 |     Shortcut              |   Mode     |       Description                                                           |  
 |---------------------------|------------|-----------------------------------------------------------------------------|  
-| 1. `<Tab>` |    Normal |                             get out of the objecs | 
-| 2. `<S-Tab>` |  Normal |                              get out of the objecs | 
-| 3. `<C-t>` |    Normal |                                                       | 
-| 4. `<C-d>` |    Normal |                                                    | 
+| 1. `<Tab>` |    Insert |                             get out of the objecs | 
+| 2. `<S-Tab>` |  Insert |                              get out of the objecs | 
+| 3. `<C-t>` |    Insert |                                                       | 
+| 4. `<C-d>` |    Insert |                                                    | 
 
 
 
