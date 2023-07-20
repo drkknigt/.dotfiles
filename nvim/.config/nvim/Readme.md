@@ -7,11 +7,10 @@
 </div>  
 
 # Introduction  
-This repo hosts my Nvim configuration for Linux.  
-I describe the rough structure of my nvim config and important plugins and 
-mappings that i use daily.  
-In order to enhance resilience and minimize the risk of disruptions, **the focus lies solely on supporting [the most current nvim stable release](https://github.com/neovim/neovim/releases/tag/stable). There is no allocation of resources towards preserving compatibility with previous versions.**  
+Within this repository, you can find my Linux-based Nvim configuration. It encompasses the overall layout of my nvim setup, along with crucial plugins and mappings that I regularly utilize.
 
+The primary emphasis is on ensuring durability and reducing the potential for interruptions, **achieved by providing full support exclusively for [the latest stable release of nvim](https://github.com/neovim/neovim/releases/tag/stable). Please note that backward compatibility with earlier versions is not a priority in the resource allocation.
+This repo hosts my Nvim configuration for Linux.**  
 
 ## FOLDER STRUCTURE
                   
