@@ -141,6 +141,18 @@ This repo hosts my Nvim configuration for Linux.**
 + Profile nvim startuptime [vim-startuptime](https://www.github.com/dstein64/vim-startuptime).
 + AND MUCH MORE
 
+### themes:  
+1. gruvbox
+2. gruvbox baby
+3. vscode
+4. tokoyonight
+5. zephyr
+6. catpuccin
+7. nord
+8. monokai-pro
+9. miasama
+
+
 # MAIN KEYMAPS I USE  
 Most of the shortcuts i use start with Space-bar (my leader key), the shortcuts do not interfere with 
 the builtin vim mappings . I dont reassign the builtin mappings because i think vim mappings should never be  
@@ -225,18 +237,6 @@ replaced as they are the core of editor. Learn vim first and then start using pl
 | 61.  y         | Normal   |: Copy Name               |
 | 62.  z         | Normal   |: Open: Horizontal Split  |
 
-### themes: 
-```viml
-1. gruvbox
-2. gruvbox baby
-3. vscode
-4. tokoyonight
-5. zephyr
-6. catpuccin
-7. nord
-8. monokai-pro
-9. miasama
-```
 
 ### nvim-cmp: 
 ```viml
