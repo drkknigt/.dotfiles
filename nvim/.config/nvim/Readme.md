@@ -150,15 +150,12 @@ replaced as they are the core of editor. Learn vim first and then start using pl
 
 ### vim-startuptime: 
 
-|     Shortcut             |   Mode     |       Description      |  
-|--------------------------|------------|------------------------|  
-| 1. <leader>pt            |   Normal   |  Find the startup time |  
-
-|       : find the startup time  
-2. K                             : Press `K` on events to get additional information.
-3. gf                            : Press `gf` on sourcing events to load the corresponding file
-4. :Startuptime --tries N        : `--tries` specifies how many startup times are averaged.
-```
+|     Shortcut              |   Mode     |       Description                                                           |  
+|---------------------------|------------|-----------------------------------------------------------------------------|  
+| 1. `<leader>pt`           |   Normal   |  Find the startup time |                                                    |
+| 2. K                      |   Normal   | : Press `K` on events to get additional information.                        |
+| 3. gf                     |   Normal   | : Press `gf` on sourcing events to load the corresponding file              |
+| 4. :Startuptime --tries N |    Ex      | : `--tries` specifies how many startup times are averaged.                  |
 
 
 ### nvim-tree:
