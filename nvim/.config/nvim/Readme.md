@@ -18,7 +18,7 @@ This repo hosts my Nvim configuration for Linux.**
 ```  
 ├── Readme.md                                          # description for the nvim config
 ├── init.lua                                           # entry point for nvim config
-├── lazy-lock.json                                     # lazy-nvim stuff  
+├── lazy-lock.json                                     # lazy-nvim stuff 
 ├── lua                                                # lua editor configs and plugin configs
 │   ├── core                                           # core editor config
 │   │   ├── autocmds                                   # user defined autocmds
