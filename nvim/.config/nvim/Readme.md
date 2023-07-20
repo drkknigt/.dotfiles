@@ -149,7 +149,8 @@ replaced as they are the core of editor. Learn vim first and then start using pl
 # SHORTCUTS
 
 ### vim-startuptime: 
-```viml
+|     Shortcut             |   Mode     |       Description      |
+|----------------------------------------------------------------|
 1. <leader>pt                    : find the startup time
 2. K                             : Press `K` on events to get additional information.
 3. gf                            : Press `gf` on sourcing events to load the corresponding file
