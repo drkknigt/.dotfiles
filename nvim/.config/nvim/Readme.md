@@ -107,9 +107,10 @@ This repo hosts my Nvim configuration for Linux.**
 
 ## PLUGINS and their Mappings
 
-
-#### leader-key = Space
+```viml
+ <leader-key> = <Space\>
 -----------------------
+```
 
 ### vim-startuptime: 
 ```viml
