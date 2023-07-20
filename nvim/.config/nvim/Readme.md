@@ -413,274 +413,298 @@ replaced as they are the core of editor. Learn vim first and then start using pl
 
 
 
-### Hop:
-```viml
-1 .  <leader>hw			           : HopWord
-2 .  <leader>hp       	                   : HopPattern
-3 .  <leader>hc				   : HopChar1
-4 .  <leader>hC				   : HopChar2
-5 .  <leader>hl				   : HopLine
-6 .  <leader>hdw		           : delete till the HopWord
-7 .  <leader>hdp			   : deltel till the HopPattern
-8 .  <leader>hdc			   : delte till the HopChar1
-9 .  <leader>hdC			   : delete till the HopChar2
-10.  <leader>hdl			   : delete till theHopLine
-11.  <leader>hkw			   : change till HopWord
-12.  <leader>hkp			   : change till HopPattern
-13.  <leader>hkc			   : change till HopChar1
-14.  <leader>hkC			   : change till HopChar2
-15.  <leader>hkl			   : change till HopLine
-16.  <leader>hyw			   : copy till the HopWord
-17.  <leader>hyp			   : copy till the  HopPattern
-18.  <leader>hyc			   : copy till the HopChar1
-19.  <leader>hyC			   : copy till the HopChar2
-20.  <leader>hyl			   : copy till the HopLine
-```
+### Hop: 
+
+|     Shortcut              |   Mode     |       Description                                                           |  
+|---------------------------|------------|-----------------------------------------------------------------------------|  
+| 1 .  `<leader>`hw	| Normal |		            HopWord |
+| 2 .  `<leader>`hp 	| Normal |      	                    HopPattern |
+| 3 .  `<leader>`hc 	| Normal |  			    HopChar1 |
+| 4 .  `<leader>`hC 	| Normal |  			    HopChar2 |
+| 5 .  `<leader>`hl 	| Normal |  			    HopLine |
+| 6 .  `<leader>`hdw	| Normal |		            delete till the HopWord |
+| 7 .  `<leader>`hdp	| Normal |			    deltel till the HopPattern |
+| 8 .  `<leader>`hdc	| Normal |			    delte till the HopChar1 |
+| 9 .  `<leader>`hdC	| Normal |			    delete till the HopChar2 |
+| 10.  `<leader>`hdl	| Normal |			    delete till theHopLine |
+| 11.  `<leader>`hkw	| Normal |			    change till HopWord |
+| 12.  `<leader>`hkp	| Normal |			    change till HopPattern |
+| 13.  `<leader>`hkc	| Normal |			    change till HopChar1 |
+| 14.  `<leader>`hkC	| Normal |			    change till HopChar2 |
+| 15.  `<leader>`hkl	| Normal |			    change till HopLine |
+| 16.  `<leader>`hyw	| Normal |			    copy till the HopWord |
+| 17.  `<leader>`hyp	| Normal |			    copy till the  HopPattern |
+| 18.  `<leader>`hyc	| Normal |			    copy till the HopChar1 |
+| 19.  `<leader>`hyC	| Normal |			    copy till the HopChar2 |
+| 20.  `<leader>`hyl	| Normal |			    copy till the HopLine |
 
 
 
-### vim-matchup: 
-```viml   
-1. %                                     : match parenthesis and other objects
-```
+
+### vim-matchup:  
+
+|     Shortcut              |   Mode     |       Description                                                           |  
+|---------------------------|------------|-----------------------------------------------------------------------------|  
+| 1. % | Normal |   match parenthesis and other objects  |
 
 
 
-## toggleterm:
 
-```viml
-1.  <C-\>                                :  open toggleterm
-2.  <leader>tn                           :  open node terminal
-3.  <leader>tm                           :  open glow 
-4.  <leader>tu                           :  open ncdu disk utility
-5.  <leader>tt                           :  open htop
-6.  <leader>tp                           :  open python terminal
-7.  <leader>tg                           :  open lazygit
-8.  <leader>tl                           :  open lua terminal
-9.  <leader>tf                           :  open float terminal
-10. <leader>th                           :  open horizontal terminal
-11. <leader>tv                           :  open vertical terminal
-```
+### toggleterm:  
 
-### comment:
- 
-```viml
-1. gcc                                  : comment full line
-2. gbc                                  : comment full block
-3. gc[operator][object]                 : comment text object
-4. gb[operator][object]                 : comment block object
-5. gcO                                  : open a comment line above
-6. gco                                  : open a comment line below
-7. gcA                                  : Add comment at end of line
-```
+|     Shortcut              |   Mode     |       Description                                                           |  
+|---------------------------|------------|-----------------------------------------------------------------------------|  
+| 1.  `<C-\>`      | Normal |                             open toggleterm |
+| 2.  `<leader>`tn | Normal |                             open node terminal |
+| 3.  `<leader>`tm | Normal |                             open glow  |
+| 4.  `<leader>`tu | Normal |                             open ncdu disk utility |
+| 5.  `<leader>`tt | Normal |                             open htop |
+| 6.  `<leader>`tp | Normal |                             open python terminal |
+| 7.  `<leader>`tg | Normal |                             open lazygit |
+| 8.  `<leader>`tl | Normal |                             open lua terminal |
+| 9.  `<leader>`tf | Normal |                             open float terminal |
+| 10. `<leader>`th | Normal |                             open horizontal terminal |
+| 11. `<leader>`tv | Normal |                             open vertical terminal |
+
+
+
+### comment:  
+
+|     Shortcut              |   Mode     |       Description                                                           |  
+|---------------------------|------------|-----------------------------------------------------------------------------|  
+| 1. gcc                                  | Normal |  comment full line |
+| 2. gbc                                  | Normal |  comment full block |
+| 3. gc[operator][object]                 | Normal |  comment text object |
+| 4. gb[operator][object]                 | Normal |  comment block object |
+| 5. gcO                                  | Normal |  open a comment line above |
+| 6. gco                                  | Normal |  open a comment line below |
+| 7. gcA                                  | Normal |  Add comment at end of line |
+
+
         
 
 
 
 
-### mason:
+### mason:  
 
-```viml
-1. <leader>lI                            : mason installer info
-```
+|     Shortcut              |   Mode     |       Description                                                           |  
+|---------------------------|------------|-----------------------------------------------------------------------------|  
+| 1. `<leader>`lI                            : mason installer info
 
 
-### lsp-config:
 
-```viml
-1. gD                                    : definition preview
-2. gd                                    : goto definition
-3. K                                     : hover definition
-4. <leader>D                             : type definition
-5. [d                                    : goto previous diagnostic
-6. ]d                                    : goto next diagnostic
-```
+### lsp-config:  
+
+|     Shortcut              |   Mode     |       Description                                                           |  
+|---------------------------|------------|-----------------------------------------------------------------------------|  
+| 1. gD                                    | Normal |  definition preview |
+| 2. gd                                    | Normal |  goto definition |
+| 3. K                                     | Normal |  hover definition |
+| 4. `<leader>`D                             | Normal |  type definition |
+| 5. [d                                    | Normal |  goto previous diagnostic |
+| 6. ]d                                    | Normal |  goto next diagnostic |
+
+
         
 
 
-### symbol-outline:
+### symbol-outline:  
 
-```viml
-1. <leader>st                           : open symbol-outline
-2. <Esc>,q                              : close
-3. <Cr>                                 : goto_location
-4. o                                    : focus_location
-5. <C-space>                            : hover_symbol
-6. K                                    : toggle_preview
-7. r                                    : rename_symbol
-8. a                                    : code_actions
-9. h                                    : fold
-10. l                                   : unfold
-11. W                                   : fold_all
-12. E                                   : unfold_all
-13. R                                   : fold_reset
-```
-
-
-
-### null-config:
-
-```viml
-1 <leader>lp                             : goto the definition but in a float buffer 
-```
-
-
-
-### git-signs:
-
-```viml
-1. ]g                                    : next hunk git
-2. [g                                    : previous hunt git
-3. <leader>gg                            : open lazygit
-4. <leader>gj                            : next hunk git
-5. <leader>gk                            : previous hunk git
-6. <leader>ga                            : set changes in quickfix list
-7. <leader>gl                            : see the line blame
-8. <leader>gp                            : peview the hunk
-9. <leader>gs                            : stage hunk
-10. <leader>gf                           : stage buffer
-11. <leader>gu                           : undo stage hunk
-12. <leader>gd                           : use diff in git signs
-```
-
-### jaq-nvim:
-
-```viml
-1. <leader>r                             : Jaq run code
-```
+|     Shortcut              |   Mode     |       Description                                                           |  
+|---------------------------|------------|-----------------------------------------------------------------------------|  
+| 1. `<leader>`st                           | Normal | open symbol-outline | 
+| 2. `<Esc>`,q                              | Normal | close | 
+| 3. `<Cr>`                                 | Normal | goto_location | 
+| 4. o                                    | Normal | focus_location | 
+| 5. `<C-space>`                            | Normal | hover_symbol | 
+| 6. K                                    | Normal | toggle_preview | 
+| 7. r                                    | Normal | rename_symbol | 
+| 8. a                                    | Normal | code_actions | 
+| 9. h                                    | Normal | fold | 
+| 10. l                                   | Normal | unfold | 
+| 11. W                                   | Normal | fold_all | 
+| 12. E                                   | Normal | unfold_all | 
+| 13. R                                   | Normal | fold_reset | 
 
 
 
 
-### codewindow-nvim:
+### null-config:  
 
-```viml
-1. <leader>mo                            : open the minimap
-2. <leader>mc                            : close the minimap
-3. <leader>mf                            : focus/unfocus the minimap
-4. <leader>mm                            : toggle the minimap
-```
+|     Shortcut              |   Mode     |       Description                                                           |  
+|---------------------------|------------|-----------------------------------------------------------------------------|  
+| 1 `<leader>`lp  | Normal |                             : goto the definition but in a float buffer | 
+
+
+
+### git-signs:  
+
+|     Shortcut              |   Mode     |       Description                                                           |  
+|---------------------------|------------|-----------------------------------------------------------------------------|  
+| 1. ]g          | Normal |                             next hunk git |
+| 2. [g          | Normal |                             previous hunt git |
+| 3. `<leader>`gg  | Normal |                             open lazygit |
+| 4. `<leader>`gj  | Normal |                             next hunk git |
+| 5. `<leader>`gk  | Normal |                             previous hunk git |
+| 6. `<leader>`ga  | Normal |                             set changes in quickfix list |
+| 7. `<leader>`gl  | Normal |                             see the line blame |
+| 8. `<leader>`gp  | Normal |                             peview the hunk |
+| 9. `<leader>`gs  | Normal |                             stage hunk |
+| 10. `<leader>`gf | Normal |                             stage buffer |
+| 11. `<leader>`gu | Normal |                             undo stage hunk |
+| 12. `<leader>`gd | Normal |                             use diff in git signs |
+
+
+
+
+### jaq-nvim:  
+
+|     Shortcut              |   Mode     |       Description                                                           |  
+|---------------------------|------------|-----------------------------------------------------------------------------|  
+| 1. `<leader>`r | Normal |                              : Jaq run code |
+
+
+
+
+
+### codewindow-nvim:  
+
+|     Shortcut              |   Mode     |       Description                                                           |  
+|---------------------------|------------|-----------------------------------------------------------------------------|  
+| 1. `<leader>`mo | Normal |                              open the minimap | 
+| 2. `<leader>`mc | Normal |                              close the minimap | 
+| 3. `<leader>`mf | Normal |                              focus/unfocus the minimap | 
+| 4. `<leader>`mm | Normal |                              toggle the minimap | 
+
+
 
        
-### tabout.nvim:
+### tabout.nvim:  
 
-```viml
-1. <Tab>                                 : get out of the objecs
-2. <S-Tab>                               : get out of the objecs
-3. <C-t>
-4. <C-d>
-```
-
-
-### undotree:
-
-```viml
-1. <leader>lu                            : open undo tree
-```
+|     Shortcut              |   Mode     |       Description                                                           |  
+|---------------------------|------------|-----------------------------------------------------------------------------|  
+| 1. `<Tab>` |    Normal |                             get out of the objecs | 
+| 2. `<S-Tab>` |  Normal |                              get out of the objecs | 
+| 3. `<C-t>` |    Normal |                                                       | 
+| 4. `<C-d>` |    Normal |                                                    | 
 
 
-### lazy-vim:
 
-```viml
-1. <leader>pi                            : Lazy install plugins
-2. <leader>pu                            : Lazy update plugins
-3. <leader>pc                            : Lazy clean / remove plugins
-4. <leader>pp                            : Lazy open home window
-```
 
-### harpoon:
+### undotree:  
 
-```viml
-1.  <leader>ho                            : open harpoon
-2.  <leader>ha                            : add file to harpoon
-3.  <leader>hz                            : goto next file in harpoon
-4.  <leader>hx                            : goto previous file in harpoon
-5.  ]1                                    : go to 1st file in harpoon list
-6.  ]2                                    : go to 2nd file in harpoon list
-7.  ]3                                    : go to 3rd file in harpoon list
-8.  ]4                                    : go to 4th file in harpoon list
-9.  ]5                                    : go to 5th file in harpoon list
-10. ]6                                    : go to 6th file in harpoon list
-11. ]7                                    : go to 7th file in harpoon list
-12. ]8                                    : go to 8th file in harpoon list
-13. ]9                                    : go to 9th file in harpoon list
-```
+|     Shortcut              |   Mode     |       Description                                                           |  
+|---------------------------|------------|-----------------------------------------------------------------------------| 
+| 1. `<leader>`lu             | Normal     |                 open undo tree                                              |
 
-### editor config:
 
-```viml
-1.   [object]il                            : inside line
-2.   [object]al                            : outside line
-3.   <leader>hh                            : highlight current line
-4.   <leader>hv                            : clear hls and clear highlight lines
-5.   <leader>bo                            : delete all buffer except current
-6.   <leader>be                            : delete all empty buffers
-7.   <leader>be                            : delete all empty buffers
-8.   jk                                    : enter normal mode
-9.   kj                                    : enter normal mode
-10.  <Tab>                                 : next buffer in normal mode
-11.  <S-Tab>                               : previous buffer in normal mode
-12.  <leader>d                             : delete the current buffer
-13.  <leader>,                             : source the $MYVIMRC
-14.  <leader>k                             : see the native docs
-15.  <leader>c                             : make last saved session
-16.  <leader>y                             : copy full text to + clipboard
-17.  <leader>y                             : copy full text to + clipboard
-18.  n                                     : goto next match but center the viewport
-19.  N                                     : goto previous match but center the viewport
-20.  <leader>z                             : open the $VIMRC
-21.  <leader>n)                            : next bracket )
-22.  <leader>n(                            : next bracket (
-23.  <leader>m(                            : Previous bracket (
-24.  <leader>m)                            : Previous bracket )
-25.  ]a                                    : make a array of strings
-26.  ]e                                    : make a array of chars without quotes
-27.  ]e                                    : make a array of chars without quotes
-28.  <leader>nv                            : find next variable
-29.  <leader>mv                            : find previous variable
-30.  <leader>O                             : open line above without moving cursor in normal mode
-31.  <leader>o                             : open line above and below in normal mode
-32.  <leader>nn                            : find next number 
-33.  <leader>mn                            : find previous number 
-34.  <leader>nt                            : find next bracket tag
-35.  <leader>mt                            : find previous bracket tag
-36.  <leader>n]                            : next bracket ]
-37.  <leader>m]                            : prvious bracket ]
-38.  <leader>n[                            : next bracket [
-39.  <leader>m[                            : previous bracket [
-40.  <leader>n{                            : next bracket {
-41.  <leader>m}                            : previous bracket }
-42.  <leader>n'                            : next bracket '
-43.  <leader>m'                            : previous bracket '
-44.  <leader>n"                            : next bracket "
-45.  <leader>m"                            : previous bracket "
-46.  <leader>n`                            : next bracket `
-47.  <leader>m`                            : previous bracket `
-48.  <leader>ne                            : next  =
-49.  <leader>me                            : previous  =
-50.  <leader>na                            : next  +
-51.  <leader>ma                            : previous  +
-52.  <leader>ns                            : next  -
-53.  <leader>ms                            : previous  -
-54.  <leader>nd                            : next  _
-55.  <leader>md                            : previous  _
-56.  <leader>w                             : save current buffer
-57.  <leader>pz                            : open lazy config
-58.  <leader>ps                            : source current file
-59.  <leader>qw                            : search for current word under cursor place results in qfix
-60.  <leader>qq                            : open qfixlist
-61.  <leader>qe                            : close qfixlist
-62.  <leader>ql                            : open locationlist
-63.  <leader>qo                            : close locationlist
-64.  <leader>la                            : code action
-65.  <leader>ld                            : diagnostic results in qfix
-66.  <leader>lx                            : make current file executable
-67.  <leader>lw                            : workplace diagnostic in qfix
-68.  <leader>li                            : lspinfo of current file
-69.  <leader>ll                            : lspstart
-70.  <leader>lq                            : lsp stop
-71.  <leader>lr                            : document references
-72.  <leader>ls                            : document symbols
-73.  <leader>le                            : document diagnostic hover on current line
-74.  <leader>lS                            : document symbols for workspace
-```
+### lazy-vim:  
+
+|     Shortcut              |   Mode     |       Description                                                           |  
+|---------------------------|------------|-----------------------------------------------------------------------------| 
+| 1. `<leader>`pi | Normal    |                            Lazy install plugins   |
+| 2. `<leader>`pu | Normal    |                        Lazy update plugins        |
+| 3. `<leader>`pc | Normal    |                       Lazy clean / remove plugins  |
+| 4. `<leader>`pp | Normal    |                        Lazy open home window       |
+
+
+### harpoon:  
+
+|     Shortcut              |   Mode     |       Description                                                           |  
+|---------------------------|------------|-----------------------------------------------------------------------------|  
+| 1.  <leader>ho | Normal |                             open harpoon |
+| 2.  <leader>ha | Normal |                             add file to harpoon |
+| 3.  <leader>hz | Normal |                             goto next file in harpoon |
+| 4.  <leader>hx | Normal |                             goto previous file in harpoon |
+| 5.  ]1         | Normal |                             go to 1st file in harpoon list |
+| 6.  ]2         | Normal |                             go to 2nd file in harpoon list |
+| 7.  ]3         | Normal |                             go to 3rd file in harpoon list |
+| 8.  ]4         | Normal |                             go to 4th file in harpoon list |
+| 9.  ]5         | Normal |                             go to 5th file in harpoon list |
+| 10. ]6         | Normal |                             go to 6th file in harpoon list |
+| 11. ]7         | Normal |                             go to 7th file in harpoon list |
+| 12. ]8         | Normal |                             go to 8th file in harpoon list |
+| 13. ]9         | Normal |                             go to 9th file in harpoon list |
+
+
+### editor config:  
+
+|     Shortcut              |   Mode     |       Description                                                           |  
+|---------------------------|------------|-----------------------------------------------------------------------------|  
+| 1.   [object]il | Normal |                             inside line |
+| 2.   [object]al | Normal |                             outside line |
+| 3.   `<leader>`hh | Normal |                             highlight current line |
+| 4.   `<leader>`hv | Normal |                             clear hls and clear highlight lines |
+| 5.   `<leader>`bo | Normal |                             delete all buffer except current |
+| 6.   `<leader>`be | Normal |                             delete all empty buffers |
+| 7.   `<leader>`be | Normal |                             delete all empty buffers |
+| 8.   jk         | Normal |                             enter normal mode |
+| 9.   kj         | Normal |                             enter normal mode |
+| 10.  `<Tab>`      | Normal |                             next buffer in normal mode |
+| 11.  `<S-Tab>`    | Normal |                             previous buffer in normal mode |
+| 12.  `<leader>`d  | Normal |                             delete the current buffer |
+| 13.  `<leader>`,  | Normal |                             source the $MYVIMRC |
+| 14.  `<leader>`k  | Normal |                             see the native docs |
+| 15.  `<leader>`c  | Normal |                             make last saved session |
+| 16.  `<leader>`y  | Normal |                             copy full text to + clipboard |
+| 17.  `<leader>`y  | Normal |                             copy full text to + clipboard |
+| 18.  n          | Normal |                             goto next match but center the viewport |
+| 19.  N          | Normal |                             goto previous match but center the viewport |
+| 20.  `<leader>`z  | Normal |                             open the $VIMRC |
+| 21.  `<leader>`n) | Normal |                             next bracket ) |
+| 22.  `<leader>`n( | Normal |                             next bracket ( |
+| 23.  `<leader>`m( | Normal |                             Previous bracket ( |
+| 24.  `<leader>`m) | Normal |                             Previous bracket ) |
+| 25.  ]a         | Normal |                             make a array of strings |
+| 26.  ]e         | Normal |                             make a array of chars without quotes |
+| 27.  ]e         | Normal |                             make a array of chars without quotes |
+| 28.  `<leader>`nv | Normal |                             find next variable |
+| 29.  `<leader>`mv | Normal |                             find previous variable |
+| 30.  `<leader>`O  | Normal |                             open line above without moving cursor in normal mode |
+| 31.  `<leader>`o  | Normal |                             open line above and below in normal mode |
+| 32.  `<leader>`nn | Normal |                             find next number  |
+| 33.  `<leader>`mn | Normal |                             find previous number  |
+| 34.  `<leader>`nt | Normal |                             find next bracket tag |
+| 35.  `<leader>`mt | Normal |                             find previous bracket tag |
+| 36.  `<leader>`n] | Normal |                             next bracket ] |
+| 37.  `<leader>`m] | Normal |                             prvious bracket ] |
+| 38.  `<leader>`n[ | Normal |                             next bracket [ |
+| 39.  `<leader>`m[ | Normal |                             previous bracket [ |
+| 40.  `<leader>`n{ | Normal |                             next bracket { |
+| 41.  `<leader>`m} | Normal |                             previous bracket } |
+| 42.  `<leader>`n' | Normal |                             next bracket ' |
+| 43.  `<leader>`m' | Normal |                             previous bracket ' |
+| 44.  `<leader>`n" | Normal |                             next bracket " |
+| 45.  `<leader>`m" | Normal |                             previous bracket " |
+| 46.  `<leader>`n` | Normal |                             next bracket ` |
+| 47.  `<leader>`m` | Normal |                             previous bracket ` |
+| 48.  `<leader>`ne | Normal |                             next  = |
+| 49.  `<leader>`me | Normal |                             previous  = |
+| 50.  `<leader>`na | Normal |                             next  + |
+| 51.  `<leader>`ma | Normal |                             previous  + |
+| 52.  `<leader>`ns | Normal |                             next  - |
+| 53.  `<leader>`ms | Normal |                             previous  - |
+| 54.  `<leader>`nd | Normal |                             next  _ |
+| 55.  `<leader>`md | Normal |                             previous  _ |
+| 56.  `<leader>`w  | Normal |                             save current buffer |
+| 57.  `<leader>`pz | Normal |                             open lazy config |
+| 58.  `<leader>`ps | Normal |                             source current file |
+| 59.  `<leader>`qw | Normal |                             search for current word under cursor place results in qfix |
+| 60.  `<leader>`qq | Normal |                             open qfixlist |
+| 61.  `<leader>`qe | Normal |                             close qfixlist |
+| 62.  `<leader>`ql | Normal |                             open locationlist |
+| 63.  `<leader>`qo | Normal |                             close locationlist |
+| 64.  `<leader>`la | Normal |                             code action |
+| 65.  `<leader>`ld | Normal |                             diagnostic results in qfix |
+| 66.  `<leader>`lx | Normal |                             make current file executable |
+| 67.  `<leader>`lw | Normal |                             workplace diagnostic in qfix |
+| 68.  `<leader>`li | Normal |                             lspinfo of current file |
+| 69.  `<leader>`ll | Normal |                             lspstart |
+| 70.  `<leader>`lq | Normal |                             lsp stop |
+| 71.  `<leader>`lr | Normal |                             document references |
+| 72.  `<leader>`ls | Normal |                             document symbols |
+| 73.  `<leader>`le | Normal |                             document diagnostic hover on current line |
+| 74.  `<leader>`lS | Normal |                             document symbols for workspace |
+
+
