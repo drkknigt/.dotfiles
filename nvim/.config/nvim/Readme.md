@@ -15,10 +15,9 @@ This repo hosts my Nvim configuration for Linux.**
 ## FOLDER STRUCTURE
                   
 .config/nvim/  
-```
-├── ayu_mirage.lua  
-├── doc.txt  
-├── init.lua  
+```  
+├── Readme.md                                          # description for the nvim config
+├── init.lua                                           # entry point for nvim config
 ├── lazy-lock.json  
 ├── lua  
 │   ├── core  
@@ -71,7 +70,8 @@ This repo hosts my Nvim configuration for Linux.**
 │       │   └── init.lua  
 │       ├── lualine-config  
 │       │   ├── custom.lua  
-│       │   └── init.lua  
+│       │   └── init.lua
+|       |   └── ayu_mirage.lua
 │       ├── mkdir-config  
 │       │   └── init.lua  
 │       ├── null-config  
