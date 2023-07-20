@@ -6,7 +6,11 @@
 </p>
 </div>  
 
-# NEOVIM STRUCTURE & USER-DEFINED BINDINGS  
+# Introduction  
+This repo hosts my Nvim configuration for Linux.  
+I describe the rough structure of my nvim config and important plugins and 
+mappings that i use daily.  
+In order to enhance resilience and minimize the risk of disruptions, **the focus lies solely on supporting [the most current nvim stable release](https://github.com/neovim/neovim/releases/tag/stable). There is no allocation of resources towards preserving compatibility with previous versions.**  
 
 
 ## FOLDER STRUCTURE
