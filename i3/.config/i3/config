@@ -45,6 +45,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 # bindsym XF86AudioMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# bindings for resolution and scaling
 bindsym XF86Mail exec --no-startup-id alacritty -t "mount" -e /home/drkknght/bin/system_scripts/resolution.sh
 bindsym Print exec --no-startup-id alacritty -t "mount" -e /home/drkknght/bin/system_scripts/scale.sh 0
 bindsym Scroll_Lock exec --no-startup-id alacritty -t "mount" -e /home/drkknght/bin/system_scripts/scale.sh 1
@@ -52,6 +54,8 @@ bindsym Scroll_Lock exec --no-startup-id alacritty -t "mount" -e /home/drkknght/
 # binding to increase/decrease the brightness levels of the system
 bindsym $mod+"plus" exec --no-startup-id brightnessctl set +3%
 bindsym $mod+"minus" exec --no-startup-id brightnessctl set 3%-
+
+# change the cpu frequency governor
 bindsym $mod+Control+a exec --no-startup-id alacritty -t "fzfmenu" -e /home/drkknght/bin/system_scripts/governor.sh
 
 # monitor settings
@@ -59,8 +63,10 @@ workspace 1 output eDP
 workspace 2 output HDMI-A-0
 exec_always --no-startup-id xrandr --output HDMI-A-0 --right-of eDP --mode 1366x768 --rate 60 --gamma 0.9:0.9:0.9 ; /home/drkknght/.fehbg
 exec_always --no-startup-id xrandr --output eDP --mode 1366x768  --gamma 0.7:0.7:0.7
-exec_always --no-startup-id bluetooth off
 #exec_always --no-startup-id compton --vsync opengl-swc --backend glx
+
+# turn bluetooth off
+exec_always --no-startup-id bluetooth off
 
 # picom compositor settings
 exec_always --no-startup-id picom --experimental-backends
@@ -68,8 +74,8 @@ exec_always --no-startup-id picom --experimental-backends
 # battery down notifcation
 # exec_always --no-startup-id killall check_battery.sh;/home/drkknght/bin/system_scripts/check_battery.sh
 
-# set the cursor speed
-exec_always --no-startup-id xset r rate 250 100
+# set the keyboard keys repeat rate 
+exec_always --no-startup-id xset r rate 200 100
 
 # swap control and caps lock keys
 exec_always --no-startup-id setxkbmap -option "ctrl:swapcaps"
@@ -143,6 +149,9 @@ bindsym $mod+f exec --no-startup-id alacritty -t "fzfmenu-dir" -e /home/drkknght
 # see all the keymaps for i3wm
 bindsym $mod+z exec --no-startup-id alacritty -t "fzfmenu-dir" -e /home/drkknght/bin/system_scripts/keymap.sh
 
+# kill any application
+bindsym $mod+shift+k exec --no-startup-id alacritty -t "fzfmenu-dir" -e /home/drkknght/bin/system_scripts/kill.sh
+
 # fuzzy find the directory and open it
 bindsym $mod+d exec --no-startup-id alacritty -t "fzfmenu-dir" -e /home/drkknght/bin/system_scripts/file_exp.sh d
 
@@ -163,7 +172,7 @@ bindsym $mod+n exec --no-startup-id alacritty -t "fzfmenu" -e /home/drkknght/bin
 # bindsym $mod+- exec  /home/drkknght/bin/tmux_scripts/brightness.sh -5
 
 # connect and disconnect wifi
-bindsym $mod+i exec /home/drkknght/bin/system_scripts/wifi_connect.sh
+bindsym $mod+i exec /home/drkknght/bin/network/wifi_connect.sh
 
 # bindsym $mod+Control+d exec /home/drkknght/bin/fd.sh
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -218,6 +227,8 @@ bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Control+f floating toggle
+
+# lock screen
 bindsym $mod+Shift+t exec "i3lock -c 000000"
 
 # change focus between tiling / floating windows

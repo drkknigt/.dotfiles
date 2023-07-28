@@ -161,9 +161,7 @@ local mappings = {
 		-- "<cmd>lua vim.diagnostic.goto_next({scope='line',float={border='single'}})<CR>",
 		-- "Next Diagnostic",
 		-- },
-		-- k = {
-		-- "<cmd>lua vim.diagnostic.goto_prev({scope='line',float={border='single'}})<cr>",
-		-- "Prev Diagnostic",
+		k = { "<cmd>pwd<cr>", "current directory" },
 		-- },
 		p = { "<cmd>lua require('goto-preview').goto_preview_definition()<cr>", "goto-preview" },
 		l = { "<cmd>LspStart<CR>", "Start lsp" },

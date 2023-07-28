@@ -20,8 +20,8 @@ if [ ${monitor1} = 0 ]
 then
     # sed -i -e "s|${wallpaper1}|file=${curret}|g" ~/.config/nitrogen/bg-saved.cfg
     # echo '1st monitor'
-    echo "1st monitor"
-    echo "bg2" $bgt
+    echo "setting wallpaper for 1st monitor"
+    echo "bg2 is set as" $bgt
     feh --bg-fill "$curret" --bg-fill "$bgt"
 else
     echo "2st monitor"

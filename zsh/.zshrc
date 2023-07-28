@@ -102,14 +102,11 @@ source $ZSH/oh-my-zsh.sh
 export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
 
-PATH=/home/drkknght/bin:$PATH
-PATH=/home/drkknght/bin/system_scripts:$PATH
-PATH=/home/drkknght/bin/navigation:$PATH
-PATH=/home/drkknght/bin/network:$PATH
-PATH=/home/drkknght/bin/background:$PATH
+# various user paths added
+PATH=/home/drkknght/bin/*:$PATH
 PATH=/home/drkknght/usr/bin:$PATH
 
-
+# config for nvim
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -159,6 +156,7 @@ alias vpn='protonvpn-cli '
 setopt histignorespace           # skip cmds w/ leading space from history
 export HSTR_CONFIG=hicolor       # get more colors
 # bindkey -s "^r" "history | fzf^M"     # bind hstr to Ctrl-r (for Vi mode check doc)
+# bindings for nvim
 bindkey -s '^s' 'tmux_create.sh^M'
 bindkey -s '^L' 'tmux_session_switch.sh^M'
 bindkey -s '^v' 'nvim^M'
@@ -187,7 +185,7 @@ alias ssha='eval $(ssh-agent) && ssh-add'
 fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
-
+# setup pyenv and poetry
 export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"

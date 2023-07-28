@@ -6,6 +6,7 @@ local servers = {
 	"clangd",
 	"cssls",
 	"tsserver",
+	"ansiblels",
 	"vimls",
 	"lua_ls",
 	"bashls",
@@ -156,6 +157,7 @@ local on_attach = function(client, bufnr)
 		["html"] = 1,
 		["lua_ls"] = 1,
 		["bashls"] = 1,
+		["yamlls"] = 1,
 	}
 	-- vim.lsp.buf.formatting() -- asynchronous formatting
 	-- vim.lsp.buf.formatting_sync() -- synchronous formatting, bet,oter to avoid desync problems
@@ -393,4 +395,30 @@ require("lspconfig").gopls.setup({
 			},
 		},
 	},
+})
+require("lspconfig").ansiblels.setup({
+
+	settings = {
+		ansible = {
+			ansible = {
+				path = "ansible",
+			},
+			executionEnvironment = {
+				enabled = false,
+			},
+			python = {
+				interpreterPath = "python",
+			},
+			validation = {
+				enabled = true,
+				lint = {
+					enabled = true,
+					path = "ansible-lint",
+				},
+			},
+		},
+	},
+	single_file_support = true,
+	capabilities = capabilities,
+	on_attach = on_attach,
 })

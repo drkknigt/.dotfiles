@@ -24,5 +24,9 @@ require("bufferline").setup({
 		fill = {
 			bg = "#2A2A2A",
 		},
+		tab_selected = {
+			fg = "red",
+			bg = "white",
+		},
 	},
 })

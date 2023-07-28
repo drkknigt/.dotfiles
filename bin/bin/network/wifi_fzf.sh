@@ -1,14 +1,14 @@
 #!/usr/bin/env zsh
 source ~/.zshrc
 #
-first=$(nmcli dev wifi list| fzf --prompt='Connect wifi: ')
-if [ -z "$first" ] 
+selected_wifi=$(nmcli dev wifi list| fzf --prompt='Connect wifi: ')
+if [ -z "$selected_wifi" ] 
 then exit
 fi
-second=$(echo $first | xargs | cut -d ' ' -f1)
-if [ ${second} = "*" ] 
+active_flag=$(echo $selected_wifi | xargs | cut -d ' ' -f1)
+if [ ${active_flag} = "*" ] 
 then
     echo "exit" > /dev/null
 else
-    nmcli dev wifi connect $(echo $first | xargs | cut -d ' ' -f2) > /dev/null
+    nmcli dev wifi connect $(echo $selected_wifi | xargs | cut -d ' ' -f2) > /dev/null
 fi

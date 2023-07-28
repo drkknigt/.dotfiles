@@ -134,5 +134,6 @@ cmd([[ set path+=~/.dotfiles/** ]])
 -- vim.g.nvim_tree_highlight_opened_files = 2
 -- local present, mod = pcall(require, "impatient")
 -- if present then
--- 	set.winbar = "%{%v:lua.require'userPlugins.winbar'.get_winbar()%}"
+-- set.winbar = "%{%v:lua.require'userPlugins.winbar'.get_winbar%}"
+set.winbar = "%#WhichKey#%=%F"
 -- end

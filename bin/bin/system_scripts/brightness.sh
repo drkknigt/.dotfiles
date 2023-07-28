@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 source ~/.zshrc
 amount_to_add=$1
-current_brightness=$(sed -n 1p /sys/class/backlight/radeon_bl0/brightness)
-echo $((current_brightness + amount_to_add)) > /sys/class/backlight/radeon_bl0/brightness
+graphics_card=$(ls /sys/class/backlight/)
+current_brightness=$(sed -n 1p /sys/class/backlight/$graphics_card/brightness)
+echo $((current_brightness + amount_to_add)) > /sys/class/backlight/$graphics_card/brightness

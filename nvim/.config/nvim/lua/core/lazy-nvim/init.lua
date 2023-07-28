@@ -762,4 +762,6 @@ require("lazy").setup({
 	-- 	end,
 	-- },
 	{ "ThePrimeagen/harpoon", event = "VeryLazy" },
+	{ "jghauser/mkdir.nvim", event = "VeryLazy" },
+	{ "Bekaboo/dropbar.nvim", event = "VeryLazy" },
 }, opts)

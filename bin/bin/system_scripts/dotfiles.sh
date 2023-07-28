@@ -1,12 +1,14 @@
-main_arg=$1
-if [ "$main_arg" = "0" ] ; then 
-    echo "hello"
-file_to_open=$(find ~/.dotfiles -type f | fzf)
-if [ -z "$file_to_open" ] ; then exit ;fi
+
+dotfile_flag=$1
+
+if [ "$dotfile_flag" = "0" ] ; then 
+    echo "searching dotfiles"
+    file_to_open=$(find ~/.dotfiles -type f | fzf)
+    if [ -z "$file_to_open" ] ; then exit ;fi
 else
-file_to_open=$(find  ~ -type f | fzf)
-    echo "hi"
-if [ -z "$file_to_open" ] ; then exit ;fi
+    echo "searching home directory"
+    file_to_open=$(find  ~ -type f | fzf)
+    if [ -z "$file_to_open" ] ; then exit ;fi
 fi
     
 

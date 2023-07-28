@@ -2,7 +2,7 @@
 source /home/drkknght/.zshrc
 mkdir ~/disk 2> /dev/null
 
-selected_device=$(lsblk -l | fzf | cut -d " " -f 1)
+selected_device=$(lsblk -l | fzf --prompt="mount disks: " | cut -d " " -f 1)
 
 if [ -z $selected_device ]; then
     exit
