@@ -32,7 +32,7 @@ items:
 colors:
     # Default colors
     primary:
-        background:  '#202037' 
+        background:  '#001f30'
         foreground: '#fdf4c1'
 
     # Normal colors
