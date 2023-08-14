@@ -1,24 +1,39 @@
+-- leadker key
 vim.g.mapleader = " "
 local map = vim.api.nvim_set_keymap
+
+-- visually select inside and outside the line
 map("x", "il", "g_o^", { noremap = true, silent = true })
 map("o", "il", ":normal vil<cr>", { noremap = true, silent = true })
 map("x", "al", "$o^", { noremap = true, silent = true })
 map("o", "al", ":normal val<cr>", { noremap = true, silent = true })
+
+-- editor keymaps
 map("n", "<leader>hh", ":call matchadd('LineHighlight','\\%'.line('.').'l')<cr>", { silent = true, noremap = true })
 map("n", "<leader>hv", ":set nohls<bar>call clearmatches()<cr>", { silent = true, noremap = true })
 map("n", "<leader>bo", ":Bo<cr>", { silent = true, noremap = true })
 map("n", "<leader>be", ":Be<cr>", { silent = true, noremap = true })
 map("i", "jk", "<Esc>", { silent = true })
 map("i", "kj", "<Esc>", { silent = true })
--- map("n", "<leader>fw", "yiw<leader>fb<Esc>pi", { silent = true })
 map("n", "<TAB>", ":bnext<CR>", { noremap = true, silent = true })
 map("n", "<s-tab>", ":bprevious<CR>", { noremap = true, silent = true })
--- map("n", "<leader>d", ":bp<bar>sp<bar>bn<bar>bd!<CR>", { noremap = true, silent = true })
 map("n", "<leader>d", ":bd!<CR>", { noremap = true, silent = true })
 map("n", "<leader>,", ":source /home/drkknght/.textedit/nvim/early.vim<bar>Be<CR>", { noremap = true, silent = true })
--- map('n','<C-b>',':so $HOME/.config/nvim/early.vim<CR>',{noremap=true,silent=true})
 map("n", "<leader>k", "K", { noremap = true, silent = true })
 map("n", "<leader>c", ":mks! $HOME/.textedit/nvim/early.vim<bar>qall!<CR>", { noremap = true, silent = true })
+map("n", "<leader>y", "magg\"+yG'a", { noremap = true, silent = true })
+map("n", "n", "nzznN", { noremap = true, silent = true })
+map("n", "N", "NzznN", { noremap = true, silent = true })
+map("x", "J", ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
+map("x", "K", ":move '<-2<CR>gv-gv", { noremap = true, silent = true })
+map("x", "<A-j>", ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
+map("x", "<A-k>", ":move '<-2<CR>gv-gv", { noremap = true, silent = true })
+map("v", ">", ">gv", { noremap = true, silent = true })
+map("v", "<", "<gv", { noremap = true, silent = true })
+map("n", "<leader>z", ":e ~/.config/nvim/init.lua<cr>", { noremap = true, silent = true })
+
+-- hopp nvim keymaps
+
 map("n", "<leader>hw", ":HopWord<CR>", { noremap = true, silent = true })
 map("n", "<leader>hp", ":HopPattern<CR>", { noremap = true, silent = true })
 map("n", "<leader>hc", ":HopChar1<CR>", { noremap = true, silent = true })
@@ -40,23 +55,8 @@ map("n", "<leader>hyc", "y:HopChar1<CR>", { noremap = true, silent = true })
 map("n", "<leader>hyC", "y:HopChar2<CR>", { noremap = true, silent = true })
 map("n", "<leader>hyl", "y:HopLine<CR>", { noremap = true, silent = true })
 map("n", "<leader>r", ":Jaq<CR>", { noremap = true, silent = true })
--- map('n','<leader>f',':lua require("fzf-lua").files({cwd = "."})<CR>',{noremap=true,silent=true})
--- map('n','<leader>fq',':q<CR>',{noremap=true,silent=true})
--- map('n','<leader>fh',':lua require("fzf-lua").files({cwd ="/home/drkknght"})<CR>',{noremap=true,silent=true})
--- map('n','<leader>ft',':Telescope find_files<CR>',{noremap=true,silent=true})
--- map('n','<leader>fl',':FzfLua live_grep<CR>',{noremap=true,silent=true})
--- map("n", "<leader>y", '"+yy', { noremap = true, silent = true })
-map("n", "<leader>y", "magg\"+yG'a", { noremap = true, silent = true })
-map("n", "n", "nzznN", { noremap = true, silent = true })
-map("n", "N", "NzznN", { noremap = true, silent = true })
-map("x", "J", ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
-map("x", "K", ":move '<-2<CR>gv-gv", { noremap = true, silent = true })
-map("x", "<A-j>", ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
-map("x", "<A-k>", ":move '<-2<CR>gv-gv", { noremap = true, silent = true })
-map("v", ">", ">gv", { noremap = true, silent = true })
-map("v", "<", "<gv", { noremap = true, silent = true })
-map("n", "<leader>z", ":e ~/.config/nvim/init.lua<cr>", { noremap = true, silent = true })
--- jump to next text objects
+
+-- jump keymaps
 map("n", "<leader>n)", "/)<cr>", { noremap = true, silent = true })
 map("n", "]w", ":lua require('ts-node-action').node_action()<cr>", { noremap = true, silent = true })
 map("n", "<leader>n(", "/(<cr>", { noremap = true, silent = true })
@@ -91,12 +91,13 @@ map("n", "<leader>mt", "?><cr>", { noremap = true, silent = true })
 map("n", "<leader>nn", "/\\d\\+<cr>", { noremap = true, silent = true })
 map("n", "<leader>mn", "?\\d\\+<cr>", { noremap = true, silent = true })
 map("n", "<leader>o", "O<Esc>jo<Esc>k", { noremap = true, silent = true })
--- map("n", "<leader>oa", "o<Esc>kO<Esc>j", { noremap = true, silent = true })
 map("n", "<leader>O", "O<Esc>j", { noremap = true, silent = true })
 map("n", "<leader>nv", "/\\w\\+\\s*=\\s*<cr>", { noremap = true, silent = true })
 map("n", "<leader>mv", "?\\w\\+\\s*=\\s*<cr>", { noremap = true, silent = true })
 map("n", "]a", ":s/\\w\\+/'\\0',/g<bar>normal I= [<Esc>A]<Esc>I", { noremap = true, silent = true })
 map("n", "]e", ":s/\\w\\+/\\0,/g<bar>normal I= [<Esc>A]<Esc>I", { noremap = true, silent = true })
+
+-- harpoon keymaps
 map("n", "<leader>hs", ":lua require('tsht').move({side = 'start'})<cr>", { noremap = true, silent = true })
 map("n", "<leader>he", ":lua require('tsht').move({side = 'end'})<cr>", { noremap = true, silent = true })
 map("n", "]h", ":lua require('harpoon.ui').nav_next()<cr>", { noremap = true, silent = true })
@@ -110,13 +111,3 @@ map("n", "]6", ":lua require('harpoon.ui').nav_file(6)<cr>", { noremap = true, s
 map("n", "]7", ":lua require('harpoon.ui').nav_file(7)<cr>", { noremap = true, silent = true })
 map("n", "]8", ":lua require('harpoon.ui').nav_file(8)<cr>", { noremap = true, silent = true })
 map("n", "]9", ":lua require('harpoon.ui').nav_file(9)<cr>", { noremap = true, silent = true })
--- map("n","dab","/(\\([a-zA-Z0-9,'-_]*\\|\\n\\))\\{-}<cr>:normal da(<cr>",{noremap=true,silent=true})
--- map("n","dib","/(\\([a-zA-Z0-9,'-_]*\\|\\n\\))\\{-}<cr>:normal di(<cr>",{noremap=true,silent=true})
--- map("n","diB","/{\\([a-zA-Z0-9,'-_]*\\|\\n\\)}\\{-}<cr>:normal di{<cr>",{noremap=true,silent=true})
--- map("n","daB","/{\\([a-zA-Z0-9,'-_]*\\|\\n\\)}\\{-}<cr>:normal da{<cr>",{noremap=true,silent=true})
-
--- local makeArray = vim.api.nvim_create_augroup("makeArray", { clear = true })
--- vim.api.nvim_create_autocmd("BufEnter", {
--- 	command = map("n", "]a", ":s/\\w\\+/'\\0',/g<bar>normal I= [<Esc>A]<Esc>I", { noremap = true, silent = true }),
--- 	group = makeArray,
--- })

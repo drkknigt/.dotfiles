@@ -38,7 +38,7 @@ This repo hosts my Nvim configuration for Linux.**
 │   │   │   └── init.lua  
 │   │   └── userFunctions                              # user defined functions
 │   │       └── init.lua  
-│   └── userPlugins                                    # directory for plugins configuration
+│   └── Plugins                                    # directory for plugins configuration
 │       ├── autopairs-config                           # pair tags and brackets
 │       │   └── init.lua  
 │       ├── cmp-config                                 # completion plugins 

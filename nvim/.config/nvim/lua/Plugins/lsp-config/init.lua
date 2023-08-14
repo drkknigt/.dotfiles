@@ -198,7 +198,7 @@ end
 -- winbar format
 
 -- vim.o.winbar = " %= %t %{%v:lua.require'nvim-navic'.get_location()%}"
--- vim.o.winbar = "%{%v:lua.require'userPlugins.winbar'.string()%}"
+-- vim.o.winbar = "%{%v:lua.require'Plugins.winbar'.string()%}"
 -- Add additional capabilities supported by nvim-cmp
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities()

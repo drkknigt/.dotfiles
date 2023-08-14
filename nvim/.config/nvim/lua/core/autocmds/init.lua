@@ -63,3 +63,13 @@ api.nvim_create_autocmd("BufLeave", {
 	end,
 })
 -- vim.cmd([[:autocmd BufReadPost quickfix nnoremap <buffer> f /function<cr>]])
+
+local neorg = api.nvim_create_augroup("neorg", { clear = true })
+api.nvim_create_autocmd("BufEnter", {
+	group = "neorg",
+	callback = function()
+		if vim.bo.filetype == "norg" then
+			vim.cmd("IndentBlankLineDisable")
+		end
+	end,
+})

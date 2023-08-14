@@ -63,7 +63,7 @@ require("lazy").setup({
 		config = function()
 			require("better_escape").setup({
 				mapping = { "jk", "kj" },
-				timeout = 101,
+				timeout = 201,
 			})
 		end,
 	},
@@ -76,7 +76,7 @@ require("lazy").setup({
 		},
 		event = "VeryLazy",
 		config = function()
-			require("userPlugins.nvimtree-config")
+			require("Plugins.nvimtree-config")
 		end,
 	},
 
@@ -164,7 +164,7 @@ require("lazy").setup({
 			"saadparwaiz1/cmp_luasnip",
 		},
 		config = function()
-			pcall(require, "userPlugins.cmp-config")
+			pcall(require, "Plugins.cmp-config")
 		end,
 	},
 
@@ -188,7 +188,7 @@ require("lazy").setup({
 			"nvim-lua/plenary.nvim",
 		},
 		config = function()
-			require("userPlugins._telescope-setting")
+			require("Plugins._telescope-setting")
 		end,
 	},
 	{
@@ -199,7 +199,7 @@ require("lazy").setup({
 			"vijaymarupudi/nvim-fzf",
 		},
 		config = function()
-			require("userPlugins.fzflua")
+			require("Plugins.fzflua")
 		end,
 	},
 
@@ -208,7 +208,7 @@ require("lazy").setup({
 		"ray-x/lsp_signature.nvim",
 		event = "VeryLazy",
 		config = function()
-			require("userPlugins.signature")
+			require("Plugins.signature")
 		end,
 	},
 
@@ -260,7 +260,7 @@ require("lazy").setup({
 				"mizlan/iswap.nvim",
 				event = "CursorHold",
 				config = function()
-					require("userPlugins/iswaaap-config")
+					require("Plugins/iswaaap-config")
 				end,
 			},
 			"nvim-treesitter/nvim-treesitter-refactor",
@@ -269,7 +269,7 @@ require("lazy").setup({
 			"p00f/nvim-ts-rainbow",
 		},
 		config = function()
-			require("userPlugins.treesitter")
+			require("Plugins.treesitter")
 		end,
 	},
 
@@ -290,7 +290,7 @@ require("lazy").setup({
 		},
 		event = "VeryLazy",
 		config = function()
-			require("userPlugins.lualine-config")
+			require("Plugins.lualine-config")
 			-- vim.api.nvim_set_hl(0, "Statusline", { bg = "Black" })
 		end,
 	},
@@ -312,7 +312,7 @@ require("lazy").setup({
 		event = "VeryLazy",
 
 		config = function()
-			require("userPlugins.tabbar-config")
+			require("Plugins.tabbar-config")
 		end,
 	},
 
@@ -322,7 +322,7 @@ require("lazy").setup({
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		config = function()
-			require("userPlugins.autopairs-config")
+			require("Plugins.autopairs-config")
 		end,
 	},
 
@@ -332,7 +332,7 @@ require("lazy").setup({
 		"folke/which-key.nvim",
 		event = "CursorHold",
 		config = function()
-			require("userPlugins.which-config")
+			require("Plugins.which-config")
 		end,
 	},
 
@@ -341,7 +341,7 @@ require("lazy").setup({
 		"norcalli/nvim-colorizer.lua",
 		event = "InsertEnter",
 		config = function()
-			require("userPlugins.colorizer-config")
+			require("Plugins.colorizer-config")
 		end,
 	},
 
@@ -351,7 +351,7 @@ require("lazy").setup({
 		version = "*",
 		event = "CursorHold",
 		config = function()
-			require("userPlugins.terminal-config")
+			require("Plugins.terminal-config")
 		end,
 	},
 
@@ -360,7 +360,7 @@ require("lazy").setup({
 		"numToStr/Comment.nvim",
 		event = "CursorHold",
 		config = function()
-			require("userPlugins.comment-config")
+			require("Plugins.comment-config")
 		end,
 	},
 
@@ -369,7 +369,7 @@ require("lazy").setup({
 	--			"neovim/nvim-lspconfig",
 	--			event = "CursorHold",
 	--			config = function()
-	--				require("userPlugins.lsp-config")
+	--				require("Plugins.lsp-config")
 	--			end,
 	--		},
 
@@ -390,7 +390,7 @@ require("lazy").setup({
 		"neovim/nvim-lspconfig",
 		event = "CursorHold",
 		config = function()
-			require("userPlugins.lsp-config")
+			require("Plugins.lsp-config")
 		end,
 	},
 
@@ -412,7 +412,7 @@ require("lazy").setup({
 		"lukas-reineke/indent-blankline.nvim",
 		event = "VeryLazy",
 		config = function()
-			require("userPlugins.indentline-config")
+			require("Plugins.indentline-config")
 		end,
 	},
 
@@ -421,7 +421,7 @@ require("lazy").setup({
 		"jose-elias-alvarez/null-ls.nvim",
 		event = "CursorHold",
 		config = function()
-			require("userPlugins.null-config")
+			require("Plugins.null-config")
 		end,
 	},
 
@@ -431,7 +431,7 @@ require("lazy").setup({
 	-- 	branch = "main",
 	-- 	event = "VeryLazy",
 	-- 	config = function()
-	-- 		-- require("userPlugins.lspsaga-config")
+	-- 		-- require("Plugins.lspsaga-config")
 	-- 		require("lspsaga").setup({
 	--
 	-- 			ui = {
@@ -476,7 +476,7 @@ require("lazy").setup({
 		"rmagatti/goto-preview",
 		event = "CursorHold",
 		config = function()
-			require("userPlugins.goto-config")
+			require("Plugins.goto-config")
 		end,
 	},
 
@@ -486,7 +486,7 @@ require("lazy").setup({
 		tag = "release",
 		event = "CursorHold",
 		config = function()
-			require("userPlugins.gitsigns-config")
+			require("Plugins.gitsigns-config")
 		end,
 	},
 
@@ -495,7 +495,7 @@ require("lazy").setup({
 		"is0n/jaq-nvim",
 		event = "CursorHold",
 		config = function()
-			require("userPlugins.jaq-config")
+			require("Plugins.jaq-config")
 		end,
 	},
 
@@ -764,4 +764,24 @@ require("lazy").setup({
 	{ "ThePrimeagen/harpoon", event = "VeryLazy" },
 	{ "jghauser/mkdir.nvim", event = "VeryLazy" },
 	{ "Bekaboo/dropbar.nvim", event = "VeryLazy" },
+	{
+		"nvim-neorg/neorg",
+		build = ":Neorg sync-parsers",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("neorg").setup({
+				load = {
+					["core.defaults"] = {}, -- Loads default behaviour
+					["core.concealer"] = {}, -- Adds pretty icons to your documents
+					["core.dirman"] = { -- Manages Neorg workspaces
+						config = {
+							workspaces = {
+								notes = "~/notes",
+							},
+						},
+					},
+				},
+			})
+		end,
+	},
 }, opts)

@@ -76,7 +76,7 @@ return require("packer").startup({
 			-- config = function()
 			-- require("color-config")
 			-- vim.api.nvim_command("luafile ~/.config/nvim/lua/color-config/init.lua")
-			-- vim.api.nvim_command("luafile ~/.config/nvim/lua/userPlugins/lualine-config/init.lua")
+			-- vim.api.nvim_command("luafile ~/.config/nvim/lua/Plugins/lualine-config/init.lua")
 			-- end,
 		})
 
@@ -87,7 +87,7 @@ return require("packer").startup({
 		-- 	"tamton-aquib/staline.nvim",
 		-- 	event = "BufEnter",
 		-- 	config = function()
-		-- 		require("userPlugins.staline-config")
+		-- 		require("Plugins.staline-config")
 		-- 	end,
 		-- })
 
@@ -97,7 +97,7 @@ return require("packer").startup({
 			"hrsh7th/nvim-cmp",
 			after = "lspkind.nvim",
 			config = function()
-				pcall(require, "userPlugins.cmp-config")
+				pcall(require, "Plugins.cmp-config")
 			end,
 		})
 		use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
@@ -113,7 +113,7 @@ return require("packer").startup({
 			"L3MON4D3/LuaSnip",
 			after = "lspkind.nvim",
 			-- config = function()
-			-- 	require("userPlugins.cmp-config")
+			-- 	require("Plugins.cmp-config")
 			-- end,
 		})
 
@@ -137,7 +137,7 @@ return require("packer").startup({
 			requires = { { "nvim-lua/plenary.nvim" } },
 			after = "telescope-fzf-native.nvim",
 			config = function()
-				require("userPlugins._telescope-setting")
+				require("Plugins._telescope-setting")
 			end,
 		})
 		use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make", after = "telescope-file-browser.nvim" })
@@ -152,7 +152,7 @@ return require("packer").startup({
 			requires = { "kyazdani42/nvim-web-devicons" },
 			after = "nvim-fzf",
 			config = function()
-				require("userPlugins.fzflua")
+				require("Plugins.fzflua")
 			end,
 		})
 		use({ "vijaymarupudi/nvim-fzf", after = "fzf" })
@@ -199,7 +199,7 @@ return require("packer").startup({
 		use({ "nvim-treesitter/nvim-treesitter-refactor" })
 		use({ "mfussenegger/nvim-ts-hint-textobject" })
 		--    config = function()
-		--        require 'userPlugins.iswaaap-config'
+		--        require 'Plugins.iswaaap-config'
 		--    end
 
 		-- auto complete tag
@@ -208,7 +208,7 @@ return require("packer").startup({
 			"windwp/nvim-ts-autotag",
 			event = "InsertEnter",
 			config = function()
-				require("userPlugins.treesitter")
+				require("Plugins.treesitter")
 			end,
 		})
 
@@ -218,7 +218,7 @@ return require("packer").startup({
 			"p00f/nvim-ts-rainbow",
 			event = "InsertEnter",
 			config = function()
-				require("userPlugins.treesitter")
+				require("Plugins.treesitter")
 			end,
 		})
 
@@ -239,7 +239,7 @@ return require("packer").startup({
 			requires = { "kyazdani42/nvim-web-devicons", opt = true },
 			event = "VimEnter",
 			config = function()
-				require("userPlugins.lualine-config")
+				require("Plugins.lualine-config")
 				-- vim.api.nvim_set_hl(0, "Statusline", { bg = "Black" })
 			end,
 		})
@@ -251,7 +251,7 @@ return require("packer").startup({
 		-- tab bar line
 		use({ "akinsho/bufferline.nvim", tag = "v2.*", requires = "kyazdani42/nvim-web-devicons" }) --,event = 'BufEnter',
 		--     config = function()
-		--         require('userPlugins.tabbar-config')
+		--         require('Plugins.tabbar-config')
 		--     end
 		-- }
 
@@ -264,7 +264,7 @@ return require("packer").startup({
 			},
 			event = "CursorHold",
 			config = function()
-				require("userPlugins.nvimtree-config")
+				require("Plugins.nvimtree-config")
 			end,
 		})
 
@@ -274,7 +274,7 @@ return require("packer").startup({
 			"windwp/nvim-autopairs",
 			event = "InsertEnter",
 			config = function()
-				require("userPlugins.autopairs-config")
+				require("Plugins.autopairs-config")
 			end,
 		})
 
@@ -284,7 +284,7 @@ return require("packer").startup({
 			"folke/which-key.nvim",
 			event = "CursorHold",
 			config = function()
-				require("userPlugins.which-config")
+				require("Plugins.which-config")
 			end,
 		})
 
@@ -294,7 +294,7 @@ return require("packer").startup({
 			"norcalli/nvim-colorizer.lua",
 			event = "CursorHold",
 			config = function()
-				require("userPlugins.colorizer-config")
+				require("Plugins.colorizer-config")
 			end,
 		})
 
@@ -305,7 +305,7 @@ return require("packer").startup({
 			tag = "v1.*",
 			event = "CursorHold",
 			config = function()
-				require("userPlugins.terminal-config")
+				require("Plugins.terminal-config")
 			end,
 		})
 
@@ -315,7 +315,7 @@ return require("packer").startup({
 			"numToStr/Comment.nvim",
 			event = "CursorHold",
 			config = function()
-				require("userPlugins.comment-config")
+				require("Plugins.comment-config")
 			end,
 		})
 
@@ -328,7 +328,7 @@ return require("packer").startup({
 		-- 	"neovim/nvim-lspconfig",
 		-- 	after = "mason.nvim",
 		-- 	config = function()
-		-- 		require("userPlugins.lsp-config")
+		-- 		require("Plugins.lsp-config")
 		-- 	end,
 		-- })
 
@@ -362,7 +362,7 @@ return require("packer").startup({
 			"lukas-reineke/indent-blankline.nvim",
 			event = "CursorHold",
 			config = function()
-				require("userPlugins.indentline-config")
+				require("Plugins.indentline-config")
 			end,
 		})
 		--
@@ -374,7 +374,7 @@ return require("packer").startup({
 			"jose-elias-alvarez/null-ls.nvim",
 			event = "CursorHold",
 			config = function()
-				require("userPlugins.null-config")
+				require("Plugins.null-config")
 			end,
 		})
 
@@ -385,7 +385,7 @@ return require("packer").startup({
 			branch = "main",
 			event = "CursorHold",
 			config = function()
-				-- require("userPlugins.lspsaga-config")
+				-- require("Plugins.lspsaga-config")
 				local saga = require("lspsaga")
 				saga.init_lsp_saga({
 					symbol_in_winbar = {
@@ -403,7 +403,7 @@ return require("packer").startup({
 			"rmagatti/goto-preview",
 			event = "CursorHold",
 			config = function()
-				require("userPlugins.goto-config")
+				require("Plugins.goto-config")
 			end,
 		})
 
@@ -414,7 +414,7 @@ return require("packer").startup({
 			tag = "release",
 			event = "CursorHold",
 			config = function()
-				require("userPlugins.gitsigns-config")
+				require("Plugins.gitsigns-config")
 			end,
 		})
 
@@ -424,7 +424,7 @@ return require("packer").startup({
 			"is0n/jaq-nvim",
 			event = "CursorHold",
 			config = function()
-				require("userPlugins.jaq-config")
+				require("Plugins.jaq-config")
 			end,
 		})
 
