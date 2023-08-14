@@ -64,13 +64,13 @@ fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+# case "$TERM" in
+# xterm*|rxvt*)
+#     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+#     ;;
+# *)
+#     ;;
+# esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -149,3 +149,14 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 set -o vi
+
+if [ -d "$HOME/usr/bin" ] ; then
+     PATH=/home/drkknght/usr/bin:$PATH
+fi
+if [ -d "$HOME/.local/bin" ] ; then
+     PATH=/home/drkknght/.local/bin:$PATH
+fi
+if [ -d "/usr/local/go/bin" ] ; then
+     PATH=/usr/local/go/bin:$PATH
+fi
+

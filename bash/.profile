@@ -18,7 +18,7 @@ fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+    PATH="$HOME/bin/*:$PATH"
 fi
 
 # set PATH so it includes user's private bin if it exists
@@ -31,3 +31,15 @@ export PATH=$PATH:/usr/local/go/bin
 if [ -d /home/drkknght/.cargo/ ]; then
     . "$HOME/.cargo/env"
 fi
+
+
+if [ -d "$HOME/usr/bin" ] ; then
+     PATH=/home/drkknght/usr/bin:$PATH
+fi
+if [ -d "$HOME/.local/bin" ] ; then
+     PATH=/home/drkknght/.local/bin:$PATH
+fi
+if [ -d "/usr/local/go/bin" ] ; then
+     PATH=/usr/local/go/bin:$PATH
+fi
+
