@@ -766,6 +766,7 @@ require("lazy").setup({
 	{ "Bekaboo/dropbar.nvim", event = "VeryLazy" },
 	{
 		"nvim-neorg/neorg",
+		event = "VeryLazy",
 		build = ":Neorg sync-parsers",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
