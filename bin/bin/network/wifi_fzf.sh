@@ -5,7 +5,9 @@ selected_wifi=$(nmcli dev wifi list| fzf --prompt='Connect wifi: ')
 if [ -z "$selected_wifi" ] 
 then exit
 fi
-active_flag=$(echo $selected_wifi | xargs | cut -d ' ' -f1)
+
+active_flag=$(echo $selected_wifi | xargs | awk -F" " '{ print $4 }')
+echo $active_flag
 if [ ${active_flag} = "*" ] 
 then
     echo "exit" > /dev/null

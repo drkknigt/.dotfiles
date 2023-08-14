@@ -1,5 +1,19 @@
 #!/usr/bin/env zsh
 source /home/drkknght/.zshrc
+
+if [ $1 = '0' ]
+then
+    monitor=$(xrandr | grep -Pi '\bconnected\b' | sed -n 1,1p | cut -d " " -f1)
+elif [ $1 = '1' ]
+then
+    monitor=$(xrandr | grep -Pi '\bconnected\b' | sed -n 2,2p | cut -d " " -f1)
+fi
+
+if [ -z $monitor ] 
+then
+    notify-send "2nd monitor not found"
+    exit
+fi
 monitor1=$1
 bgo=$(grep -Pi '^feh' ~/.fehbg | cut -d " " -f4 | cut -d  "'" -f2 )
 bgt=$(grep -Pi '^feh' ~/.fehbg | cut -d " " -f5 | cut -d "'" -f2 )

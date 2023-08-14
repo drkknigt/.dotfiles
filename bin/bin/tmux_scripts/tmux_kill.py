@@ -45,7 +45,9 @@ def delete_session():
 
 
 def main():
-    if check_output('echo $TMUX', shell=True).decode() == '\n':
+    try:
+        string = check_output('tmux ls 2> /dev/null', shell=True).decode()
+    except:
         exit('empty')
     else:
         delete_session()
