@@ -113,6 +113,7 @@ export NVM_DIR="$HOME/.nvm"
 
 PATH=/home/drkknght/.local/bin:$PATH
 PATH=/usr/local/go/bin:$PATH
+PATH=/home/drkknght/go/bin:$PATH
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -152,40 +153,67 @@ alias hh=hstr                    # hh to be alias for hstr
 alias xdg-open='xdg-open 2>/dev/null'
 alias wifi='nmcli radio wifi'
 alias vpn='protonvpn-cli '
+alias ch='tmux_cht.sh'
 # alias rgrep='rg'
 setopt histignorespace           # skip cmds w/ leading space from history
 export HSTR_CONFIG=hicolor       # get more colors
 # bindkey -s "^r" "history | fzf^M"     # bind hstr to Ctrl-r (for Vi mode check doc)
-# bindings for nvim
-bindkey -s '^s' 'tmux_create.sh^M'
-bindkey -s '^g' 'lazygit^M'
-bindkey -s '^L' 'tmux_session_switch.sh^M'
+
+# bindings for zsh
+
+# bindings for tmux creation
+bindkey -s '^e ' 'tmux_create.sh 0^M'
+bindkey -s '^er' 'tmux_create.sh 1^M'
+bindkey -s '^e\\' 'tmux_kill.py^M'
+bindkey -s '^e\]' 'tmux_session_switch.sh^M'
+bindkey -s '^eg' 'tmux_git.sh^M'
+
+# bindkey for git for shell
+bindkey -s '^\\g' 'tmux_git.sh^M'
+
+# start lazygit
+bindkey -s '^g' 'lazygit -ucf ~/.config/lazygit/config.yml^M'
+# start nvim
 bindkey -s '^v' 'nvim^M'
-bindkey -s '^k' 'tmux_kill.py^M'
-bindkey -s '^y' '~/bin/system_scripts/dotfiles.sh 0^M'
-bindkey -s '^o' '~/bin/system_scripts/dotfiles.sh 1^M'
+
+# navigate effiecently in shell
+bindkey -s '^\\d' '~/bin/navigation/navigation.sh 0^M'
+bindkey -s '^\\h' '~/bin/navigation/navigation.sh 1^M'
+bindkey -s '^e\;' 'file_manager.sh 0^M'
+
+# go back in history
 bindkey "^P" up-line-or-search
+
+# go forward in history
 bindkey "^N" down-line-or-search
 bindkey "^]" end-of-line
 bindkey "^a" beginning-of-line
-export EDITOR=nvim
-export VISUAL=nvim
-# source /usr/share/doc/fzf/examples/completion.zsh
 
+# some editor vairables
+export EDITOR=vim
+export VISUAL=vim
+
+# source /usr/share/doc/fzf/examples/completion.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # fzf man pages
 
 LANG="en_US.utf8"
 export LANG
 
+# alias for the luamake
 alias luamake=/home/drkknght/tools/lua-language-server/3rd/luamake/luamake
+
+# start ssh agent 
 alias ssha='eval $(ssh-agent) && ssh-add'
 
 
 # append completions to fpath
 fpath=(${ASDF_DIR}/completions $fpath)
+
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
+
 # setup pyenv and poetry
 export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
@@ -193,9 +221,26 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-cdd(){
-   direc=$(fdfind -H --type d . "/home/drkknght/" | fzf --cycle --prompt='change directory: ')
+# change directory for the tmux shells
+
+cdd1(){
+    direc=$(find ~ -type d |  fzf --cycle --prompt='change directory: ' --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" )
+    if [ -n "$TMUX" ] ; then
+        if [  -z "$direc" ] ; then
+            exit
+        fi
+    fi
    cd $direc
+}
+
+
+# change directory inside shell
+
+cdd(){
+    direc=$(fdfind -H --type d . "/home/drkknght/" |  fzf --cycle --prompt='change directory: ' --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" )
+        if [  -n "$direc" ] ; then
+            cd $direc
+        fi
 }
 add(){
     temp=0

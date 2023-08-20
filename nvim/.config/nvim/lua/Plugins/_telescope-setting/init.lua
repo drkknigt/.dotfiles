@@ -182,7 +182,7 @@ M.search_dotfiles = function()
 	require("telescope.builtin").find_files({
 		file_ignore_patterns = { "%.git", "node_modules/.*", "BraveSoftware/" },
 		prompt_title = "<--DOTFILES-->",
-		cwd = "$HOME/.dotfiles",
+		search_dirs = { "~/.dotfiles", "~/.ansible_sync", "~/.cache/tmux" },
 		hidden = true,
 	})
 end

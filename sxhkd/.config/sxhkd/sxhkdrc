@@ -23,14 +23,14 @@ XF86AudioMute
 # Set mode for screen
     
 alt + s; {s,1,2,l}
-    {alacritty -t "mount" -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/system_scripts/resolution.sh,\
-    alacritty -t "mount"  -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/system_scripts/scale.sh 0,\
-    alacritty -t "mount"  -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/system_scripts/scale.sh 1,\
-    alacritty -t "fzfmenu"  -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/background/change_background.sh 0,\
+    {alacritty -t "mount" -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/screen/resolution.sh,\
+    alacritty -t "mount"  -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/screen/scale.sh 0,\
+    alacritty -t "mount"  -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/screen/scale.sh 1,\
+    alacritty -t "fzfmenu"  -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/screen/change_background.sh 0,\
     }
 
 alt + s ; r
-    alacritty -t "fzfmenu"  -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/background/change_background.sh 1
+    alacritty -t "fzfmenu"  -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/screen/change_background.sh 1
 
 alt + {equal,minus}
       {brightnessctl set +3%,brightnessctl set 3%-}
@@ -54,8 +54,8 @@ alt + a; {c, v, b, f, t, n, q, h, l,k,m,g}
 
 alt + f; {t,a,w,f,d,g}
        {rofi -show run -dpi 171,rofi -dpi 171 -show drun -show-icons,rofi -dpi 171 -show,\
-       alacritty -t "fzfmenu-dir"  -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/system_scripts/file_exp.sh f,\
-       alacritty -t "fzfmenu-dir"  -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/system_scripts/file_exp.sh d, alacritty -t "git"  -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/system_scripts/lazy_git.sh}
+       alacritty -t "fzfmenu-dir"  -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/navigation/file_exp.sh f,\
+       alacritty -t "fzfmenu-dir"  -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/navigation/file_exp.sh d, alacritty -t "git"  -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/navigation/lazy_git.sh}
 
 # -------------------------------------------------------------
 
@@ -148,9 +148,12 @@ alt + z; {g,m,h,q}
     }
 
 alt + z; k
-    alacritty -t "fzfmenu-dir" -o "colors.primary.background='#262620'" -e /home/drkknght/bin/system_scripts/keymap.sh
+    alacritty -t "keymaps" -o "colors.primary.background='#000020'" -o "window.opacity=0.9" -e /home/drkknght/bin/system_scripts/keymap.sh
 alt + z; n
     alacritty -t "notes"  -e /home/drkknght/bin/system_scripts/notes.sh
+    
+alt + z; x
+    xdotool mousemove 800 1920
 
 
 # ---------------------------------------------------------

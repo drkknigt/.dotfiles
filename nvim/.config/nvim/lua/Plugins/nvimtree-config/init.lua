@@ -85,7 +85,7 @@ local function on_attach(bufnr)
 	-- Default mappings. Feel free to modify or remove as you wish.
 	--
 	-- BEGIN_DEFAULT_ON_ATTACH
-	vim.keymap.set("n", "<C-]>", api.tree.change_root_to_node, opts("CD"))
+	vim.keymap.set("n", "<CR>", api.tree.change_root_to_node, opts("CD"))
 	vim.keymap.set("n", "<C-e>", api.node.open.replace_tree_buffer, opts("Open: In Place"))
 	vim.keymap.set("n", "<C-k>", api.node.show_info_popup, opts("Info"))
 	vim.keymap.set("n", "<C-r>", api.fs.rename_sub, opts("Rename: Omit Filename"))
@@ -93,7 +93,7 @@ local function on_attach(bufnr)
 	vim.keymap.set("n", "<C-v>", api.node.open.vertical, opts("Open: Vertical Split"))
 	vim.keymap.set("n", "<C-x>", api.node.open.horizontal, opts("Open: Horizontal Split"))
 	vim.keymap.set("n", "<BS>", api.node.navigate.parent_close, opts("Close Directory"))
-	vim.keymap.set("n", "<CR>", api.node.open.edit, opts("Open"))
+	vim.keymap.set("n", "<C-]>", api.node.open.edit, opts("Open"))
 	vim.keymap.set("n", "<Tab>", api.node.open.preview, opts("Open Preview"))
 	vim.keymap.set("n", ">", api.node.navigate.sibling.next, opts("Next Sibling"))
 	vim.keymap.set("n", "<", api.node.navigate.sibling.prev, opts("Previous Sibling"))
@@ -143,7 +143,7 @@ local function on_attach(bufnr)
 	--
 	-- You will need to insert "your code goes here" for any mappings with a custom action_cb
 	vim.keymap.set("n", "l", api.node.open.edit, opts("Open"))
-	vim.keymap.set("n", "<CR>", api.node.open.edit, opts("Open"))
+	-- vim.keymap.set("n", "<CR>", api.node.open.edit, opts("Open"))
 	vim.keymap.set("n", "o", api.node.open.edit, opts("Open"))
 	vim.keymap.set("n", "h", api.node.navigate.parent_close, opts("Close Directory"))
 	vim.keymap.set("n", "v", api.node.open.vertical, opts("Open: Vertical Split"))
@@ -257,7 +257,7 @@ nvim_tree.setup({
 		timeout = 500,
 	},
 	view = {
-		width = 30,
+		width = 50,
 		signcolumn = "yes",
 		-- height = 30,
 		hide_root_folder = false,
@@ -290,6 +290,6 @@ nvim_tree.setup({
 	--   folders = 1,
 	--   files = 1,
 	--   folder_arrows = 1,
-	--   tree_width = 30,
+	-- tree_width = 30,
 	-- },
 })

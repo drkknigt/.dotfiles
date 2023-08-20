@@ -1,0 +1,118 @@
+# Volume:  
+   - alt + ]           ----->   volume up (pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status )
+   - alt + [           ----->   volume up (pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status )
+   - alt + ctrl + m    ----->   pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+   - XF86AudioLowerVolume --->   pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+   - XF86AudioRaiseVolume --->   pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+   - XF86AudioMute      ----->   pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+    
+# Monitor & Screen:  
+   - alt + s + s       ----->  set resolution for 2nd monitor (resolution.sh)
+   - alt + s + 1       ----->  scale monitor 1  (scale.sh 0)
+   - alt + s + 2       ----->  scale monitor 2  (scale.sh 1)
+   - alt + s + l       ----->  change monitor 1 background (change_background.sh 0)
+   - alt + s + r       ----->  change monitor 1 background (change_background.sh 1)
+   - alt + "+"         ----->  screen brightness up (brightnessctl set +3%)
+   - alt + "-"         ----->  screen brightness down (brightnessctl set +3%)
+
+# Starting Applications: 
+   - alt + return     -------> open alacritty terminal (alacritty -t "startup")
+   - alt + a + c      -------> open color picker (kcolorchooser)
+   - alt + a + v      -------> open vlc media player (vlc)
+   - alt + a + b      -------> open brave browser (brave-browser)
+   - alt + a + f      -------> open firefox (firefox)
+   - alt + a + t      -------> open telegram (telegram-desktop)
+   - alt + a + n      -------> open file explorere nemo (nemo)
+   - alt + a + q      -------> open calculator (qalc)
+   - alt + a + h      -------> open htop (htop)
+   - alt + a + l      -------> lock screen (i3lock -c "000000)
+   - alt + a + k      -------> open kitty terminal (kitty)
+   - alt + a + m      -------> open vscode (code)
+   - alt + a + g      -------> open glow markdown reader (code)
+
+# Search:  
+   - alt + f  + t     -------> open applications terminal mode (rofi -show run -dpi 171)
+   - alt + f  + a     -------> open applications desktop environment (rofi -dpi 171 -show drun -show-icons)
+   - alt + f  + w     -------> show all open windows in i3wm (rofi -dpi 171 -show)
+   - alt + f  + f     -------> search for files in home directory to open (file_exp.sh f)
+   - alt + f  + d     -------> search for directory to open (file_exp.sh d)
+   - alt + f  + g     -------> open lazygit in speciefied directory (lazy_git.sh)
+
+# Systemctl commands: 
+   - alt + d + s      -------> turn off the system (systemctl poweroff)
+   - alt + d + r      -------> restart the system (systemctl restart)
+   - alt + d + f      -------> send system to sleep (systemctl suspend)
+   
+# i3wm movement commands: 
+   - alt + control + a  -----> toggle fullscreen  (i3-msg fullscreen toggle)
+   - alt + control + f  -----> toggle floatmode  (i3-msg floating toggle)
+   - alt + p            -----> move current workspace to different monitor (i3-msg move workspace to output right)
+   - alt + period     -------> show previous workspace (i3-msg workspace back_and_forth)
+   - alt + q          -------> kill window (i3-msg kill)
+   - alt + e + h      -------> i3-msg split h
+   - alt + e + v      -------> i3-msg split v
+   - alt + e + y      -------> i3-msg layout stacking
+   - alt + e + t      -------> i3-msg layout tabbed
+   - alt + e + e      -------> i3-msg layout toggle split
+   - alt + e + space  -------> i3-msg focus toggle_mode
+   - alt + e + i      -------> i3-msg focus parent
+   - alt + e + r      -------> i3-msg restart
+   - alt + e + q      -------> i3-msg exit
+   - alt + e + w      -------> i3-msg reload config for i3wm
+
+# scratchpad: 
+   - alt + b  + s     -------> i3-msg move scratchpad
+   - alt + b  + d     -------> i3-msg scratchpad show
+
+# i3-wm navigation mode: 
+   - alt + h          -------> i3-msg focus left
+   - alt + j          -------> i3-msg focus down
+   - alt + k          -------> i3-msg focus up
+   - alt + l          -------> i3-msg focus right
+   - alt + left       -------> i3-msg focus left
+   - alt + down       -------> i3-msg focus down
+   - alt + up         -------> i3-msg focus up
+   - alt + right      -------> i3-msg focus right
+   - alt + control + h ------> i3-msg move left
+   - alt + control + j  -----> i3-msg move down
+   - alt + control + k  -----> i3-msg move up
+   - alt + control + l  -----> i3-msg move right
+   - alt + shift + h   ------> i3-msg move left
+   - alt + shift + j    -----> i3-msg move down
+   - alt + shift + k    -----> i3-msg move up
+   - alt + shift + l    -----> i3-msg move right
+   - alt + 1           ------> i3-msg workspace 1
+   - alt + 2           ------> i3-msg workspace 2
+   - alt + 3           ------> i3-msg workspace 3
+   - alt + 4           ------> i3-msg workspace 4
+   - alt + 5           ------> i3-msg workspace 5
+   - alt + 6           ------> i3-msg workspace 6
+   - alt + 7           ------> i3-msg workspace 7
+   - alt + 8           ------> i3-msg workspace 8
+   - alt + 9           ------> i3-msg workspace 9
+   - alt + 0           ------> i3-msg workspace 0
+   - alt + control +  1 -----> i3-msg move container to workspace 1
+   - alt + control +  2 -----> i3-msg move container to workspace 2
+   - alt + control +  3 -----> i3-msg move container to workspace 3
+   - alt + control +  4 -----> i3-msg move container to workspace 4
+   - alt + control +  5 -----> i3-msg move container to workspace 5
+   - alt + control +  6 -----> i3-msg move container to workspace 6
+   - alt + control +  7 -----> i3-msg move container to workspace 7
+   - alt + control +  8 -----> i3-msg move container to workspace 8
+   - alt + control +  9 -----> i3-msg move container to workspace 9
+   - alt + control +  0 -----> i3-msg move container to workspace 0
+   - button9            -----> i3-msg move left
+
+# Network commands: 
+   - alt + i + i       ------> toggle wifi (wifi_connect.sh)
+   - alt + i + l       ------> change wifi connection (wifi_fzf.sh)
+
+# User scripts:  
+   - alt + z + g       ------> change cpu governor (governor.sh)
+   - alt + z + m       ------> mount disks (mount.sh)
+   - alt + z + h       ------> open man pages (man_pages.sh )
+   - alt + z + q       ------> kill applications (kill.sh)
+   - alt + z + k       ------> show keymaps for i3wm (keymaps.sh)
+   - alt + z + n       ------> open notes (notes.sh)
+   - alt + z + x       ------> send mouse pointer to bottom (xdotool mousemove 800 1920 )
+   

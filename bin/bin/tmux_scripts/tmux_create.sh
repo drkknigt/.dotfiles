@@ -1,17 +1,61 @@
 #!/usr/bin/env zsh
-#
+# make cache file and source zshrc functions
 source ~/.zshrc
-selected_directory=$(find ~ -mindepth 1 -maxdepth 6 -type d | fzf --prompt="make-session: ")
+recent_flag=$1
+touch ~/.dotfiles/tmux/recent_dirs
 
-if [ -z "$selected_directory" ]; then exit 0;fi
+# create session in any dir in $HOME
+if [ "$recent_flag" = "0" ] ; then
+    
+selected_directory=$(find ~ -mindepth 1 -maxdepth 6 -type d | fzf --prompt="make-session: "  --bind "ctrl-f:preview-down,ctrl-u:preview-up" --bind "ctrl-o:toggle-preview" --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" --preview-window hidden)
+
+# create recently created sessions
+elif [ "$recent_flag" = "1" ] ; then
+    
+selected_directory=$(cat ~/.cache/tmux/recent_dirs | fzf --prompt="make-session: "  --bind "ctrl-f:preview-down,ctrl-u:preview-up" --bind "ctrl-o:toggle-preview" --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" --preview-window hidden)
+
+else 
+    
+# create a new dir and then create a session
+project_dir=$(find ~/Projects ~/WAY ~/CS ~/CS-course -maxdepth 0 -type d | fzf --prompt='open directories: ' --bind "ctrl-o:toggle-preview" --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" --keep-right --preview-window hidden)
+
+
+if [ -z "$project_dir" ] ; then
+    exit
+fi
+
+vared -p "Project name: " -c directory
+selected_directory="$project_dir"/"$directory"
+mkdir -p $selected_directory
+fi
+    
+
+# exit if session directory is empty
+if [ -z "$selected_directory" ]; then cl;exit 0;fi
+
+# create a session name for session
 session_name=$(basename $selected_directory | cut -d '.' -f 2)
+
+# check if session is already running
 if [ "$session_name" = "$(tmux ls 2> /dev/null | grep 'attached' | cut -d ':' -f 1)" ];
 then
     echo "you are already in this session"
     exit 0
 fi
-tmux ls | grep -i "$session_name" &> /dev/null
+
+# check if tmux already as session you are about to create
+tmux has -t $session_name > /dev/null
 if [ "0" = "$?" ]; then echo "session with this directory already running"; exit 0 ; fi
+
+# check if selected directory is valid
+if [ ! -d  "$selected_directory" ]; then echo "not a dir"; exit 0 ; fi
+
+grep -x $selected_directory  ~/.cache/tmux/recent_dirs &> /dev/null
+
+if [ "$?" = "1" ]; then
+    echo $selected_directory >> ~/.cache/tmux/recent_dirs
+fi
+
 
 
 if [ -z "$TMUX" ]; then

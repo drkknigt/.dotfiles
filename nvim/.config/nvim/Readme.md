@@ -176,12 +176,12 @@ replaced as they are the core of editor. Learn vim first and then start using pl
 |---------------------------|------------|-----------------------------------------------------------------------------|  
 | 1.   `<leader>e` | Normal  |  open nvim file explorer |
 | 2.   g?        | Normal  |  show the mappings       |
-| 3.   `<C-]>`     | Normal  |  change directory        |
+| 3.   `<cr>`     | Normal  |  change directory        |
 | 4.   `<C-e>`     | Normal  |  OPen in place           |
 | 5.   `<C-k>`     | Normal  | info on the file         |
 | 6.   `<2-LeftMouse>` | Normal |  Open      |            
 | 7.   `<2-RightMouse>` | Normal |   CD      |              
-| 8.   `<C-]>`     | Normal   |  CD     |               
+| 8.   `<cr>`     | Normal   |  CD     |               
 | 9.   `<C-E>`     | Normal   |  Open: In Place |        
 | 10.  `<C-K>`     | Normal   | Info  |                
 | 11.  `<C-R>`     | Normal   | Rename: Omit Filename |
@@ -189,7 +189,7 @@ replaced as they are the core of editor. Learn vim first and then start using pl
 | 13.  `<C-V>`     | Normal   | Open: Vertical Split | 
 | 14.  `<C-X>`     | Normal   | Open: Horizontal Split  |
 | 15.  `<BS>`      | Normal   | Close Directory         |
-| 16.  `<CR>`      | Normal   | Open                    |
+| 16.  `<c-]>`      | Normal   | Open                    |
 | 17.  `<Tab>`     | Normal   |: Open Preview            |
 | 18.  -         | Normal   | Up                      |
 | 19.  .         | Normal   | Run Command             |

@@ -32,14 +32,14 @@ def delete_session():
     session_array = session_list.split('\n')
     session_index = session_array.index(selected_session)
     if selected_session == active_session:
-        if len(session_array) > 1:
-            new_session = (
-                session_index + 1 if (session_index != len(session_array) - 1) else 0
-            )
-            system(f'tmux switch-client -t "{session_array[new_session]}"')
-            system(f'tmux kill-session -t "{selected_session}"')
-        else:
-            system(f'tmux kill-session -t "{selected_session}"')
+        # if len(session_array) > 1:
+        new_session = (
+            session_index + 1 if (session_index != len(session_array) - 1) else 0
+        )
+        system(f'tmux switch-client -t "{session_array[new_session]}"')
+        system(f'tmux kill-session -t "{selected_session}"')
+    # else:
+    # system(f'tmux kill-session -t "{selected_session}"')
     else:
         system(f'tmux kill-session -t "{selected_session}"')
 

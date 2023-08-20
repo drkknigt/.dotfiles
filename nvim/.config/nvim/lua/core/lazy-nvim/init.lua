@@ -347,7 +347,8 @@ require("lazy").setup({
 
 	-- flaoting terminal
 	{
-		"akinsho/toggleterm.nvim",
+		-- "akinsho/toggleterm.nvim",
+		"voldikss/vim-floaterm",
 		version = "*",
 		event = "CursorHold",
 		config = function()
@@ -764,25 +765,4 @@ require("lazy").setup({
 	{ "ThePrimeagen/harpoon", event = "VeryLazy" },
 	{ "jghauser/mkdir.nvim", event = "VeryLazy" },
 	{ "Bekaboo/dropbar.nvim", event = "VeryLazy" },
-	{
-		"nvim-neorg/neorg",
-		event = "VeryLazy",
-		build = ":Neorg sync-parsers",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("neorg").setup({
-				load = {
-					["core.defaults"] = {}, -- Loads default behaviour
-					["core.concealer"] = {}, -- Adds pretty icons to your documents
-					["core.dirman"] = { -- Manages Neorg workspaces
-						config = {
-							workspaces = {
-								notes = "~/notes",
-							},
-						},
-					},
-				},
-			})
-		end,
-	},
 }, opts)

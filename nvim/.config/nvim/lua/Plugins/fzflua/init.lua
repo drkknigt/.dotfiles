@@ -682,9 +682,9 @@ require("fzf-lua").setup({
 			args = "--number",
 		},
 		bat = {
-			cmd = "bat",
+			cmd = "batcat",
 			args = "--style=numbers,changes --color always",
-			theme = "Coldark-Dark", -- bat preview theme (bat --list-themes)
+			theme = "Monokai Extended Origin", -- bat preview theme (bat --list-themes)
 			config = nil, -- nil uses $BAT_CONFIG_PATH
 		},
 		head = {
@@ -723,10 +723,10 @@ require("fzf-lua").setup({
 		-- NOTE: 'find -printf' requires GNU find
 		-- cmd            = "find . -type f -printf '%P\n'",
 
-		cmd = "fdfind --type f -H --follow --exclude .git",
+		cmd = "fdfind --type f -H --follow --exclude .git --exclude .config --exclude .wine",
 		-- find_opts         = [[-type f -not -path '*/\.git/*' -printf '%P\n']],
 		rg_opts = "--color=never --files --hidden --follow -g '!.git'",
-		fdfind_opts = "--color=never --type f --hidden --follow --exclude .git .config .mozilla",
+		fdfind_opts = "--color=never --type f --hidden --follow --exclude .git .config .mozilla .wine",
 		-- find_opts         = [[-type f -not -path '*/\.git/*' -printf '%P\n']],
 		-- rg_opts           = "--color=never --files --hidden --follow -g '!.git'",
 		-- fd_opts           = "--color=never --type f --hidden --follow --exclude .git",

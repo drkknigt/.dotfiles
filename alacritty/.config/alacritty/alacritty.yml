@@ -32,7 +32,7 @@ items:
 colors:
     # Default colors
     primary:
-        background:  '#001f30'
+        background:  '#00000f'
         foreground: '#fdf4c1'
 
     # Normal colors
@@ -41,9 +41,9 @@ colors:
         red: '#9d0006'
         green: '#79740e'
         yellow: '#b57614'
-        blue: '#076678'
+        blue: '#00a678'
         magenta: '#8f3f71'
-        cyan: '#00a7af'
+        cyan: '#10a7af'
         white: '#fdf4c1'
 
     # Bright colors
@@ -384,7 +384,7 @@ window:
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
 window:
-  opacity: 0.9
+  opacity: 0.6
 #selection:
 # This string contains all characters that are used as separators for
 # "semantic words" in Alacritty.

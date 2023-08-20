@@ -1,10 +1,9 @@
 os:
   # edit: 'floaterm'
-  edit: 'nvim {{filename}}'
-  # editAtLine: "{{editor}} +{{line}} {{filename}}"
-  # edit: "nvim -c ':e {{filename}}<CR>'"
-  editAtLine: "nvim -c 'normal {{line}}G' {{filename}} "
-   
+  edit: 'floaterm {{filename}}'
+  # editAtLine: "floaterm {{filename}}:{{line}}"
+  editAtLine: "floaterm -c 'normal {{line}}G' {{filename}} "
+    
 git:
   paging:
     colorArg: never
