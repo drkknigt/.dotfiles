@@ -19,7 +19,6 @@ else
 # create a new dir and then create a session
 project_dir=$(find ~/Projects ~/WAY ~/CS ~/CS-course -maxdepth 0 -type d | fzf --prompt='open directories: ' --bind "ctrl-o:toggle-preview" --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" --keep-right --preview-window hidden)
 
-
 if [ -z "$project_dir" ] ; then
     exit
 fi

@@ -1,2 +1,55 @@
+set ratios 1:4:3
+set cleaner ~/.config/lf/cleaner
+set previewer ~/.config/lf/preview 
 set icons true
 set hidden true
+
+# unarchive function
+cmd unarchive ${{
+  case "$f" in
+      *.zip) unzip "$f" ;;
+      *.tar.gz) tar -xzvf "$f" ;;
+      *.tar.bz2) tar -xjvf "$f" ;;
+      *.tar) tar -xvf "$f" ;;
+      *) echo "Unsupported format" ;;
+  esac
+}}
+
+
+cmd mkdir ${{
+  printf "Directory Name: "
+  read ans
+  mkdir $ans
+}}
+
+cmd mkfile ${{
+  printf "File Name: "
+  read ans
+  $EDITOR $ans
+}}
+
+cmd copyname ${{
+    echo "$f" | xclip -selection c
+}}
+
+map au unarchive
+
+# Basic Functions
+map . set hidden!
+map p paste
+map x cut
+map y copy
+map <enter> open
+map R reload
+map mf mkfile
+map md mkdir
+map C clear
+map c copyname
+
+# Movement
+map ga cd ~/.ansible_sync
+map gh cd ~/.dotfiles
+map gp cd ~/Pictures
+map gd cd ~/Downloads
+map gD cd ~/Documents
+map gv cd ~/Videos

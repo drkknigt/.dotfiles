@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
+source ~/.zshrc
 current_dir_flag=$1
 
 if [  "$current_dir_flag" = "0" ] ; then

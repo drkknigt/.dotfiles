@@ -138,6 +138,7 @@ alias cl='clear'
 alias q='exit'
 alias tmux='tmux -u'
 alias fd='cd $(fdfind  ~ --full-path --hidden --type d | fzf)'
+alias lf='lfrun'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
