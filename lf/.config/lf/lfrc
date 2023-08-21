@@ -29,7 +29,7 @@ cmd mkfile ${{
 }}
 
 cmd copyname ${{
-    echo "$f" | xclip -selection c
+    echo -n "$f" | tr -d '\n' |  xclip -selection c
 }}
 
 map au unarchive
