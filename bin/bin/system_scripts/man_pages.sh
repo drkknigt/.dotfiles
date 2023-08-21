@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
-source /home/drkknght/.zshrc
+# source /home/drkknght/.zshrc
+export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
+export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
 MAN="/usr/bin/man"
 if [ -n "$1" ]; then
     $MAN "$@"

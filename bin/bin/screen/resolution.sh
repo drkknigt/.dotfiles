@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
-source ~/.zshrc
+# source ~/.zshrc
+export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
+export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
 
 second_monitor=$(xrandr | grep "\bconnected\b" | grep "\bprimary\b" -v | cut -d" " -f1)
 first_monitor=$(xrandr | grep "\bconnected\b" | grep "\bprimary\b" | cut -d" " -f1)

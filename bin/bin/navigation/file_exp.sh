@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
-source /home/drkknght/.zshrc
+export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
+export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
 
 
 exp=$1

@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
-source ~/.zshrc
+# source ~/.zshrc
+export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
+export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
 #
 selected_wifi=$(nmcli dev wifi list| fzf --prompt='Connect wifi: ')
 if [ -z "$selected_wifi" ] 
