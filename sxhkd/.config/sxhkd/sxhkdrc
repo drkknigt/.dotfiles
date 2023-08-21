@@ -73,6 +73,8 @@ alt + control + a
     i3-msg fullscreen toggle
 alt + control + f
     i3-msg floating toggle
+button2
+    i3-msg floating toggle
 alt + p
     i3-msg move workspace to output right
 alt + period
