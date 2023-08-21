@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 # make cache file and source zshrc functions
-source ~/.zshrc
+# source ~/.zshrc
 recent_flag=$1
 touch ~/.dotfiles/tmux/recent_dirs
 
@@ -30,7 +30,7 @@ fi
     
 
 # exit if session directory is empty
-if [ -z "$selected_directory" ]; then cl;exit 0;fi
+if [ -z "$selected_directory" ]; then clear;exit 0;fi
 
 # create a session name for session
 session_name=$(basename $selected_directory | cut -d '.' -f 2)
@@ -63,7 +63,7 @@ if [ -z "$TMUX" ]; then
     tmux new-window -n Terminal -t $session_name -c $selected_directory
     tmux select-window -t $session_name:1
     tmux send-keys -t $session_name "export PROJECT_ROOT=$selected_directory" C-m &> /dev/null
-    tmux send-keys -t $session_name "cl" C-m &> /dev/null
+    tmux send-keys -t $session_name "clear" C-m &> /dev/null
     tmux send-keys -t $session_name:Main "nvim" C-m
     tmux attach -t $session_name
 else
@@ -72,7 +72,7 @@ else
     tmux new-window -n Terminal -t $session_name -c $selected_directory
     tmux select-window -t $session_name:1
     tmux send-keys -t $session_name "export PROJECT_ROOT=$selected_directory" C-m &> /dev/null
-    tmux send-keys -t $session_name "cl" C-m &> /dev/null
+    tmux send-keys -t $session_name "clear" C-m &> /dev/null
     tmux send-keys -t $session_name:Main "nvim" C-m
     tmux switch-client -t $session_name
 fi

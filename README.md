@@ -6,3 +6,10 @@ This directory structure contains configuration files for various applications a
 
 The bin directory contains various shell scripts related to system administration tasks like managing screen brightness, checking battery status, handling Wi-Fi connections, and more.
 
+# Install
+
+ ```
+ git clone https://www.github.com/drkknigt/.dotfiles 
+ cd .dotfiles
+ stow */
+``` 
