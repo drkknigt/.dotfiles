@@ -13,13 +13,13 @@ echo $selected
 if echo "$languages" | grep -qs "$selected" ; then
     query=`echo $query | tr ' ' '+'`
     if [ -n "$TMUX" ]; then
-    tmux neww bash -c "echo \"curl -s cht.sh/$selected/$query/\" & curl -s cht.sh/$selected/$query | less"
+    echo \"curl -s cht.sh/$selected/$query/\" & curl -s cht.sh/$selected/$query | less
 else 
     echo \"curl -s cht.sh/$selected/$query/\" & curl -s cht.sh/$selected/$query | less
     fi
 else
     if [ -n "$TMUX" ]; then
-    tmux neww bash -c "curl -s cht.sh/$selected~$query | less"
+    curl -s cht.sh/$selected~$query | less
 else
     curl -s cht.sh/$selected~$query | less
     fi
