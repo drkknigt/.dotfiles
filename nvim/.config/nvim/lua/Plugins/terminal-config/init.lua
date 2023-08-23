@@ -105,6 +105,9 @@
 -- function _GLOW()
 -- 	Terminal:new({ cmd = "glow " .. vim.fn.expand("%"), hidden = true }):toggle()
 -- end
+
+-- end of toggle term config --
+
 vim.g.floaterm_opener = "edit"
 
 function _LAZYGIT_TOGGLE()

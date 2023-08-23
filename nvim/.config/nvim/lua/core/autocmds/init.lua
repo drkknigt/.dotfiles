@@ -64,17 +64,10 @@ api.nvim_create_autocmd("BufLeave", {
 })
 -- vim.cmd([[:autocmd BufReadPost quickfix nnoremap <buffer> f /function<cr>]])
 
-local neorg = api.nvim_create_augroup("neorg", { clear = true })
-api.nvim_create_autocmd("CursorMoved", {
-	group = "neorg",
-	callback = function()
-		if vim.bo.filetype == "norg" then
-			pcall(vim.cmd, "IndentBlankLineDisable")
-			pcall(print, "IndentBlankLineDisable")
-		end
-	end,
-})
-
 -- preserver the window view after changing the buffer
 vim.cmd([[autocmd! BufWinLeave * let b:winview = winsaveview()
 autocmd! BufWinEnter * if exists('b:winview') | call winrestview(b:winview) | unlet b:winview]])
+
+-- no relative numbers and number line in terminal mode
+local TermNoLine = api.nvim_create_augroup("TermNoLine", { clear = true })
+api.nvim_create_autocmd("TermOpen", { command = "setlocal nonumber norelativenumber", group = TermNoLine })

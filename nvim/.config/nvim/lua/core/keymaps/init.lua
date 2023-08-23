@@ -111,3 +111,6 @@ map("n", "]6", ":lua require('harpoon.ui').nav_file(6)<cr>", { noremap = true, s
 map("n", "]7", ":lua require('harpoon.ui').nav_file(7)<cr>", { noremap = true, silent = true })
 map("n", "]8", ":lua require('harpoon.ui').nav_file(8)<cr>", { noremap = true, silent = true })
 map("n", "]9", ":lua require('harpoon.ui').nav_file(9)<cr>", { noremap = true, silent = true })
+
+-- terminal keymaps
+map("t", "<C-d>", "<C-\\><C-n>:FloatermKill<cr><bar>i<ESC>", { silent = true, noremap = true })
