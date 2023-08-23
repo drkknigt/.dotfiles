@@ -277,11 +277,13 @@ replaced as they are the core of editor. Learn vim first and then start using pl
 | 21. `<leader>`sm   | Normal | show manual pages in telescope |
 | 22. `<leader>`so   | Normal | show old files in telescope |
 | 23. `<leader>`sf   | Normal | fild files in telescope |
-| 24. `<leader>`sR   | Normal | show registers in telescope |
-| 25. `<leader>`sr   | Normal | resume telescope to last place |
+| 24. `<leader>`sR   | Normal | resume telescope to last place |
+| 25. `<leader>`sr   | Normal | open file explorer but in the root tmux project directory |
+| 25. `<leader>`sg   | Normal | live grep but in the root tmux project directory |
 | 26. `<leader>`sk   | Normal | show all keympas in telescope |
 | 27. `<leader>`sc   | Normal | show all commands in telescope |
-| 28. `<leader>`sp   | Normal | show all projects in telescope |
+| 28. `<leader>`sp   | Normal | search files from the tmux root project directory|
+| 28. `<leader>`sP   | Normal | show all the projects added in the telescope |
 | 29. `<leader>`sq   | Normal | show quickfix in telescope |
 | 30. `<leader>`si   | Normal | show internet bookmarks in telescope |
 | 31. `<leader>`sb   | Normal | show buffers in telescope |
@@ -290,6 +292,7 @@ replaced as they are the core of editor. Learn vim first and then start using pl
 | 34. `<leader>`sE   | Normal | env vairables in telescope |
 | 35. `<leader>`sl   | Normal | fuzzy find buffer content in telescope |
 | 36. `<leader>`sh   | Normal | search dotfiles in telescope |
+| 36. `<leader>`sa   | Normal | search config files from my ansible setup |
 
 
 

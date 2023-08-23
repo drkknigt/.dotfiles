@@ -4,10 +4,12 @@
 is_active=$(echo $TMUX)
 
 
-git_directory=$(dirname $(find ~ -type d -iname "*.git"| fzf --prompt="open git dir: " ) 2> /dev/null) 
-if [ -z "$git_directory" ] ; then
+fzf_dir=$(find ~ -type d -iname "*.git"| fzf --prompt="open git dir: " )
+if [ -z "$fzf_dir" ] ; then
     exit
 fi
+
+git_directory=$(dirname "$fzf_dir")
 
 if [ -z "$is_active" ]; then
     lazygit -p $git_directory

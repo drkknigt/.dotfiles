@@ -221,6 +221,7 @@ local mappings = {
 		E = { "<cmd>Telescope env<cr>", "Env" },
 		l = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Buffer lines" },
 		h = { "<cmd>lua require('Plugins/_telescope-setting').search_dotfiles()<cr>", "dotfiles" },
+		a = { "<cmd>lua require('Plugins/_telescope-setting').search_ansible()<cr>", "dotfiles" },
 		-- d = {"<cmd>lua require('plugins/telescope-config').search_dir()<cr>","dotfiles"},
 	},
 	-- n = { "<cmd>lua require('Plugins/_telescope-setting').search_nvim()<cr>", "nvim files" },

@@ -9,7 +9,7 @@ export PATH=/home/drkknght/go/bin/:$PATH
 export PATH=/home/drkknght/usr/bin/:$PATH
 
 if [  "$current_dir_flag" = "0" ] || [ "$current_dir_flag" = "2" ] ; then
-direc=$(find ~ -type d |  fzf --cycle --prompt='change directory: ' --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" )
+direc=$(find ~ -maxdepth 4 -type d  |  fzf --cycle --prompt='change directory: ' --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" )
 if [  -z "$direc" ] ; then
             exit
 fi
