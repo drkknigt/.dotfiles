@@ -45,7 +45,7 @@ alt + a; {c, v, b, f, t, n, q, h, l,k,m,g,o}
     {kcolorchooser,vlc,brave-browser,firefox,telegram-desktop,nemo,\
     alacritty -t "cal"  -o "colors.primary.background='#262626'"  -o window.opacity=0.8 -o font.size=13 -e qalc,\
     alacritty -t "git"  -o "colors.primary.background='#262626'"  -e htop,\
-    i3lock -c "000000",kitty,code ,alacritty -t "git" -o "colors.primary.background='#262626'" -e glow,alacritty -t "notes" -e /home/drkknght/bin/navigation/file_manager.sh 2}
+    i3lock -c "000000",kitty,code ,alacritty -t "git" -o "colors.primary.background='#262626'" -e glow,alacritty -t "lf" -e /home/drkknght/bin/navigation/file_manager.sh 2}
 
 
 # -------------------------------------------------------------
