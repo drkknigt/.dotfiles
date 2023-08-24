@@ -169,12 +169,12 @@ local on_attach = function(client, bufnr)
 		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
 	end
 
-	if client.name == "pyright" then
-		client.server_capabilities.hoverProvider = false
-		client.server_capabilities.signatureHelpProvider = false
-		client.server_capabilities.completionProvider = false
-		client.server_capabilities.definitionProvider = false
-	end
+	-- if client.name == "pyright" then
+	-- 	client.server_capabilities.hoverProvider = false
+	-- 	client.server_capabilities.signatureHelpProvider = false
+	-- 	client.server_capabilities.completionProvider = false
+	-- 	client.server_capabilities.definitionProvider = false
+	-- end
 	if client.name == "jedi_language_server" then
 		client.server_capabilities.codeActionProvider = false
 	end
@@ -373,6 +373,11 @@ require("lspconfig").html.setup({
 	capabilities = capabilities,
 })
 require("lspconfig").jedi_language_server.setup({
+	init_options = {
+		workspace = {
+			extraPaths = { "/home/drkknght/.local/lib/python3.10/site-packages/" },
+		},
+	},
 	root_dir = require("lspconfig").util.root_pattern("package.json"),
 	single_file_support = true,
 	on_attach = on_attach,
@@ -422,3 +427,22 @@ require("lspconfig").ansiblels.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
+
+-- require("lspconfig").pyright.setup({
+-- 	settings = {
+-- 		python = {
+-- 			analysis = {
+-- 				autoSearchPaths = false,
+-- 				diagnosticMode = "openFilesOnly",
+-- 				useLibraryCodeForTypes = true,
+-- 				-- typeCheckingMode = "strict",
+-- 				-- loglevel = { "Error" },
+-- 				extraPaths = { "/home/drkknght/.local/lib/python3.10/site-packages/" },
+-- 			},
+-- 		},
+-- 	},
+-- 	single_file_support = true,
+-- 	on_attach = on_attach,
+-- 	flags = { debounce_text_changes = 500 },
+-- 	capabilities = capabilities,
+-- })
