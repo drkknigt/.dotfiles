@@ -167,7 +167,7 @@ bindkey -s '^e ' 'tmux_create.sh 0^M'
 bindkey -s '^er' 'tmux_create.sh 1^M'
 bindkey -s '^ea' 'tmux_create.sh 2^M'
 bindkey -s '^e\\' 'tmux_kill.py^M'
-bindkey -s '^e\]' 'tmux_session_switch.sh^M'
+bindkey -s '^e\y' 'tmux_session_switch.sh^M'
 bindkey -s '^eg' 'tmux_git.sh^M'
 
 # bindkey for git for shell

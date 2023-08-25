@@ -376,6 +376,9 @@ require("lspconfig").jedi_language_server.setup({
 	init_options = {
 		workspace = {
 			extraPaths = { "/home/drkknght/.local/lib/python3.10/site-packages/" },
+			symbols = {
+				ignoreFolders = { "__pycache__", ".pytest_cache" },
+			},
 		},
 	},
 	root_dir = require("lspconfig").util.root_pattern("package.json"),
