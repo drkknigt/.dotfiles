@@ -64,9 +64,9 @@ api.nvim_create_autocmd("BufLeave", {
 })
 -- vim.cmd([[:autocmd BufReadPost quickfix nnoremap <buffer> f /function<cr>]])
 
--- preserver the window view after changing the buffer
-vim.cmd([[autocmd! BufWinLeave * let b:winview = winsaveview()
-autocmd! BufWinEnter * if exists('b:winview') | call winrestview(b:winview) | unlet b:winview]])
+-- preserver the window view after changing the buffer or after yanking from textobject
+vim.cmd([[autocmd! BufWinLeave,VimEnter,CursorMoved * let b:winview = winsaveview()
+autocmd! BufWinEnter,TextYankPost * if exists('b:winview') | call winrestview(b:winview) | unlet b:winview]])
 
 -- no relative numbers and number line in terminal mode
 local TermNoLine = api.nvim_create_augroup("TermNoLine", { clear = true })

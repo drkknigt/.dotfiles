@@ -111,41 +111,73 @@
 vim.g.floaterm_opener = "edit"
 
 function _LAZYGIT_TOGGLE()
+	local current_dir = vim.fn.getcwd()
+	vim.cmd("normal mf")
 	vim.cmd(
 		"FloatermNew --cwd=<buffer> --height=0.9 --width=1.0 --title=lazygit --titleposition=center --disposable lazygit -ucf ~/.dotfiles/lazygit/.config/lazygit/nvim_config.yml"
 	)
+	vim.cmd("cd " .. current_dir)
 end
 
 function _NODE_TOGGLE()
+	local current_dir = vim.fn.getcwd()
+	vim.cmd("normal mf")
 	vim.cmd("FloatermNew --cwd=<buffer> --height=0.7 --width=0.8 --disposable --title=Node --titleposition=center node")
+	vim.cmd("cd " .. current_dir)
 end
 
 function _HTOP_TOGGLE()
+	local current_dir = vim.fn.getcwd()
+	vim.cmd("normal mf")
 	vim.cmd("FloatermNew --cwd=<buffer> --height=0.7 --width=0.8 --disposable --title=Htop --titleposition=center htop")
+	vim.cmd("cd " .. current_dir)
 end
 
 function _PYTHON_TOGGLE()
+	local current_dir = vim.fn.getcwd()
+	vim.cmd("normal mf")
 	vim.cmd(
 		"FloatermNew --cwd=<buffer> --height=0.7 --width=0.8 --disposable --title=Python --titleposition=center python3"
 	)
+	vim.cmd("cd " .. current_dir)
 end
 
 function _LUA_TOGGLE()
+	local current_dir = vim.fn.getcwd()
+	vim.cmd("normal mf")
 	vim.cmd("FloatermNew --cwd=<buffer> --height=0.7 --width=0.8 --disposable --title=Lua --titleposition=center lua")
+	vim.cmd("cd " .. current_dir)
 end
 
 function _GLOW()
-	vim.cmd("FloatermNew --cwd=<buffer> --height=0.9 --width=0.9 --disposable --title=Glow --titleposition=center glow")
+	local current_dir = vim.fn.getcwd()
+	vim.cmd("normal mf")
+	vim.cmd(
+		"FloatermNew --cwd=<buffer> --height=0.9 --width=0.9 --disposable --title=Glow --titleposition=center glow -p %"
+	)
+	vim.cmd("cd " .. current_dir)
 end
 
 function _HORIZONTAL()
+	local current_dir = vim.fn.getcwd()
+	vim.cmd("normal mf")
 	vim.cmd("FloatermNew --cwd=<buffer> --height=0.4 --title=Horizontal --titleposition=center --wintype=split")
+	vim.cmd("cd " .. current_dir)
 end
 
 function _VERTICAL()
+	local current_dir = vim.fn.getcwd()
+	vim.cmd("normal mf")
 	vim.cmd("FloatermNew --cwd=<buffer> --width=0.4 --title=Vertical --titleposition=center --wintype=vsplit")
+	vim.cmd("cd " .. current_dir)
 end
 
 function _FLOAT()
+	local current_dir = vim.fn.getcwd()
+	vim.cmd("normal mf")
 	vim.cmd("FloatermNew --cwd=<buffer> --height=0.8 --width=0.7 --title=Horizontal --titleposition=center")
+	vim.cmd("cd " .. current_dir)
 end
+
+local map = vim.api.nvim_set_keymap
+map("t", "<C-d>", "<C-\\><C-n>:FloatermKill<cr><bar>i<ESC>`f", { silent = true, noremap = true })

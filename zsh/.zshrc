@@ -182,7 +182,7 @@ bindkey -s '^v' 'nvim^M'
 bindkey -s '^\\d' '~/bin/navigation/navigation.sh 0^M'
 bindkey -s '^\\h' '~/bin/navigation/navigation.sh 1^M'
 bindkey -s '^\\f' '~/bin/navigation/navigation.sh 2^M'
-bindkey -s '^e\;' 'file_manager.sh 0^M'
+bindkey -s "^e'" "file_manager.sh 0^M"
 
 # go back in history
 bindkey "^P" up-line-or-search

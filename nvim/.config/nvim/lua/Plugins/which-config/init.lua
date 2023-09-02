@@ -80,10 +80,10 @@ local opts = {
 }
 
 local mappings = {
-	["a"] = { "<cmd>:ISwap<cr>", "swap" },
-	["w"] = { "<cmd>w<cr>", "save file" },
-	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-	-- ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+	["a"] = { "<cmd>:ISwap<cr>", "swap" }, -- swap variables in list or array
+	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" }, -- open file explorer
+	["r"] = { "<cmd>Jaq<cr>", "run code" }, -- run code
+	-- ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },,
 
 	p = {
 		name = "Lazy-nvim",
@@ -99,10 +99,8 @@ local mappings = {
 	g = {
 		name = "Git",
 		g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
-		j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
 		w = { "<cmd>lua require 'gitsigns'.setqflist('all')<cr>", "list all changes" },
 		a = { "<cmd>lua require 'gitsigns'.setqflist()<cr>", "list all changes" },
-		k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
 		l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
 		p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
 		r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
@@ -133,13 +131,6 @@ local mappings = {
 		f = { "yiw<bar><cmd>FzfLua lines<cr><bar><ESC>pi", "LocationList open" },
 		o = { "<cmd>lclose<cr>", "LocationList close" },
 	},
-	-- k = {
-	--     name = "session",
-	--     l = {"<cmd>SessionManager load_last_session<cr>","load last session"},
-	--     a = {"<cmd>SessionManager load_session<cr>","load sessions"},
-	--     d = {"<cmd>SessionManager delete_session<cr>","delete session"},
-	--     s = {"<cmd>SessionManager save_current_session<cr>","save session"},
-	-- },
 	l = {
 		name = "LSP",
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
@@ -148,8 +139,8 @@ local mappings = {
 			"Document Diagnostics",
 		},
 
-		c = { "<cmd>Codeium Enable<cr>", "enable codeium" },
-		b = { "<cmd>Codeium Disable<cr>", "disable codeium" },
+		-- c = { "<cmd>Codeium Enable<cr>", "enable codeium" },
+		-- b = { "<cmd>Codeium Disable<cr>", "disable codeium" },
 		x = { "<cmd>!chmod +x %<cr>", "make current file executable" },
 		w = {
 			"<cmd>lua vim.diagnostic.setqflist()<cr>",
@@ -252,10 +243,32 @@ local mappings = {
 		v = { ":lua _VERTICAL()<cr>", "Vertical" },
 	},
 	h = {
+		s = { ":lua require('tsht').move({side = 'start'})<cr>", "treesitter go to start of object" },
+		e = { ":lua require('tsht').move({side = 'end'})<cr>", "treesitter go to end of object" },
 		o = { ":lua require('harpoon.ui').toggle_quick_menu()<cr>", "open harpoon" },
 		a = { ":lua require('harpoon.mark').add_file()<cr>", "add file to harpoon" },
 		z = { ":lua require('harpoon.ui').nav_next()<cr>", "next file in harpoon" },
 		x = { ":lua require('harpoon.ui').nav_prev()<cr>", "next file in harpoon" },
+		w = { ":HopWord<cr>", "hop to the word" },
+		p = { ":HopPattern<cr>", "hop to the pattern" },
+		c = { ":HopChar1<cr>", "hop to the character method one" },
+		C = { ":HopChar2<cr>", "hop to the character method two" },
+		l = { ":HopLine<cr>", "hop to the line" },
+		dw = { "d:HopWord<cr>", "hop delete till word" },
+		dp = { "d:HopPattern<cr>", "hop delete till pattern " },
+		dc = { "d:HopChar1<cr>", "hop delete till char1" },
+		dC = { "d:HopChar2<cr>", "hop delete till char2" },
+		dl = { "d:HopLine<cr>", "hop delete till line" },
+		kw = { "c:HopWord<cr>", "hop change till word" },
+		kp = { "c:HopPattern<cr>", "hop change till pattern" },
+		kc = { "c:HopChar1<cr>", "hop change till char1" },
+		kC = { "c:HopChar2<cr>", "hop change till char2" },
+		kl = { "c:HopLine<cr>", "hop change till line" },
+		yw = { "y:HopWord<cr>", "hop copy till word" },
+		yp = { "y:HopPattern<cr>", "hop copy till pattern" },
+		yc = { "y:HopChar1<cr>", "hop copy till char1" },
+		yC = { "y:HopChar2<cr>", "hop copy till char2" },
+		yl = { "y:HopLine<cr>", "hop copy till line" },
 	},
 }
 

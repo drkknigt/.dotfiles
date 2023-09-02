@@ -300,7 +300,7 @@ require("lazy").setup({
 		"andymass/vim-matchup",
 		event = "VeryLazy",
 		config = function()
-			vim.g.mathcup_matchparen_offscreen = { mehtod = "popup" }
+			vim.g.matchup_matchparen_offscreen = { method = "status" }
 		end,
 	},
 
@@ -505,7 +505,11 @@ require("lazy").setup({
 		"kevinhwang91/nvim-bqf",
 		event = "CursorHold",
 		config = function()
-			require("bqf").setup()
+			require("bqf").setup({
+				preview = {
+					winblend = 0,
+				},
+			})
 			require("core.autocmds")
 			require("core.userFunctions")
 			vim.api.nvim_set_hl(0, "Statusline", { bg = "Black", fg = "gray" })
@@ -762,7 +766,24 @@ require("lazy").setup({
 	-- 		require("lsp-lens").setup()
 	-- 	end,
 	-- },
-	{ "ThePrimeagen/harpoon", event = "VeryLazy" },
+	{
+		"ThePrimeagen/harpoon",
+		event = "VeryLazy",
+		config = function()
+			local map = vim.api.nvim_set_keymap
+			map("n", "]h", ":lua require('harpoon.ui').nav_next()<cr>", { noremap = true, silent = true })
+			map("n", "[h", ":lua require('harpoon.ui').nav_prev()<cr>", { noremap = true, silent = true })
+			map("n", "]1", ":lua require('harpoon.ui').nav_file(1)<cr>", { noremap = true, silent = true })
+			map("n", "]2", ":lua require('harpoon.ui').nav_file(2)<cr>", { noremap = true, silent = true })
+			map("n", "]3", ":lua require('harpoon.ui').nav_file(3)<cr>", { noremap = true, silent = true })
+			map("n", "]4", ":lua require('harpoon.ui').nav_file(4)<cr>", { noremap = true, silent = true })
+			map("n", "]5", ":lua require('harpoon.ui').nav_file(5)<cr>", { noremap = true, silent = true })
+			map("n", "]6", ":lua require('harpoon.ui').nav_file(6)<cr>", { noremap = true, silent = true })
+			map("n", "]7", ":lua require('harpoon.ui').nav_file(7)<cr>", { noremap = true, silent = true })
+			map("n", "]8", ":lua require('harpoon.ui').nav_file(8)<cr>", { noremap = true, silent = true })
+			map("n", "]9", ":lua require('harpoon.ui').nav_file(9)<cr>", { noremap = true, silent = true })
+		end,
+	},
 	{ "jghauser/mkdir.nvim", event = "VeryLazy" },
 	{ "Bekaboo/dropbar.nvim", event = "VeryLazy" },
 }, opts)

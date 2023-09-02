@@ -9,56 +9,37 @@ map("x", "al", "$o^", { noremap = true, silent = true })
 map("o", "al", ":normal val<cr>", { noremap = true, silent = true })
 
 -- editor keymaps
-map("n", "<leader>hh", ":call matchadd('LineHighlight','\\%'.line('.').'l')<cr>", { silent = true, noremap = true })
+map(
+	"n",
+	"<leader>hh",
+	"md<bar>:call matchadd('LineHighlight','\\%'.line('.').'l')<cr>",
+	{ silent = true, noremap = true }
+)
+map("n", "<leader>lc", ":!touch ", { silent = false, noremap = true })
+map("n", "<leader>lf", ":!mkdir ", { silent = false, noremap = true })
 map("n", "<leader>hv", ":set nohls<bar>call clearmatches()<cr>", { silent = true, noremap = true })
 map("n", "<leader>bo", ":Bo<cr>", { silent = true, noremap = true })
 map("n", "<leader>be", ":Be<cr>", { silent = true, noremap = true })
 map("i", "jk", "<Esc>", { silent = true })
 map("i", "kj", "<Esc>", { silent = true })
-map("n", "<TAB>", ":bnext<CR>", { noremap = true, silent = true })
-map("n", "<s-tab>", ":bprevious<CR>", { noremap = true, silent = true })
+map("n", "<C-k>", ":bnext<CR>", { noremap = true, silent = true })
+map("n", "<C-j>", ":bprevious<CR>", { noremap = true, silent = true })
 map("n", "<leader>d", ":bd!<CR>", { noremap = true, silent = true })
+map("n", "<leader>w", ":w<CR>", { noremap = true, silent = true })
 map("n", "<leader>,", ":source /home/drkknght/.textedit/nvim/early.vim<bar>Be<CR>", { noremap = true, silent = true })
 map("n", "<leader>k", "K", { noremap = true, silent = true })
 map("n", "<leader>c", ":mks! $HOME/.textedit/nvim/early.vim<bar>qall!<CR>", { noremap = true, silent = true })
-map("n", "<leader>y", "magg\"+yG'a", { noremap = true, silent = true })
+map("n", "<leader>y", 'magg"+yG`a', { noremap = true, silent = true })
 map("n", "n", "nzznN", { noremap = true, silent = true })
 map("n", "N", "NzznN", { noremap = true, silent = true })
 map("x", "J", ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
 map("x", "K", ":move '<-2<CR>gv-gv", { noremap = true, silent = true })
-map("x", "<A-j>", ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
-map("x", "<A-k>", ":move '<-2<CR>gv-gv", { noremap = true, silent = true })
 map("v", ">", ">gv", { noremap = true, silent = true })
 map("v", "<", "<gv", { noremap = true, silent = true })
 map("n", "<leader>z", ":e ~/.config/nvim/init.lua<cr>", { noremap = true, silent = true })
 
--- hopp nvim keymaps
-
-map("n", "<leader>hw", ":HopWord<CR>", { noremap = true, silent = true })
-map("n", "<leader>hp", ":HopPattern<CR>", { noremap = true, silent = true })
-map("n", "<leader>hc", ":HopChar1<CR>", { noremap = true, silent = true })
-map("n", "<leader>hC", ":HopChar2<CR>", { noremap = true, silent = true })
-map("n", "<leader>hl", ":HopLine<CR>", { noremap = true, silent = true })
-map("n", "<leader>hdw", "d:HopWord<CR>", { noremap = true, silent = true })
-map("n", "<leader>hdp", "d:HopPattern<CR>", { noremap = true, silent = true })
-map("n", "<leader>hdc", "d:HopChar1<CR>", { noremap = true, silent = true })
-map("n", "<leader>hdC", "d:HopChar2<CR>", { noremap = true, silent = true })
-map("n", "<leader>hdl", "d:HopLine<CR>", { noremap = true, silent = true })
-map("n", "<leader>hkw", "c:HopWord<CR>", { noremap = true, silent = true })
-map("n", "<leader>hkp", "c:HopPattern<CR>", { noremap = true, silent = true })
-map("n", "<leader>hkc", "c:HopChar1<CR>", { noremap = true, silent = true })
-map("n", "<leader>hkC", "c:HopChar2<CR>", { noremap = true, silent = true })
-map("n", "<leader>hkl", "c:HopLine<CR>", { noremap = true, silent = true })
-map("n", "<leader>hyw", "y:HopWord<CR>", { noremap = true, silent = true })
-map("n", "<leader>hyp", "y:HopPattern<CR>", { noremap = true, silent = true })
-map("n", "<leader>hyc", "y:HopChar1<CR>", { noremap = true, silent = true })
-map("n", "<leader>hyC", "y:HopChar2<CR>", { noremap = true, silent = true })
-map("n", "<leader>hyl", "y:HopLine<CR>", { noremap = true, silent = true })
-map("n", "<leader>r", ":Jaq<CR>", { noremap = true, silent = true })
-
 -- jump keymaps
 map("n", "<leader>n)", "/)<cr>", { noremap = true, silent = true })
-map("n", "]w", ":lua require('ts-node-action').node_action()<cr>", { noremap = true, silent = true })
 map("n", "<leader>n(", "/(<cr>", { noremap = true, silent = true })
 map("n", "<leader>m)", "?)<cr>", { noremap = true, silent = true })
 map("n", "<leader>m(", "?(<cr>", { noremap = true, silent = true })
@@ -97,20 +78,8 @@ map("n", "<leader>mv", "?\\w\\+\\s*=\\s*<cr>", { noremap = true, silent = true }
 map("n", "]a", ":s/\\w\\+/'\\0',/g<bar>normal I= [<Esc>A]<Esc>I", { noremap = true, silent = true })
 map("n", "]e", ":s/\\w\\+/\\0,/g<bar>normal I= [<Esc>A]<Esc>I", { noremap = true, silent = true })
 
--- harpoon keymaps
-map("n", "<leader>hs", ":lua require('tsht').move({side = 'start'})<cr>", { noremap = true, silent = true })
-map("n", "<leader>he", ":lua require('tsht').move({side = 'end'})<cr>", { noremap = true, silent = true })
-map("n", "]h", ":lua require('harpoon.ui').nav_next()<cr>", { noremap = true, silent = true })
-map("n", "[h", ":lua require('harpoon.ui').nav_prev()<cr>", { noremap = true, silent = true })
-map("n", "]1", ":lua require('harpoon.ui').nav_file(1)<cr>", { noremap = true, silent = true })
-map("n", "]2", ":lua require('harpoon.ui').nav_file(2)<cr>", { noremap = true, silent = true })
-map("n", "]3", ":lua require('harpoon.ui').nav_file(3)<cr>", { noremap = true, silent = true })
-map("n", "]4", ":lua require('harpoon.ui').nav_file(4)<cr>", { noremap = true, silent = true })
-map("n", "]5", ":lua require('harpoon.ui').nav_file(5)<cr>", { noremap = true, silent = true })
-map("n", "]6", ":lua require('harpoon.ui').nav_file(6)<cr>", { noremap = true, silent = true })
-map("n", "]7", ":lua require('harpoon.ui').nav_file(7)<cr>", { noremap = true, silent = true })
-map("n", "]8", ":lua require('harpoon.ui').nav_file(8)<cr>", { noremap = true, silent = true })
-map("n", "]9", ":lua require('harpoon.ui').nav_file(9)<cr>", { noremap = true, silent = true })
-
 -- terminal keymaps
-map("t", "<C-d>", "<C-\\><C-n>:FloatermKill<cr><bar>i<ESC>", { silent = true, noremap = true })
+
+-- visula mapping
+
+map("v", ".", ":normal .<CR>", { noremap = true, silent = true })

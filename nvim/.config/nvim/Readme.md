@@ -133,7 +133,7 @@ This repo hosts my Nvim configuration for Linux.**
 + Get the preview of the source code as a Map with [codewindow](https://www.github.com/gorbit99/codewindow.nvim).
 + Beautiful preview of definitions with [goto-previw](https://www.github.com/rmagatti/goto-preview).
 + Install language servers and linters and formatters with ease with [mason.nvim](https://www.github.com/williamboman/mason.nvim).
-+ Open and run terminals and terminal apps with ease with [toggleterm.nvim](https://www.github.com/akinsho/toggleterm.nvim).
++ Open and run terminals and terminal apps with ease with [Floaterm.nvim](https://www.github.com/voldikss/vim-floaterm).
 + Color highlighter with [nvim-colorizer](https://www.github.com/norcalli/nvim-colorizer.lua).
 + Match parenthesis and code blocks with ease with [vim-mathcup](https://www.github.com/andymass/vim-matchup).
 + Check the lsp progress as file loads with [fidget.nvim](https://www.github.com/j-hui/fidget.nvim).
@@ -157,7 +157,3 @@ This repo hosts my Nvim configuration for Linux.**
 Most of the shortcuts i use start with Space-bar (my leader key), the shortcuts do not interfere with 
 the builtin vim mappings . I dont reassign the builtin mappings because i think vim mappings should never be  
 replaced as they are the core of editor. Learn vim first and then start using plugins.  
-
-# SHORTCUTS
-
-[shortcuts](shortcuts.md)

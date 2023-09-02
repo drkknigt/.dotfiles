@@ -1,4 +1,6 @@
-# Volume:  
+# I3WM KEYMAPS: 
+                                 
+## Volume:  
    - alt + ]           ----->   volume up (pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status )
    - alt + [           ----->   volume up (pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status )
    - alt + ctrl + m    ----->   pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
@@ -6,7 +8,7 @@
    - XF86AudioRaiseVolume --->   pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
    - XF86AudioMute      ----->   pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
     
-# Monitor & Screen:  
+## Monitor & Screen:  
    - alt + s + s       ----->  set resolution for 2nd monitor (resolution.sh)
    - alt + s + 1       ----->  scale monitor 1  (scale.sh 0)
    - alt + s + 2       ----->  scale monitor 2  (scale.sh 1)
@@ -15,7 +17,7 @@
    - alt + "+"         ----->  screen brightness up (brightnessctl set +3%)
    - alt + "-"         ----->  screen brightness down (brightnessctl set +3%)
 
-# Starting Applications: 
+## Starting Applications: 
    - alt + return     -------> open alacritty terminal (alacritty -t "startup")
    - alt + a + c      -------> open color picker (kcolorchooser)
    - alt + a + v      -------> open vlc media player (vlc)
@@ -29,8 +31,9 @@
    - alt + a + k      -------> open kitty terminal (kitty)
    - alt + a + m      -------> open vscode (code)
    - alt + a + g      -------> open glow markdown reader (code)
+   - alt + a + o      -------> open lf file explorer (lfrun)
 
-# Search:  
+## Search:  
    - alt + f  + t     -------> open applications terminal mode (rofi -show run -dpi 171)
    - alt + f  + a     -------> open applications desktop environment (rofi -dpi 171 -show drun -show-icons)
    - alt + f  + w     -------> show all open windows in i3wm (rofi -dpi 171 -show)
@@ -38,12 +41,12 @@
    - alt + f  + d     -------> search for directory to open (file_exp.sh d)
    - alt + f  + g     -------> open lazygit in speciefied directory (lazy_git.sh)
 
-# Systemctl commands: 
+## Systemctl commands: 
    - alt + d + s      -------> turn off the system (systemctl poweroff)
    - alt + d + r      -------> restart the system (systemctl restart)
    - alt + d + f      -------> send system to sleep (systemctl suspend)
    
-# i3wm movement commands: 
+## i3wm movement commands: 
    - alt + control + a  -----> toggle fullscreen  (i3-msg fullscreen toggle)
    - alt + control + f  -----> toggle floatmode  (i3-msg floating toggle)
    - alt + p            -----> move current workspace to different monitor (i3-msg move workspace to output right)
@@ -53,18 +56,19 @@
    - alt + e + v      -------> i3-msg split v
    - alt + e + y      -------> i3-msg layout stacking
    - alt + e + t      -------> i3-msg layout tabbed
-   - alt + e + e      -------> i3-msg layout toggle split
+   - alt + e + e      -------> i3-msg layout toggle tabbed
    - alt + e + space  -------> i3-msg focus toggle_mode
    - alt + e + i      -------> i3-msg focus parent
    - alt + e + r      -------> i3-msg restart
    - alt + e + q      -------> i3-msg exit
    - alt + e + w      -------> i3-msg reload config for i3wm
+   - mouse-button-middle ----> i3-msg floating toggle
 
-# scratchpad: 
+## scratchpad: 
    - alt + b  + s     -------> i3-msg move scratchpad
    - alt + b  + d     -------> i3-msg scratchpad show
 
-# i3-wm navigation mode: 
+## i3-wm navigation mode: 
    - alt + h          -------> i3-msg focus left
    - alt + j          -------> i3-msg focus down
    - alt + k          -------> i3-msg focus up
@@ -103,11 +107,11 @@
    - alt + control +  0 -----> i3-msg move container to workspace 0
    - button9            -----> i3-msg move left
 
-# Network commands: 
+## Network commands: 
    - alt + i + i       ------> toggle wifi (wifi_connect.sh)
    - alt + i + l       ------> change wifi connection (wifi_fzf.sh)
 
-# User scripts:  
+## User scripts:  
    - alt + z + g       ------> change cpu governor (governor.sh)
    - alt + z + m       ------> mount disks (mount.sh)
    - alt + z + h       ------> open man pages (man_pages.sh )
@@ -116,3 +120,63 @@
    - alt + z + n       ------> open notes (notes.sh)
    - alt + z + x       ------> send mouse pointer to bottom (xdotool mousemove 800 1920 )
    
+# ZSH KEYMAPS
+
+   - ctrl + e + space  ------> create tmux session for any directory from home (tmux_create.sh 0)  
+   - ctrl + e + r      ------> create recent tmux sessions (tmux_create.sh 1)
+   - ctrl + e + a      ------> make a directory and start a session there (tmux_create.sh 2)
+   - ctrl + e + \      ------> kill tmux sessions (tmux_kill.py)
+   - ctrl + e + y      ------> tmux session swithch (tmux_session_switch.sh)
+   - ctrl + e + g      ------> open lazy git in prefered directory (tmux_git.sh)
+   - ctrl + g          ------> open lazygit in current directory
+   - ctrl + v          ------> open neovim in current directory
+   - ctrl + v          ------> open neovim in current directory
+   - ctrl + \ + d      ------> open file from dotfiles in neovim in current shell
+   - ctrl + \ + f      ------> serach file in current dir and open in neovim
+   - ctrl + \ + h      ------> serach file in home dir and open in neovim
+   - ctrl + \ + '      ------> open lf file browser in the searched directory
+   - ctrl + P          ------> goto previous command in zsh
+   - ctrl + N          ------> goto next command in zsh
+   - ctrl + ]          ------> goto end of the line
+   - ctrl + a          ------> goto start of the line
+   - ctrl + r          ------> search the command line history
+   
+# TMUX KEYMAPS 
+   
+   - ctrl + e          ------> send prefix
+   - ctrl + e + v      ------> open a horizontal pane with current shell path as starting path 
+   - ctrl + e + b      ------> break current pane into a new window
+   - ctrl + e + R      ------> reload the tmux configuration
+   - ctrl + e + y      ------> join panes from windows
+   - ctrl + e + u      ------> split windows vertically with current shell path as starting path
+   - ctrl + e + p      ------> create new window with root tmux path
+   - ctrl + e + t      ------> create new window with current shell path as startin path
+   - ctrl + e + o      ------> kill window or pane
+   - (ctrl + e + o)    ------> exit tmux (simultaneous key presses)
+   - ctrl + e + q      ------> exit tmux 
+   - ctrl + e + z      ------> maxamize pane
+   - ( ctrl + e + n )  ------> next window
+   - ( ctrl + e + [ )  ------> pager mode 
+   - ( ctrl + e + h )  ------> move to next window left
+   - ( ctrl + e + l )  ------> move to next window right
+   - (ctrl + e) H      ------> resize 5 units to left
+   - (ctrl + e) L      ------> resize 5 units to right
+   - (ctrl + e) J      ------> resize 5 units to bottom
+   - (ctrl + e) K      ------> resize 5 units to top
+   - ctrl + e + l      ------> move to next right
+   - ctrl + e + h      ------> move to next left
+   - ctrl + e + j      ------> move to next bottom
+   - ctrl + e + k      ------> move to next top
+   - ctrl + e + n      ------> move to next window
+   - ctrl + e + space  ------> create a tmux session from home directory
+   - ctrl + e + r      ------> create a tmux session from recent sessions
+   - ctrl + e + a      ------> create a new directory and create a session inside it
+   - ctrl + e + y      ------> switch tmux session
+   - ctrl + e + \      ------> kill tmux session from the list
+   - ctrl + e + c      ------> open a new window with selected directory from fzf
+   - ctrl + e + g      ------> open a lazygit in selected directory from fzf
+   - ctrl + e + m      ------> get info on command with cheat sheet
+   - ctrl + e + ;      ------> open lf file manger in current shell path
+   - ctrl + e + '      ------> open lf file manger in path choosen from fzf
+
+

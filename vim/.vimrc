@@ -84,3 +84,12 @@ onoremap il :normal vil<CR>
 xnoremap al $o^
 onoremap al :normal val<CR>
 
+augroup yank_restore_cursor
+    autocmd!
+    autocmd VimEnter,CursorMoved *
+        \ let s:cursor = getpos('.')
+    autocmd TextYankPost *
+        \ if v:event.operator ==? 'y' |
+            \ call setpos('.', s:cursor) |
+        \ endif
+augroup END

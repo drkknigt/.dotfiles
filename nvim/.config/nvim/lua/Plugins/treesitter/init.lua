@@ -152,6 +152,9 @@ require("nvim-treesitter.configs").setup({
 		},
 	},
 })
+
+local map = vim.api.nvim_set_keymap
+map("n", "]w", ":lua require('ts-node-action').node_action()<cr>", { noremap = true, silent = true })
 -- iswap
 
 -- local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
