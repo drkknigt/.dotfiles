@@ -65,9 +65,45 @@ api.nvim_create_autocmd("BufLeave", {
 -- vim.cmd([[:autocmd BufReadPost quickfix nnoremap <buffer> f /function<cr>]])
 
 -- preserver the window view after changing the buffer or after yanking from textobject
-vim.cmd([[autocmd! BufWinLeave,VimEnter,CursorMoved * let b:winview = winsaveview()
-autocmd! BufWinEnter,TextYankPost * if exists('b:winview') | call winrestview(b:winview) | unlet b:winview]])
+vim.cmd([[autocmd! BufWinLeave * let b:winview = winsaveview()
+autocmd! BufWinEnter * if exists('b:winview') | call winrestview(b:winview) | unlet b:winview]])
 
 -- no relative numbers and number line in terminal mode
 local TermNoLine = api.nvim_create_augroup("TermNoLine", { clear = true })
 api.nvim_create_autocmd("TermOpen", { command = "setlocal nonumber norelativenumber", group = TermNoLine })
+
+-- autocmd to restore cursor position after yank
+local augroups = {}
+
+augroups.yankpost = {
+
+	save_cursor_position = {
+		event = { "VimEnter", "CursorMoved" },
+		pattern = "*",
+		callback = function()
+			cursor_pos = vim.fn.getpos(".")
+		end,
+	},
+
+	yank_restore_cursor = {
+		event = "TextYankPost",
+		pattern = "*",
+		callback = function()
+			local cursor = vim.fn.getpos(".")
+			if vim.v.event.operator == "y" then
+				vim.fn.setpos(".", cursor_pos)
+			end
+		end,
+	},
+}
+
+for group, commands in pairs(augroups) do
+	local augroup = vim.api.nvim_create_augroup("AU_" .. group, { clear = true })
+
+	for _, opts in pairs(commands) do
+		local event = opts.event
+		opts.event = nil
+		opts.group = augroup
+		vim.api.nvim_create_autocmd(event, opts)
+	end
+end
