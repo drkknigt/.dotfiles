@@ -6,7 +6,14 @@ from sys import exit
 
 def session_info():
     try:
-        session_list = check_output('tmux ls | cut -d ":" -f 1 ', shell=True).decode()
+        session_list = check_output(
+            '{ grep "attached" <(tmux ls); grep -v "attached" <(tmux ls) } | cut -d ":" -f 1',
+            shell=True,
+            executable='/usr/bin/zsh',
+        ).decode()
+        # session_list = check_output(
+        #     f'echo {sorted_list}| cut -d ":" -f 1 ', shell=True
+        # ).decode()
         active_session = (
             check_output('tmux ls | grep "attached" | cut -d ":" -f 1', shell=True)
             .decode()
@@ -14,14 +21,16 @@ def session_info():
         )
         selected_session = (
             check_output(
-                'tmux ls | cut -d ":" -f 1 | fzf --prompt="delete session: "',
+                '{ grep "attached" <(tmux ls); grep -v "attached" <(tmux ls) } | cut -d ":" -f 1 | fzf --prompt="delete session: "',
                 shell=True,
+                executable='/usr/bin/zsh',
             )
             .decode()
             .strip('\n')
         )
         if selected_session == '':
             exit('no session selected')
+        print(session_list)
         return session_list, active_session, selected_session
     except:
         exit('exit')
