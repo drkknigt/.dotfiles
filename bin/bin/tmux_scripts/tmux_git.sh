@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
 
 
-is_active=$(echo $TMUX)
 
 
 fzf_dir=$(find ~ -type d -iname "*.git"| fzf --prompt="open git dir: " )
@@ -11,7 +10,7 @@ fi
 
 git_directory=$(dirname "$fzf_dir")
 
-if [ -z "$is_active" ]; then
+if [ -z "$TMUX" ]; then
     lazygit -p $git_directory
 else
     current_session_name=$(tmux display-message -p '#S')

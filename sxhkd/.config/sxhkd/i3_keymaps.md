@@ -32,6 +32,9 @@
    - alt + a + m      -------> open vscode (code)
    - alt + a + g      -------> open glow markdown reader (code)
    - alt + a + o      -------> open lf file explorer (lfrun)
+   - alt + a + p + p  -------> capture screen with selection
+   - alt + a + p + s  -------> capture current full screen
+   - alt + a + p + f  -------> capture full desktops all the screens
 
 ## Search:  
    - alt + f  + t     -------> open applications terminal mode (rofi -show run -dpi 171)

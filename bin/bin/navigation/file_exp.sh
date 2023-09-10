@@ -14,7 +14,6 @@ else
     disk=''
 fi
 
-echo $disk
 if [ ${exp} = "f" ]
 then
     file=$(fdfind --type ${exp} . $disk $HOME | fzf --cycle --prompt='open files: ' --delimiter / --with-nth -1 --bind "tab:execute(setsid -f xdg-open {} &> /dev/null),ctrl-o:toggle-preview" --preview="batcat {} --theme='Monokai Extended Origin' --color=always" --keep-right --preview-window hidden)
