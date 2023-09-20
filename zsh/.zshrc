@@ -166,7 +166,7 @@ export HSTR_CONFIG=hicolor       # get more colors
 bindkey -s '^e ' 'tmux_create.sh 0^M'
 bindkey -s '^er' 'tmux_create.sh 1^M'
 bindkey -s '^ea' 'tmux_create.sh 2^M'
-bindkey -s '^\\j' 'tmux_create.sh 3^M'
+bindkey -s '^\\s' 'tmux_create.sh 3^M'
 bindkey -s '^e\\' 'tmux_kill.py^M'
 bindkey -s '^ey' 'tmux_session_switch.sh^M'
 bindkey -s '^eg' 'tmux_git.sh^M'
