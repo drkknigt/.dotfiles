@@ -146,7 +146,7 @@ alt + i; {i,l}
 alt + z; {g,m,h,q}
     {alacritty -t "fzfmenu" -e /home/drkknght/bin/system_scripts/governor.sh,\
         alacritty -t "fzfmenu" -o "colors.primary.background='#262626'" -e /home/drkknght/bin/system_scripts/mount.sh,\
-    alacritty -t "git"  -o "colors.primary.background='#262626'" -e /home/drkknght/bin/system_scripts/man_pages.sh,\
+    alacritty -t "git"  -o "colors.primary.background='#262626'" -o "window.opacity=0.5" -e /home/drkknght/bin/system_scripts/man_pages.sh,\
     alacritty -t "fzfmenu-dir" -o "colors.primary.background='#262620'" -e /home/drkknght/bin/system_scripts/kill.sh,\
     }
 

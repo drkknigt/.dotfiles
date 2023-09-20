@@ -133,13 +133,13 @@
    - ctrl + e + g      ------> open lazy git in prefered directory (tmux_git.sh)
    - ctrl + g          ------> open lazygit in current directory
    - ctrl + v          ------> open neovim in current directory
-   - ctrl + v          ------> open neovim in current directory
    - ctrl + \ + d      ------> open file from dotfiles in neovim in current shell
    - ctrl + \ + f      ------> serach file in current dir and open in neovim
    - ctrl + \ + h      ------> serach file in home dir and open in neovim
-   - ctrl + \ + '      ------> open lf file browser in the searched directory
-   - ctrl + P          ------> goto previous command in zsh
-   - ctrl + N          ------> goto next command in zsh
+   - ctrl + \ + j      ------> open tmux session in current directory with panes set
+   - ctrl + e + '      ------> open lf file browser in the searched directory
+   - ctrl + p          ------> goto previous command in zsh
+   - ctrl + n          ------> goto next command in zsh
    - ctrl + ]          ------> goto end of the line
    - ctrl + a          ------> goto start of the line
    - ctrl + r          ------> search the command line history
@@ -150,23 +150,26 @@
    - ctrl + e + v      ------> open a horizontal pane with current shell path as starting path 
    - ctrl + e + b      ------> break current pane into a new window
    - ctrl + e + R      ------> reload the tmux configuration
-   - ctrl + e + y      ------> join panes from windows
+   - ctrl + e + Z      ------> join panes from windows
    - ctrl + e + u      ------> split windows vertically with current shell path as starting path
    - ctrl + e + p      ------> create new window with root tmux path
    - ctrl + e + t      ------> create new window with current shell path as startin path
    - ctrl + e + o      ------> kill window or pane
-   - (ctrl + e + o)    ------> exit tmux (simultaneous key presses)
    - ctrl + e + q      ------> exit tmux 
+   - ctrl + e + /      ------> kill curent session and move to next
    - ctrl + e + z      ------> maxamize pane
-   - ( ctrl + e + n )  ------> next window
+   - ( ctrl + e + n )  ------> next session
+   - ( ctrl + e + p )  ------> previous session
    - ( ctrl + e + [ )  ------> pager mode 
    - ( ctrl + e + h )  ------> move to next window left
    - ( ctrl + e + l )  ------> move to next window right
+   - ( ctrl + e + o )  ------> kill all panes except the current one
    - (ctrl + e) H      ------> resize 5 units to left
    - (ctrl + e) L      ------> resize 5 units to right
    - (ctrl + e) J      ------> resize 5 units to bottom
    - (ctrl + e) K      ------> resize 5 units to top
    - ctrl + e + l      ------> move to next right
+   - ctrl + e + i      ------> kill current pane
    - ctrl + e + h      ------> move to next left
    - ctrl + e + j      ------> move to next bottom
    - ctrl + e + k      ------> move to next top

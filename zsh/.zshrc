@@ -166,8 +166,9 @@ export HSTR_CONFIG=hicolor       # get more colors
 bindkey -s '^e ' 'tmux_create.sh 0^M'
 bindkey -s '^er' 'tmux_create.sh 1^M'
 bindkey -s '^ea' 'tmux_create.sh 2^M'
+bindkey -s '^\\j' 'tmux_create.sh 3^M'
 bindkey -s '^e\\' 'tmux_kill.py^M'
-bindkey -s '^e\y' 'tmux_session_switch.sh^M'
+bindkey -s '^ey' 'tmux_session_switch.sh^M'
 bindkey -s '^eg' 'tmux_git.sh^M'
 
 # bindkey for git for shell
@@ -191,10 +192,15 @@ bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search
 bindkey "^]" end-of-line
 bindkey "^a" beginning-of-line
+bindkey "^j" backward-word
+bindkey "^k" forward-word
+bindkey "^ " backward-char
+bindkey "kj"  vi-cmd-mode
 
 # some editor vairables
 export EDITOR=vim
 export VISUAL=vim
+export KEYTIMEOUT=20
 
 # source /usr/share/doc/fzf/examples/completion.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

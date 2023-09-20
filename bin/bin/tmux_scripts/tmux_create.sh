@@ -14,7 +14,7 @@ elif [ "$recent_flag" = "1" ] ; then
     
 selected_directory=$(cat ~/.cache/tmux/recent_dirs | fzf --prompt="make-session: "  --bind "ctrl-f:preview-down,ctrl-u:preview-up" --bind "ctrl-o:toggle-preview" --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" --preview-window hidden)
 
-else 
+elif [ "$recent_flag" = "2" ]  ; then
     
 # create a new dir and then create a session
 project_dir=$(find ~/Projects ~/WAY ~/CS ~/CS-course -maxdepth 0 -type d | fzf --prompt='open directories: ' --bind "ctrl-o:toggle-preview" --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" --keep-right --preview-window hidden)
@@ -26,6 +26,10 @@ fi
 vared -p "Project name: " -c directory
 selected_directory="$project_dir"/"$directory"
 mkdir -p $selected_directory
+elif [ "$recent_flag" = "3" ] ; then
+    selected_directory=$(pwd)
+else
+    exit
 fi
     
 
