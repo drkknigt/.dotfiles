@@ -20,6 +20,11 @@ map("n", "<leader>lf", ":!mkdir ", { silent = false, noremap = true })
 map("n", "<leader>hv", ":set nohls<bar>call clearmatches()<cr>", { silent = true, noremap = true })
 map("n", "<leader>bo", ":Bo<cr>", { silent = true, noremap = true })
 map("n", "<leader>be", ":Be<cr>", { silent = true, noremap = true })
+map("n", "<leader>bb", ":Tc<cr>", { silent = true, noremap = true })
+map("n", "<leader>bl", ":Tl<cr>", { silent = true, noremap = true })
+map("n", "<leader>bk", ":VtrSendCtrlD<cr>", { silent = true, noremap = true })
+map("n", "<leader>bx", ":VtrSendCtrlC<cr>", { silent = true, noremap = true })
+map("n", "<leader>bc", ":Tc<cr>", { silent = false, noremap = true })
 map("i", "jk", "<Esc>", { silent = true })
 map("i", "kj", "<Esc>", { silent = true })
 map("n", "<C-k>", ":bnext<CR>", { noremap = true, silent = true })
@@ -83,3 +88,4 @@ map("n", "]e", ":s/\\w\\+/\\0,/g<bar>normal I= [<Esc>A]<Esc>I", { noremap = true
 -- visula mapping
 
 map("v", ".", ":normal .<CR>", { noremap = true, silent = true })
+map("v", "<leader>bl", ":VtrSendLinesToRunner<cr>", { silent = true, noremap = true })
