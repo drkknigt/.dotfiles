@@ -136,13 +136,18 @@
    - ctrl + \ + d      ------> open file from dotfiles in neovim in current shell
    - ctrl + \ + f      ------> serach file in current dir and open in neovim
    - ctrl + \ + h      ------> serach file in home dir and open in neovim
-   - ctrl + \ + j      ------> open tmux session in current directory with panes set
+   - ctrl + \ + g      ------> open git dir
+   - ctrl + \ + s      ------> start a tmux session in the current working dir in shell
    - ctrl + e + '      ------> open lf file browser in the searched directory
    - ctrl + p          ------> goto previous command in zsh
    - ctrl + n          ------> goto next command in zsh
    - ctrl + ]          ------> goto end of the line
+   - ctrl + j          ------> goto start of the word
+   - ctrl + k          ------> goto end of the word
+   - ctrl + space      ------> go back one char
    - ctrl + a          ------> goto start of the line
    - ctrl + r          ------> search the command line history
+   - kj                ------> enter vim mode
    
 # TMUX KEYMAPS 
    
