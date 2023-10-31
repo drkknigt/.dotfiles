@@ -159,7 +159,7 @@
    - ctrl + e + u      ------> split windows vertically with current shell path as starting path
    - ctrl + e + p      ------> create new window with root tmux path
    - ctrl + e + t      ------> create new window with current shell path as startin path
-   - ctrl + e + o      ------> kill window or pane
+   - ctrl + e + o      ------> kill window 
    - ctrl + e + q      ------> exit tmux 
    - ctrl + e + /      ------> kill curent session and move to next
    - ctrl + e + z      ------> maxamize pane
