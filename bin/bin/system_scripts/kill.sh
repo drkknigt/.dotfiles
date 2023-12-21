@@ -2,6 +2,7 @@
 # source /home/drkknght/.zshrc
 export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
+export PATH=/home/drkknght/.local/bin/:$PATH
 pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
 
 if [ "x$pid" != "x" ]

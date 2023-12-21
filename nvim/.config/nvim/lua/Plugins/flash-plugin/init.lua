@@ -15,9 +15,9 @@ local M = {
 		-- * fuzzy: fuzzy search
 		-- * fun(str): custom function that returns a pattern
 		--   For example, to only match at the beginning of a word:
-		mode = function(str)
-			return "[a-zA-z_\\-]\\?\\<[a-zA-z_\\-]\\?" .. str
-		end,
+		-- mode = function(str)
+		-- 	return "[a-zA-z_\\-]\\?\\<[a-zA-z_\\-]\\?" .. str
+		-- end,
 		-- mode = function(pattern)
 		-- 	-- remove leading dot
 		-- 	if pattern:sub(1, 1) == "." then
@@ -26,7 +26,7 @@ local M = {
 		-- 	-- return word pattern and proper skip pattern
 		-- 	return ([[\<%s\w*\>]]):format(pattern), ([[\<%s]]):format(pattern)
 		-- end,
-		-- mode = "search",
+		mode = "search",
 		-- behave like `incsearch`
 		incremental = false,
 		-- Excluded filetypes and custom window filters

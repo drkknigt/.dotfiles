@@ -2,6 +2,7 @@
 # source /home/drkknght/.zshrc
 export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
+export PATH=/home/drkknght/.local/bin/:$PATH
 MAN="/usr/bin/man"
 if [ -n "$1" ]; then
     $MAN "$@"

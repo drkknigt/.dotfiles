@@ -75,7 +75,7 @@
 -- Please see https://github.com/nvim-tree/nvim-tree.lua/wiki/Migrating-To-on_attach for assistance in migrating.
 --
 
-local function on_attach(bufnr)
+local function my_on_attach(bufnr)
 	local api = require("nvim-tree.api")
 
 	local function opts(desc)
@@ -152,22 +152,22 @@ local function on_attach(bufnr)
 	vim.keymap.set("n", "z", api.node.open.horizontal, opts("Open: Horizontal Split"))
 end
 
-local status_ok, nvim_tree = pcall(require, "nvim-tree")
-if not status_ok then
-	return
-end
+-- local status_ok, nvim_tree = pcall(require, "nvim-tree")
+-- if not status_ok then
+-- 	return
+-- end
+--
+-- local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
+-- if not config_status_ok then
+-- 	return
+-- end
+--
+-- local tree_cb = nvim_tree_config.nvim_tree_callback
 
-local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
-if not config_status_ok then
-	return
-end
-
-local tree_cb = nvim_tree_config.nvim_tree_callback
-
-nvim_tree.setup({
+require("nvim-tree").setup({
 	disable_netrw = true,
 	respect_buf_cwd = true,
-	on_attach = on_attach,
+	on_attach = my_on_attach,
 	hijack_netrw = true,
 	sort_by = "name",
 	-- open_on_setup = false,
@@ -191,6 +191,7 @@ nvim_tree.setup({
 	--   warning
 	--   lightbulb
 	renderer = {
+		root_folder_label = false,
 		indent_markers = {
 			enable = false,
 			icons = {
@@ -260,7 +261,6 @@ nvim_tree.setup({
 		width = 50,
 		signcolumn = "yes",
 		-- height = 30,
-		hide_root_folder = false,
 		side = "left",
 		-- auto_resize = true,
 		-- mappings = {

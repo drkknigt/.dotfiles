@@ -13,35 +13,55 @@ map(
 	"n",
 	"<leader>hh",
 	"md<bar>:call matchadd('LineHighlight','\\%'.line('.').'l')<cr>",
-	{ silent = true, noremap = true }
+	{ silent = true, noremap = true, desc = "create a local mark with d and highlight line" }
 )
-map("n", "<leader>lc", ":!touch ", { silent = false, noremap = true })
-map("n", "<leader>lf", ":!mkdir ", { silent = false, noremap = true })
-map("n", "<leader>hv", ":set nohls<bar>call clearmatches()<cr>", { silent = true, noremap = true })
-map("n", "<leader>bo", ":Bo<cr>", { silent = true, noremap = true })
-map("n", "<leader>be", ":Be<cr>", { silent = true, noremap = true })
-map("n", "<leader>bb", ":Tc<cr>", { silent = true, noremap = true })
-map("n", "<leader>bl", ":Tl<cr>", { silent = true, noremap = true })
-map("n", "<leader>bk", ":VtrSendCtrlD<cr>", { silent = true, noremap = true })
-map("n", "<leader>bx", ":VtrSendCtrlC<cr>", { silent = true, noremap = true })
-map("n", "<leader>bc", ":Tc<cr>", { silent = false, noremap = true })
+map("n", "<leader>lc", ":!touch ", { silent = false, noremap = true, desc = "create a file with !touch" })
+map("n", "<leader>lf", ":!mkdir ", { silent = false, noremap = true, desc = "create a dir with !mkdir" })
+map(
+	"n",
+	"<leader>hv",
+	":set nohls<bar>call clearmatches()<cr>",
+	{ silent = true, noremap = true, desc = "clear highlight created by <leader>hh" }
+)
+map("n", "<leader>bo", ":Bo<cr>", { silent = true, noremap = true, desc = "Delete all buffers except current one" })
+map("n", "<leader>be", ":Be<cr>", { silent = true, noremap = true, desc = "Delete all empty buffers" })
+map("n", "<leader>bb", ":Tc<cr>", { silent = true, noremap = true, desc = "Run commands in tmux pane" })
+map("n", "<leader>br", ":Compile ", { silent = false, noremap = true, desc = "Run commands in nvim vertical window" })
+map(
+	"n",
+	"<leader>bl",
+	":Tl<cr>",
+	{ silent = true, noremap = true, desc = "Run current line under cursor in tmux pane" }
+)
+map("n", "<leader>bk", ":VtrSendCtrlD<cr>", { silent = true, noremap = true, desc = "send ctrd-d to tmux pane" })
+map("n", "<leader>bx", ":VtrSendCtrlC<cr>", { silent = true, noremap = true, desc = "send ctrd-c to tmux pane" })
 map("i", "jk", "<Esc>", { silent = true })
 map("i", "kj", "<Esc>", { silent = true })
 map("n", "<C-k>", ":bnext<CR>", { noremap = true, silent = true })
 map("n", "<C-j>", ":bprevious<CR>", { noremap = true, silent = true })
-map("n", "<leader>d", ":bd!<CR>", { noremap = true, silent = true })
-map("n", "<leader>w", ":w<CR>", { noremap = true, silent = true })
-map("n", "<leader>,", ":source /home/drkknght/.textedit/nvim/early.vim<bar>Be<CR>", { noremap = true, silent = true })
-map("n", "<leader>k", "K", { noremap = true, silent = true })
-map("n", "<leader>c", ":mks! $HOME/.textedit/nvim/early.vim<bar>qall!<CR>", { noremap = true, silent = true })
-map("n", "<leader>y", 'magg"+yG`a', { noremap = true, silent = true })
+map("n", "<leader>d", ":bd!<CR>", { noremap = true, silent = true, desc = "delete buffer forcefully" })
+map("n", "<leader>w", ":w<CR>", { noremap = true, silent = true, desc = "save buffer" })
+map(
+	"n",
+	"<leader>,",
+	":source /home/drkknght/.textedit/nvim/early.vim<bar>Be<CR>",
+	{ noremap = true, silent = true, desc = "restore last session created before exiting" }
+)
+map("n", "<leader>k", "K", { noremap = true, silent = true, desc = "open man page for keyword under cursor" })
+map(
+	"n",
+	"<leader>c",
+	":mks! $HOME/.textedit/nvim/early.vim<bar>qall!<CR>",
+	{ noremap = true, silent = true, desc = "exit vim but also save current session before exiting" }
+)
+map("n", "<leader>y", 'magg"+yG`a', { noremap = true, silent = true, desc = "copy full file" })
 map("n", "n", "nzznN", { noremap = true, silent = true })
 map("n", "N", "NzznN", { noremap = true, silent = true })
 map("x", "J", ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
 map("x", "K", ":move '<-2<CR>gv-gv", { noremap = true, silent = true })
 map("v", ">", ">gv", { noremap = true, silent = true })
 map("v", "<", "<gv", { noremap = true, silent = true })
-map("n", "<leader>z", ":e ~/.config/nvim/init.lua<cr>", { noremap = true, silent = true })
+map("n", "<leader>z", ":e ~/.config/nvim/init.lua<cr>", { noremap = true, silent = true, desc = "open init.lua" })
 
 -- jump keymaps
 map("n", "<leader>n)", "/)<cr>", { noremap = true, silent = true })
@@ -80,8 +100,8 @@ map("n", "<leader>o", "O<Esc>jo<Esc>k", { noremap = true, silent = true })
 map("n", "<leader>O", "O<Esc>j", { noremap = true, silent = true })
 map("n", "<leader>nv", "/\\w\\+\\s*=\\s*<cr>", { noremap = true, silent = true })
 map("n", "<leader>mv", "?\\w\\+\\s*=\\s*<cr>", { noremap = true, silent = true })
-map("n", "]a", ":s/\\w\\+/'\\0',/g<bar>normal I= [<Esc>A]<Esc>I", { noremap = true, silent = true })
-map("n", "]e", ":s/\\w\\+/\\0,/g<bar>normal I= [<Esc>A]<Esc>I", { noremap = true, silent = true })
+map("n", "]a", ":s/[a-zA-Z1-9\\-_0\\+]\\+/'\\0',/g<bar>normal I= [<Esc>A]<Esc>I", { noremap = true, silent = true })
+map("n", "]e", ":s/[a-zA-Z1-9\\-_0\\+]\\+/\\0,/g<bar>normal I= [<Esc>A]<Esc>I", { noremap = true, silent = true })
 
 -- terminal keymaps
 

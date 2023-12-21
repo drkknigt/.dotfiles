@@ -9,6 +9,7 @@ export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
 export PATH=/home/drkknght/go/bin/:$PATH
 export PATH=/home/drkknght/usr/bin/:$PATH
+export PATH=/home/drkknght/.local/bin/:$PATH
 
 # direcotry to open lf in
 

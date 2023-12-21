@@ -50,7 +50,7 @@ separator-foreground = ${colors.disabled}
 
 font-0 = FiraCode Nerd Font:pixelsize=9;1
 
-modules-left = xworkspaces xwindow pulseaudio governor temp fanspeed
+modules-left = xworkspaces xwindow pulseaudio governor energy temp fanspeed
 modules-right =  backlight Bat battery memory cpu wlan  date menu-apps
 
 cursor-click = pointer
@@ -404,7 +404,17 @@ format-underline = #f5f5f5`
 
 type = custom/script
 
-exec = cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor 
+exec = cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor | sed -e 's/.*/&-governor/g'
+
+interval = 5
+
+format-underline = #f5f5f5`
+
+[module/energy]
+
+type = custom/script
+
+exec = if [ -f /sys/devices/system/cpu/cpu0/cpufreq/energy_performance_preference ]; then  cat /sys/devices/system/cpu/cpu0/cpufreq/energy_performance_preference | sed -e 's/.*/&-energy/g' ; else echo "" ; fi
 
 interval = 5
 

@@ -2,6 +2,7 @@
 # source /home/drkknght/.zshrc
 export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
+export PATH=/home/drkknght/.local/bin/:$PATH
 
 if [ $1 = '0' ]
 then
@@ -31,6 +32,7 @@ then
     echo 'empty'
     exit
 fi
+echo "$curret" > /home/drkknght/.cache/wallpaper.bg
 
 if [ ${monitor1} = 0 ]
 then

@@ -3,6 +3,7 @@
 
 export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
+export PATH=/home/drkknght/.local/bin/:$PATH
 mkdir ~/disk 2> /dev/null
 
 selected_device=$(lsblk -l | fzf --prompt="mount disks: " | cut -d " " -f 1)

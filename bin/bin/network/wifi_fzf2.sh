@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 source ~/.zshrc
 
+export PATH=/home/drkknght/.local/bin/:$PATH
 has() {
   local verbose=false
   if [[ $1 == '-v' ]]; then

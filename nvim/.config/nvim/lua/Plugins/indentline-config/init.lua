@@ -7,7 +7,34 @@
 -- vim.cmd([[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]])
 vim.cmd([[highlight IndentBlanklineContextChar guifg=yellow gui=nocombine]])
 
-require("indent_blankline").setup({
+require("ibl").setup({
+	indent = {
+		char = "┊",
+	},
+	-- scope = {
+	-- 	enabled = true,
+	-- },
+	whitespace = {
+		remove_blankline_trail = true,
+	},
+	exclude = {
+		filetypes = {
+			"lspinfo",
+			"packer",
+			"checkhealth",
+			"help",
+			"man",
+			"",
+		},
+	},
+	scope = {
+		enabled = true,
+		-- highlight = { "SpecialKey", "SpecialKey", "SpecialKey" },
+		show_start = false,
+		include = {
+			node_type = { ["*"] = { "*" } },
+		},
+	},
 	-- char_highlight_list = {
 	--     "IndentBlanklineIndent1",
 	--     "IndentBlanklineIndent2",
@@ -17,6 +44,6 @@ require("indent_blankline").setup({
 	--     "IndentBlanklineIndent6",
 	-- },
 	-- show_current_blankline = " ",
-	show_current_context = true,
+	-- show_current_context = true,
 	-- show_current_context_start = false,
 })

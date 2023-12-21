@@ -3,7 +3,7 @@
 
 
 
-fzf_dir=$(find ~ -type d -iname "*.git"| fzf --prompt="open git dir: " )
+fzf_dir=$(find ~ -maxdepth 8 -type d -iname "*.git"| fzf --prompt="open git dir: " )
 if [ -z "$fzf_dir" ] ; then
     exit
 fi

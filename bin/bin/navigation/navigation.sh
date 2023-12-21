@@ -3,6 +3,7 @@
 # source ~/.zshrc
 export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
+export PATH=/home/drkknght/.local/bin/:$PATH
 
 dotfile_flag=$1
 

@@ -37,7 +37,10 @@ fi
 if [ -z "$selected_directory" ]; then clear;exit 0;fi
 
 # create a session name for session
-session_name=$(basename $selected_directory | cut -d '.' -f 2)
+
+name_first_part=$(basename $(dirname "$selected_directory"))
+name_second_part=$(basename "$selected_directory" | tr "." "_")
+session_name="${name_first_part}/${name_second_part}"
 
 # check if session is already running
 if [ "$session_name" = "$(tmux ls 2> /dev/null | grep 'attached' | cut -d ':' -f 1)" ];
@@ -47,7 +50,7 @@ then
 fi
 
 # check if tmux already as session you are about to create
-tmux has -t $session_name > /dev/null
+tmux has -t "$session_name" > /dev/null
 if [ "0" = "$?" ]; then echo "session with this directory already running"; exit 0 ; fi
 
 # check if selected directory is valid

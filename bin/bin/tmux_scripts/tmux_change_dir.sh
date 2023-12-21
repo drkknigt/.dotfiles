@@ -10,7 +10,7 @@ if [ -z "$is_active" ] ; then
     exit
 fi
 
-direc=$(find ~ -type d |  fzf --cycle --prompt='change directory: ' --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" )
+direc=$(find ~ -maxdepth 6 -type d |  fzf --cycle --prompt='change directory: ' --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" )
 if [ -z "$direc" ]; then
     exit
 fi
