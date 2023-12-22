@@ -1,4 +1,4 @@
-# I3WM KEYMAPS: 
+# I3WM & SWAY KEYMAPS: 
                                  
 ## Volume:  
    - alt + ]           ----->   volume up (pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status )
@@ -14,6 +14,7 @@
    - alt + s + 2       ----->  scale monitor 2  (scale.sh 1)
    - alt + s + l       ----->  change monitor 1 background (change_background.sh 0)
    - alt + s + r       ----->  change monitor 1 background (change_background.sh 1)
+   - alt + s + d       ----->  change sddm display manager background
    - alt + "+"         ----->  screen brightness up (brightnessctl set +3%)
    - alt + "-"         ----->  screen brightness down (brightnessctl set +3%)
 
@@ -33,8 +34,10 @@
    - alt + a + g      -------> open glow markdown reader (code)
    - alt + a + o      -------> open lf file explorer (lfrun)
    - alt + a + p + p  -------> capture screen with selection
-   - alt + a + p + s  -------> capture current full screen
+   - alt + a + p + s  -------> capture current output screen
    - alt + a + p + f  -------> capture full desktops all the screens
+   - alt + a + p + w  -------> capture selected window
+   - alt + a + p + a  -------> capture active window
 
 ## Search:  
    - alt + f  + t     -------> open applications terminal mode (rofi -show run -dpi 171)
@@ -113,6 +116,7 @@
 ## Network commands: 
    - alt + i + i       ------> toggle wifi (wifi_connect.sh)
    - alt + i + l       ------> change wifi connection (wifi_fzf.sh)
+   - alt + i + o       ------> open network connection editor
 
 ## User scripts:  
    - alt + z + g       ------> change cpu governor (governor.sh)
@@ -122,6 +126,9 @@
    - alt + z + k       ------> show keymaps for i3wm (keymaps.sh)
    - alt + z + n       ------> open notes (notes.sh)
    - alt + z + x       ------> send mouse pointer to bottom (xdotool mousemove 800 1920 )
+   - alt + z + e       ------> change cpu energe performance preference
+   - alt + z + i       ------> info on cpu governor and driver
+   - alt + z + w       ------> change wofi / rofi theme
    
 # ZSH KEYMAPS
 
