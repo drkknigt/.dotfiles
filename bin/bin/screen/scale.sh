@@ -2,7 +2,7 @@
 # source ~/.zshrc
 export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
-export PATH=/home/drkknght/.local/bin/:$PATH
+export PATH=$HOME/.local/bin/:$PATH
 
 if [ $1 = '0' ]
 then
@@ -25,7 +25,7 @@ if [[ -n $zoom_options ]]; then
     
   zoom_percentage=$(( -1 * $zoom_options ))
   scale_factor=$(echo "scale=1; (100+$zoom_percentage) / 100" | bc)
-  xrandr --output eDP --scale "$scale_factorx$scale_factor"
+  xrandr --output eDP --scale "$scale_factor"
   
 fi
 

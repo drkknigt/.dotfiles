@@ -122,23 +122,9 @@ export NVM_DIR="$HOME/.nvm"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-PATH=/home/drkknght/bin:$PATH
+PATH=$HOME/bin:$PATH
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/drkknght/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/drkknght/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/drkknght/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/drkknght/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-if [ -d /home/drkknght/.cargo/ ]; then
+if [ -d $HOME/.cargo/ ]; then
     . "$HOME/.cargo/env"
 fi
 
@@ -151,10 +137,10 @@ eval "$(pyenv init -)"
 set -o vi
 
 if [ -d "$HOME/usr/bin" ] ; then
-     PATH=/home/drkknght/usr/bin:$PATH
+     PATH=$HOME/usr/bin:$PATH
 fi
 if [ -d "$HOME/.local/bin" ] ; then
-     PATH=/home/drkknght/.local/bin:$PATH
+     PATH=$HOME/.local/bin:$PATH
 fi
 if [ -d "/usr/local/go/bin" ] ; then
      PATH=/usr/local/go/bin:$PATH

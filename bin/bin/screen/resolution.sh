@@ -2,7 +2,7 @@
 # source ~/.zshrc
 export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
-export PATH=/home/drkknght/.local/bin/:$PATH
+export PATH=$HOME/.local/bin/:$PATH
 
 second_monitor=$(xrandr | grep "\bconnected\b" | grep "\bprimary\b" -v | cut -d" " -f1)
 first_monitor=$(xrandr | grep "\bconnected\b" | grep "\bprimary\b" | cut -d" " -f1)
@@ -25,5 +25,5 @@ exit
 fi
 echo "hi"
 xrandr --addmode "$second_monitor" "$resolution_value"
-xrandr --output "$second_monitor" --right-of "$first_monitor" --mode "$resolution_value" --rate 60
+xrandr --output "$second_monitor" --right-of "$first_monitor" --mode "$resolution_value" 
 # ~/.fehbg

@@ -2,7 +2,7 @@
 # source ~/.zshrc
 export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
-export PATH=/home/drkknght/.local/bin/:$PATH
+export PATH=$HOME/.local/bin/:$PATH
 
 if [ $1 = '0' ]
 then

@@ -2,7 +2,7 @@
 # source ~/.zshrc
 export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
-export PATH=/home/drkknght/.local/bin/:$PATH
+export PATH=$HOME/.local/bin/:$PATH
 
 first_monitor=$(swaymsg -t get_outputs | jq -r '.[].name' | sed -n 1,1p)
 second_monitor=$(swaymsg -t get_outputs | jq -r '.[].name' | sed -n 2,2p)

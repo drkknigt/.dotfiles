@@ -17,6 +17,7 @@ echo "Cpu-driver : $cpu_driver" > ~/cpu_info.txt
 echo "Amd-pstate-status : $amd_pstate_status" >> ~/cpu_info.txt
 echo "Cpu-Governor : $cpu_governor" >> ~/cpu_info.txt
 echo "cpu-energy-performance-preference : $cpu_energy_performance_preference" >> ~/cpu_info.txt
+echo $PATH >> ~/cpu_info.txt
 
 /home/drkknght/usr/bin/glow -p ~/cpu_info.txt
 

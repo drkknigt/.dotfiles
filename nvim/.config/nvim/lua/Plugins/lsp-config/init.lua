@@ -372,10 +372,14 @@ require("lspconfig").html.setup({
 	flags = { debounce_text_changes = 150 },
 	capabilities = capabilities,
 })
+
+home_dir = vim.fn.expand("~")
+extraPathsPython = home_dir .. "/.local/lib/python3.10/site-packages/"
+
 require("lspconfig").jedi_language_server.setup({
 	init_options = {
 		workspace = {
-			extraPaths = { "/home/drkknght/.local/lib/python3.10/site-packages/" },
+			extraPaths = { extraPathsPython },
 			symbols = {
 				ignoreFolders = { "__pycache__", ".pytest_cache" },
 			},

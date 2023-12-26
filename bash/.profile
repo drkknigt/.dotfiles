@@ -28,16 +28,16 @@ fi
 
 export PATH="$HOME/.poetry/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
-if [ -d /home/drkknght/.cargo/ ]; then
+if [ -d $HOME/.cargo/ ]; then
     . "$HOME/.cargo/env"
 fi
 
 
 if [ -d "$HOME/usr/bin" ] ; then
-     PATH=/home/drkknght/usr/bin:$PATH
+     PATH=$HOME/usr/bin:$PATH
 fi
 if [ -d "$HOME/.local/bin" ] ; then
-     PATH=/home/drkknght/.local/bin:$PATH
+     PATH=$HOME/.local/bin:$PATH
 fi
 if [ -d "/usr/local/go/bin" ] ; then
      PATH=/usr/local/go/bin:$PATH

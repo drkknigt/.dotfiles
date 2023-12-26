@@ -103,17 +103,17 @@ export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
 
 # various user paths added
-PATH=/home/drkknght/bin/*:$PATH
-PATH=/home/drkknght/usr/bin:$PATH
+PATH=$HOME/bin/*:$PATH
+PATH=$HOME/usr/bin:$PATH
 
 # config for nvim
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-PATH=/home/drkknght/.local/bin:$PATH
+PATH=$HOME/.local/bin:$PATH
 PATH=/usr/local/go/bin:$PATH
-PATH=/home/drkknght/go/bin:$PATH
+PATH=$HOME/go/bin:$PATH
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -211,7 +211,7 @@ LANG="en_US.utf8"
 export LANG
 
 # alias for the luamake
-alias luamake=/home/drkknght/tools/lua-language-server/3rd/luamake/luamake
+alias luamake=$HOME/tools/lua-language-server/3rd/luamake/luamake
 
 # start ssh agent 
 alias ssha='eval $(ssh-agent) && ssh-add'
@@ -246,7 +246,7 @@ cdd1(){
 # change directory inside shell
 
 cdd(){
-    direc=$(fdfind -H --type d . "/home/drkknght/" |  fzf --cycle --prompt='change directory: ' --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" )
+    direc=$(fdfind -H --type d . "$HOME" |  fzf --cycle --prompt='change directory: ' --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" )
         if [  -n "$direc" ] ; then
             cd $direc
         fi

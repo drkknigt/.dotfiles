@@ -44,7 +44,7 @@ map("n", "<leader>w", ":w<CR>", { noremap = true, silent = true, desc = "save bu
 map(
 	"n",
 	"<leader>,",
-	":source /home/drkknght/.textedit/nvim/early.vim<bar>Be<CR>",
+	":source $HOME/.textedit/nvim/early.vim<bar>Be<CR>",
 	{ noremap = true, silent = true, desc = "restore last session created before exiting" }
 )
 map("n", "<leader>k", "K", { noremap = true, silent = true, desc = "open man page for keyword under cursor" })

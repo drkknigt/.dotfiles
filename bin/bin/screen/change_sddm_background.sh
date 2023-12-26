@@ -1,8 +1,7 @@
 #!/usr/bin/env zsh
-# source /home/drkknght/.zshrc
 export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
-export PATH=/home/drkknght/.local/bin/:$PATH
+export PATH=$HOME/.local/bin/:$PATH
 
 choosen_wallpaper="$(fdfind '.+\.(jpg|jpeg)$'  ~/Pictures  | fzf --cycle --prompt='Wallpaper for sddm: ' --bind "tab:execute(swayimg {} >/dev/null)")"
 if [ -z "$choosen_wallpaper" ]; then
