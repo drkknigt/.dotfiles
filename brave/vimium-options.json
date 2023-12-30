@@ -1,5 +1,7 @@
 {
-  "keyMappings": "# Insert your preferred key mappings here.\nmap ' Marks.activateGotoMode\nmap <C-j> previousTab\nmap <C-k> nextTab",
+  "keyMappings": "# Insert your preferred key mappings here.\nmap ' Marks.activateGotoMode\nmap <C-j> previousTab\nmap <C-k> nextTab\nmap <C-6> visitPreviousTab\nmap <C-m> toggleMuteTab",
+  "linkHintCharacters": "sadfjklewcmpghior",
   "newTabUrl": "https://www.google.com",
-  "settingsVersion": "2.0.5"
+  "settingsVersion": "2.0.5",
+  "userDefinedLinkHintCss": "div > .vimiumHintMarker {\n/* linkhint boxes */\nbackground: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFF785),\n  color-stop(100%,#FFFFFF));\nborder: 1px solid #FFFFFF;\n}\n\ndiv > .vimiumHintMarker span {\n/* linkhint text */\ncolor: black;\nfont-weight: bold;\nfont-size: 12px;\n}\n\ndiv > .vimiumHintMarker > .matchingCharacter {\n}"
 }
