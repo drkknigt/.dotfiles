@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+PATH=/home/drkknght/.pyenv/shims:/home/drkknght/.pyenv/bin:/usr/local/go/bin:/home/drkknght/.poetry/bin:/home/drkknght/go/bin:/usr/local/go/bin:/home/drkknght/.local/bin:/home/drkknght/usr/bin:/home/drkknght/bin/navigation:/home/drkknght/bin/network:/home/drkknght/bin/screen:/home/drkknght/bin/system_scripts:/home/drkknght/bin/tmux_scripts:/home/drkknght/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$PATH
+WLR_DRM_DEVICES=/dev/dri/card0
+WLC_BG="0"
