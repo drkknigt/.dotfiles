@@ -73,14 +73,19 @@ foreground = "#fdf4c1"
 
 [env]
 TERM = "xterm-256color"
+WAYLAND_DISPLAY = ''
 
 [selection]
 save_to_clipboard = true
 
 [window]
 dynamic_padding = true
-opacity = 0.6
+opacity = 0.8
 
 [window.padding]
 x = 4
 y = 4
+
+[window.dimensions]
+columns = 240
+lines = 160
