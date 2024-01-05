@@ -3,5 +3,5 @@
   "linkHintCharacters": "sadfjklewcmpghior",
   "newTabUrl": "https://www.google.com",
   "settingsVersion": "2.0.5",
-  "userDefinedLinkHintCss": "div > .vimiumHintMarker {\n/* linkhint boxes */\nbackground: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ED9F2B),\n  color-stop(100%,#ED9F2B));\nborder: 1px solid #ED9F2B;\n}\n\ndiv > .vimiumHintMarker span {\n/* linkhint text */\ncolor: black;\nfont-weight: bold;\nfont-size: 15px;\n}\n\ndiv > .vimiumHintMarker > .matchingCharacter {\n}"
+  "userDefinedLinkHintCss": "div > .vimiumHintMarker {\n/* linkhint boxes */\nbackground: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ED9F2B),\n  color-stop(100%,#ED9F2B));\nborder: 1px solid #ED9F2B;\n}\n\ndiv > .vimiumHintMarker span {\n/* linkhint text */\ncolor: black;\nfont-weight: bold;\nfont-size: 14px;\n}\n\ndiv > .vimiumHintMarker > .matchingCharacter {\n}"
 }
