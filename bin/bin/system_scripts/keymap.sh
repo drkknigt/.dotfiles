@@ -8,4 +8,4 @@
 #     | tr -s ' ' \
 #     | fzf --prompt="keymaps for i3: "
 
-/home/drkknght/usr/bin/glow -p ~/.dotfiles/sxhkd/.config/sxhkd/i3_keymaps.md
+glow -p ~/.dotfiles/sxhkd/.config/sxhkd/i3_keymaps.md

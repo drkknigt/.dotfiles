@@ -17,9 +17,11 @@ echo "Cpu-driver : $cpu_driver" > ~/cpu_info.txt
 echo "Amd-pstate-status : $amd_pstate_status" >> ~/cpu_info.txt
 echo "Cpu-Governor : $cpu_governor" >> ~/cpu_info.txt
 echo "cpu-energy-performance-preference : $cpu_energy_performance_preference" >> ~/cpu_info.txt
-echo $PATH >> ~/cpu_info.txt
+echo "Kernel in use : $(uname -s) $(uname -r) $(uname -v)" >> ~/cpu_info.txt
+echo "\nPATHS ARE AS FOLLOWS: \n" >> ~/cpu_info.txt
+echo $PATH | tr ":" "\n" | nl -w 2 -s ": " >> ~/cpu_info.txt
 
-/home/drkknght/usr/bin/glow -p ~/cpu_info.txt
+glow -p ~/cpu_info.txt
 
 
 
