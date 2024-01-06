@@ -23,14 +23,14 @@ XF86AudioMute
 # Set mode for screen
     
 alt + s; {s,1,2,l}
-    {alacritty -t "xmount" -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/screen/resolution.sh,\
-    alacritty -t "xmount"  -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/screen/scale.sh 0,\
-    alacritty -t "xmount"  -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/screen/scale.sh 1,\
-    alacritty -t "xfzfmenu"  -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/screen/change_background.sh 0,\
+    {alacritty -t "xmount" -o "colors.primary.background='#262626'"  -e $HOME/bin/screen/resolution.sh,\
+    alacritty -t "xmount"  -o "colors.primary.background='#262626'"  -e $HOME/bin/screen/scale.sh 0,\
+    alacritty -t "xmount"  -o "colors.primary.background='#262626'"  -e $HOME/bin/screen/scale.sh 1,\
+    alacritty -t "xfzfmenu"  -o "colors.primary.background='#262626'"  -e $HOME/bin/screen/change_background.sh 0,\
     }
 
 alt + s ; r
-    alacritty -t "xfzfmenu"  -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/screen/change_background.sh 1
+    alacritty -t "xfzfmenu"  -o "colors.primary.background='#262626'"  -e $HOME/bin/screen/change_background.sh 1
 
 alt + {equal,minus}
       {brightnessctl set +3%,brightnessctl set 3%-}
@@ -45,7 +45,7 @@ alt + a; {c, v, b, f, t, n, q, h, l,k,m,g,o}
     {kcolorchooser,vlc,brave-browser,firefox,telegram-desktop,nemo,\
     alacritty -t "xcal"  -o "colors.primary.background='#262626'"  -o window.opacity=0.8 -o font.size=13 -e qalc,\
     alacritty -t "xgit"  -o "colors.primary.background='#262626'"  -e htop,\
-    i3lock -c "000000",kitty,code ,alacritty -t "xgit" -o "colors.primary.background='#262626'" -e glow,alacritty -t "xlf" -e /home/drkknght/bin/navigation/file_manager.sh 2}
+    i3lock -c "000000",kitty,code ,alacritty -t "xgit" -o "colors.primary.background='#262626'" -e glow,alacritty -t "xlf" -e $HOME/bin/navigation/file_manager.sh 2}
 
 alt + a; p ; {p,s,f}
     {flameshot gui,flameshot screen,flameshot full}
@@ -55,8 +55,8 @@ alt + a; p ; {p,s,f}
 
 alt + f; {t,a,w,f,d,g}
        {rofi -show run -dpi 171,rofi -dpi 171 -show drun -show-icons,rofi -dpi 171 -show,\
-       alacritty -t "xfzfmenu-dir"  -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/navigation/file_exp.sh f,\
-       alacritty -t "xfzfmenu-dir"  -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/navigation/file_exp.sh d, alacritty -t "xgit"  -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/navigation/lazy_git.sh}
+       alacritty -t "xfzfmenu-dir"  -o "colors.primary.background='#262626'"  -e $HOME/bin/navigation/file_exp.sh f,\
+       alacritty -t "xfzfmenu-dir"  -o "colors.primary.background='#262626'"  -e $HOME/bin/navigation/file_exp.sh d, alacritty -t "xgit"  -o "colors.primary.background='#262626'"  -e $HOME/bin/navigation/lazy_git.sh}
 
 # -------------------------------------------------------------
 
@@ -135,8 +135,8 @@ button9
 # set net mode
 
 alt + i; {i,l}
-    {/home/drkknght/bin/network/wifi_connect.sh,\
-    alacritty -t "xfzfmenu"  -o "colors.primary.background='#262626'"  -e /home/drkknght/bin/network/wifi_fzf.sh}
+    {$HOME/bin/network/wifi_connect.sh,\
+    alacritty -t "xfzfmenu"  -o "colors.primary.background='#262626'"  -e $HOME/bin/network/wifi_fzf.sh}
 
 # --------------------------------------------------------------------
 
@@ -144,25 +144,25 @@ alt + i; {i,l}
 # set user mode 
 
 alt + z; {g,m,h,q}
-    {alacritty -t "xfzfmenu" -e /home/drkknght/bin/system_scripts/governor.sh,\
-        alacritty -t "xfzfmenu" -o "colors.primary.background='#262626'" -e /home/drkknght/bin/system_scripts/mount.sh,\
-    alacritty -t "xgit"  -o "colors.primary.background='#262626'" -o "window.opacity=0.5" -e /home/drkknght/bin/system_scripts/man_pages.sh,\
-    alacritty -t "xfzfmenu-dir" -o "colors.primary.background='#262620'" -e /home/drkknght/bin/system_scripts/kill.sh,\
+    {alacritty -t "xfzfmenu" -e $HOME/bin/system_scripts/governor.sh,\
+        alacritty -t "xfzfmenu" -o "colors.primary.background='#262626'" -e $HOME/bin/system_scripts/mount.sh,\
+    alacritty -t "xgit"  -o "colors.primary.background='#262626'" -o "window.opacity=0.5" -e $HOME/bin/system_scripts/man_pages.sh,\
+    alacritty -t "xfzfmenu-dir" -o "colors.primary.background='#262620'" -e $HOME/bin/system_scripts/kill.sh,\
     }
 
 alt + z; k
-    alacritty -t "xkeymaps" -o "colors.primary.background='#000020'" -o "window.opacity=0.9" -e /home/drkknght/bin/system_scripts/keymap.sh
+    alacritty -t "xkeymaps" -o "colors.primary.background='#000020'" -o "window.opacity=0.9" -e $HOME/bin/system_scripts/keymap.sh
 alt + z; n
-    alacritty -t "xotes"  -e /home/drkknght/bin/system_scripts/notes.sh
+    alacritty -t "xotes"  -e $HOME/bin/system_scripts/notes.sh
     
 alt + z; x
     xdotool mousemove 800 1920
 
 alt + z ; e
-  alacritty -t "xfzfmenu" -e /home/drkknght/bin/system_scripts/scaling_energy.sh
+  alacritty -t "xfzfmenu" -e $HOME/bin/system_scripts/scaling_energy.sh
 
 alt + z ; i
-  alacritty  -t "xkeymaps" -o "colors.primary.background='#000020'" -o "window.opacity=0.9"  -e /home/drkknght/bin/system_scripts/cpu_info.sh
+  alacritty  -t "xkeymaps" -o "colors.primary.background='#000020'" -o "window.opacity=0.9"  -e $HOME/bin/system_scripts/cpu_info.sh
 
 
 

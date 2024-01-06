@@ -444,7 +444,7 @@ require("lspconfig").ansiblels.setup({
 -- 				useLibraryCodeForTypes = true,
 -- 				-- typeCheckingMode = "strict",
 -- 				-- loglevel = { "Error" },
--- 				extraPaths = { "/home/drkknght/.local/lib/python3.10/site-packages/" },
+-- 				extraPaths = { "$HOME/.local/lib/python3.10/site-packages/" },
 -- 			},
 -- 		},
 -- 	},

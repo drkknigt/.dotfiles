@@ -28,7 +28,7 @@ def main():
     directories = ' '.join(
         [
             # '~/bin',
-            # '/home/drkknght',
+            # '$HOME',
             # '~/path',
             # '/home',
             # '~/path/PATH_1/programming-1,python/projcts/',
