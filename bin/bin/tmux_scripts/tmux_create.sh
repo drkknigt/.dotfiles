@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
-# make cache file and source zshrc functions
-# source ~/.zshrc
+# make cache file 
 recent_flag=$1
-touch ~/.dotfiles/tmux/recent_dirs
+mkdir ~/.cache/tmux
+touch ~/.cache/tmux/recent_dirs
 
 # create session in any dir in $HOME
 if [ "$recent_flag" = "0" ] ; then
@@ -14,9 +14,9 @@ elif [ "$recent_flag" = "1" ] ; then
     
 selected_directory=$(cat ~/.cache/tmux/recent_dirs | fzf --prompt="make-session: "  --bind "ctrl-f:preview-down,ctrl-u:preview-up" --bind "ctrl-o:toggle-preview" --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" --preview-window hidden)
 
+# create a directory and start a session there
 elif [ "$recent_flag" = "2" ]  ; then
     
-# create a new dir and then create a session
 project_dir=$(find ~/Projects ~/WAY ~/CS ~/CS-course -maxdepth 0 -type d | fzf --prompt='open directories: ' --bind "ctrl-o:toggle-preview" --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" --keep-right --preview-window hidden)
 
 if [ -z "$project_dir" ] ; then
