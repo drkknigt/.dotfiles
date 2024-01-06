@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-PATH=/home/drkknght/.pyenv/shims:/home/drkknght/.pyenv/bin:/usr/local/go/bin:/home/drkknght/.poetry/bin:/home/drkknght/go/bin:/usr/local/go/bin:/home/drkknght/.local/bin:/home/drkknght/usr/bin:/home/drkknght/bin/navigation:/home/drkknght/bin/network:/home/drkknght/bin/screen:/home/drkknght/bin/system_scripts:/home/drkknght/bin/tmux_scripts:/home/drkknght/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$PATH
+PATH=/home/$(whoami)/.pyenv/shims:/home/$(whoami)/.pyenv/bin:/usr/local/go/bin:/home/$(whoami)/.poetry/bin:/home/$(whoami)/go/bin:/usr/local/go/bin:/home/$(whoami)/.local/bin:/home/$(whoami)/usr/bin:/home/$(whoami)/bin/navigation:/home/$(whoami)/bin/network:/home/$(whoami)/bin/screen:/home/$(whoami)/bin/system_scripts:/home/$(whoami)/bin/tmux_scripts:/home/$(whoami)/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$PATH
 
