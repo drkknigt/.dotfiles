@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 # make cache file 
 recent_flag=$1
-mkdir ~/.cache/tmux
+mkdir ~/.cache/tmux -p
 touch ~/.cache/tmux/recent_dirs
 
 # create session in any dir in $HOME
