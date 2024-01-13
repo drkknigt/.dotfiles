@@ -237,6 +237,9 @@ export PATH="/usr/local/go/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+if [ -f /usr/share/zsh/site-functions/_pyenv ]; then
+source /usr/share/zsh/site-functions/_pyenv
+fi
 
 # change directory for the tmux shells
 
