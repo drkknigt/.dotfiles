@@ -250,6 +250,10 @@ cdd1(){
 # change directory inside shell
 
 cdd(){
+which fdfind > /dev/null
+if [ "$?" = "1" ]; then
+    alias fdfind="fd"
+fi
     direc=$(fdfind -H --type d . "$HOME" |  fzf --cycle --prompt='change directory: ' --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" )
         if [  -n "$direc" ] ; then
             cd $direc
