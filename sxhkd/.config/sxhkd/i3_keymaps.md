@@ -29,7 +29,7 @@
    - alt + a + q      -------> open calculator (qalc)
    - alt + a + h      -------> open htop (htop)
    - alt + a + l      -------> lock screen (i3lock -c "000000)
-   - alt + a + k      -------> open kitty terminal (kitty)
+   - alt + a + k      -------> open hyprpicker
    - alt + a + m      -------> open vscode (code)
    - alt + a + g      -------> open glow markdown reader (code)
    - alt + a + o      -------> open lf file explorer (lfrun)
