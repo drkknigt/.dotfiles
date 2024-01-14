@@ -6,11 +6,8 @@ fi
 export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
 export PATH=$HOME/.local/bin/:$PATH
-MAN="/usr/bin/man"
-if [ -n "$1" ]; then
-    $MAN "$@"
-    return $?
-else
-    $MAN -k . | fzf --reverse --preview="echo {1,2} | sed 's/ (/./' | sed -E 's/\)\s*$//' | xargs $MAN" | awk '{print $1 "." $2}' | tr -d '()' | xargs -r $MAN
-    return $?
+choosen_page=$(man -k . | fzf --prompt="man pages: " | awk -F" " '{ print $1 }')
+if [ -z "$choosen_page" ]; then
+    exit
 fi
+man "$choosen_page"
