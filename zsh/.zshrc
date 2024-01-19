@@ -271,7 +271,7 @@ update_repo(){
     current_os=$(cat /etc/os-release | grep -Pi '^name' | cut -d "=" -f2)
     if [ "$current_os" = '"Arch Linux"' ]; then
     cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bkp-"$(date --iso-8601='hours')"
-    reflector --protocol https --country 'India' --latest 50 --sort rate --save /etc/pacman.d/mirrorlist
+    reflector --verbose --latest 12 --protocol https --country 'India' --save /etc/pacman.d/mirrorlist
 elif [ "$current_os" = '"Linux Mint"' ]; then
     echo "not on arch linux"
     fi
