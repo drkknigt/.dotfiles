@@ -14,5 +14,5 @@ if [[ -z $selected_governor ]]; then
     exit
 fi
 for i in {0..7} ; do
-    sudo cpufreq-set -c $i -g $selected_governor
+    sudo cpupower -c all frequency-set --governor $selected_governor &> /dev/null
 done
