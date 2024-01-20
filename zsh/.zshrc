@@ -271,8 +271,8 @@ update_repo(){
     current_os=$(cat /etc/os-release | grep -Pi '^name' | cut -d "=" -f2)
     if [ "$current_os" = '"Arch Linux"' ]; then
         country_selected=$(reflector --list-countries | fzf --prompt="select country: " | cut -d" " -f1)
-    cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bkp-"$(date --iso-8601='hours')"
-    reflector --verbose --latest 12 --protocol https --country "$country_selected" --save /etc/pacman.d/mirrorlist
+    sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bkp-"$(date --iso-8601='hours')"
+    sudo reflector --verbose --latest 12 --protocol https --country "$country_selected" --save /etc/pacman.d/mirrorlist
 elif [ "$current_os" = '"Linux Mint"' ]; then
     echo "not on arch linux"
     fi
