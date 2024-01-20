@@ -241,18 +241,6 @@ if [ -f /usr/share/zsh/site-functions/_pyenv ]; then
 source /usr/share/zsh/site-functions/_pyenv
 fi
 
-# change directory for the tmux shells
-
-cdd1(){
-    direc=$(find ~ -type d |  fzf --cycle --prompt='change directory: ' --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" )
-    if [ -n "$TMUX" ] ; then
-        if [  -z "$direc" ] ; then
-            exit
-        fi
-    fi
-   cd $direc
-}
-
 
 # change directory inside shell
 
@@ -267,21 +255,19 @@ fi
         fi
 }
 
+# update repo for arch linux 
+
 update_repo(){
     current_os=$(cat /etc/os-release | grep -Pi '^name' | cut -d "=" -f2)
     if [ "$current_os" = '"Arch Linux"' ]; then
         country_selected=$(reflector --list-countries | fzf --prompt="select country: " | cut -d" " -f1)
     sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bkp-"$(date --iso-8601='hours')"
     sudo reflector --verbose --latest 12 --protocol https --country "$country_selected" --save /etc/pacman.d/mirrorlist
-    sudo pacman -Syu
+    sudo pacman -Syyu
 elif [ "$current_os" = '"Linux Mint"' ]; then
     echo "not on arch linux"
     fi
 }
-add(){
-    temp=0
-    for i in $@;do
-        temp=$(( $temp + $i ))
-    done
-    echo $temp
-}
+
+
+# clear cache
