@@ -16,7 +16,7 @@ fi
 which cpufreq-set > /dev/null
 if [ "$?" = "1" ]; then
     sudo cpupower -c all frequency-set --governor $selected_governor &> /dev/null
-    sudo sed -i "s/^governor.*/governor=$selected_governor/g"  /etc/default/cpupower
+    sudo sed -i "s/^#\?governor.*/governor=$selected_governor/g"  /etc/default/cpupower
     exit
 fi
 
