@@ -13,7 +13,13 @@ selected_governor=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_g
 if [[ -z $selected_governor ]]; then
     exit
 fi
-for i in {0..7} ; do
+which cpufreq-set > /dev/null
+if [ "$?" = "1" ]; then
     sudo cpupower -c all frequency-set --governor $selected_governor &> /dev/null
+    sudo sed -i "s/^governor.*/governor=$selected_governor/g"  /etc/default/cpupower
+    exit
+fi
+
+for i in {0..7} ; do
+    sudo cpufreq-set -c $i -g $selected_governor
 done
-sudo sed -i "s/^governor.*/governor=$selected_governor/g"  /etc/default/cpupower
