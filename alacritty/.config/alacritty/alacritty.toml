@@ -37,6 +37,12 @@
 #[[items]]
 #theme = "3024.dark"
 
+[font]
+
+normal = { family = "CaskaydiaCoveNerdFontMono", style= "SemiBold"}
+bold = { family = "CaskaydiaCoveNerdFont", style= "Bold"}
+italic = { family = "CaskaydiaCoveNerdFont", style= "Italic"}
+
 [colors.bright]
 black = "#32302f"
 blue = "#83a598"

@@ -16,3 +16,4 @@ fi
 for i in {0..7} ; do
     sudo cpupower -c all frequency-set --governor $selected_governor &> /dev/null
 done
+sudo sed -i "s/^governor.*/governor=$selected_governor/g"  /etc/default/cpupower
