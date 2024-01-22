@@ -1,5 +1,0 @@
-[Default Applications]
-application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
-text/plain=nvim.desktop;
-video/mp4=mpv.desktop;
-image/jpeg=viewnior.desktop;
