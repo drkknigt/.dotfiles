@@ -191,7 +191,7 @@ M.search_ansible = function()
 	require("telescope.builtin").find_files({
 		file_ignore_patterns = { "%.git" },
 		prompt_title = "<--DOTFILES-->",
-		search_dirs = { "~/.ansible_sync" },
+		search_dirs = { "~/.ansible_sync", "~/arch-pull" },
 		hidden = true,
 	})
 end
