@@ -1,9 +1,5 @@
 #!/usr/bin/env zsh
 # source ~/.zshrc
-which fdfind > /dev/null
-if [ "$?" = "1" ]; then
-    alias fdfind="fd"
-fi
 working_dir=$(pwd)
 
 # set initial variables

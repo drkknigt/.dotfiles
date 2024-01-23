@@ -1,39 +1,71 @@
 #!/usr/bin/env zsh
-which fdfind > /dev/null
-if [ "$?" = "1" ]; then
-    alias fdfind="fd"
-fi
-export PATH=$HOME/.local/bin/:$PATH
+# set alias fdfind to fd for mint on arch
+
+# set variables for fzf
 export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
-
-
 exp=$1
-# # file="$(fzf --height 40% --reverse)" && [ -f "$file" ] && xdg-open "$file" 
-# fdfind --type f . | fzf  --cycle | xdg-open 2> ~/error.txt
-# # compgen -c | fzf | zsh
-if [ -d disk ] 
-then
-    disk=disk
-else
-    disk=''
-fi
+# search in mounted drive
 
+# logic for file explorer for finding files
 if [ ${exp} = "f" ]
 then
-    file=$(fdfind --type ${exp} . $disk $HOME | fzf --cycle --prompt='open files: ' --delimiter / --with-nth -1 --bind "tab:execute(setsid -f xdg-open {} &> /dev/null),ctrl-o:toggle-preview" --preview="batcat {} --theme='Monokai Extended Origin' --color=always" --keep-right --preview-window hidden)
-else
-    file=$(fdfind --type ${exp} . ${disk} $HOME --hidden | fzf --prompt='open directories: ' --bind "tab:execute(setsid -f xdg-open {} &> /dev/null),ctrl-o:toggle-preview" --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" --keep-right --preview-window hidden)
-fi
-echo $file
-
-# echo ~/$file
+    file=$(fdfind --type ${exp} . $disk $HOME /run/media/ /media | fzf --cycle --prompt='open files: ' --delimiter / --with-nth -1 --bind "tab:execute(setsid -f nemo $(basename {}) &> /dev/null),ctrl-o:toggle-preview" --preview="echo {} | batcat --theme='Monokai Extended Origin' --color=always" --keep-right --preview-window hidden)
+    
+# quit if file is empty
 if [ -z "$file" ]
 then
     exit
-else
-    setsid -f xdg-open $file > /dev/null
 fi
-exit
+
+# logic for file explorer for directories
+else
+    file=$(fdfind --type ${exp} . ${disk} $HOME /run/media/ /media/ --hidden | fzf --prompt='open directories: ' --bind "tab:execute(setsid -f xdg-open {} &> /dev/null),ctrl-o:toggle-preview" --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always " --keep-right --preview-window hidden)
+
+# quit if file is empty
+if [ -z "$file" ]
+then
+    exit
+fi
+    setsid -f nemo $file > /dev/null
+    exit
+fi
+
+# find the mime-type and open file in desired application 
+file_type=$(file -b --mime-type "$file" | cut -d "/" -f1)
+file_format=$(file -b --mime-type "$file" | cut -d "/" -f2)
+
+case $file_type in
+    "text")
+        if [ "$file_format" = "html" ]; then
+            echo  "Do you want to open html file in browser ? (yes/no)" 
+            read open_in_browser
+            if [ "$open_in_browser" = "yes" ]; then
+                brave $file
+                exit
+            else
+                setsid -f alacritty -e nvim $file
+                exit
+            fi
+        fi
+        setsid -f alacritty -e nvim $file
+        ;;
+    "image")
+        setsid -f imv $file
+        ;;
+    "video")
+        setsid -f mpv $file
+        ;;
+    "application")
+        echo "$file_format" | grep -Pi "pdf|epub" &> /dev/null
+        if [ "$?" = "0" ]; then
+        setsid -f zathura $file
+        fi
+        ;;
+    *)
+        echo "unknown file format"
+        sleep 0.5
+        ;;
+esac
 
 

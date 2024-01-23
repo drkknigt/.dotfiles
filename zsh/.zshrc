@@ -5,10 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-which fdfind > /dev/null
-if [ "$?" = "1" ]; then
-    alias fdfind="fd"
-fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc. Initialization code that may require console input (password prompts, [y/n] confirmations, etc.) must go above this block; everything else may go below. if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" fi # If you come from bash you might have to change your $PATH. export PATH=$HOME/bin:/usr/local/bin:$PATH # Path to your oh-my-zsh installation. export ZSH="$HOME/.oh-my-zsh" # Set name of the theme to load --- if set to "random", it will load a random theme each time oh-my-zsh is loaded, in which case, to know which specific one was loaded, run: echo $RANDOM_THEME See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 export ZSH="$HOME/.oh-my-zsh"
@@ -245,10 +241,6 @@ fi
 # change directory inside shell
 
 cdd(){
-which fdfind > /dev/null
-if [ "$?" = "1" ]; then
-    alias fdfind="fd"
-fi
     direc=$(fdfind -H --type d . "$HOME" |  fzf --cycle --prompt='change directory: ' --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" )
         if [  -n "$direc" ] ; then
             cd $direc
@@ -261,7 +253,7 @@ update_repo(){
     current_os=$(cat /etc/os-release | grep -Pi '^name' | cut -d "=" -f2)
     if [ "$current_os" = '"Arch Linux"' ]; then
         country_selected=$(reflector --list-countries | fzf --prompt="select country: " | cut -d" " -f1)
-    sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bkp-"$(date --iso-8601='hours')"
+    sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bkp-"$(date +'%F_T_%H:%M:%S')"
     sudo reflector --verbose --latest 12 --protocol https --country "$country_selected" --save /etc/pacman.d/mirrorlist
     sudo pacman -Syyu
 elif [ "$current_os" = '"Linux Mint"' ]; then
