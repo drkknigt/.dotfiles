@@ -4,13 +4,15 @@
 # set variables for fzf
 export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
+export DE=kde
+export DE=gnome
 exp=$1
 # search in mounted drive
 
 # logic for file explorer for finding files
 if [ ${exp} = "f" ]
 then
-    file=$(fdfind --type ${exp} . $disk $HOME /run/media/ /media | fzf --cycle --prompt='open files: ' --delimiter / --with-nth -1 --bind "tab:execute(setsid -f nemo $(basename {}) &> /dev/null),ctrl-o:toggle-preview" --preview="echo {} | batcat --theme='Monokai Extended Origin' --color=always" --keep-right --preview-window hidden)
+    file=$(fdfind --type ${exp} . $disk $HOME /run/media/ /media | fzf --cycle --prompt='open files: ' --delimiter / --with-nth -1 --bind "ctrl-s:execute(setsid -f xdg-open {} &> /dev/null),tab:execute(setsid -f nemo $(basename {}) &> /dev/null),ctrl-o:toggle-preview" --preview="echo {} | batcat --theme='Monokai Extended Origin' --color=always" --keep-right --preview-window hidden)
     
 # quit if file is empty
 if [ -z "$file" ]
