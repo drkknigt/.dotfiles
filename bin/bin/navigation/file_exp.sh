@@ -62,7 +62,9 @@ case $file_type in
         echo "$file_format" | grep -Pi "pdf|epub" &> /dev/null
         if [ "$?" = "0" ]; then
         setsid -f zathura $file
+        exit
         fi
+        setsid -f xdg-open $file
         ;;
     *)
         echo "unknown file format"
