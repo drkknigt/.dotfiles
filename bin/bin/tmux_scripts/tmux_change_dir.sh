@@ -17,7 +17,7 @@ fi
 cd $direc
 
 current_session_name=$(tmux display-message -p '#S')
-latest_window=$(tmux list-windows -t $current_session_name | tail -n1 | awk -F":" '{ print $1 }')
+latest_window=$(tmux list-windows -t $current_session_name | grep 'active' | awk -F":" '{ print $1 }')
 tmux new-window -a -n Terminal -t $current_session_name
 # tmux send-keys -t $current_session_name "cd $direc" C-m &> /dev/null
 tmux select-window -t $current_session_name:$latest_window 
