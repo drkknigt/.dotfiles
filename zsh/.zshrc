@@ -32,7 +32,7 @@ export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
 
 # various user paths added
-PATH=$HOME/bin/*:$PATH
+path+=(~/bin ~/bin/**/*(N/))
 PATH=$HOME/usr/bin:$PATH
 PATH=$HOME/.local/bin:$PATH
 PATH=/usr/local/go/bin:$PATH

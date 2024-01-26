@@ -18,4 +18,5 @@ fi
 
 for i in {0..7} ; do
     sudo cpufreq-set -c $i -g $selected_governor
+    echo "GOVERNOR=$selected_governor"  | sudo tee /etc/default/cpufrequtils &> /dev/null
 done
