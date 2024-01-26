@@ -33,6 +33,7 @@ alias xdg-open='xdg-open 2>/dev/null'
 alias wifi='nmcli radio wifi'
 alias vpn='protonvpn-cli '
 alias ch='tmux_cht.sh'
+alias clear_ram='sudo sync;echo 3 | sudo tee /proc/sys/vm/drop_caches'
 
 
 # alias for the luamake

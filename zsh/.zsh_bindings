@@ -36,3 +36,4 @@ bindkey "^j" backward-word
 bindkey "^k" forward-word
 bindkey "^ " backward-char
 bindkey "kj"  vi-cmd-mode
+bindkey '^[[Z' reverse-menu-complete
