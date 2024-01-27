@@ -25,3 +25,6 @@ fi
 
 #completions
 autoload -Uz compinit && compinit
+
+# highlight completions
+zstyle ':completion:*' menu select
