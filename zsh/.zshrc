@@ -32,13 +32,7 @@ export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
 
 # various user paths added
-path+=(~/bin ~/bin/**/*(N/))
-PATH=$HOME/usr/bin:$PATH
-PATH=$HOME/.local/bin:$PATH
-PATH=/usr/local/go/bin:$PATH
-PATH=$HOME/go/bin:$PATH
-export PATH="$HOME/.poetry/bin:$PATH"
-export PATH="/usr/local/go/bin:$PATH"
+# source ~/.zsh_paths
 
 # some editor vairables
 export EDITOR=vim

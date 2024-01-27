@@ -1,3 +1,3 @@
-if [ -f ~/.bashrc ]; then
-    source ~/.zshrc
+if [ -z $TMUX ]; then
+    source ~/.zsh_paths
 fi
