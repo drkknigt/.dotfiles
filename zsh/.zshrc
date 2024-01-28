@@ -10,10 +10,10 @@ fi
 autoload -Uz ~/zsh-defer/zsh-defer
 
 # lazy load files and source bindings and aliases
-source ~/.zsh_alias
+zsh-defer source ~/.zsh_alias
 zsh-defer source ~/.zsh_functions
 zsh-defer source ~/.zsh_apps
-source ~/.zsh_bindings
+zsh-defer source ~/.zsh_bindings
 
 # history settings
 HISTFILE="$HOME/.zsh_history"
