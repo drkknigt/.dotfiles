@@ -28,10 +28,3 @@ autoload -Uz compinit && compinit
 
 # highlight completions
 zstyle ':completion:*' menu select
-
-# set up icons for virtualenv python and pyenv
-
-if [ "$(cat ~/.p10k.zsh | wc -l )" -gt "3" ]; then
-    echo "typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=true" 
-    echo "typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_WITH_PYENV=true"  
-fi
