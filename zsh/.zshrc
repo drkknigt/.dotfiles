@@ -16,7 +16,7 @@ zsh-defer source ~/.zsh_apps
 source ~/.zsh_bindings
 
 # history settings
-HISTFILE="/home/drkknght/.zsh_history"
+HISTFILE="$HOME/.zsh_history"
 HISTSIZE=500000
 SAVEHIST=500000
 setopt appendhistory
