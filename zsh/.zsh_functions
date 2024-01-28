@@ -26,7 +26,7 @@ elif [ "$current_os" = '"Linux Mint"' ]; then
 # set up icons for virtualenv python and pyenv
 setup_p10_icons(){
 if [ "$(cat ~/.p10k.zsh | wc -l )" -gt "3" ]; then
-    echo "typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=true" 
-    echo "typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_WITH_PYENV=true"  
+    echo "typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=true" >> ~/.p10k.zsh
+    echo "typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_WITH_PYENV=true"  >> ~/.p10k.zsh
 fi
 }
