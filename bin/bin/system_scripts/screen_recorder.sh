@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
+export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
 
 choose_directory=$(find $HOME -maxdepth 4 -type d | fzf --prompt="choose directory to save: ")
 if [ -z "$choose_directory" ]; then
