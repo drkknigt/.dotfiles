@@ -13,8 +13,18 @@ device=$(pactl list sources | grep Name |  fzf --prompt="choose audio service: "
 if [ -z "$device" ]; then
     exit
 fi
-echo "$choose_directory/$file_name"
-echo "$device"
-
+echo "directory choosen: $choose_directory/$file_name"
+echo "audio device choose: $device \n"
+echo  "Do you want to record full screen (y for yes) " 
+read record_full_screen
 swaymsg move container to workspace 9
-wf-recorder --audio="$device" -f "$choose_directory/$file_name.mp4"
+if [ "$record_full_screen" = "y" ]; then
+    wf-recorder --audio="$device" -f "$choose_directory/$file_name.mp4"
+else
+    geometry=$(slurp)
+    if [[ "$?" = "0" ]]; then
+        wf-recorder --audio="$device" -g "$geometry" -f "$choose_directory/$file_name.mp4"
+    fi
+    echo "no geometry coordinates selected"
+    exit
+fi
