@@ -15,10 +15,8 @@ if [ -z "$device" ]; then
 fi
 echo "directory choosen: $choose_directory/$file_name"
 echo "audio device choose: $device \n"
-echo  "Do you want to record full screen (y for yes) " 
-read record_full_screen
 swaymsg move container to workspace 9
-if [ "$record_full_screen" = "y" ]; then
+if [ "$1" = "s" ]; then
     wf-recorder --audio="$device" -f "$choose_directory/$file_name.mp4"
 else
     geometry=$(slurp)
