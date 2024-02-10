@@ -1,33 +1,43 @@
 #!/usr/bin/env zsh
-source ~/.zshrc
 
-# check if there is any active tmux sessions
-active_sessions=$(tmux ls)
-if [ -z $active_sessions ] ; then
-    echo "no active session"
+# exit if tmux server is not running
+tmux ls &> /dev/null
+
+if [[ "$?" = "1" ]]; then
+    echo "empty tmux! exiting"
     exit
 fi
 
-selected_session=$(echo $active_sessions | awk -F":" '{ print $1 }' | fzf --prompt="kill session: " --preview="tmux list-windows -t {}")
+# set vars for tmux sessions
+current_sessions=$(tmux ls |  cut -d ":" -f1 )
+total_sessions=$(tmux ls | wc -l )
+active_session=$(tmux ls | grep attached | cut -d ":" -f1 )
+selected_session=$(tmux ls |  cut -d ":" -f1  | fzf --prompt="select session to delete: ")
 
-# if [ -z $selected_session ]; then
-    # exit
-# fi
+# exit if no session is selected to delete
+if [[ -z "$selected_session" ]]; then
+    exit
+fi
 
-# for i in $(echo $tmux_active | awk -F":" '{ print $1 }' | tr '\n' ' '); do echo $i ; done
-echo $tmux_active | awk -F":" '{ print $1 }' | tr '\n' ' '
+# 
+if [[ "$selected_session" = "$active_session" ]]; then
+    selected_session_no=$(tmux ls | nl -w 1 -s "| " | grep "$selected_session" |  cut -d "|" -f1 )
+    echo $selected_session_no
+    echo $total_sessions
+    if [[ "$selected_session_no" = "$total_sessions" ]]; then
+        new_session_name=$(tmux ls | nl -w 1 -s "| " | grep "1|" | cut -d "|" -f2 | cut -d ":" -f1)
+        tmux switch-client -t "$new_session_name"
+        tmux kill-session -t "$selected_session"
+    else
+        new_session_no=$((selected_session_no + 1))
+        new_session_name=$(tmux ls | nl -w 1 -s "| " | grep "$new_session_no|" | cut -d "|" -f2 | cut -d ":" -f1)
+        tmux switch-client -t "$new_session_name"
+        tmux kill-session -t "$selected_session"
+    fi
+else
+        tmux kill-session -t "$selected_session"
+fi
 
-# if [ -z "$TMUX" ] ; then tmux kill-session -t $selected_session; fi
-# current_sessions=$(tmux ls | cut -d ":" -f 1 | tr "\n" " ")
-# selected_session=$(tmux ls | grep 'attached' | cut -d ':' -f 1)
-# some_func(){
-#     total_sessions=$#
-#     current_session=0
-#     while [ $current_session -lt $total_sessions ] 
-#     do
-#         echo $((current_session))
-#         current_session=$((current_session+1))
-#     done
-# }
-#
-# some_func $current_sessions
+    
+    
+
