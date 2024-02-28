@@ -1,7 +1,7 @@
-key_exit=Control_L-bracketleft,Escape
+key_exit=Ctrl-bracketleft,Escape
 gtk_dark=true
-key_up=Control_L-p
-key_down=Control_L-n
+key_up=Ctrl-p
+key_down=Ctrl-n
 width=450
 height=300
 

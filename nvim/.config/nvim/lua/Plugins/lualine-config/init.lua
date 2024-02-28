@@ -1,3 +1,6 @@
+------------------------------------------- lua-line ------------------------------------------
+
+-- setup lualine
 local status_ok, lualine = pcall(require, "lualine")
 if not status_ok then
 	return
@@ -16,6 +19,8 @@ end
 --   question
 --   warning
 --   lightbulb
+
+-- lualine options
 
 local diagnostics = {
 	"diagnostics",
@@ -40,9 +45,9 @@ local mode = {
 	"mode",
 	fmt = function(str)
 		local dict = {}
-		dict["NORMAL"] = "Normal 󰙈 "
-		dict["INSERT"] = "Insert  "
-		dict["VISUAL"] = "Visual  "
+		dict["NORMAL"] = "Normal 󱗆 "
+		dict["INSERT"] = "Insert  "
+		dict["VISUAL"] = "Visual 󱊁 "
 		dict["COMAND"] = "Command  "
 		return dict[str]
 	end,
@@ -109,13 +114,14 @@ local spaces = function()
 	return string.format(" %s %s", "{}", vim.api.nvim_buf_get_option(0, "shiftwidth"))
 end
 
+-- lualine setup main
 lualine.setup({
 	options = {
 		icons_enabled = true,
 		theme = "ayu_mirage",
 		component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },
-		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline", "toggleterm" },
+		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline", "toggleterm", "oil" },
 		always_divide_middle = true,
 		-- globalstatus = true,
 	},

@@ -1,14 +1,5 @@
 local api = vim.api
---vim.g.gruvbox_baby_function_style = "NONE"
---vim.g.gruvbox_baby_keyword_style = "italic"
 
--- Each highlight group must follow the structure:
--- ColorGroup = {fg = "foreground color", bg = "background_color", style = "some_style(:h attr-list)"}
--- See also :h highlight-guifg
--- Example:
---vim.g.gruvbox_baby_highlights = {Normal = {fg = "#123123", bg = "NONE", style="underline"}}
-
--- Enable telescope theme
 vim.g.gruvbox_baby_telescope_theme = 1
 
 -- Enable transparent mode
@@ -16,12 +7,12 @@ vim.g.gruvbox_baby_transparent_mode = 1
 
 -- Load the colorscheme
 vim.api.nvim_command("colorscheme gruvbox-baby")
+
+-- set custom highlights
 api.nvim_set_hl(0, "NormalFloat", { bg = "None", fg = "None" })
 api.nvim_set_hl(0, "LineNr", { fg = "#ed9f2b" })
 api.nvim_set_hl(0, "WhichKeyFloat", { fg = "None", bg = "None" })
-api.nvim_set_hl(0, "WinBar", { fg = "Gray" })
--- api.nvim_set_hl(0,'Search',{bg='#ed9f2b'})
--- api.nvim_set_hl(0, "Cursor", { bg = bg })
+api.nvim_set_hl(0, "WinBar", { fg = "#B16283" })
 api.nvim_set_hl(0, "CursorLineNr", { fg = "#b8afae" })
 api.nvim_set_hl(0, "SignColumn", { bg = "None" })
 api.nvim_set_hl(0, "ColorColumn", { bg = "#ed9f2b" })
@@ -33,6 +24,9 @@ api.nvim_set_hl(0, "HopUnmatched", { bg = bg, sp = "#666666", fg = "#666666", bo
 api.nvim_set_hl(0, "GitSignsAdd", { fg = "green" })
 api.nvim_set_hl(0, "GitSignsChange", { fg = "blue" })
 api.nvim_set_hl(0, "GitSignsDelete", { fg = "red" })
+api.nvim_set_hl(0, "GitSignsAddstatus", { fg = "green", bg = "black" })
+api.nvim_set_hl(0, "GitSignsChangestatus", { fg = "blue", bg = "black" })
+api.nvim_set_hl(0, "GitSignsDeletestatus", { fg = "red", bg = "black" })
 api.nvim_set_hl(0, "Visual", { bg = "#264F78", ctermbg = 242 })
 api.nvim_set_hl(0, "IndentBlankLineSpaceChar", { fg = "gray" })
 api.nvim_set_hl(0, "IndentBlankLineChar", { fg = "gray" })
@@ -65,7 +59,6 @@ api.nvim_set_hl(0, "NotifyTRACEBody", { bg = "None", fg = "#ff007c", bold = true
 api.nvim_set_hl(0, "NotifyWARNBody", { bg = "None", fg = "#ff007c", bold = true, ctermfg = 198, cterm = bold })
 api.nvim_set_hl(0, "NotifyINFOBody", { bg = "None", fg = "#ff007c", bold = true, ctermfg = 198, cterm = bold })
 api.nvim_set_hl(0, "NotifyDEBUGBody", { bg = "None", fg = "#ff007c", bold = true, ctermfg = 198, cterm = bold })
---api.nvim_set_hl(0,'NotifyERRORBody',)
 api.nvim_set_hl(0, "LineHighlight", { bg = "darkgray", ctermbg = "darkgray" })
 api.nvim_set_hl(0, "TelescopePromptTitle", { bg = "None", fg = "white" })
 api.nvim_set_hl(0, "TelescopePromptBorder", { bg = "None", fg = "white" })
@@ -82,16 +75,14 @@ api.nvim_set_hl(0, "NvimTreeWinSeparator", { fg = "#ed9f2b" })
 api.nvim_set_hl(0, "NvimTreeOpenedFile", { bg = "#773347" })
 api.nvim_set_hl(0, "lualine_b_insert", { bg = None })
 api.nvim_set_hl(0, "LspSignatureActiveParameter", { bg = "green" })
-api.nvim_set_hl(0, "Statusline", { bg = None, fg = "gray" })
+api.nvim_set_hl(0, "Statusline", { bg = "Black", fg = "gray" })
 api.nvim_set_hl(0, "Title", { fg = "green" })
--- api.nvim_set_hl(0, "DiagnosticUnderlineError", { sp = "red", gui = undercurl, cterm = undercurl })
--- colors for gruvbox to make transparent
 
+-- colors for gruvbox to make transparent
 api.nvim_set_hl(0, "GruvboxYellowSign", { fg = "#fabb2f", bg = "None" })
 api.nvim_set_hl(0, "GruvboxRedSign", { fg = "#fb4934", bg = "None" })
 api.nvim_set_hl(0, "GruvboxAquaSign", { fg = "#8ec07c", bg = "None" })
 api.nvim_set_hl(0, "GruvboxBlueSign", { fg = "#83a598", bg = "None" })
-api.nvim_set_hl(0, "barbecue_dirname", { fg = "#afafaf", bg = "None" })
 api.nvim_set_hl(0, "FlashLabel", { fg = "None", bg = "None" })
 api.nvim_set_hl(0, "FlashMatch", { fg = "None", bg = "None" })
 api.nvim_set_hl(0, "FlashCurrent", { fg = "None", bg = "None" })

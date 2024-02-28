@@ -1,8 +1,46 @@
+# lf global options
 set ratios 1:4:3
-set cleaner ~/.config/lf/cleaner
-set previewer ~/.config/lf/preview 
+#set cleaner ~/.dotfiles/lf/.config/lf/cleaner
+set previewer ~/.dotfiles/lf/.config/lf/preview
 set icons true
 set hidden true
+
+# Main options for look of lf
+set icons
+set period 1
+set sixel
+#set relativenumber
+#set number
+set mouse
+set hidden!
+set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
+set promptfmt "
+\033[48;2;35;38;39;38;2;28;220;156m  
+\033[38;2;35;38;39;48;2;202;31;31m
+\033[38;2;202;31;31;48;2;40;47;62m
+\033[38;2;255;255;255m %w 
+\033[38;2;40;47;62;48;2;58;67;89m
+\033[38;2;255;255;255m %f 
+\033[;38;2;58;67;89;49m\033[m"
+set incsearch
+set incfilter
+#set globsearch on
+set ratios 2:3:4 # 2:3:7:7
+set truncatechar "…"
+set waitmsg "\033[1;31m⏎\033[m"
+set timefmt "02/01/2006 15:04:05 "
+set infotimefmtnew '02/01 15:04'
+set infotimefmtold '02/01/06'
+set errorfmt "\033[1;31m"
+set numberfmt "\033[38;2;75;87;116m"
+set dircounts
+set tabstop 4
+set scrolloff 5
+set wrapscroll
+set shellopts '-eu'
+set ifs "\n"
+set rulerfmt "%d | %a| %p|  \033[7;31m %m \033[0m|  \033[7;33m %c \033[0m|  \033[7;35m %s \033[0m|  \033[7;34m %f \033[0m|  %i/%t"
+set cursorpreviewfmt "\033[7m"
 
 # unarchive function
 cmd unarchive ${{
@@ -16,40 +54,153 @@ cmd unarchive ${{
 }}
 
 
-cmd mkdir ${{
-  printf "Directory Name: "
-  read ans
-  mkdir $ans
+# change dir with fzf
+cmd change_dir ${{
+    dir=$(find ~ -type d | fzf --prompt="cd: ")
+    $lf -remote "send cd $dir"
 }}
 
-cmd mkfile ${{
+
+# get size and type of file
+cmd get_size %{{
+    clear
+     lf -remote "send $id echo    \"$(echo size:)\"   \"$(du -hs "$f" | awk -d' ' '{ print $1 }')\"  \"     file-type:$(file "$f" | cut -d':' -f2 )\""
+}}
+
+
+
+# make directories
+cmd mk_dir %{{
+   printf "Directory Name: " 
+   read ans
+   ans=$(echo $ans | tr " " "\n" )
+  for f in $ans; do
+    mkdir -p $f
+    done
+}}
+
+
+# bulk rename or single rename
+cmd bulk_rename %{{
+  for f in $fx; do
+  printf "rename $f to: "
+  read ans
+  mv $f $ans
+    done
+}}
+
+# open files
+cmd open &{{
+export DE=kde
+export DE=gnome
+# find the mime-type and open file in desired application 
+file_type=$(file -b --mime-type "$f" | cut -d "/" -f1)
+file_format=$(file -b --mime-type "$f" | cut -d "/" -f2)
+case $file_type in
+    "inode")
+        if [ "$file_format" = "x-empty" ]; then
+             alacritty -e nvim "$f" &> /dev/null
+            fi
+            ;;
+    "text")
+        if [ "$file_format" = "html" ]; then
+            echo  "Do you want to open html file in browser ? (yes/no)" 
+            read open_in_browser
+            if [ "$open_in_browser" = "yes" ]; then
+                brave "$f" &> /dev/null
+                exit
+            else
+                 alacritty -e nvim "$f" &> /dev/null
+                exit
+            fi
+        fi
+         alacritty -e nvim "$f" &> /dev/null
+        ;;
+    "image")
+         imv "$f" &> /dev/null
+        ;;
+    "video")
+          mpv "$f" &> /dev/null
+        ;;
+    "application")
+        echo "$file_format" | grep -Pi "pdf|epub" &> /dev/null
+        if [ "$?" = "0" ]; then
+         zathura "$f"  &> /dev/null
+        exit
+        fi
+         xdg-open "$f" &> /dev/null
+        ;;
+    *)
+        #echo "unknown file format"
+        sleep 1.5
+        ;;
+esac
+    
+}}
+
+# touch a new file
+cmd mkfile &{{
   printf "File Name: "
   read ans
-  $EDITOR $ans
+  touch $ans
 }}
 
-cmd copyname ${{
+
+# copy name of file
+cmd copyname &{{
+    current_wm=$(wmctrl -m | grep -Po "wlroots|i3")
+    if [[ "$current_wm" = "i3" ]]; then
+    basename "$f" | tr -d '\n' | xclip -selection c
+    elif [[ "$current_wm" = "wlroots" ]] ; then
+    basename "$f" | tr -d '\n' |  wl-copy
+    fi
+}}
+
+
+
+# copy path of file
+cmd copypath &{{
+    current_wm=$(wmctrl -m | grep -Po "wlroots|i3")
+    if [[ "$current_wm" = "i3" ]]; then
     echo -n "$f" | tr -d '\n' |  xclip -selection c
+    elif [[ "$current_wm" = "wlroots" ]] ; then
+    echo -n "$f" | tr -d '\n' |  wl-copy
+    fi
 }}
 
-map au unarchive
 
-# Basic Functions
+
+# Basic navigation mappings
+map d
+map d delete
+map y copy 
 map . set hidden!
 map p paste
 map x cut
-map y copy
 map <enter> open
 map R reload
-map mf mkfile
-map md mkdir
-map C clear
-map c copyname
+map F mkfile
+map D mk_dir
+map <c-l> :clear; unselect
+map <space>
+map <space> toggle
 
-# Movement
-map ga cd ~/.ansible_sync
-map gh cd ~/.dotfiles
+# goto directories mappings
+map gm cd ~/.ansible_sync
+map gh cd ~
+map ga cd ~/arch-pull
+map gc cd ~/.dotfiles
 map gp cd ~/Pictures
 map gd cd ~/Downloads
-map gD cd ~/Documents
+map gf cd ~/Documents
 map gv cd ~/Videos
+
+# functionality mappings
+map ad change_dir
+map as get_size
+map ay copypath
+map au unarchive
+map an copyname
+map ar bulk_rename
+map <c-o> shell-async
+map <c-k> shell-wait

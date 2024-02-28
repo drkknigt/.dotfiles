@@ -1,8 +1,12 @@
+--------------------------------------------- lsp-config ----------------------------------------
+
+-- setup mason and install lsp servers
 local ok, lsp_installer = pcall(require, "mason")
 local servers = {
 	"emmet_ls",
 	"html", -- "pyright",
-	"jedi_language_server",
+	-- "jedi_language_server",
+	"pyright",
 	"clangd",
 	"cssls",
 	"tsserver",
@@ -26,6 +30,9 @@ lsp_installer.setup({
 })
 
 mason_config.setup({ ensure_installed = servers, automatic_installation = true })
+
+-- setup lsp-config
+
 local nvim_lsp = require("lspconfig")
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 	virtual_text = false,
@@ -41,7 +48,7 @@ vim.cmd([[
     sign define DiagnosticSignError text=✖ linehl= texthl=DiagnosticSignError numhl=
     sign define DiagnosticSignWarn text=☢ linehl= texthl=DiagnosticSignWarn numhl=
     sign define DiagnosticSignInfo text= linehl= texthl=DiagnosticSignInfo numhl=
-    sign define DiagnosticSignHint text= linehl= texthl=DiagnosticSignHint numhl=
+    sign define DiagnosticSignHint text= linehl= texthl=DiagnosticSignHint numhl=
 ]])
 
 local function documentHighlight(client, bufnr)
@@ -69,53 +76,7 @@ function lsp_config.common_on_attach(client, bufnr)
 	documentHighlight(client, bufnr)
 end
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-
 pcall(require, "modules.lsp.handlers")
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
--- local navic = require("nvim-navic")
--- navic.setup({
--- 	icons = {
--- 		File = "󰈙 ",
--- 		Module = " ",
--- 		Namespace = "󰌗 ",
--- 		Package = " ",
--- 		Class = "󰌗 ",
--- 		Method = "󰆧 ",
--- 		Property = " ",
--- 		Field = " ",
--- 		Constructor = " ",
--- 		Enum = "󰕘",
--- 		Interface = "󰕘",
--- 		Function = "󰊕 ",
--- 		Variable = "󰆧 ",
--- 		Constant = "󰏿 ",
--- 		String = "󰀬 ",
--- 		Number = "󰎠 ",
--- 		Boolean = "◩ ",
--- 		Array = "󰅪 ",
--- 		Object = "󰅩 ",
--- 		Key = "󰌋 ",
--- 		Null = "󰟢 ",
--- 		EnumMember = " ",
--- 		Struct = "󰌗 ",
--- 		Event = " ",
--- 		Operator = "󰆕 ",
--- 		TypeParameter = "󰊄 ",
--- 	},
--- 	lsp = {
--- 		auto_attach = true,
--- 		preference = nil,
--- 	},
--- 	highlight = false,
--- 	separator = " > ",
--- 	depth_limit = 0,
--- 	depth_limit_indicator = "..",
--- 	safe_output = true,
--- 	click = false,
--- })
 
 local on_attach = function(client, bufnr)
 	local function buf_set_keymap(...)
@@ -185,28 +146,12 @@ local on_attach = function(client, bufnr)
 		severity_sort = true,
 		underline = false,
 	})
-
-	-- initialise navic
-
-	-- if client.server_capabilities.documentSymbolProvider then
-	-- 	local navic = require("nvim-navic")
-	-- 	navic.attach(client, bufnr)
-	-- end
-	-- navic.attach(client, bufnr)
 end
 
--- winbar format
-
--- vim.o.winbar = " %= %t %{%v:lua.require'nvim-navic'.get_location()%}"
--- vim.o.winbar = "%{%v:lua.require'Plugins.winbar'.string()%}"
--- Add additional capabilities supported by nvim-cmp
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities()
 
--- Provide settings first!
--- emmet_ls
-
 -- LSP Server specific settings
+
 local lsp_settings = {}
 lsp_settings["pyright"] = {
 	python = {
@@ -236,63 +181,8 @@ nvim_lsp.emmet_ls.setup({
 		},
 	},
 })
--- local runtime_path = vim.split(package.path, ";")
--- lsp_settings["lua_ls"] = {
--- 	lua = {
---         cmd = {"lua-language-server"},
--- 		runtime = {
--- 			version = "Lua 5.3",
--- 			path = runtime_path,
--- 		},
--- 		diagnostics = {
--- 			-- Get the language server to recognize the `vim` global
--- 			enable = true,
--- 			globals = { "vim", "print" },
--- 		},
--- 		workspace = {
--- 			maxPreload = 0,
--- 			preloadFileSize = 0,
--- 		},
--- 	},
--- }
 
--- local runtime_path = vim.split(package.path, ";")
--- 	Lua = {
--- lsp_settings["lua_ls"] = {
--- 		completion = { enable = false, callSnippet = "Both" },
--- 		runtime = {
--- 			--   -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
--- 			version = "Lua 5.3",
--- 			path = runtime_path,
--- 			--   -- Setup your lua path
--- 			-- path = {
--- 			-- 	"?.lua",
--- 			-- 	"?/init.lua",
--- 			-- 	vim.fn.expand("~/.luarocks/share/lua/5.3/?.lua"),
--- 			-- 	vim.fn.expand("~/.luarocks/share/lua/5.3/?/init.lua"),
--- 			-- 	"/usr/share/5.3/?.lua",
--- 			-- 	"/usr/share/lua/5.3/?/init.lua",
--- 			-- },
--- 		},
--- 		diagnostics = {
--- 			-- Get the language server to recognize the `vim` global
--- 			globals = { "vim" },
--- 		},
--- 		workspace = {
--- 			-- Make the server aware of Neovim runtime files
--- 			library = {
--- 				[vim.fn.expand("$VIMRUNTIME/lua")] = true,
--- 				[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
--- 				[vim.fn.stdpath("config") .. "/lua"] = true,
--- 			},
--- 			maxPreload = 10000,
--- 		},
--- 		-- Do not send telemetry data containing a randomized but unique identifier
--- 		telemetry = {
--- 			enable = false,
--- 		},
--- 	},
-
+-- lua_ls setup
 current_wd = vim.fn.getcwd()
 if current_wd == vim.fn.expand("~") then
 	current_wd = "nil"
@@ -376,21 +266,21 @@ require("lspconfig").html.setup({
 home_dir = vim.fn.expand("~")
 extraPathsPython = home_dir .. "/.local/lib/python3.10/site-packages/"
 
-require("lspconfig").jedi_language_server.setup({
-	init_options = {
-		workspace = {
-			extraPaths = { extraPathsPython },
-			symbols = {
-				ignoreFolders = { "__pycache__", ".pytest_cache" },
-			},
-		},
-	},
-	root_dir = require("lspconfig").util.root_pattern("package.json"),
-	single_file_support = true,
-	on_attach = on_attach,
-	flags = { debounce_text_changes = 150 },
-	capabilities = capabilities,
-})
+-- require("lspconfig").jedi_language_server.setup({
+-- 	init_options = {
+-- 		workspace = {
+-- 			extraPaths = { extraPathsPython },
+-- 			symbols = {
+-- 				ignoreFolders = { "__pycache__", ".pytest_cache" },
+-- 			},
+-- 		},
+-- 	},
+-- 	root_dir = require("lspconfig").util.root_pattern("package.json"),
+-- 	single_file_support = true,
+-- 	on_attach = on_attach,
+-- 	flags = { debounce_text_changes = 150 },
+-- 	capabilities = capabilities,
+-- })
 require("lspconfig").gopls.setup({
 	root_dir = require("lspconfig").util.root_pattern("package.json", ".git", "go.work", "go.mod"),
 	cmd = { "gopls" },
@@ -435,21 +325,21 @@ require("lspconfig").ansiblels.setup({
 	on_attach = on_attach,
 })
 
--- require("lspconfig").pyright.setup({
--- 	settings = {
--- 		python = {
--- 			analysis = {
--- 				autoSearchPaths = false,
--- 				diagnosticMode = "openFilesOnly",
--- 				useLibraryCodeForTypes = true,
--- 				-- typeCheckingMode = "strict",
--- 				-- loglevel = { "Error" },
--- 				extraPaths = { "$HOME/.local/lib/python3.10/site-packages/" },
--- 			},
--- 		},
--- 	},
--- 	single_file_support = true,
--- 	on_attach = on_attach,
--- 	flags = { debounce_text_changes = 500 },
--- 	capabilities = capabilities,
--- })
+require("lspconfig").pyright.setup({
+	settings = {
+		python = {
+			analysis = {
+				autoSearchPaths = false,
+				diagnosticMode = "openFilesOnly",
+				useLibraryCodeForTypes = true,
+				typeCheckingMode = "strict",
+				-- loglevel = { "Error" },
+				extraPaths = { "$HOME/.local/lib/python3.10/site-packages/" },
+			},
+		},
+	},
+	single_file_support = true,
+	on_attach = on_attach,
+	flags = { debounce_text_changes = 500 },
+	capabilities = capabilities,
+})

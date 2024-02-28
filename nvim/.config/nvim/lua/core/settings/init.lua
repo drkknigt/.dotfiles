@@ -94,21 +94,22 @@ set.hls = false -- dont highlight all search patterns
 
 set.is = true -- incremental search highlight
 
-set.nrformats = set.nrformats
+set.nrformats = set.nrformats -- This defines what bases Vim will consider for numbers when using the CTRL-A and CTRL-X commands for adding to and subtracting from a number
 
-set.matchpairs = set.matchpairs + "<:>"
+set.matchpairs = set.matchpairs + "<:>" -- Characters that form pairs.  The |%| command jumps from one to the other.
 
-set.sessionoptions = { "buffers", "curdir", "folds", "tabpages", "winsize" }
+set.sessionoptions = { "buffers", "curdir", "folds", "tabpages", "winsize" } -- options to preserve when making session
 
-set.autochdir = true
+set.autochdir = true -- change dir on buffer change
 
 -- set.virtualedit = all
 
 set.laststatus = 3 -- neovim specific to get a global statusline
 
-set.statusline = "   %F"
+-- set.statusline = "   %F"
+-- set.statusline = "%{%v:lua.require('core.statusline').current()%}"
 
-set.cpoptions = set.cpoptions + ">"
+set.cpoptions = set.cpoptions + ">" -- A sequence of single character flags.
 
 --set.fillchars = {fold='\',vert='\|',eob='\',msgsep='‾'} -- characters to fille the statuslines and vertical separators.
 set.fillchars = {
@@ -122,13 +123,13 @@ set.fillchars = {
 	foldclose = "▸",
 }
 
-cmd([[abb py! #!/usr/bin/env python3]])
+cmd([[abb py! #!/usr/bin/env python3]]) -- set abbreviation
 
-cmd([[filetype plugin indent on ]])
+cmd([[filetype plugin indent on ]]) -- make filetype plugin on
 
 -- sandwhich vim
-cmd([[ set path+=~/.config/nvim/** ]])
-cmd([[ set path+=~/.dotfiles/** ]])
+cmd([[ set path+=~/.config/nvim/** ]]) -- add extra directory for cmds that use path
+cmd([[ set path+=~/.dotfiles/** ]]) -- add -- add extra directory for cmds that use path
 -- cmd([[ runtime macros/sandwich/keymap/surround.vim ]])
 -- vim.g.nvim_tree_respect_buf_cwd = 1
 -- vim.g.nvim_tree_root_foler_modifier = ':p:r'
@@ -136,5 +137,13 @@ cmd([[ set path+=~/.dotfiles/** ]])
 -- local present, mod = pcall(require, "impatient")
 -- if present then
 -- set.winbar = "%{%v:lua.require'Plugins.winbar'.get_winbar%}"
-set.winbar = "%#WhichKey#%=%F"
--- end
+-- set.winbar = "%=%{%v:lua.require('core.userFunctions').total_buffers()%}=%F"
+-- set.winbar = "%=%{len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))}=%F"
+-- set.winbar = " Total buffers:%{len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))}  %F"
+-- set.winbar = "%#WhichKey#%=%F"
+
+-- winbar format
+-- set.winbar = " Total buffers:%{%v:lua.require('core.userFunctions').total_buffers()%} %F"
+
+-- native vim syntax off by default
+cmd([[syntax off]])

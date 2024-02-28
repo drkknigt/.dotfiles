@@ -24,6 +24,7 @@ require("ibl").setup({
 			"checkhealth",
 			"help",
 			"man",
+            "oil",
 			"",
 		},
 	},

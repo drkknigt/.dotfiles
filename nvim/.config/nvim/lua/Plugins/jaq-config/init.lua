@@ -1,3 +1,6 @@
+------------------------------------------------------ jaq ----------------------------------
+
+-- setup jaq
 require("jaq-nvim").setup({
 	-- Commands used with 'Jaq'
 	cmds = {

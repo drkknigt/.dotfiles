@@ -1,3 +1,6 @@
+--------------------------------- telescope-config -----------------------------
+
+-- setup telescope for genearl use
 local action_layout = require("telescope.actions.layout")
 local actions = require("telescope.actions")
 local _actions = require("telescope._extensions.project.actions")
@@ -48,7 +51,7 @@ require("telescope").setup({
 		},
 		prompt_position = "top",
 		-- debounce = 100,
-		prompt_prefix = " ",
+		prompt_prefix = " ",
 		border = true,
 		preview = {
 			hide_on_startup = true,
@@ -151,157 +154,21 @@ require("telescope").setup({
 		},
 	},
 })
--- --
+
+-- load telescope helper extensions
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("project")
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("bookmarks")
 require("telescope").load_extension("ui-select")
+
 -- require('telescope').load_extension('harpoon')
--- custom pickers and finders
 
-local pickers = require("telescope.pickers")
-local finders = require("telescope.finders")
-local conf = require("telescope.config").values
-local command = vim.api.nvim_command
-local actions = require("telescope.actions")
-local action_state = require("telescope.actions.state")
+-- custom pickers and finders for dotfiles, lazy etc
 
-local M = {}
--- search dotfiles neovim
--- M.search_nvim = function()
--- 	require("telescope.builtin").find_files({
--- 		file_ignore_patterns = { "%.git", "node_modules/.*", "BraveSoftware/" },
--- 		prompt_title = "<--PLUGINS-->",
--- 		cwd = "$HOME/.config/nvim/lua",
--- 		hidden = true,
--- 	})
--- end
-
-M.search_dotfiles = function()
-	require("telescope.builtin").find_files({
-		file_ignore_patterns = { "%.git", "node_modules/.*", "BraveSoftware/" },
-		prompt_title = "<--DOTFILES-->",
-		search_dirs = { "~/.dotfiles", "~/.cache/tmux" },
-		hidden = true,
-	})
-end
-
-M.search_ansible = function()
-	require("telescope.builtin").find_files({
-		file_ignore_patterns = { "%.git" },
-		prompt_title = "<--DOTFILES-->",
-		search_dirs = { "~/.ansible_sync", "~/arch-pull" },
-		hidden = true,
-	})
-end
--- cd into a directory
-
--- M.search_dir = function (opts)
---     pickers.new(opts, {
--- 	    prompt_title = "Find Directory",
--- 	    finder = finders.new_oneshot_job({"fdfind","-t","d",}),
---         file_ignore_patterns = {'.git','node_modules/.*',"BraveSoftware/"},
--- 	    sorter = conf.generic_sorter(opts),
--- 	    attach_mappings = function(prompt_bufnr, map)
--- 		    actions.select_default:replace(function()
--- 			    local selection = action_state.get_selected_entry()
---                 if selection ~= nil then
--- 		    	    actions.close(prompt_bufnr)
--- 			        command("cd " .. selection[1])
---                 end
--- 		    end)
--- 		    return true
--- 	    end,
---     }):find()
--- end
-
-return M
--- local telescope = require("telescope")
+-- local pickers = require("telescope.pickers")
+-- local finders = require("telescope.finders")
+-- local conf = require("telescope.config").values
+-- local command = vim.api.nvim_command
 -- local actions = require("telescope.actions")
--- local actions_layout = require("telescope.actions.layout")
---
--- telescope.setup {
---   defaults = {
---     layout_strategy = "flex",
---     scroll_strategy = "cycle",
---     selection_strategy = "row",
---     winblend = 0,
---     layout_config = {
---       vertical = {
---         mirror = true,
---       },
---     },
---     hl_result_eol = true,
---     preview = {
---       msg_bg_fillchar = " ",
---     },
---     cache = false,
---     mappings = {
---       i = {
---         ["<C-s>"] = actions.cycle_previewers_next,
---         ["<C-a>"] = actions.cycle_previewers_prev,
---
---         ["<C-Down>"] = actions.cycle_history_next,
---         ["<C-Up>"] = actions.cycle_history_prev,
---         ["<C-h>"] = actions_layout.toggle_preview,
---
---         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
---         ["<a-q>"] = false,
---         ["<esc>"] = actions.close,
---       },
---     },
---     file_ignore_patterns = { "build", "tags", "src/parser.c" },
---     dynamic_preview_title = true,
---   },
---   pickers = {
---     find_files = {
---       -- theme = "",
---       previewer = false,
---       find_command = { "fdfind", "--type", "f", "--strip-cwd-prefix" }
---     },
---     file_browser = {
---       theme = "dropdown",
---       previewer = false,
---     },
---     git_files = {
---       theme = "dropdown",
---       previewer = false,
---     },
---     buffers = {
---       sort_mru = true,
---       theme = "dropdown",
---       previewer = false,
---       mappings = {
---         i = { ["<c-d>"] = actions.delete_buffer },
---       }
---     },
---     man_pages = { sections = { "2", "3" } },
---     lsp_references = { path_display = { "shorten" } },
---     lsp_document_symbols = { path_display = { "hidden" } },
---     lsp_workspace_symbols = { path_display = { "shorten" } },
---     lsp_code_actions = { theme = "dropdown" },
---     current_buffer_fuzzy_find = { theme = "dropdown" },
---   },
---   -- extensions = {
---   --   ["ui-select"] = {
---   --     require("telescope.themes").get_dropdown {
---   --       -- even more opts
---   --     }
---   --   },
---   --   frecency = {
---   --     persistent_filter = false,
---   --     show_scores = true,
---   --     show_unindexed = true,
---   --     ignore_patterns = {"*.git/*", "*/tmp/*", "*.foo"},
---   --     workspaces = {
---   --       ["conf"]    = "/home/conni/.config",
---   --       ["nvim"]    = "/home/conni/.config/nvim/plugged",
---   --       ["data"]    = "/home/conni/.local/share",
---   --       ["project"] = "/home/conni/repos",
---   --     }
---   --   }
---   -- }
--- }
---
--- telescope.load_extension("fzf")
+-- local action_state = require("telescope.actions.state")

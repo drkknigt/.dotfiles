@@ -1,7 +1,16 @@
 vim.o.completeopt = "menuone,noselect"
+
+-- setup cmp
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 local types = require("cmp.types")
+local prefered_sources = {
+	{ name = "nvim_lsp" },
+	{ name = "luasnip" }, -- For luasnip users.
+	{ name = "treesitter" },
+	{ name = "buffer" },
+	{ name = "buffer-lines" },
+}
 
 cmp.setup({
 	completion = {
@@ -20,14 +29,30 @@ cmp.setup({
 	--     -- entries = 'native'
 	-- },
 	formatting = {
+		fields = { "kind", "abbr", "menu" },
 		format = lspkind.cmp_format({
+			menu = { -- showing type in menu
+				nvim_lsp = "(LSP)",
+				path = "(Path)",
+				treesitter = "(Treesitter)",
+				buffer = "(Buffer)",
+				["buffer-lines"] = "(Buffer-lines)",
+				luasnip = "(LuaSnip)",
+			},
 			mode = "symbol", -- show only symbol annotations
-			maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+			maxwidth = 20, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
 			ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+			show_labelDetails = true,
 
 			-- The function below will be called before any actual modifications from lspkind
 			-- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
 		}),
+		-- duplicates = {
+		-- 	buffer = 1,
+		-- 	path = 1,
+		-- 	nvim_lsp = 0,
+		-- 	luasnip = 1,
+		-- },
 	},
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
@@ -41,14 +66,8 @@ cmp.setup({
 	mapping = {
 		["<C-v>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
 		["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-		["<C-n>"] = cmp.mapping(
-			cmp.mapping.select_next_item({ behaviour = types.cmp.SelectBehavior.Insert }),
-			{ "i", "c" }
-		),
-		["<C-p>"] = cmp.mapping(
-			cmp.mapping.select_prev_item({ behaviour = types.cmp.SelectBehavior.Insert }),
-			{ "i", "c" }
-		),
+		["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item({ behaviour = cmp.SelectBehavior.Insert }), { "i", "c" }),
+		["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item({ behaviour = cmp.SelectBehavior.Insert }), { "i", "c" }),
 		-- ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 		["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
 		["<C-b>"] = cmp.mapping({
@@ -77,17 +96,7 @@ cmp.setup({
 		}),
 		["<C-f>"] = cmp.mapping.confirm({ select = true }),
 	},
-	sources = cmp.config.sources({
-		-- {name = 'cmp_tabnine'},
-		{ name = "nvim_lsp" },
-		-- { name = 'vsnip' }, -- For vsnip users.
-		{ name = "luasnip" }, -- For luasnip users.
-		-- { name = 'ultisnips' }, -- For ultisnips users.
-		-- { name = 'snippy' }, -- For snippy users.
-		{ name = "treesitter" },
-	}, {
-		{ name = "buffer" },
-	}),
+	sources = prefered_sources,
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
@@ -99,12 +108,16 @@ cmp.setup.cmdline("/", {
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
+	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
 		{ name = "path" },
 		debounce = 2,
 	}, {
-		{ name = "cmdline", keyword_pattern = [=[[^[:blank:]\!]*]=] },
+		{ name = "cmdline", debounce = 2 },
+	}, {
+		{ name = "buffer-lines" },
 		debounce = 2,
 	}),
 })
+
 require("luasnip.loaders.from_vscode").lazy_load()

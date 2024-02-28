@@ -7,14 +7,13 @@ alias lf=lfrun
 current_dir_flag=$1
 export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
 export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
-export PATH=$HOME/go/bin/:$PATH
-export PATH=$HOME/usr/bin/:$PATH
-export PATH=$HOME/.local/bin/:$PATH
+export DE=kde
+export DE=gnome
 
 # direcotry to open lf in
 
 if [  "$current_dir_flag" = "0" ] || [ "$current_dir_flag" = "2" ] ; then
-direc=$(find ~ -maxdepth 4 -type d  |  fzf --cycle --prompt='change directory: ' --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" )
+direc=$(find ~ -maxdepth 8 -type d  |  fzf --cycle --prompt='change directory: ' --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" )
 if [ "$current_dir_flag" = "0" ] ; then
 if [  -z "$direc" ] ; then
     exit

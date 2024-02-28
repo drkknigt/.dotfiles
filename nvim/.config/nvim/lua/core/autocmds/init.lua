@@ -7,8 +7,6 @@ api.nvim_create_autocmd("TextYankPost", {
 	group = yankGrp,
 })
 
--- reload packer
-
 -- set folds
 local foldGrp = api.nvim_create_augroup("FoldGrp", { clear = true })
 api.nvim_create_autocmd("BufEnter", { command = "set fo-=c fo-=r fo-=o" })
@@ -17,23 +15,7 @@ api.nvim_create_autocmd("BufEnter", { command = "set fo-=c fo-=r fo-=o" })
 local chngeDir = api.nvim_create_augroup("ChngeDir", { clear = true })
 api.nvim_create_autocmd("BufEnter", { command = "silent! lcd %:p:h", group = chngeDir })
 
--- set bufhidden to defautl
--- local chngeDir = api.nvim_create_augroup("WindowClose", { clear = true })
--- api.nvim_create_autocmd("WinClosed", { command = "set bufhidden&", group = WindowClose })
-
-local function set_abb()
-	local file_type = vim.bo.file_type
-	command("abb py! #!/usr/bin/env " .. file_type)
-end
-
--- local file_type = vim.bo.file_type
--- camd = "lua print(" .. vim.bo.filetype .. ")"
--- local setABB = api.nvim_create_augroup("setAbb", { clear = true })
--- api.nvim_create_autocmd("BufEnter", { command = camd, group = setAbb })
--- nvim lsp action symbols
---lsp actions bulb symbol
--- local lspAction = api.nvim_create_augroup("LspAction",{clear = true})
--- api.nvim_create_autocmd({"CursorHold","CursorHoldI"}, { command = "lua require'nvim-lightbulb'.update_lightbulb({virtual_text = {enabled = true,text = '💡'}})", group = lspAction,})
+-- set keymaps to browse lsp symbols  in quickfix
 local lsp_details = api.nvim_create_augroup("lsp_details", { clear = true })
 api.nvim_create_autocmd("BufReadPost", {
 	group = "lsp_details",
@@ -52,6 +34,7 @@ api.nvim_create_autocmd("BufReadPost", {
 	end,
 })
 
+-- preserve serach register value on exiting the quickfix list
 local paste_search = api.nvim_create_augroup("paste_search", { clear = true })
 api.nvim_create_autocmd("BufLeave", {
 	group = "paste_search",
@@ -62,7 +45,6 @@ api.nvim_create_autocmd("BufLeave", {
 		end
 	end,
 })
--- vim.cmd([[:autocmd BufReadPost quickfix nnoremap <buffer> f /function<cr>]])
 
 -- preserver the window view after changing the buffer or after yanking from textobject
 vim.cmd([[autocmd! BufWinLeave * let b:winview = winsaveview()
@@ -107,3 +89,36 @@ for group, commands in pairs(augroups) do
 		vim.api.nvim_create_autocmd(event, opts)
 	end
 end
+
+-- autocmd to set height for oil.nvim
+api.nvim_create_augroup("OilRelPathFix", {})
+api.nvim_create_autocmd("BufEnter", {
+	group = "OilRelPathFix",
+	pattern = "oil:///*",
+	callback = function()
+		vim.cmd("vert resize 35%")
+	end,
+})
+
+-- autocmd to make backup of lazy-lock-json on each lazy update
+local lazy_cmds = vim.api.nvim_create_augroup("lazy_cmds", { clear = true })
+local snapshot_dir = vim.fn.stdpath("config") .. "/snapshots"
+local lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json"
+
+vim.api.nvim_create_user_command("BrowseSnapshots", "edit " .. snapshot_dir, {})
+
+vim.api.nvim_create_autocmd("User", {
+	group = lazy_cmds,
+	pattern = "LazyUpdatePre",
+	desc = "Backup lazy.nvim lockfile",
+	callback = function(event)
+		if vim.fn.isdirectory(snapshot_dir) == 0 then
+			vim.fn.mkdir(snapshot_dir, "p")
+		end
+		local snapshot = snapshot_dir .. os.date("/lazy-lock-%Y-%m-%d-Time-%H:%M:%S.json")
+		vim.loop.fs_copyfile(lockfile, snapshot)
+	end,
+})
+
+-- make nested directories with :e
+vim.cmd("au BufWritePre,FileWritePre * if @% !~# '(://)' | call mkdir(expand('<afile>:p:h'), 'p') | endif")

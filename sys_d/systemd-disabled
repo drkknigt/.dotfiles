@@ -6,4 +6,6 @@ mimeopen --ask-default abc.mp4
 mimeopen --ask-default abc.jpg
 mimeopen --ask-default abc.png
 mimeopen --ask-default abc.epub
+mimeopen --ask-default abc.gif
+mimeopen --ask-default abc.webp
 

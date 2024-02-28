@@ -4,11 +4,18 @@ CACHE="$HOME/.cache/lf/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' \
 
 image() {
 	if [ -n "$DISPLAY" ] && [ -z "$WAYLAND_DISPLAY" ]; then
-		printf '{"action": "add", "identifier": "PREVIEW", "x": "%s", "y":"%s", "width": "%s", "height": "%s", "scaler": "contain", "path": "%s"}\n' \
-			"$4" "$5" "$(($2-1))" "$(($3-1))" "$1" > "$FIFO_UEBERZUG"
-		exit 1
+        if [ -n "$TMUX" ]; then
+            exit 1
+        fi
+         chafa -f sixel -s "$2x$3" --animate off --polite on "$1"
+            exit 1
 	else
-		chafa "$1" -s "$4x"
+        if [ -n "$TMUX" ]; then
+            exit 1
+        fi
+         chafa -f sixel -s "$2x$3" --animate off --polite on "$1"
+            exit 1
+        
 	fi
 }
 
@@ -33,7 +40,7 @@ glowormdcat() {
 }
 
 case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
-	*.tgz|*.tar.gz) tar tzf "$1" ;;
+	*.tgz|*.tar.gz) tar vxzf "$1" ;;
 	*.tar.bz2|*.tbz2) tar tjf "$1" ;;
 	*.tar.txz|*.txz) xz --list "$1" ;;
 	*.tar) tar tf "$1" ;;

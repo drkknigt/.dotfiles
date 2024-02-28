@@ -1,8 +1,12 @@
+------------------------------------ which-key ------------------------------------------
+
+-- setup which key
 local status_ok, which_key = pcall(require, "which-key")
 if not status_ok then
 	return
 end
 
+-- whcich key opts
 local setup = {
 	plugins = {
 		marks = true, -- shows a list of your marks on ' and `
@@ -25,13 +29,16 @@ local setup = {
 	},
 	-- add operators that will trigger motion and text object completion
 	-- to enable all native operators, set the preset / operators plugin above
-	-- operators = { gc = "Comments" },
+	operators = { gc = "Comments" },
 	key_labels = {
 		-- override the label used to display some keys. It doesn't effect WK in any other way.
 		-- For example:
 		-- ["<space>"] = "SPC",
 		-- ["<cr>"] = "RET",
 		-- ["<tab>"] = "TAB",
+	},
+	motions = {
+		count = true,
 	},
 	icons = {
 		breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
@@ -48,6 +55,7 @@ local setup = {
 		margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
 		padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
 		winblend = 0,
+		zindex = 1000,
 	},
 	layout = {
 		height = { min = 4, max = 25 }, -- min and max height of the columns
@@ -56,16 +64,34 @@ local setup = {
 		align = "left", -- align columns left, center or right
 	},
 	ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
-	hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
+	hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "^call", "^lua", "^:", "^ " }, -- hide mapping boilerplate
 	show_help = true, -- show help message on the command line when the popup is visible
+	show_keys = true, -- show currently pressed key and its label
 	triggers = "auto", -- automatically setup triggers
 	-- triggers = {"<leader>"} -- or specify a list manually
+	-- list of triggers, where WhichKey should not wait for timeoutlen and show immediately
+	triggers_nowait = {
+		-- marks
+		"`",
+		"'",
+		"g`",
+		"g'",
+		-- registers
+		'"',
+		"<c-r>",
+		-- spelling
+		"z=",
+	},
 	triggers_blacklist = {
 		-- list of mode / prefixes that should never be hooked by WhichKey
 		-- this is mostly relevant for key maps that start with a native binding
 		-- most people should not need to change this
 		i = { "j", "k" },
 		v = { "j", "k" },
+	},
+	disable = {
+		buftypes = { "nofile" },
+		filetypes = {},
 	},
 }
 
@@ -79,23 +105,36 @@ local opts = {
 	nowait = true, -- use `nowait` when creating keymaps
 }
 
+-- which key mappings
 local mappings = {
 	["a"] = { "<cmd>:ISwap<cr>", "swap variables in list or array or tables" }, -- swap variables in list or array
-	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" }, -- open file explorer
+	["e"] = { require("core.userFunctions").toggle_oil, "Explorer" }, -- open file explorer
 	["r"] = { "<cmd>Jaq<cr>", "run code" }, -- run code
+
+	["o"] = {
+		"<cmd>lua require('telescope.builtin').buffers({ layout_strategy = 'vertical', layout_config = { width = 0.4, height = 0.5, anchor = 'SE' }, })<cr>",
+		"search Buffers",
+	},
+
 	-- ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },,
 
+	-- lazy-nvim
 	p = {
 		name = "Lazy-nvim",
-		z = { "<cmd>e ~/.config/nvim/lua/core/lazy-nvim/init.lua<cr>", "open plugin config" },
+		z = {
+			"<cmd>n ~/.config/nvim/lua/core/lazy-nvim/plugins.lua<cr>",
+			"open plugin configs",
+		},
 		s = { "<cmd>luafile %<cr>", "source lua file" },
 		i = { "<cmd>Lazy install<cr>", "Lazy run install clean and update" },
 		u = { "<cmd>Lazy update<cr>", "Lazy Update" },
 		c = { "<cmd>Lazy clean<cr>", "Lazy-clean" },
 		p = { "<cmd>Lazy home<cr>", "open lazy-nvim" },
 		t = { "<cmd>StartupTime<cr>", "see startuptime for neovim" },
+		r = { require("core.userFunctions").backup_lazy, "backup lazy lock and restore lazy" },
 	},
 
+	-- git
 	g = {
 		name = "Git",
 		g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
@@ -118,7 +157,13 @@ local mappings = {
 			"<cmd>Gitsigns diffthis HEAD<cr>",
 			"use git-Diff",
 		},
+		q = {
+			require("core.userFunctions").open_git_telescope,
+			"open directory in oil via telescope",
+		},
 	},
+
+	-- quickfix list
 	q = {
 		name = "Lists",
 		w = {
@@ -131,6 +176,8 @@ local mappings = {
 		f = { "yiw<bar><cmd>FzfLua lines<cr><bar><ESC>pi", "see current word under cursor in fzf buffer" },
 		o = { "<cmd>lclose<cr>", "LocationList close" },
 	},
+
+	-- lsp
 	l = {
 		name = "LSP",
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
@@ -175,13 +222,15 @@ local mappings = {
 		--   "Workspace Symbols",
 		-- },
 	},
+
+	-- Telescope
 	s = {
 		name = "Search",
 		t = { "<cmd>Outline<cr>", "Symbols outline" },
 		-- d = { "<cmd>Telescope file_browser<cr>", "File Browser" },
 		d = {
-			"<cmd>lua require'telescope'.extensions.file_browser.file_browser({cwd='$HOME'})<cr>",
-			"file-browser-for-current-dir",
+			require("core.userFunctions").open_dir_telescope,
+			"open directory in oil via telescope",
 		},
 		-- h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
 		-- m = { "<cmd>Telescope help_tags<cr>", "help pages" },
@@ -206,7 +255,7 @@ local mappings = {
 		},
 		q = { "<cmd>Telescope quickfix<cr>", "Quickfix" },
 		i = { "<cmd>Telescope bookmarks<cr>", "Bookmarks" },
-		b = { "<cmd>Telescope buffers<cr>", "Buffers" },
+		-- b = { "<cmd>Telescope buffers<cr>", "Buffers" },
 		e = {
 			"<cmd>lua require'telescope'.extensions.file_browser.file_browser({files=true,grouped=true,depth=1,hidden=true})<cr>",
 			"file-browser-current",
@@ -214,11 +263,12 @@ local mappings = {
 		s = { "<cmd>Telescope live_grep<cr>", "Grep" },
 		E = { "<cmd>Telescope env<cr>", "Env" },
 		l = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Buffer lines" },
-		h = { "<cmd>lua require('Plugins/_telescope-setting').search_dotfiles()<cr>", "search dotfiles" },
-		a = { "<cmd>lua require('Plugins/_telescope-setting').search_ansible()<cr>", "search ansible-sync" },
+		h = { require("core.userFunctions").search_dotfiles, "search dotfiles" },
+		a = { require("core.userFunctions").search_ansible, "search ansible-sync" },
 		-- d = {"<cmd>lua require('plugins/telescope-config').search_dir()<cr>","dotfiles"},
 	},
-	-- n = { "<cmd>lua require('Plugins/_telescope-setting').search_nvim()<cr>", "nvim files" },
+
+	-- fzf
 	f = {
 		name = "fzf",
 		f = { "<cmd>FzfLua files<cr>", "find files fzf" },
@@ -232,6 +282,7 @@ local mappings = {
 		w = { "yiw<bar><cmd>FzfLua blines<cr><bar><ESC>pi", "paste" },
 	},
 
+	-- Terminal
 	t = {
 		name = "Terminal",
 		n = { ":lua _NODE_TOGGLE()<cr>", "Node terminal" },
@@ -245,11 +296,21 @@ local mappings = {
 		h = { ":lua _HORIZONTAL()<cr>", "Horizontal terminal" },
 		v = { ":lua _VERTICAL()<cr>", "Vertical terminal" },
 	},
-	h = {
-		s = { ":lua require('tsht').move({side = 'start'})<cr>", "treesitter go to start of object" },
-		e = { ":lua require('tsht').move({side = 'end'})<cr>", "treesitter go to end of object" },
+
+	--debugger
+	x = {
+		name = "debbuger",
+		x = { ":lua require('dapui').toggle()<cr>", "toggle dap ui " },
+		c = { ":lua require('dap').continue()<cr>", "continue dap " },
+		b = { ":lua require('dap').toggle_breakpoint()<cr>", "toggle breakpoint" },
+		r = { ":lua require('dap').open({reset = true})<cr>", "reset dap" },
+		s = { ":lua require('dap').repl.open()<cr>", "open repl" },
+		o = { ":lua require('dap').step_over()<cr>", "step over" },
+		i = { ":lua require('dap').step_into()<cr>", "step into" },
+		a = { ":lua require('dap').step_out()<cr>", "step outside" },
 	},
 }
 
+-- call which key
 which_key.setup(setup)
 which_key.register(mappings, opts)

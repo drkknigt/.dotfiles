@@ -1,3 +1,6 @@
+----------------------------------- treesitter ---------------------------------------
+
+-- setup treesitter
 require("nvim-treesitter.configs").setup({
 	-- ensure_installed can be "all" or a list of languages { "python", "javascript" }
 	indent = {
@@ -12,9 +15,10 @@ require("nvim-treesitter.configs").setup({
 	},
 	autotag = {
 		enable = true,
-	},
-	indent = {
-		-- enable = true,
+		enable_rename = true,
+		enable_close = true,
+		enable_close_on_slash = true,
+		filetypes = { "html", "xml" },
 	},
 	rainbow = {
 		enable = true,
@@ -33,14 +37,14 @@ require("nvim-treesitter.configs").setup({
 		},
 		-- termcolors = {} -- table of colour name strings
 	},
-
-	ensure_installed = { "vim", "python", "lua", "bash", "javascript", "clojure", "go", "c", "html", "css", "cpp" },
+	-- install treesitter parsers
+	ensure_installed = { "vim", "python", "lua", "bash", "clojure", "go", "c", "html", "css", "cpp" },
 	sync_install = false,
 
 	highlight = { -- enable highlighting for all file types
 		enable = true, -- you can also use a table with list of langs here (e.g. { "python", "javascript" })
-		-- disable = {"vim"},
-		additional_vim_regex_highlighting = true,
+		-- disable = { "lua" },
+		additional_vim_regex_highlighting = false,
 	},
 	incremental_selection = {
 		enable = true, -- you can also use a table with list of langs here (e.g. { "python", "javascript" })
@@ -156,14 +160,3 @@ require("nvim-treesitter.configs").setup({
 local map = vim.api.nvim_set_keymap
 map("n", "]w", ":lua require('ts-node-action').node_action()<cr>", { noremap = true, silent = true })
 -- iswap
-
--- local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
---
--- -- Repeat movement with ; and ,
--- -- ensure ; goes forward and , goes backward regardless of the last direction
--- vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
--- vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
--- vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f)
--- vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F)
--- vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
--- vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)

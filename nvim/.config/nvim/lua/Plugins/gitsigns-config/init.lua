@@ -1,3 +1,6 @@
+------------------------------------- git-signs ------------------------------------------
+
+-- call git signs setup with opts
 require("gitsigns").setup({
 	signs = {
 		add = { hl = "GitSignsAdd", text = "┃", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },

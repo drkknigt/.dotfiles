@@ -1,8 +1,11 @@
+----------------------------------- setup signature --------------------------------
+
 local status_ok, signature = pcall(require, "lsp_signature")
 if not status_ok then
 	return
 end
 
+-- signature opts
 local cfg = {
 	debug = false, -- set to true to enable debug logging
 	log_path = "debug_log_file_path", -- debug log path
@@ -47,6 +50,8 @@ local cfg = {
 	timer_interval = 100, -- default timer check interval set to lower value if you want to reduce latency
 	-- toggle_key = "<C-y>", -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
 }
+
+-- mapping to toggle signature in insert and normal mode
 vim.keymap.set({ "i" }, "<C-y>", function()
 	require("lsp_signature").toggle_float_win()
 end, { silent = true, noremap = true, desc = "toggle signature" })
@@ -54,10 +59,7 @@ end, { silent = true, noremap = true, desc = "toggle signature" })
 vim.keymap.set({ "n" }, "<C-y>", function()
 	require("lsp_signature").toggle_float_win()
 end, { silent = true, noremap = true, desc = "toggle signature" })
+
 -- recommanded:
 signature.setup(cfg) -- no need to specify bufnr if you don't use toggle_key
 local ok, var = pcall(vim.api.nvim_command, "e!")
--- You can also do this inside lsp on_attach
--- note: on_attach deprecated
--- require("lsp_signature").on_attach(cfg, bufnr) -- no need to specify bufnr if you don't use toggle_key
--- signature.on_attach(cfg) -- no need to specify bufnr if you don't use toggle_key

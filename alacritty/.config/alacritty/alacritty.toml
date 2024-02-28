@@ -85,11 +85,11 @@ save_to_clipboard = true
 
 [window]
 dynamic_padding = true
-opacity = 0.8
+opacity = 0.9
 
 [window.padding]
-x = 4
-y = 4
+x = 0
+y = 0
 
 [window.dimensions]
 columns = 240

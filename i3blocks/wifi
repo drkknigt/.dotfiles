@@ -62,3 +62,5 @@ elif [[ $QUALITY -ge 30 ]]; then
 else
     echo $COLOR_LOWR
 fi
+# 1qa2ws3ed@3.142
+# 1qa2ws3ed@3.14

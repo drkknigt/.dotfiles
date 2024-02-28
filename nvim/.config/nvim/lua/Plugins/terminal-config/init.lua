@@ -108,8 +108,13 @@
 
 -- end of toggle term config --
 
+--------------------------------------------- vim-floaterm ------------------------------------
+
 vim.g.floaterm_opener = "edit"
 
+-- functions to call various external cmd line repls, tools
+
+-- call lazygit
 function _LAZYGIT_TOGGLE()
 	local current_dir = vim.fn.getcwd()
 	vim.cmd("normal mf")
@@ -119,6 +124,7 @@ function _LAZYGIT_TOGGLE()
 	vim.cmd("cd " .. current_dir)
 end
 
+-- call nodejs repl
 function _NODE_TOGGLE()
 	local current_dir = vim.fn.getcwd()
 	vim.cmd("normal mf")
@@ -126,6 +132,7 @@ function _NODE_TOGGLE()
 	vim.cmd("cd " .. current_dir)
 end
 
+-- call htop
 function _HTOP_TOGGLE()
 	local current_dir = vim.fn.getcwd()
 	vim.cmd("normal mf")
@@ -133,6 +140,7 @@ function _HTOP_TOGGLE()
 	vim.cmd("cd " .. current_dir)
 end
 
+-- call python repl
 function _PYTHON_TOGGLE()
 	local current_dir = vim.fn.getcwd()
 	vim.cmd("normal mf")
@@ -142,6 +150,7 @@ function _PYTHON_TOGGLE()
 	vim.cmd("cd " .. current_dir)
 end
 
+-- call lua repl
 function _LUA_TOGGLE()
 	local current_dir = vim.fn.getcwd()
 	vim.cmd("normal mf")
@@ -149,6 +158,7 @@ function _LUA_TOGGLE()
 	vim.cmd("cd " .. current_dir)
 end
 
+-- call glow markdown viewer
 function _GLOW()
 	local current_dir = vim.fn.getcwd()
 	vim.cmd("normal mf")
@@ -158,6 +168,7 @@ function _GLOW()
 	vim.cmd("cd " .. current_dir)
 end
 
+-- make horizontal terminal
 function _HORIZONTAL()
 	local current_dir = vim.fn.getcwd()
 	vim.cmd("normal mf")
@@ -165,6 +176,7 @@ function _HORIZONTAL()
 	vim.cmd("cd " .. current_dir)
 end
 
+-- make vertical terminal
 function _VERTICAL()
 	local current_dir = vim.fn.getcwd()
 	vim.cmd("normal mf")
@@ -172,6 +184,7 @@ function _VERTICAL()
 	vim.cmd("cd " .. current_dir)
 end
 
+-- make floating terminal
 function _FLOAT()
 	local current_dir = vim.fn.getcwd()
 	vim.cmd("normal mf")
@@ -179,5 +192,6 @@ function _FLOAT()
 	vim.cmd("cd " .. current_dir)
 end
 
+-- mapping to kill floaterm in terminal mode
 local map = vim.api.nvim_set_keymap
 map("t", "<C-d>", "<C-\\><C-n>:FloatermKill<cr><bar>i<ESC>`f", { silent = true, noremap = true })
