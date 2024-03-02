@@ -394,7 +394,7 @@ local nvim_bqf = {
 		vim.api.nvim_set_hl(0, "Statusline", { bg = "Black", fg = "gray" })
 		vim.opt.statusline = "%{%v:lua.require('core.statusline').current()%}"
 		vim.opt.winbar =
-			" %{%v:lua.require('core.userFunctions').buffer_number()%}   󰉻 Total buffers:%{%v:lua.require('core.userFunctions').total_buffers()%}   : %F"
+			": %F   󱕱 %{%v:lua.require('core.userFunctions').buffer_number()%}   󰉻 Total buffers:%{%v:lua.require('core.userFunctions').total_buffers()%}"
 	end,
 }
 

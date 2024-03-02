@@ -68,32 +68,43 @@ cmp.setup({
 		["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
 		["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item({ behaviour = cmp.SelectBehavior.Insert }), { "i", "c" }),
 		["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item({ behaviour = cmp.SelectBehavior.Insert }), { "i", "c" }),
-		-- ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-		["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+		-- disable cmp or enable cmp
+		["<C-space>"] = function()
+			if vim.g.cmp_user_enabled then
+				cmp.abort()
+				cmp.setup.buffer({ enabled = false })
+				vim.g.cmp_user_enabled = false
+			else
+				cmp.setup.buffer({ enabled = true })
+				cmp.complete()
+				vim.g.cmp_user_enabled = true
+			end
+		end,
+
 		["<C-b>"] = cmp.mapping({
 			i = cmp.mapping.abort(),
 			c = cmp.mapping.close(),
 		}),
-		["<C-Space>"] = cmp.mapping({
-			i = function()
-				if cmp.visible() then
-					-- require("notify")("visible")
-					cmp.abort()
-				else
-					-- require("notify")("not visible")
-					cmp.complete()
-				end
-			end,
-			c = function()
-				if cmp.visible() then
-					-- require("notify")("visible")
-					cmp.close()
-				else
-					-- require("notify")("not visible")
-					cmp.complete()
-				end
-			end,
-		}),
+		-- ["<C-y>"] = cmp.mapping({
+		-- 	i = function()
+		-- 		if cmp.visible() then
+		-- 			-- require("notify")("visible")
+		-- 			cmp.abort()
+		-- 		else
+		-- 			-- require("notify")("not visible")
+		-- 			cmp.complete()
+		-- 		end
+		-- 	end,
+		-- 	c = function()
+		-- 		if cmp.visible() then
+		-- 			-- require("notify")("visible")
+		-- 			cmp.close()
+		-- 		else
+		-- 			-- require("notify")("not visible")
+		-- 			cmp.complete()
+		-- 		end
+		-- 	end,
+		-- }),
 		["<C-f>"] = cmp.mapping.confirm({ select = true }),
 	},
 	sources = prefered_sources,

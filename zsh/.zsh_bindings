@@ -32,8 +32,9 @@ bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search
 bindkey "^]" end-of-line
 bindkey "^a" beginning-of-line
-bindkey "^j" backward-word
-bindkey "^k" forward-word
-bindkey "^ " backward-char
+bindkey "^b" backward-word
+bindkey "^f" forward-word
+bindkey "^j" backward-char
+bindkey "^k" forward-char
 bindkey "kj"  vi-cmd-mode
 bindkey '^[[Z' reverse-menu-complete
