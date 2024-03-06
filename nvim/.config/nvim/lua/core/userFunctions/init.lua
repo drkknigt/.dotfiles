@@ -179,7 +179,7 @@ end
 -- make backup of lazy snapshots
 local function copy_lazy_to_snapshots()
 	local snapshot_dir = vim.fn.stdpath("config") .. "/snapshots"
-	local snapshot = snapshot_dir .. os.date("/lazy-lock-%Y-%B-%d-Time-%H:%M:%S.json")
+	local snapshot = snapshot_dir .. os.date("/%B-%d-%Y-Time-%H:%M:%S-lazy.json")
 	local lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json"
 	vim.loop.fs_copyfile(lockfile, snapshot)
 end
