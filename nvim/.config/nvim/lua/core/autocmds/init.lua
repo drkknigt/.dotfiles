@@ -115,7 +115,7 @@ vim.api.nvim_create_autocmd("User", {
 		if vim.fn.isdirectory(snapshot_dir) == 0 then
 			vim.fn.mkdir(snapshot_dir, "p")
 		end
-		local snapshot = snapshot_dir .. os.date("/lazy-lock-%Y-%m-%d-Time-%H:%M:%S.json")
+		local snapshot = snapshot_dir .. os.date("/lazy-lock-%Y-%B-%d-Time-%H:%M:%S.json")
 		vim.loop.fs_copyfile(lockfile, snapshot)
 	end,
 })
