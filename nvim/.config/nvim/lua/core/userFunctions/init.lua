@@ -232,17 +232,7 @@ M.open_dir_telescope = function()
 	})
 end
 
-M.total_buffers = function()
-	local tab_buf = vim.api.nvim_list_bufs()
-	local count = 0
-	for _, buf_hndl in pairs(tab_buf) do
-		if vim.api.nvim_buf_is_loaded(buf_hndl) then
-			count = count + 1
-		end
-	end
-	return count
-end
-
+-- get total buffers opened in session
 M.total_buffers = function()
 	buffer_table = vim.tbl_filter(function(bufnr)
 		return vim.api.nvim_buf_get_option(bufnr, "buflisted")
@@ -254,6 +244,7 @@ M.total_buffers = function()
 	return count
 end
 
+-- get current buffer number
 M.buffer_number = function()
 	local current_buf_no = vim.api.nvim_get_current_buf()
 	buffer_table = vim.tbl_filter(function(bufnr)
@@ -264,6 +255,26 @@ M.buffer_number = function()
 			return string.format("Buffer No: " .. tostring(i))
 		end
 	end
+end
+
+-- functions for oil mapping to open buffer
+M.open_buffer = function()
+	require("oil.actions").copy_entry_path.callback()
+	local register_value = vim.fn.getreg("+")
+	-- vim.cmd("wincmd o")
+	if vim.fn.isdirectory(register_value) == 1 then
+		require("oil.actions").select.callback()
+	else
+		vim.cmd("e " .. register_value)
+		vim.cmd("wincmd o")
+		-- require("core.userFunctions").toggle_oil()
+		-- vim.cmd("wincmd l")
+	end
+end
+
+-- functions for oil mapping to save buffer
+M.save_file = function()
+	vim.cmd("w")
 end
 
 -- return functions

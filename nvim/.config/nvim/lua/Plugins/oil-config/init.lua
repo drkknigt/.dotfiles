@@ -1,19 +1,3 @@
--- function to call on <CR> mapping to open file from oil explorer
-
-local function open_buffer()
-	require("oil.actions").copy_entry_path.callback()
-	local register_value = vim.fn.getreg("+")
-	-- vim.cmd("wincmd o")
-	if vim.fn.isdirectory(register_value) == 1 then
-		require("oil.actions").select.callback()
-	else
-		vim.cmd("e " .. register_value)
-		vim.cmd("wincmd o")
-		-- require("core.userFunctions").toggle_oil()
-		-- vim.cmd("wincmd l")
-	end
-end
-
 -- options for oil
 
 opts = {
@@ -69,7 +53,7 @@ opts = {
 	-- See :help oil-actions for a list of all available actions
 	keymaps = {
 		["g?"] = "actions.show_help",
-		["<CR>"] = { callback = open_buffer, desc = "open file under cursor", mode = "n" },
+		["<CR>"] = { callback = require("core.userFunctions").open_buffer, desc = "open file under cursor", mode = "n" },
 		["<C-s>"] = "actions.select_vsplit",
 		["<C-y>"] = "actions.copy_entry_path",
 		["<C-h>"] = "actions.select_split",
@@ -77,6 +61,7 @@ opts = {
 		["<C-p>"] = "actions.preview",
 		["<C-c>"] = "actions.close",
 		["<C-l>"] = "actions.refresh",
+		["<leader>w"] = { callback = require("core.userFunctions").save_file, desc = "save file", mode = "n" },
 		["-"] = "actions.parent",
 		["_"] = "actions.open_cwd",
 		["`"] = "actions.cd",

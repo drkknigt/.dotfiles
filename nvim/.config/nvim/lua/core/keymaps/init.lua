@@ -56,7 +56,7 @@ map("i", "kj", "<Esc>", { silent = true })
 map_func("n", "<C-k>", require("core.userFunctions").next_buffer, { noremap = true, silent = true })
 map_func("n", "<C-j>", require("core.userFunctions").previous_buffer, { noremap = true, silent = true })
 map("n", "<leader>d", ":bd!<CR>", { noremap = true, silent = true, desc = "delete buffer forcefully" })
-map("n", "<leader>w", ":w<CR>", { noremap = true, silent = true, desc = "save buffer" })
+map("n", "<leader>w", ":w ++p<CR>", { noremap = true, silent = true, desc = "save buffer" })
 map_func(
 	"n",
 	"<leader>,",
