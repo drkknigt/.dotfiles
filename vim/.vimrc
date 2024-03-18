@@ -68,6 +68,7 @@ set magic " Enable extended regexes.
 set title " set title of window with file name
 set wildoptions=pum "layout of the wildmenu
 set cpoptions+=>
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 " remap Esc to jk
 " leader key
 hi Normal ctermbg=None

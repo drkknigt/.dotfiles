@@ -29,7 +29,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(history match_prev_cmd completion)
 
 #--------------------------------------- paths and env vars ---------------------------------#
 export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
-export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
+export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp -m'
 
 #------------------------------------- various user paths added ------------------------------#
 #------------------------------------------- source ~/.zsh_paths -----------------------------#
