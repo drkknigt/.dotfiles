@@ -364,6 +364,11 @@ local gitsigns = {
 	end,
 }
 
+local vim_fugitive = {
+	"tpope/vim-fugitive",
+	event = "VeryLazy",
+}
+
 -- run code
 local jaq_nvim = {
 	-- https://github.com/is0n/jaq-nvim
@@ -551,7 +556,6 @@ theme_aesthetic_plugins = {
 	gruvbox_baby,
 	nvim_web_devicons,
 	vim_devicons,
-	-- lualine,
 	indent_blankline,
 }
 
@@ -587,6 +591,7 @@ lsp_plugins = {
 -- git plugins
 git_plugins = {
 	gitsigns,
+	vim_fugitive,
 }
 
 -- runners and ai

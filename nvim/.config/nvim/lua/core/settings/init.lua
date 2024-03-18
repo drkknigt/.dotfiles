@@ -104,6 +104,8 @@ set.autochdir = true -- change dir on buffer change
 
 -- set.virtualedit = all
 
+set.grepprg = "rg --vimgrep --smart-case --follow" -- change native grep program for vim
+
 set.laststatus = 3 -- neovim specific to get a global statusline
 
 -- set.statusline = "   %F"

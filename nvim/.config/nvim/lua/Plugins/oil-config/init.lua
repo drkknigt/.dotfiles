@@ -54,6 +54,7 @@ opts = {
 	keymaps = {
 		["g?"] = "actions.show_help",
 		["<CR>"] = { callback = require("core.userFunctions").open_buffer, desc = "open file under cursor", mode = "n" },
+		-- ["<CR>"] = "actions.select",
 		["<C-s>"] = "actions.select_vsplit",
 		["<C-y>"] = "actions.copy_entry_path",
 		["<C-h>"] = "actions.select_split",

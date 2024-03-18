@@ -259,16 +259,15 @@ end
 
 -- functions for oil mapping to open buffer
 M.open_buffer = function()
-	require("oil.actions").copy_entry_path.callback()
-	local register_value = vim.fn.getreg("+")
-	-- vim.cmd("wincmd o")
-	if vim.fn.isdirectory(register_value) == 1 then
+	local oil = require("oil")
+	local file_name = oil.get_cursor_entry().name
+	local dir = oil.get_current_dir()
+	local file_name = string.format("%s%s", dir, file_name)
+	if vim.fn.isdirectory(file_name) == 1 then
 		require("oil.actions").select.callback()
 	else
-		vim.cmd("e " .. register_value)
+		vim.cmd("e " .. file_name)
 		vim.cmd("wincmd o")
-		-- require("core.userFunctions").toggle_oil()
-		-- vim.cmd("wincmd l")
 	end
 end
 
