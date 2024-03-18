@@ -1,6 +1,7 @@
 #!/bin/sh
 set -e
 
+
 cleanup() {
     # exec 3>&-
 	# rm "$FIFO_UEBERZUG"
@@ -15,6 +16,6 @@ else
 	# mkfifo "$FIFO_UEBERZUG"
 	# ueberzug layer -s <"$FIFO_UEBERZUG" -p json &
 	# exec 3>"$FIFO_UEBERZUG"
-	# trap cleanup EXIT
+	trap cleanup EXIT
 	lf "$@" 
 fi
