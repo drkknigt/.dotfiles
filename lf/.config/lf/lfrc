@@ -138,17 +138,6 @@ case $file_type in
             fi
             ;;
     "text")
-        if [ "$file_format" = "html" ]; then
-            echo  "Do you want to open html file in browser ? (yes/no)" 
-            read open_in_browser
-            if [ "$open_in_browser" = "yes" ]; then
-                brave $fx &> /dev/null
-                exit
-            else
-                 alacritty -e nvim $fx &> /dev/null
-                exit
-            fi
-        fi
          alacritty -e nvim $fx &> /dev/null
         ;;
     "image")
