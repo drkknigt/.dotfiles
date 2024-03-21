@@ -38,6 +38,9 @@
    - alt + a + p + f  -------> capture full desktops all the screens
    - alt + a + p + w  -------> capture selected window
    - alt + a + p + a  -------> capture active window
+   - alt + a + r + r  -------> record screen with selection ( sway only)
+   - alt + a + r + s  -------> record full screen ( sway only)
+   - alt + a + r + q  -------> stop recording ( sway only) 
 
 ## Search:  
    - alt + f  + t     -------> open applications terminal mode (rofi -show run -dpi 171)
@@ -87,10 +90,6 @@
    - alt + control + j  -----> i3-msg move down
    - alt + control + k  -----> i3-msg move up
    - alt + control + l  -----> i3-msg move right
-   - alt + shift + h   ------> i3-msg move left
-   - alt + shift + j    -----> i3-msg move down
-   - alt + shift + k    -----> i3-msg move up
-   - alt + shift + l    -----> i3-msg move right
    - alt + 1           ------> i3-msg workspace 1
    - alt + 2           ------> i3-msg workspace 2
    - alt + 3           ------> i3-msg workspace 3
@@ -124,11 +123,11 @@
    - alt + z + h       ------> open man pages (man_pages.sh )
    - alt + z + q       ------> kill applications (kill.sh)
    - alt + z + k       ------> show keymaps for i3wm (keymaps.sh)
-   - alt + z + n       ------> open notes (notes.sh)
    - alt + z + x       ------> send mouse pointer to bottom (xdotool mousemove 800 1920 )
    - alt + z + e       ------> change cpu energe performance preference
    - alt + z + i       ------> info on cpu governor and driver
    - alt + z + w       ------> change wofi / rofi theme
+   - alt + z + v       ------> kill all instances of wf-recorder
    
 # ZSH KEYMAPS
 
@@ -167,9 +166,13 @@
    - ctrl + e + p      ------> create new window with root tmux path
    - ctrl + e + t      ------> create new window with current shell path as startin path
    - ctrl + e + o      ------> kill window 
+   - ctrl + e + O      ------> kill all window  except the current ones
+   - ctrl + e + x      ------> kill pane 
    - ctrl + e + q      ------> exit tmux 
    - ctrl + e + /      ------> kill curent session and move to next
    - ctrl + e + z      ------> maxamize pane
+   - ctrl + e + [      ------> pager mode
+   - ctrl + e + ]      ------> goto last window
    - ( ctrl + e + n )  ------> next session
    - ( ctrl + e + p )  ------> previous session
    - ( ctrl + e + [ )  ------> pager mode 
@@ -198,3 +201,38 @@
    - ctrl + e + '      ------> open lf file manger in path choosen from fzf
 
 
+# lf mappings
+
+
+     - d               ------> delete
+     - y               ------> copy 
+     - .               ------> set hidden!
+     - p               ------> paste
+     - x               ------> cut
+     - <enter>         ------> open
+     - R               ------> source-config
+     - F               ------> mkfile
+     - D               ------> mk_dir
+     - r               ------> bulk_rename
+     - f               ------> push :/<space>
+     - <c-l>           ------> :clear; unselect
+     - <space>         ------> :toggle; down
+     - <c-space>       ------> :toggle
+     - gm              ------>  cd ~/.ansible_sync
+     - gh              ------>  cd ~
+     - ga              ------>  cd ~/arch-pull
+     - gc              ------>  cd ~/.dotfiles
+     - gp              ------>  cd ~/Pictures
+     - gd              ------>  cd ~/Downloads
+     - gf              ------>  cd ~/Documents
+     - gv              ------>  cd ~/Videos
+     - g.              ------>  fzf_jump
+     - as              ------>  get_size
+     - ay              ------>  copypath
+     - au              ------>  unarchive
+     - an              ------>  copyname
+     - ar              ------>  edit_dir
+     - O               ------>  push :open-with-gui<space> ## input application
+     - o               ------>  push :open-with-cli<space> ## input application
+     - /               ------>  normal_search
+     - <c-o>           ------>  toggle_preview
