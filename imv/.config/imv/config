@@ -17,16 +17,16 @@ q = quit
 y = exec echo working!
 
 # Image navigation
-k = prev
+<Ctrl+k> = prev
 <Left> = prev
-j = next
+<Ctrl+j> = next
 <Right> = next
 gg = goto 1
 <Shift+G> = goto -1
 
 # Panning
-<Ctrl+j> = pan 0 -50
-<Ctrl+k> = pan 0 50
+j = pan 0 -50
+k = pan 0 50
 h = pan 50 0
 l = pan -50 0
 
