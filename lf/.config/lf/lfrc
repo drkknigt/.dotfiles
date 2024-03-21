@@ -1,5 +1,4 @@
 # lf global options
-set ratios 1:4:3
 #set cleaner ~/.dotfiles/lf/.config/lf/cleaner
 set previewer ~/.dotfiles/lf/.config/lf/preview
 set icons true
@@ -61,18 +60,18 @@ cmd unarchive ${{
 }}
 
 
-# change dir with fzf
-cmd change_dir ${{
-    dir=$(find ~ -type d | fzf --prompt="cd: " --bind "ctrl-o:toggle-preview" --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always "  --preview-window hidden | sed 's/.*/"\0"/g')
-    $lf -remote "send $id cd $dir"
-}}
-
-
-# change dir to where file is
-cmd change_dir_to_file ${{
-    dir=$(find ~ -type f | fzf --bind "ctrl-o:toggle-preview" --prompt="change to file directory: " --preview="~/.dotfiles/lf/.config/lf/preview_fzf.sh {}" --preview-window hidden | sed 's/.*/"\0"/g')
-    dir=$(dirname $(echo $dir))
-    $lf -remote "send $id cd $dir"
+# jump to location
+cmd fzf_jump ${{
+    file=$(find ~ | fzf --bind "ctrl-o:toggle-preview" --prompt="jump to location: " --preview="~/.dotfiles/lf/.config/lf/preview_fzf.sh {}" --preview-window hidden )
+    if [ -n "$file" ]; then
+        if [ -d "$file" ]; then
+            cmd="cd"
+        else
+            cmd="select"
+        fi
+        file="$(printf '%s' "$file" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+        lf -remote "send $id $cmd \"$file\""
+    fi
 }}
 
 
@@ -112,16 +111,9 @@ cmd bulk_rename %{{
 
 
 # open files with specific app
-cmd open_with %{{
-  printf "enter application to open with: "
-  read ans
-  if [[ "$ans" = "vim" || "$ans" == "nvim" ]]; then
-       alacritty -e $ans $fx &> /dev/null
-  else
-    $ans $fx &> /dev/null
-  fi
-}}
 
+cmd open-with-gui &$@ $fx ## opens with a gui application outside lf client
+cmd open-with-cli $$@ $fx ## opens with a cli application inside lf client
 
 
 # open files
@@ -197,6 +189,14 @@ cmd edit_dir ${{
     nvim .
 }}
 
+cmd toggle_preview %{{
+    if [ "$lf_preview" = "true" ]; then
+        lf -remote "send $id :set preview false; set ratios 2:3"
+    else
+        lf -remote "send $id :set preview true; set ratios 2:3:4"
+    fi
+}}
+
 
 # copy path of file
 cmd copypath &{{
@@ -222,6 +222,7 @@ map R source-config
 map F mkfile
 map D mk_dir
 map r bulk_rename
+map f push :/<space>
 map <c-l> :clear; unselect
 map <space>
 map <space> :toggle; down
@@ -236,16 +237,15 @@ map gp cd ~/Pictures
 map gd cd ~/Downloads
 map gf cd ~/Documents
 map gv cd ~/Videos
+map g. fzf_jump
 
 # functionality mappings
-map ad change_dir
-map af change_dir_to_file
 map as get_size
 map ay copypath
 map au unarchive
 map an copyname
 map ar edit_dir
-map ao open_with
+map O push :open-with-gui<space> ## input application
+map o push :open-with-cli<space> ## input application
 map / normal_search
-map <c-o> shell-async
-map <c-k> shell-wait
+map <c-o> toggle_preview
