@@ -84,6 +84,7 @@ cmd / &{{
 # get size and type of file
 cmd get_size %{{
      lf -remote "send $id echo    \"$(echo size:)\"   \"$(du -hs "$f" | awk -d' ' '{ print $1 }')\"  \"     file-type:$(file -b --mime-type "$f")\""
+     rm " "
 }}
 
 
