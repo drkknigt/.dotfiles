@@ -84,7 +84,7 @@ cmd / &{{
 # get size and type of file
 cmd get_size %{{
      lf -remote "send $id echo    \"$(echo size:)\"   \"$(du -hs "$f" | awk -d' ' '{ print $1 }')\"  \"     file-type:$(file -b --mime-type "$f")\""
-     rm " "
+     rm " " &> /dev/null
 }}
 
 
@@ -138,6 +138,9 @@ case $file_type in
         ;;
     "video")
           mpv $fx &> /dev/null
+        ;;
+    "audio")
+            mpv --force-window $f &> /dev/null
         ;;
     "application")
         echo "$file_format" | grep -Pi "pdf|epub" &> /dev/null

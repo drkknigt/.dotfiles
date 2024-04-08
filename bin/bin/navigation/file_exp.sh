@@ -58,6 +58,9 @@ case $file_type in
     "video")
         setsid -f mpv $file
         ;;
+    "audio")
+        setsid -f mpv --force-window $file
+        ;;
     "application")
         echo "$file_format" | grep -Pi "pdf|epub" &> /dev/null
         if [ "$?" = "0" ]; then

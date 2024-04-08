@@ -9,3 +9,7 @@ mimeopen --ask-default abc.epub
 mimeopen --ask-default abc.gif
 mimeopen --ask-default abc.webp
 
+# set browser
+# set powertop and tlp
+# set vpn 
+# set ollama
