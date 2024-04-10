@@ -6,7 +6,7 @@ export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
 
 
 # fzf_dir=$(find ~ -maxdepth 8 -type d -iname "*.git"| fzf --prompt="open git dir: " )
-fzf_dir=$(find ~ -maxdepth 8 -type d -iname "*.git" -exec dirname {} \;|  fzf --cycle --prompt='open  git dir: '  --bind "ctrl-o:toggle-preview" --preview="git_info.sh {}| batcat --theme='Monokai Extended Origin' --color=always" --keep-right )
+fzf_dir=$(find ~ -maxdepth 8 -type d -iname "*.git" -exec dirname {} \;|  fzf --cycle --prompt='open git dir: '  --bind "ctrl-o:toggle-preview" --preview="git_info.sh {}| batcat --theme='Monokai Extended Origin' --color=always" --keep-right )
 if [ -z "$fzf_dir" ] ; then
     exit
 fi
