@@ -12,7 +12,7 @@ exp=$1
 # logic for file explorer for finding files
 if [ ${exp} = "f" ]
 then
-    file=$(fdfind --type ${exp} . $disk $HOME /run/media/ /media | fzf --cycle --prompt='open files: ' --delimiter / --with-nth -1 --bind "ctrl-s:execute(setsid -f xdg-open {} &> /dev/null),tab:execute(setsid -f nemo $(basename {}) &> /dev/null),ctrl-o:toggle-preview" --preview="echo {} | batcat --theme='Monokai Extended Origin' --color=always" --keep-right --preview-window hidden)
+    file=$(fdfind --type ${exp} . $disk $HOME /run/media/ /media 2> /dev/null | fzf --cycle --prompt='open files: ' --delimiter / --with-nth -1 --bind "ctrl-s:execute(setsid -f xdg-open {} &> /dev/null),tab:execute(setsid -f nemo $(basename {}) &> /dev/null),ctrl-o:toggle-preview" --preview="echo {} | batcat --theme='Monokai Extended Origin' --color=always" --keep-right --preview-window wrap --preview-window hidden)
     
 # quit if file is empty
 if [ -z "$file" ]
@@ -22,7 +22,7 @@ fi
 
 # logic for file explorer for directories
 else
-    file=$(fdfind --type ${exp} . ${disk} $HOME /run/media/ /media/ --hidden | fzf --prompt='open directories: ' --bind "tab:execute(setsid -f xdg-open {} &> /dev/null),ctrl-o:toggle-preview" --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always " --keep-right --preview-window hidden)
+    file=$(fdfind --type ${exp} . ${disk} $HOME /run/media/ /media/ --hidden | fzf --prompt='open directories: ' --bind "tab:execute(setsid -f xdg-open {} &> /dev/null),ctrl-o:toggle-preview" --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always " --keep-right --preview-window hidden --preview-window wrap)
 
 # quit if file is empty
 if [ -z "$file" ]

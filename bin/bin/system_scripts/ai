@@ -1,0 +1,65 @@
+#!/usr/bin/env zsh
+
+# traps for sigint and exit
+if [ -z "$TMUX" ]; then
+    trap 'exit' INT
+    trap 'i3-msg workspace back_and_forth' EXIT
+fi
+
+# start ollama server and send to background
+type_of_ai=$(echo "online\noffline" | fzf --prompt="type of AI: ")
+if [ -z "$type_of_ai" ]; then
+    exit
+fi
+
+# offline version
+if [ "$type_of_ai" = "offline" ] ; then
+    ollama serve &> /dev/null &
+
+    # let ollama load
+    sleep 1
+
+    # select the model
+    ai_model=$(ollama list | tail +2 | fzf |  awk -F" " '{ print $1 }' ) 
+
+    # exit if no model is selected
+    if [ -z "$ai_model" ]; then
+        exit
+    fi
+
+    exit_loop=false
+
+
+    # main loop
+    while ! $exit_loop ; do
+        echo -n "Enter prompt: "
+        read -r prompt
+        echo "Prompt: $prompt\n" >> ~/ai_output
+        ollama run $ai_model "$prompt" | tee -a ~/ai_output
+        echo "\n------------------------------------------------------------------------------------------------------\n" >> ~/.ollama/ai_output
+    done
+
+else
+    # online groq api call
+    GROQ_API_KEY=$(cat ~/llm_groq)
+    ai_model=$(printf "Gemma-7b-It\nLlama3-70b-8192\nLlama3-8b-8192\nMixtral-8x7b-32768" | fzf)
+    if [ -z "$ai_model" ]; then
+        exit
+    fi
+
+    while true ; do
+        echo -n "Enter prompt: "
+        read -r prompt
+        if [ -z "$prompt" ]; then
+            exit
+        fi
+        echo "Prompt: $prompt\n" >> ~/ai_output
+        echo "\n\n"
+        echo  $(curl -s -X POST "https://api.groq.com/openai/v1/chat/completions" \
+        -H "Authorization: Bearer $GROQ_API_KEY" \
+        -H "Content-Type: application/json" \
+        -d "{\"messages\": [{\"role\": \"user\", \"content\": \"$prompt\"}], \"model\": \"$ai_model\"}" | jq '.choices[0].message.content') |  tee -a ~/ai_output | glow -p
+        echo "\n------------------------------------------------------------------------------------------------------\n" >> ~/ai_output
+        echo "\n\n"
+    done
+fi

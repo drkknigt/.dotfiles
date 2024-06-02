@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
-# source ~/.zshrc
 working_dir=$(pwd)
 
 # set initial variables
@@ -12,23 +11,24 @@ export DE=gnome
 
 # direcotry to open lf in
 
-if [  "$current_dir_flag" = "0" ] || [ "$current_dir_flag" = "2" ] ; then
-direc=$(find ~ -maxdepth 8 -type d  |  fzf --cycle --prompt='change directory: ' --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" )
-if [ "$current_dir_flag" = "0" ] ; then
-if [  -z "$direc" ] ; then
-    exit
-fi
-fi
-fi
+# if [  "$current_dir_flag" = "0" ] || [ "$current_dir_flag" = "2" ] ; then
+#     direc=$(find ~ -maxdepth 8 -type d  |  fzf --cycle --prompt='change directory: ' --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" )
+#     if [ "$current_dir_flag" = "0" ] ; then
+#         if [  -z "$direc" ] ; then
+#             exit
+#         fi
+#     fi
+# fi
 
 # if opened from sxhkd
 
 if [ "$current_dir_flag" = "2" ] ; then
-if [  -z "$direc" ] ; then
-    i3-msg workspace back_and_forth
-    exit
-fi
-    lfrun "$direc"
+    # if [  -z "$direc" ] ; then
+    #     i3-msg workspace back_and_forth
+    #     exit
+    # fi
+    export LF_RUNNING="true"
+    lfrun "$HOME"
     exit
 fi
 
@@ -40,13 +40,13 @@ if [ -z "$TMUX" ] ; then
     if [ "$current_dir_flag" = "0" ] ; then
     lf "$direc"
 else
-    lf "$working_dir"
+    lf "$HOME"
     fi
 else
     if [ "$current_dir_flag" = "0" ] ; then
-    lf "$direc"
+    lf "$HOME"
 else
-    lf "$working_dir"
+    lf "$HOME"
     fi
     exit
 fi

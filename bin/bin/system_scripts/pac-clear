@@ -15,5 +15,5 @@ AUR_CACHE="$(find "$AUR_CACHE_DIR" -maxdepth 1 -type d | awk '{ print "-c " $1 }
 /usr/bin/paccache -rvk2 -c /var/cache/pacman/pkg
 # echo $AUR_CACHE
 paccache -rvk1 $AUR_CACHE
-
+find $AUR_CACHE_DIR -iname "*.zip" -exec rm {} \;
 # echo $AUR_CACHE_REMOVED
