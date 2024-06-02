@@ -5,7 +5,12 @@ require("jaq-nvim").setup({
 	-- Commands used with 'Jaq'
 	cmds = {
 		-- Default UI used (see `Usage` for options)
-		default = "float",
+		behaviour = {
+			default = "float",
+			startinsert = true,
+			wincmd = false,
+			autosave = false,
+		},
 
 		-- Uses external commands such as 'g++' and 'cargo'
 		external = {
@@ -21,6 +26,7 @@ require("jaq-nvim").setup({
 			lua = "lua5.3 %",
 			sh = "bash %",
 			zsh = "zsh %",
+			java = "java %",
 		},
 
 		-- Uses internal commands such as 'source' and 'luafile'
@@ -33,7 +39,6 @@ require("jaq-nvim").setup({
 	-- UI settings
 	ui = {
 		-- Start in insert mode
-		startinsert = true,
 
 		-- Floating Window settings
 		float = {

@@ -1,6 +1,7 @@
 --------------------------------- telescope-config -----------------------------
 
 -- setup telescope for genearl use
+local project_actions = require("telescope._extensions.project.actions")
 local action_layout = require("telescope.actions.layout")
 local actions = require("telescope.actions")
 local _actions = require("telescope._extensions.project.actions")
@@ -62,12 +63,12 @@ require("telescope").setup({
 		path_display = { "truncate" },
 		file_ignore_patterns = { "%.git", "node_modules/.*" },
 		initial_mode = "insert",
-		-- selection_strategy = "closest",
+		selection_strategy = "reset",
 		sorting_strategy = "ascending",
 		scroll_strategy = "cycle",
 		-- layout_strategy = "flex",
 		previewer = true,
-		file_sorter = require("telescope.sorters").get_fzf_sorter,
+		-- file_sorter = require("telescope.sorters").get_fzf_sorter,
 		-- file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
 	},
 	pickers = {
@@ -89,27 +90,6 @@ require("telescope").setup({
 		},
 		["ui-select"] = {
 			require("telescope.themes").get_cursor({}),
-		},
-		-- fzy_native = {
-		--     override_generic_sorter = false,
-		--     override_file_sorter = true,
-		-- },
-		bookmarks = {
-			-- Available: 'brave', 'chrome', 'edge', 'firefox', 'safari'
-			selected_browser = "brave",
-
-			-- Either provide a shell command to open the URL
-			url_open_command = "xdg-open >file.txt",
-
-			-- Or provide the plugin name which is already installed
-			-- Available: 'vim_external', 'open_browser'
-			url_open_plugin = nil,
-
-			-- Show the full path to the bookmark instead of just the bookmark name
-			full_path = true,
-
-			-- Provide a custom profile name for Firefox
-			firefox_profile_name = nil,
 		},
 		file_browser = {
 			-- theme = "ivy",
@@ -161,6 +141,13 @@ require("telescope").load_extension("project")
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("bookmarks")
 require("telescope").load_extension("ui-select")
+
+-- telescope browser bookmarks
+require("browser_bookmarks").setup({
+	-- override default configuration values
+	selected_browser = "brave",
+	url_open_command = "xdg-open >file.txt",
+})
 
 -- require('telescope').load_extension('harpoon')
 
