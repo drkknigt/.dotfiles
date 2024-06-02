@@ -62,7 +62,7 @@ cmd unarchive ${{
 
 # jump to location
 cmd fzf_jump ${{
-    file=$(find ~ | fzf --bind "ctrl-o:toggle-preview" --prompt="jump to location: " --preview="~/.dotfiles/lf/.config/lf/preview_fzf.sh {}" --preview-window hidden )
+    file=$(fdfind . "$HOME" -a -H | fzf --bind "ctrl-o:toggle-preview" --prompt="jump to position: " --preview="~/.dotfiles/lf/.config/lf/preview_fzf.sh {}" --preview-window hidden )
     if [ -n "$file" ]; then
         if [ -d "$file" ]; then
             cmd="cd"
@@ -73,6 +73,7 @@ cmd fzf_jump ${{
         lf -remote "send $id $cmd \"$file\""
     fi
 }}
+
 
 
 # Search and select
@@ -122,6 +123,7 @@ cmd open &{{
 export DE=kde
 export DE=gnome
 # find the mime-type and open file in desired application 
+for f in $fx; do
 file_type=$(file -b --mime-type "$f" | cut -d "/" -f1)
 file_format=$(file -b --mime-type "$f" | cut -d "/" -f2)
 case $file_type in
@@ -155,6 +157,7 @@ case $file_type in
         sleep 1.5
         ;;
 esac
+done
     
 }}
 
@@ -202,6 +205,11 @@ cmd toggle_preview %{{
 }}
 
 
+cmd give_full_path %{{
+    echo $f
+}}
+
+
 # copy path of file
 cmd copypath &{{
     current_wm=$(wmctrl -m | grep -Po "wlroots|i3")
@@ -241,7 +249,7 @@ map gp cd ~/Pictures
 map gd cd ~/Downloads
 map gf cd ~/Documents
 map gv cd ~/Videos
-map g. fzf_jump
+map gj fzf_jump
 
 # functionality mappings
 map as get_size
@@ -249,6 +257,7 @@ map ay copypath
 map au unarchive
 map an copyname
 map ar edit_dir
+map ap give_full_path
 map O push :open-with-gui<space> ## input application
 map o push :open-with-cli<space> ## input application
 map / normal_search
