@@ -37,7 +37,7 @@ export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp -m'
 #------------------------------------ some editor vairables ----------------------------------#
 export EDITOR=vim
 export VISUAL=vim
-export KEYTIMEOUT=20
+export KEYTIMEOUT=4000
 LANG="en_US.utf8"
 export LANG
 
