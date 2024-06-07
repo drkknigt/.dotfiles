@@ -9,6 +9,28 @@ local vim_staruptime = {
 
 	"dstein64/vim-startuptime",
 	event = "VeryLazy",
+	config = function()
+		-- lazy load autocmd and userfunctions
+		require("core.autocmds")
+		require("core.userFunctions")
+
+		-- lazy load statusline and winbar
+		vim.api.nvim_set_hl(0, "Statusline", { bg = "Black", fg = "gray" })
+		vim.opt.statusline = "%{%v:lua.require('core.statusline').current()%}"
+		vim.opt.winbar =
+			": %F   󱕱 %{%v:lua.require('core.userFunctions').buffer_number()%}   󰉻 Total buffers:%{%v:lua.require('core.userFunctions').total_buffers()%}"
+
+		-- set neovide config
+		global = vim.g
+		if global.neovide then
+			global.neovide_scale_factor = 0.8
+			global.neovide_transparency = 0.9
+			global.neovide_cursor_vfx_mode = "railgun"
+			global.neovide_background_color = "#00ff11"
+			global.neovide_theme = "dark"
+			global.neovide_confirm_quit = false
+		end
+	end,
 
 	-- commit = "cb4c112b9e0f224236ee4eab6bf5153406b3f88b",
 }
@@ -395,12 +417,6 @@ local nvim_bqf = {
 				openc = "<CR>",
 			},
 		})
-		require("core.autocmds")
-		require("core.userFunctions")
-		vim.api.nvim_set_hl(0, "Statusline", { bg = "Black", fg = "gray" })
-		vim.opt.statusline = "%{%v:lua.require('core.statusline').current()%}"
-		vim.opt.winbar =
-			": %F   󱕱 %{%v:lua.require('core.userFunctions').buffer_number()%}   󰉻 Total buffers:%{%v:lua.require('core.userFunctions').total_buffers()%}"
 	end,
 }
 
