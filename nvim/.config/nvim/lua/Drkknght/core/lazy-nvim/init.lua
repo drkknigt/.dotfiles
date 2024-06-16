@@ -53,7 +53,7 @@ local opts = {
 }
 
 -- load plugins to load/install
-local plugins = require("core.lazy-nvim.plugins")
+local plugins = require("Drkknght.core.lazy-nvim.plugins")
 vim.opt.rtp:prepend(lazypath)
 
 -- setup lazy

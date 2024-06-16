@@ -11,14 +11,14 @@ local vim_staruptime = {
 	event = "VeryLazy",
 	config = function()
 		-- lazy load autocmd and userfunctions
-		require("core.autocmds")
-		require("core.userFunctions")
+		require("Drkknght.core.autocmds")
+		require("Drkknght.core.userFunctions")
 
 		-- lazy load statusline and winbar
 		vim.api.nvim_set_hl(0, "Statusline", { bg = "Black", fg = "gray" })
-		vim.opt.statusline = "%{%v:lua.require('core.statusline').current()%}"
+		vim.opt.statusline = "%{%v:lua.require('Drkknght.core.statusline').current()%}"
 		vim.opt.winbar =
-			": %F   󱕱 %{%v:lua.require('core.userFunctions').buffer_number()%}   󰉻 Total buffers:%{%v:lua.require('core.userFunctions').total_buffers()%}"
+			": %F   󱕱 %{%v:lua.require('Drkknght.core.userFunctions').buffer_number()%}   󰉻 Total buffers:%{%v:lua.require('Drkknght.core.userFunctions').total_buffers()%}"
 
 		-- set neovide config
 		global = vim.g
@@ -57,7 +57,7 @@ local oil = {
 	"stevearc/oil.nvim",
 	event = "VeryLazy",
 	config = function()
-		require("Plugins.oil-config")
+		require("Drkknght.Plugins.oil-config")
 	end,
 	-- Optional dependencies
 	dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -70,7 +70,7 @@ local gruvbox_baby = {
 	"luisiacc/gruvbox-baby",
 	event = "BufEnter",
 	config = function()
-		require("core.color-config")
+		require("Drkknght.core.color-config")
 	end,
 }
 
@@ -106,7 +106,7 @@ local cmp = {
 		"saadparwaiz1/cmp_luasnip",
 	},
 	config = function()
-		pcall(require, "Plugins.cmp-config")
+		pcall(require, "Drkknght.Plugins.cmp-config")
 	end,
 }
 
@@ -120,7 +120,7 @@ local nvim_dap = {
 	},
 	event = "VeryLazy",
 	config = function()
-		require("Plugins.dap-config")
+		require("Drkknght.Plugins.dap-config")
 	end,
 }
 
@@ -146,7 +146,7 @@ local telescope = {
 		"nvim-lua/plenary.nvim",
 	},
 	config = function()
-		require("Plugins._telescope-setting")
+		require("Drkknght.Plugins.telescope-setting")
 	end,
 }
 
@@ -159,7 +159,7 @@ local fzf_lua = {
 		"nvim-tree/nvim-web-devicons",
 	},
 	config = function()
-		require("Plugins.fzflua")
+		require("Drkknght.Plugins.fzflua")
 	end,
 }
 
@@ -169,7 +169,7 @@ local signature = {
 	"ray-x/lsp_signature.nvim",
 	event = "VeryLazy",
 	config = function()
-		require("Plugins.signature")
+		require("Drkknght.Plugins.signature")
 	end,
 }
 
@@ -225,7 +225,7 @@ local nvim_treesitter = {
 			"mizlan/iswap.nvim",
 			event = "VeryLazy",
 			config = function()
-				require("Plugins/iswaaap-config")
+				require("Drkknght.Plugins/iswaaap-config")
 			end,
 		},
 		"nvim-treesitter/nvim-treesitter-refactor",
@@ -233,7 +233,7 @@ local nvim_treesitter = {
 		"p00f/nvim-ts-rainbow",
 	},
 	config = function()
-		require("Plugins.treesitter")
+		require("Drkknght.Plugins.treesitter")
 	end,
 }
 
@@ -246,7 +246,7 @@ local lualine = {
 	},
 	event = "VeryLazy",
 	config = function()
-		require("Plugins.lualine-config")
+		require("Drkknght.Plugins.lualine-config")
 		-- vim.api.nvim_set_hl(0, "Statusline", { bg = "Black" })
 	end,
 }
@@ -268,7 +268,7 @@ local nvim_autopairs = {
 	"windwp/nvim-autopairs",
 	event = "InsertEnter",
 	config = function()
-		require("Plugins.autopairs-config")
+		require("Drkknght.Plugins.autopairs-config")
 	end,
 }
 
@@ -279,7 +279,7 @@ local which_key = {
 	"folke/which-key.nvim",
 	event = "CursorHold",
 	config = function()
-		require("Plugins.which-config")
+		require("Drkknght.Plugins.which-config")
 	end,
 }
 
@@ -289,7 +289,7 @@ local nvim_colorizer = {
 	"norcalli/nvim-colorizer.lua",
 	event = "InsertEnter",
 	config = function()
-		require("Plugins.colorizer-config")
+		require("Drkknght.Plugins.colorizer-config")
 	end,
 }
 
@@ -300,7 +300,7 @@ local vim_floaterm = {
 	version = "*",
 	event = "CursorHold",
 	config = function()
-		require("Plugins.terminal-config")
+		require("Drkknght.Plugins.terminal-config")
 	end,
 }
 
@@ -310,7 +310,7 @@ local comment = {
 	"numToStr/Comment.nvim",
 	event = "CursorHold",
 	config = function()
-		require("Plugins.comment-config")
+		require("Drkknght.Plugins.comment-config")
 	end,
 }
 
@@ -331,7 +331,7 @@ local nvim_lspconfig = {
 	"neovim/nvim-lspconfig",
 	event = "CursorHold",
 	config = function()
-		require("Plugins.lsp-config")
+		require("Drkknght.Plugins.lsp-config")
 	end,
 }
 
@@ -349,7 +349,7 @@ local indent_blankline = {
 	"lukas-reineke/indent-blankline.nvim",
 	event = "VeryLazy",
 	config = function()
-		require("Plugins.indentline-config")
+		require("Drkknght.Plugins.indentline-config")
 	end,
 	main = "ibl",
 	opts = {},
@@ -361,7 +361,7 @@ local null_ls = {
 	"jose-elias-alvarez/null-ls.nvim",
 	event = "CursorHold",
 	config = function()
-		require("Plugins.null-config")
+		require("Drkknght.Plugins.null-config")
 	end,
 }
 
@@ -371,7 +371,7 @@ local goto_preview = {
 	"rmagatti/goto-preview",
 	event = "CursorHold",
 	config = function()
-		require("Plugins.goto-config")
+		require("Drkknght.Plugins.goto-config")
 	end,
 }
 
@@ -382,7 +382,7 @@ local gitsigns = {
 	tag = "release",
 	event = "CursorHold",
 	config = function()
-		require("Plugins.gitsigns-config")
+		require("Drkknght.Plugins.gitsigns-config")
 	end,
 }
 
@@ -398,7 +398,7 @@ local jaq_nvim = {
 	"is0n/jaq-nvim",
 	event = "CursorHold",
 	config = function()
-		require("Plugins.jaq-config")
+		require("Drkknght.Plugins.jaq-config")
 	end,
 }
 
@@ -467,7 +467,7 @@ local flash = {
 	-- https://github.com/folke/flash.nvim
 	"folke/flash.nvim",
 	event = "VeryLazy",
-	opts = require("Plugins.flash-plugin"),
+	opts = require("Drkknght.Plugins.flash-plugin"),
 
 		-- stylua: ignore
 		keys = {

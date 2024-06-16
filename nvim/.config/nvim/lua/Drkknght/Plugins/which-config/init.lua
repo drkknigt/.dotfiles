@@ -108,7 +108,7 @@ local opts = {
 -- which key mappings
 local mappings = {
 	["a"] = { "<cmd>:ISwap<cr>", "swap variables in list or array or tables" }, -- swap variables in list or array
-	["e"] = { require("core.userFunctions").toggle_oil, "Explorer" }, -- open file explorer
+	["e"] = { require("Drkknght.core.userFunctions").toggle_oil, "Explorer" }, -- open file explorer
 	["r"] = { "<cmd>Jaq<cr>", "run code" }, -- run code
 
 	["o"] = {
@@ -122,7 +122,7 @@ local mappings = {
 	p = {
 		name = "Lazy-nvim",
 		z = {
-			"<cmd>n ~/.config/nvim/lua/core/lazy-nvim/plugins.lua<cr>",
+			"<cmd>n ~/.config/nvim/lua/Drkknght/core/lazy-nvim/plugins.lua<cr>",
 			"open plugin configs",
 		},
 		s = { "<cmd>luafile %<cr>", "source lua file" },
@@ -131,7 +131,7 @@ local mappings = {
 		c = { "<cmd>Lazy clean<cr>", "Lazy-clean" },
 		p = { "<cmd>Lazy home<cr>", "open lazy-nvim" },
 		t = { "<cmd>StartupTime<cr>", "see startuptime for neovim" },
-		r = { require("core.userFunctions").backup_lazy, "backup lazy lock and restore lazy" },
+		r = { require("Drkknght.core.userFunctions").backup_lazy, "backup lazy lock and restore lazy" },
 	},
 
 	-- git
@@ -158,7 +158,7 @@ local mappings = {
 			"use git-Diff",
 		},
 		q = {
-			require("core.userFunctions").open_git_telescope,
+			require("Drkknght.core.userFunctions").open_git_telescope,
 			"open directory in oil via telescope",
 		},
 	},
@@ -229,7 +229,7 @@ local mappings = {
 		t = { "<cmd>Outline<cr>", "Symbols outline" },
 		-- d = { "<cmd>Telescope file_browser<cr>", "File Browser" },
 		d = {
-			require("core.userFunctions").open_dir_telescope,
+			require("Drkknght.core.userFunctions").open_dir_telescope,
 			"open directory in oil via telescope",
 		},
 		-- h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
@@ -240,7 +240,7 @@ local mappings = {
 		R = { "<cmd>Telescope resume<cr>", "Resume" },
 		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
 		c = { "<cmd>Telescope commands<cr>", "Commands" },
-		P = { '<cmd>lua require("telescope").extensions.project.project{display_type = "full"}<cr>', "Projects" },
+		-- P = { '<cmd>lua require("telescope").extensions.project.project{display_type = "full"}<cr>', "Projects" },
 		p = {
 			"<cmd>lua require'telescope.builtin'.find_files({cwd = '$PROJECT_ROOT',hidden=true})<cr>",
 			"Search files from Tmux project root",
@@ -263,8 +263,8 @@ local mappings = {
 		s = { "<cmd>Telescope live_grep<cr>", "Grep" },
 		E = { "<cmd>Telescope env<cr>", "Env" },
 		l = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Buffer lines" },
-		h = { require("core.userFunctions").search_dotfiles, "search dotfiles" },
-		a = { require("core.userFunctions").search_ansible, "search ansible-sync" },
+		h = { require("Drkknght.core.userFunctions").search_dotfiles, "search dotfiles" },
+		a = { require("Drkknght.core.userFunctions").search_ansible, "search ansible-sync" },
 		-- d = {"<cmd>lua require('plugins/telescope-config').search_dir()<cr>","dotfiles"},
 	},
 

@@ -57,7 +57,11 @@ opts = {
 	-- See :help oil-actions for a list of all available actions
 	keymaps = {
 		["g?"] = "actions.show_help",
-		["<CR>"] = { callback = require("core.userFunctions").open_buffer, desc = "open file under cursor", mode = "n" },
+		["<CR>"] = {
+			callback = require("Drkknght.core.userFunctions").open_buffer,
+			desc = "open file under cursor",
+			mode = "n",
+		},
 		-- ["<CR>"] = "actions.select",
 		["<C-s>"] = "actions.select_vsplit",
 		["<C-y>"] = "actions.copy_entry_path",
@@ -66,7 +70,7 @@ opts = {
 		["<C-p>"] = "actions.preview",
 		["<C-c>"] = "actions.close",
 		["<C-l>"] = "actions.refresh",
-		["<leader>w"] = { callback = require("core.userFunctions").save_file, desc = "save file", mode = "n" },
+		["<leader>w"] = { callback = require("Drkknght.core.userFunctions").save_file, desc = "save file", mode = "n" },
 		["-"] = "actions.parent",
 		["_"] = "actions.open_cwd",
 		["`"] = "actions.cd",

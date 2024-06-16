@@ -1,7 +1,7 @@
 -- basic files to load the editor config
-require("core.lazy-nvim")
-require("core.settings")
-require("core.keymaps")
+require("Drkknght.core.lazy-nvim")
+require("Drkknght.core.settings")
+require("Drkknght.core.keymaps")
 
 -- require("autocmds")
 -- require("userFunctions")
