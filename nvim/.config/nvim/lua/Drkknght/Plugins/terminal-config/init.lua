@@ -119,7 +119,7 @@ function _LAZYGIT_TOGGLE()
 	local current_dir = vim.fn.getcwd()
 	vim.cmd("normal mf")
 	vim.cmd(
-		"FloatermNew --cwd=<buffer> --height=0.9 --width=1.0 --title=lazygit --titleposition=center --disposable lazygit -ucf ~/.dotfiles/lazygit/.config/lazygit/nvim_config.yml"
+		"FloatermNew --cwd=<buffer> --height=0.9 --width=1.0 --title=lazygit --titleposition=center --disposable lazygit -ucf ~/.dotfiles/lazygit/.config/lazygit/config.yml"
 	)
 	vim.cmd("cd " .. current_dir)
 end

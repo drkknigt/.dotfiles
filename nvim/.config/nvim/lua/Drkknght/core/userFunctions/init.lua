@@ -228,7 +228,51 @@ M.open_dir_telescope = function()
 		search_dirs = { "/home/" },
 		-- path_display = { "tail" },
 		wrap_results = true,
-		find_command = { "fd", "--type", "d", "--hidden", "--max-depth", "8" },
+		find_command = { "fd", "--type", "d", "--hidden", "--max-depth", "10" },
+	})
+end
+
+M.open_dotfiles_fzf = function()
+	require("fzf-lua").fzf_exec("fd . ~/.dotfiles ~/.cache/tmux/ -H -t f", {
+		prompt = "search dotfiles: ",
+		actions = {
+			-- Use fzf-lua builtin actions or your own handler
+			["default"] = require("fzf-lua").actions.file_edit,
+			["ctrl-y"] = function(selected, opts)
+				print("selected item:", selected[1])
+			end,
+		},
+	})
+end
+
+M.open_ansible_fzf = function()
+	require("fzf-lua").fzf_exec("fd . ~/arch-pull ~/.ansible_sync -H -t f", {
+		prompt = "search ansible: ",
+		actions = {
+			-- Use fzf-lua builtin actions or your own handler
+			["default"] = require("fzf-lua").actions.file_edit,
+			["ctrl-y"] = function(selected, opts)
+				print("selected item:", selected[1])
+			end,
+		},
+	})
+end
+
+-- open oil via fzf lua
+M.open_dir_fzf = function()
+	require("fzf-lua").fzf_exec("fd . ~ -t d -H -d 11", {
+		prompt = "goto directory: ",
+		actions = {
+			-- Use fzf-lua builtin actions or your own handler
+			["default"] = function(selected)
+				vim.cmd("e " .. selected[1])
+				vim.cmd("cd " .. selected[1])
+			end,
+			["ctrl-y"] = function(selected, opts)
+				vim.cmd("e " .. selected[1])
+				vim.cmd("cd " .. selected[1])
+			end,
+		},
 	})
 end
 

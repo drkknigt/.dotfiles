@@ -188,7 +188,7 @@ local mappings = {
 
 		-- c = { "<cmd>Codeium Enable<cr>", "enable codeium" },
 		-- b = { "<cmd>Codeium Disable<cr>", "disable codeium" },
-		x = { "<cmd>!chmod +x %<cr>", "make current file executable" },
+		x = { "<cmd>silent !chmod +x %<cr>", "make current file executable" },
 		w = {
 			"<cmd>lua vim.diagnostic.setqflist()<cr>",
 			"list Workspace Diagnostics in quickfix list",
@@ -226,7 +226,8 @@ local mappings = {
 	-- Telescope
 	s = {
 		name = "Search",
-		t = { "<cmd>Outline<cr>", "Symbols outline" },
+		t = { "<cmd>Telescope lsp_document_symbols<cr>", "Symbols outline" },
+		m = { "<cmd>Telescope help_tags<cr>", "Symbols outline" },
 		-- d = { "<cmd>Telescope file_browser<cr>", "File Browser" },
 		d = {
 			require("Drkknght.core.userFunctions").open_dir_telescope,
@@ -272,13 +273,21 @@ local mappings = {
 	f = {
 		name = "fzf",
 		f = { "<cmd>FzfLua files<cr>", "find files fzf" },
+		t = { "<cmd>FzfLua lsp_document_symbols<cr>", "show lsp symbols in fzf" },
+		o = { "<cmd>FzfLua oldfiles<cr>", "find old files fzf" },
+		R = { "<cmd>FzfLua resume<cr>", "resume fzflua" },
+		k = { "<cmd>FzfLua keymaps<cr>", "show keymaps in fzflua" },
+		d = { require("Drkknght.core.userFunctions").open_dir_fzf, "open directory via fzf in oil" },
 		g = { "<cmd>FzfLua git_files<cr>", "find git files" },
+		m = { "<cmd>FzfLua helptags<cr>", "find git files" },
 		s = { "<cmd>FzfLua live_grep<cr>", "grep fzf" },
 		c = { "<cmd>FzfLua colorschemes<cr>", "colorschemes" },
 		b = { "<cmd>FzfLua blines<cr>", "fzf lines buffers" },
 		l = { "<cmd>FzfLua lines<cr>", "fzf lines search on all buffers" },
 		r = { "<cmd>FzfLua resume<cr>", "fzf resume" },
-		h = { ":lua require('fzf-lua').files({cwd = '~'})<CR>", "find files fzf from home directory" },
+		h = { require("Drkknght.core.userFunctions").open_dotfiles_fzf, "find files fzf from dotfiles directory" },
+		a = { require("Drkknght.core.userFunctions").open_ansible_fzf, "find files fzf from dotfiles directory" },
+		e = { ":lua require('fzf-lua').files({cwd = '~'})<CR>", "find files fzf from home directory" },
 		w = { "yiw<bar><cmd>FzfLua blines<cr><bar><ESC>pi", "paste" },
 	},
 

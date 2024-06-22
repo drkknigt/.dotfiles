@@ -74,7 +74,7 @@ require("telescope").setup({
 	pickers = {
 		find_files = {
 			-- hidden = true,
-			find_command = { "rg", "--files", "--smart-case" },
+			find_command = { "rg", "--files", "--smart-case", "--hidden" },
 		},
 		-- file_browser = {
 		--     -- hidden = true,
