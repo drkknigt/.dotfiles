@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+# this scripts run LLM models locally or from grop.com remotely
+
 # traps for sigint and exit
 if [ -z "$TMUX" ]; then
     trap 'exit' INT
@@ -8,6 +10,8 @@ fi
 
 # start ollama server and send to background
 type_of_ai=$(echo "online\noffline" | fzf --prompt="type of AI: ")
+
+# exit if nothing is selected
 if [ -z "$type_of_ai" ]; then
     exit
 fi
@@ -30,7 +34,7 @@ if [ "$type_of_ai" = "offline" ] ; then
     exit_loop=false
 
 
-    # main loop
+    # main loop for locally running ollama and writing the output on stdout and in ai_output file
     while ! $exit_loop ; do
         echo -n "Enter prompt: "
         read -r prompt
@@ -39,6 +43,7 @@ if [ "$type_of_ai" = "offline" ] ; then
         echo "\n------------------------------------------------------------------------------------------------------\n" >> ~/.ollama/ai_output
     done
 
+    # run llm from groq online
 else
     # online groq api call
     GROQ_API_KEY=$(cat ~/llm_groq)
@@ -47,6 +52,7 @@ else
         exit
     fi
 
+    # main loop for running LLM online and writing the output on stdout and in ai_output file
     while true ; do
         echo -n "Enter prompt: "
         read -r prompt

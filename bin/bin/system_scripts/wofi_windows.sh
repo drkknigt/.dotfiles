@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This scripts is used to select and goto different wm windows using wofi in sway
+
 # Get regular windows
 regular_windows=$(swaymsg -t get_tree | jq -r '.nodes[1].nodes[].nodes[] | .. | (.id|tostring) + " " + .name?' | grep -e "[0-9]* ."  )
 

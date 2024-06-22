@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+# This script is used to kill tmux sessions
+
 # exit if tmux server is not running
 tmux ls &> /dev/null
 
@@ -19,7 +21,7 @@ if [[ -z "$selected_session" ]]; then
     exit
 fi
 
-# 
+#  kill selected session
 if [[ "$selected_session" = "$active_session" ]]; then
     selected_session_no=$(tmux ls | nl -w 1 -s "| " | grep "$selected_session" |  cut -d "|" -f1 )
     echo $selected_session_no

@@ -1,26 +1,31 @@
 #!/usr/bin/env zsh
-# source ~/.zshrc
-export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
-export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
-export PATH=$HOME/.local/bin/:$PATH
 
+
+# This script is used to set the scale value for the screen in i3wm
+
+
+# Select the first monitor
 if [ $1 = '0' ]
 then
     echo "first"
     monitor=$(xrandr | grep -Pi '\bconnected\b' | sed -n 1,1p | cut -d " " -f1)
+# Select the 2nd monitor
 elif [ $1 = '1' ]
 then
     monitor=$(xrandr | grep -Pi '\bconnected\b' | sed -n 2,2p | cut -d " " -f1)
 fi
 
+# exit if no monitor is found
 if [ -z $monitor ] 
 then
     notify-send "2nd monitor not found"
     exit
 fi
 
+# choose value from -100 to 100 with gap of 10 
 zoom_options=$(seq -100 10 100 |  awk '{print $0"% zoom"}' | fzf --prompt="scale display in percent: " | grep -oP '[+-]*\d+')
 
+# if zoom_options variable is not empty then set teh zoom for the  monitor
 if [[ -n $zoom_options ]]; then
     
   zoom_percentage=$(( -1 * $zoom_options ))

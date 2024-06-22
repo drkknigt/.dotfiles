@@ -1,4 +1,7 @@
 #!/usr/bin/env zsh
+
+# this scripts displays the current keymaps for the window manager, tmux, zsh  and misc stuff
+
 # source ~/.zshrc
 #
 # I3_CONFIG=$HOME/.config/sxhkd/sxhkdrc
@@ -8,4 +11,4 @@
 #     | tr -s ' ' \
 #     | fzf --prompt="keymaps for i3: "
 
-glow -p ~/.dotfiles/sxhkd/.config/sxhkd/i3_keymaps.md
+glow -p ~/.dotfiles/docs/i3_keymaps.md

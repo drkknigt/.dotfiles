@@ -1,6 +1,8 @@
 #!/usr/bin/env zsh
 source ~/.zshrc
 
+# test scirpt used to connect to internet
+
 export PATH=$HOME/.local/bin/:$PATH
 has() {
   local verbose=false

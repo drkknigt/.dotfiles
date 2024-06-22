@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# This script alerts the user if the battery level is too low
+
 while true
 do
     current_battery_level=$(cat /sys/class/power_supply/BAT0/capacity)

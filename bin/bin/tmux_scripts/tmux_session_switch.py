@@ -4,6 +4,8 @@ import os
 import sys
 from subprocess import check_output
 
+# script to switch tmux session
+
 
 def get_clients():
     try:

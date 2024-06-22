@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# create tmux session in specified directory
+
 import argparse
 import os
 import sys

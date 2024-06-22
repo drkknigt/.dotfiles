@@ -1,8 +1,11 @@
 #!/usr/bin/env zsh
-export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
-export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
-export PATH=$HOME/.local/bin/:$PATH
+
+# This script gives man pages and then displays them
+
+# select man page list of man pages
 choosen_page=$(man -k . | fzf --prompt="man pages: " | awk -F" " '{ print $1 }')
+
+# exit if no page is selected
 if [ -z "$choosen_page" ]; then
     exit
 fi

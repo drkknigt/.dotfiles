@@ -1,52 +1,44 @@
 #!/usr/bin/env zsh
+
+# This script is used to open lf file manager for wm and tmux or from terminal
+
 working_dir=$(pwd)
 
 # set initial variables
 alias lf=lfrun
 current_dir_flag=$1
-export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
-export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
-export DE=kde
-export DE=gnome
 
-# direcotry to open lf in
-
-# if [  "$current_dir_flag" = "0" ] || [ "$current_dir_flag" = "2" ] ; then
-#     direc=$(find ~ -maxdepth 8 -type d  |  fzf --cycle --prompt='change directory: ' --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" )
-#     if [ "$current_dir_flag" = "0" ] ; then
-#         if [  -z "$direc" ] ; then
-#             exit
-#         fi
-#     fi
-# fi
-
-# if opened from sxhkd
-
+# run lf from wm
 if [ "$current_dir_flag" = "2" ] ; then
-    # if [  -z "$direc" ] ; then
-    #     i3-msg workspace back_and_forth
-    #     exit
-    # fi
     export LF_RUNNING="true"
     lfrun "$HOME"
     exit
 fi
 
-# exit if no fzf option chosen
 
-
-
+# run lf in terminal outside tmux
 if [ -z "$TMUX" ] ; then
+    
+    # run lf in terminal outside tmux in home directory
     if [ "$current_dir_flag" = "0" ] ; then
-    lf "$direc"
-else
-    lf "$HOME"
+        lf "$HOME"
+        
+    # run lf in terminal outside tmux in current directory
+    else
+        lf "$(pwd)"
     fi
+    
+# run lf in terminal inside tmux
 else
+    
+    # run lf in terminal inside tmux in directory where tmux was launched using tmux_create script
     if [ "$current_dir_flag" = "0" ] ; then
-    lf "$HOME"
-else
-    lf "$HOME"
+        lf "$PROJECT_DIR"
+        
+    # run lf in terminal inside tmux in home directory
+    else
+        
+        lf "$HOME"
     fi
     exit
 fi

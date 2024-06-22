@@ -1,11 +1,12 @@
 #!/usr/bin/env zsh
-export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
-export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
-export PATH=$HOME/.local/bin/:$PATH
+
+# This script is used to kill applications
+
+# get the pid of the application from currently running applications
 pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
 
+# kill the application
 if [ "x$pid" != "x" ]
 then
-echo $pid | xargs kill -${1:-9}
-# kill -9 $pid
+    echo $pid | xargs kill -${1:-9}
 fi

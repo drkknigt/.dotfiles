@@ -3,6 +3,8 @@ from os import system
 from subprocess import check_output
 from sys import exit
 
+# script to kill tmux sessions
+
 
 def session_info():
     try:

@@ -1,34 +1,29 @@
 #!/usr/bin/env zsh
-# set alias fdfind to fd for mint on arch
 
-# set variables for fzf
-export FZF_DEFAULT_COMMAND='fdfind . --absolute-path --hidden'
-export FZF_DEFAULT_OPTS='--layout=reverse --border=sharp'
-export DE=kde
-export DE=gnome
+# This script seraches for files and directories  in file system from /home directory.
+# and then opens the  file in appropriate application or opens the directory in if directory is searched
+
+# export DE=kde
+# export DE=gnome
 exp=$1
-# search in mounted drive
 
-# logic for file explorer for finding files
-if [ ${exp} = "f" ]
-then
+# search for files in file system with fzf
+if [ ${exp} = "f" ]; then
     file=$(fdfind --type ${exp} . $disk $HOME /run/media/ /media 2> /dev/null | fzf --cycle --prompt='open files: ' --delimiter / --with-nth -1 --bind "ctrl-s:execute(setsid -f xdg-open {} &> /dev/null),tab:execute(setsid -f nemo $(basename {}) &> /dev/null),ctrl-o:toggle-preview" --preview="echo {} | batcat --theme='Monokai Extended Origin' --color=always" --keep-right --preview-window wrap --preview-window hidden)
     
 # quit if file is empty
-if [ -z "$file" ]
-then
-    exit
+    if [ -z "$file" ]; then
+        exit
 fi
 
-# logic for file explorer for directories
+# search for directories in file system fzf
 else
     file=$(fdfind --type ${exp} . ${disk} $HOME /run/media/ /media/ --hidden | fzf --prompt='open directories: ' --bind "tab:execute(setsid -f xdg-open {} &> /dev/null),ctrl-o:toggle-preview" --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always " --keep-right --preview-window hidden --preview-window wrap)
 
 # quit if file is empty
-if [ -z "$file" ]
-then
-    exit
-fi
+    if [ -z "$file" ]; then
+        exit
+    fi
     setsid -f nemo $file > /dev/null
     exit
 fi
@@ -64,8 +59,8 @@ case $file_type in
     "application")
         echo "$file_format" | grep -Pi "pdf|epub" &> /dev/null
         if [ "$?" = "0" ]; then
-        setsid -f zathura $file
-        exit
+            setsid -f zathura $file
+            exit
         fi
         setsid -f xdg-open $file
         ;;
