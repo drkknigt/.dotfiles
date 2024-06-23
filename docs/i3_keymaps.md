@@ -184,8 +184,8 @@
    - ( ctrl + e + n )  ------> next session
    - ( ctrl + e + p )  ------> previous session
    - ( ctrl + e + [ )  ------> enter the copy mode
-   - ( ctrl + e + j )  ------> move to next window left
-   - ( ctrl + e + k )  ------> move to next window right
+   - ( ctrl + e + h )  ------> move to left window
+   - ( ctrl + e + l )  ------> move to right window
    - ( ctrl + e + o )  ------> kill all panes except the current one
    - (ctrl + e) H      ------> resize 5 units to left
    - (ctrl + e) L      ------> resize 5 units to right
@@ -193,8 +193,8 @@
    - (ctrl + e) K      ------> resize 5 units to top
    - ctrl + e + l      ------> move to next right
    - ctrl + e + x      ------> kill current pane
-   - (ctrl + e + h)    ------> move to left pane
-   - (ctrl + e + l)    ------> move to right pane
+   - (ctrl + e + ,)    ------> move to left pane
+   - (ctrl + e + .)    ------> move to right pane
    - ctrl + e + k      ------> move to top pane
    - ctrl + e + j      ------> move to bottom pane
    - ctrl + e + n      ------> move to next window
