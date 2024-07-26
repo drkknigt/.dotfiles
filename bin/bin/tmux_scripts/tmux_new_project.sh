@@ -2,7 +2,7 @@
 
 # This script is used to create a new project inside tmux and then start a tmux session in it
 
-selected_directory=$(fdfind . ~ --type d -d 4 -H | fzf --prompt="choose directory: ")
+selected_directory=$(fdfind . ~ --type d -d 4 -H | fzf --cycle --prompt="choose directory: ")
 
 
 

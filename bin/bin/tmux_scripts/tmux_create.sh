@@ -10,12 +10,12 @@ touch ~/.cache/tmux/recent_dirs
 # create session in any dir in $HOME
 if [ "$recent_flag" = "0" ] ; then
     
-selected_directory=$(find ~ -mindepth 1 -maxdepth 6 -type d | fzf --prompt="make-session: "  --bind "ctrl-f:preview-down,ctrl-u:preview-up" --bind "ctrl-o:toggle-preview" --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" --preview-window hidden)
+selected_directory=$(find ~ -mindepth 1 -maxdepth 6 -type d | fzf --cycle --prompt="make-session: "  --bind "ctrl-f:preview-down,ctrl-u:preview-up" --bind "ctrl-o:toggle-preview" --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" --preview-window hidden)
 
 # create recently created sessions
 elif [ "$recent_flag" = "1" ] ; then
     
-selected_directory=$(cat ~/.cache/tmux/recent_dirs | fzf --prompt="make-session: "  --bind "ctrl-f:preview-down,ctrl-u:preview-up" --bind "ctrl-o:toggle-preview" --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" --preview-window hidden)
+selected_directory=$(cat ~/.cache/tmux/recent_dirs | fzf --cycle --prompt="make-session: "  --bind "ctrl-f:preview-down,ctrl-u:preview-up" --bind "ctrl-o:toggle-preview" --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" --preview-window hidden)
 
 elif [ "$recent_flag" = "3" ] ; then
     selected_directory=$(pwd)

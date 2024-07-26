@@ -8,7 +8,7 @@ if [ -z "$(tmux ls 2> /dev/null)" ] ; then exit 0 ; fi
 session_info=$({ grep 'attached' <(tmux ls); grep -v 'attached' <(tmux ls) })
 
 # select session to switch to
- selected_session=$(echo "$session_info" | cut -d ":" -f 1 | fzf --prompt="switch session: " --preview="tmux list-windows -t {} | batcat --theme='Monokai Extended Origin' --color=always")
+ selected_session=$(echo "$session_info" | cut -d ":" -f 1 | fzf  --cycle --prompt="switch session: " --preview="tmux list-windows -t {}  | batcat --theme='Monokai Extended Origin' --color=always")
 
 # exit if no session is selected
 if [ -z $selected_session ] ; then exit 0 ; fi

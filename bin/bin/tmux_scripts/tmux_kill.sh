@@ -11,7 +11,7 @@ if [[ "$?" = "1" ]]; then
 fi
 
 # set vars for tmux sessions
-selected_session=$(tmux ls |  cut -d ":" -f1  | fzf --prompt="select session to delete: ")
+selected_session=$(tmux ls |  cut -d ":" -f1  | fzf --cycle --prompt="select session to delete: ")
 current_sessions=$(tmux ls |  cut -d ":" -f1 )
 total_sessions=$(tmux ls | wc -l )
 active_session=$(tmux ls | grep attached | cut -d ":" -f1 )
