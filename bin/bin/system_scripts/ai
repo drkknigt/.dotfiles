@@ -47,7 +47,7 @@ if [ "$type_of_ai" = "offline" ] ; then
 else
     # online groq api call
     GROQ_API_KEY=$(cat ~/llm_groq)
-    ai_model=$(printf "Gemma-7b-It\nLlama3-70b-8192\nLlama3-8b-8192\nMixtral-8x7b-32768" | fzf)
+    ai_model=$(printf "Gemma-7b-It\nLlama3-70b-8192\nLlama3-8b-8192\nMixtral-8x7b-32768\nLlama-3.1-405b-Reasoning\nLlama-3.1-70b-Versatile\nLlama-3.1-8b-Instant" | fzf)
     if [ -z "$ai_model" ]; then
         exit
     fi
