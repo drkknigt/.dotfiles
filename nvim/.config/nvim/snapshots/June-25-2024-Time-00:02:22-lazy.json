@@ -13,7 +13,7 @@
   "flash.nvim": { "branch": "main", "commit": "11a2e667d19d8f48c93c6ed2e2e525ac6b1b79be" },
   "friendly-snippets": { "branch": "main", "commit": "dd2fd1281d4b22e7b4a5bfafa3e142d958e251f2" },
   "fzf-lua": { "branch": "main", "commit": "56ae880d7949c45e6efddccddcca4e2bf1f2c0a7" },
-  "gen.nvim": { "branch": "main", "commit": "bd19cf584b5b82123de977b44105e855e61e5f39" },
+  "gen.nvim": { "branch": "main", "commit": "b1230ce2993b2be38a1e22606750d05a94307380" },
   "gitsigns.nvim": { "branch": "main", "commit": "52f8da33cc0cadbf1164c4a91c8bfd6895533d67" },
   "goto-preview": { "branch": "main", "commit": "3552fad4a0244ffd9ac86508e29ccc5166f19eb8" },
   "gruvbox-baby": { "branch": "main", "commit": "bd52e62d8134647090108189e69c8b3cd18bdbbf" },
