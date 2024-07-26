@@ -256,7 +256,7 @@ map as get_size
 map ay copypath
 map au unarchive
 map an copyname
-map ar edit_dir
+map ae edit_dir
 map ap give_full_path
 map O push :open-with-gui<space> ## input application
 map o push :open-with-cli<space> ## input application
