@@ -98,7 +98,7 @@ local function file_type_icon()
 	local icon = string.format("%s%s", "%#iconsstatusline#", icon)
 
 	-- local icon = "%#iconsstatusline# %{WebDevIconsGetFileTypeSymbol()}"
-	if file_types[vim.bo.filetype] ~= 1 then
+	if file_types[file_type] ~= 1 then
 		_, color = require("nvim-web-devicons").get_icon_color(file_type)
 	end
 	api.nvim_set_hl(0, "iconsstatusline", { bg = "Black", fg = color })

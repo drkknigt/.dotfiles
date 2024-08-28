@@ -42,7 +42,12 @@ map_func(
 	require("Drkknght.core.userFunctions").run_tmux_pane_commands,
 	{ silent = true, noremap = true, desc = "Run commands in tmux pane" }
 )
-map("n", "<leader>br", ":Compile ", { silent = false, noremap = true, desc = "Run commands in nvim vertical window" })
+map(
+	"n",
+	"<leader>br",
+	":vert Compile ",
+	{ silent = false, noremap = true, desc = "Run commands in nvim vertical window" }
+)
 map_func(
 	"n",
 	"<leader>bl",
@@ -51,7 +56,6 @@ map_func(
 )
 map("n", "<leader>bk", ":VtrSendCtrlD<cr>", { silent = true, noremap = true, desc = "send ctrd-d to tmux pane" })
 map("n", "<leader>bx", ":VtrSendCtrlC<cr>", { silent = true, noremap = true, desc = "send ctrd-c to tmux pane" })
-map("i", "jk", "<Esc>", { silent = true })
 map("i", "kj", "<Esc>", { silent = true })
 map_func("n", "<C-k>", require("Drkknght.core.userFunctions").next_buffer, { noremap = true, silent = true })
 map_func("n", "<C-j>", require("Drkknght.core.userFunctions").previous_buffer, { noremap = true, silent = true })

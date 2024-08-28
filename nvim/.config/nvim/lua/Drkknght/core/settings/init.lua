@@ -9,8 +9,6 @@ macro.setreg("p", "yyp^v$r") -- macro in p register to underline a line with spe
 
 set.nu = true -- set line numbers in every file
 
-set.timeoutlen = 90
-
 set.rnu = true -- set relative line numbers in every file
 
 set.clipboard = { "unnamed", "unnamedplus" } --  Vim will use the clipboard reg '*' for all yank, delete, change and put operations and always use '*' instead of '+' reg

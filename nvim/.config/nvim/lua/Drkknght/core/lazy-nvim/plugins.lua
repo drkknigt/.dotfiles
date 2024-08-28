@@ -35,21 +35,6 @@ local vim_staruptime = {
 	-- commit = "cb4c112b9e0f224236ee4eab6bf5153406b3f88b",
 }
 
--- better escape mode
-local better_escape = {
-
-	-- https://github.com/max397574/better-escape.nvim
-
-	"max397574/better-escape.nvim",
-	event = "VeryLazy",
-	config = function()
-		require("better_escape").setup({
-			mapping = { "jk", "kj" },
-			timeout = 100,
-		})
-	end,
-}
-
 --oil.nvim for editing file system like normal buffer
 
 local oil = {
@@ -181,9 +166,8 @@ local nvim_surround = {
 	event = "VeryLazy",
 	version = "*", -- Use for stability; omit to use `main` branch for the latest features
 	config = function()
-		require("nvim-surround").setup({
-			-- Configuration here, or leave empty to use defaults
-		})
+		require("Drkknght.Plugins.surround")
+		-- Configuration here, or leave empty to use defaults
 	end,
 }
 
@@ -192,11 +176,6 @@ local nvim_surround = {
 local nvim_web_devicons = {
 	-- https://github.com/kylechui/nvim-web-devicons
 	"kyazdani42/nvim-web-devicons",
-	event = "CursorHold",
-}
-local vim_devicons = {
-	-- https://github.com/ryanoasis/vim-devicons
-	"ryanoasis/vim-devicons",
 	event = "CursorHold",
 }
 
@@ -237,27 +216,13 @@ local nvim_treesitter = {
 	end,
 }
 
--- status line with lua
-local lualine = {
-	-- https://github.com/nvim-lualine/lualine.nvim
-	"nvim-lualine/lualine.nvim",
-	dependencies = {
-		"kyazdani42/nvim-web-devicons",
-	},
-	event = "VeryLazy",
-	config = function()
-		require("Drkknght.Plugins.lualine-config")
-		-- vim.api.nvim_set_hl(0, "Statusline", { bg = "Black" })
-	end,
-}
-
 -- matchup
 local matchup = {
 	-- https://github.com/andymass/vim-matchup
 	"andymass/vim-matchup",
 	event = "VeryLazy",
 	config = function()
-		vim.g.matchup_matchparen_offscreen = { method = "status" }
+		vim.g.matchup_matchparen_offscreen = { method = "popup" }
 	end,
 }
 
@@ -519,16 +484,19 @@ local compile_mode = {
 	-- https://github.com/m00qek/baleia.nvim
 	-- https://github.com/nvim-lua/plenary.nvim
 	"ej-shafran/compile-mode.nvim",
+	branch = "latest",
 	event = "VeryLazy",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
-	opts = {
-		-- you can disable colors by uncommenting this line
-		no_baleia_support = true,
-		split_vertically = true,
-		default_command = "pwd",
-	},
+	config = function()
+		---@type CompileModeOpts
+		vim.g.compile_mode = {
+			-- to add ANSI escape code support, add:
+			baleia_setup = false,
+			default_command = "pwd",
+		}
+	end,
 }
 
 -- run llms in nvim
@@ -570,19 +538,18 @@ local llm_gen = {
 -- utility plugins
 utility_plugins = {
 	vim_staruptime,
-	better_escape,
 	oil,
 	nvim_surround,
 	nvim_bqf,
 	flash,
 	undotree,
+	matchup,
 }
 
 -- plugins for themes and editor look
 theme_aesthetic_plugins = {
 	gruvbox_baby,
 	nvim_web_devicons,
-	vim_devicons,
 	indent_blankline,
 }
 

@@ -195,3 +195,29 @@ end
 -- mapping to kill floaterm in terminal mode
 local map = vim.api.nvim_set_keymap
 map("t", "<C-d>", "<C-\\><C-n>:FloatermKill<cr><bar>i<ESC>`f", { silent = true, noremap = true })
+
+-- maping to run programming language
+
+function _Run_Program()
+	local language_table = {
+		["lua"] = "lua %",
+		["typescript"] = "deno run %",
+		["javascript"] = "node %",
+		["markdown"] = "glow %",
+		["python"] = "python3 %",
+		["rust"] = "rustc % && ./$fileBase && rm $fileBase",
+		["cpp"] = "g++ % -o $fileBase && ./$fileBase",
+		["c"] = "gcc % -o $fileBase && ./$fileBase",
+		["go"] = "go run %",
+		["sh"] = "sh %",
+		["lua"] = "lua5.3 %",
+		["sh"] = "bash %",
+		["zsh"] = "zsh %",
+		["java"] = "java %",
+	}
+	local filetype = vim.bo.filetype
+	vim.cmd(
+		"FloatermNew --cwd=<buffer> --height=0.7 --width=0.8 --disposable --title=Lua --titleposition=center --autoclose=0 "
+			.. language_table[filetype]
+	)
+end

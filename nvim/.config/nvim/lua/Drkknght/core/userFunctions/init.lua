@@ -5,7 +5,7 @@
 -- table of helper functions
 local M = {}
 
--- delete buffers lua function
+-- delete all buffers but the current one lua function
 
 M.kill_buffers = function(value)
 	local buf_list = vim.api.nvim_list_bufs()
@@ -20,11 +20,11 @@ M.kill_buffers = function(value)
 end
 
 -- cmd("Bo", kill_buffers, { desc = "Delete all buffers except current one" })
--- delete empty buffes
+
+-- delete empty buffers
 
 M.kill_empty = function(value)
 	local buf_list = vim.api.nvim_list_bufs()
-	local current_buf_no = vim.api.nvim_get_current_buf()
 	for i, v in pairs(buf_list) do
 		if #vim.api.nvim_buf_get_name(v) == 0 then
 			-- buffer_delete(v, { force })

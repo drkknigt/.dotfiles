@@ -9,37 +9,44 @@ api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- set folds
-local foldGrp = api.nvim_create_augroup("FoldGrp", { clear = true })
-api.nvim_create_autocmd("BufEnter", { command = "set fo-=c fo-=r fo-=o" })
+-- set formatting options and remove comments while using 'o' and <Enter> in insert mode
+api.nvim_create_autocmd("BufEnter", {
+	desc = "set formatting options and remove comments while using 'o' and <enter> in insert mode",
+	group = api.nvim_create_augroup("FoldGrp", { clear = true }),
+	command = "set fo-=c fo-=r fo-=o",
+})
 
 -- set current directory for current window only
-local chngeDir = api.nvim_create_augroup("ChngeDir", { clear = true })
-api.nvim_create_autocmd("BufEnter", { command = "silent! lcd %:p:h", group = chngeDir })
+api.nvim_create_autocmd("BufEnter", {
+	desc = "set current directory for current window only",
+	command = "silent! lcd %:p:h",
+	group = api.nvim_create_augroup("ChngeDir", { clear = true }),
+})
 
--- set keymaps to browse lsp symbols  in quickfix
-local lsp_details = api.nvim_create_augroup("lsp_details", { clear = true })
+-- set keymaps to browse lsp symbols  in quickfix and copies '/' register to 'x' register
 api.nvim_create_autocmd("BufReadPost", {
-	group = "lsp_details",
+	desc = "set keymaps to browse lsp symbols  in quickfix",
+	group = api.nvim_create_augroup("lsp_details", { clear = true }),
 	pattern = { "quickfix" },
 	callback = function()
 		local search_reg_content = vim.fn.getreg("/")
 		vim.fn.setreg("x", search_reg_content)
-		vim.api.nvim_buf_set_keymap(0, "n", "F", "zffunction", { silent = true })
-		vim.api.nvim_buf_set_keymap(0, "n", "V", "zfvariable", { silent = true })
-		vim.api.nvim_buf_set_keymap(0, "n", "M", "zfmodule", { silent = true })
-		vim.api.nvim_buf_set_keymap(0, "n", "C", "zfclass", { silent = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "F", "<leader>sl'function ", { silent = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "V", "<leader>sl'variable ", { silent = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "M", "<leader>sl'module ", { silent = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "C", "<leader>sl'class ", { silent = true })
 		vim.api.nvim_buf_set_keymap(0, "n", "f", "/function<CR>", { silent = true, noremap = true })
 		vim.api.nvim_buf_set_keymap(0, "n", "v", "/variable<CR>", { silent = true, noremap = true })
 		vim.api.nvim_buf_set_keymap(0, "n", "m", "/module<CR>", { silent = true, noremap = true })
 		vim.api.nvim_buf_set_keymap(0, "n", "c", "/class<CR>", { silent = true, noremap = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "<leader>d", ":cclose<CR>", { silent = true, noremap = true })
 	end,
 })
 
--- preserve serach register value on exiting the quickfix list
-local paste_search = api.nvim_create_augroup("paste_search", { clear = true })
+-- preserve serach register value on exiting the quickfix list by copying value of 'x' reg to '/' reg
 api.nvim_create_autocmd("BufLeave", {
-	group = "paste_search",
+	desc = "preserve serach register value on exiting the quickfix list",
+	group = api.nvim_create_augroup("paste_search", { clear = true }),
 	callback = function()
 		if vim.bo.filetype == "qf" then
 			local search_reg_content = vim.fn.getreg("x")
@@ -48,13 +55,23 @@ api.nvim_create_autocmd("BufLeave", {
 	end,
 })
 
--- preserver the window view after changing the buffer or after yanking from textobject
-vim.cmd([[autocmd! BufWinLeave * let b:winview = winsaveview()
-autocmd! BufWinEnter * if exists('b:winview') | call winrestview(b:winview) | unlet b:winview]])
+-- preserver the window view after changing the buffer
+
+-- vim.cmd([[autocmd! BufWinLeave * let b:winview = winsaveview()
+-- autocmd! BufWinEnter * if exists('b:winview') | call winrestview(b:winview) | unlet b:winview]])
+
+-- api.nvim_create_autocmd("TermOpen", {
+-- 	desc = "preserve the window view after chaning the buffer ,
+-- 	command = "autocmd! BufWinLeave * let b:winview = winsaveview() autocmd! BufWinEnter * if exists('b:winview') | call winrestview(b:winview) | unlet b:winview",
+-- 	group = api.nvim_create_augroup("winSaveView", { clear = true }),
+-- })
 
 -- no relative numbers and number line in terminal mode
-local TermNoLine = api.nvim_create_augroup("TermNoLine", { clear = true })
-api.nvim_create_autocmd("TermOpen", { command = "setlocal nonumber norelativenumber", group = TermNoLine })
+api.nvim_create_autocmd("TermOpen", {
+	desc = "remove relative numbers and number line in terminal mode",
+	command = "setlocal nonumber norelativenumber",
+	group = api.nvim_create_augroup("TermNoLine", { clear = true }),
+})
 
 -- autocmd to restore cursor position after yank
 local augroups = {}
@@ -93,9 +110,9 @@ for group, commands in pairs(augroups) do
 end
 
 -- autocmd to set height for oil.nvim
-api.nvim_create_augroup("OilRelPathFix", {})
 api.nvim_create_autocmd("BufEnter", {
-	group = "OilRelPathFix",
+	desc = "autocmd to set height for oil.nvim",
+	group = api.nvim_create_augroup("OilRelPathFix", { clear = true }),
 	pattern = "oil:///*",
 	callback = function()
 		vim.cmd("vert resize 35%")
@@ -103,14 +120,13 @@ api.nvim_create_autocmd("BufEnter", {
 })
 
 -- autocmd to make backup of lazy-lock-json on each lazy update
-local lazy_cmds = vim.api.nvim_create_augroup("lazy_cmds", { clear = true })
 local snapshot_dir = vim.fn.stdpath("config") .. "/snapshots"
 local lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json"
 
 vim.api.nvim_create_user_command("BrowseSnapshots", "edit " .. snapshot_dir, {})
 
 vim.api.nvim_create_autocmd("User", {
-	group = lazy_cmds,
+	group = api.nvim_create_augroup("lazy_cmds", { clear = true }),
 	pattern = "LazyUpdatePre",
 	desc = "Backup lazy.nvim lockfile",
 	callback = function(event)
@@ -118,6 +134,18 @@ vim.api.nvim_create_autocmd("User", {
 			vim.fn.mkdir(snapshot_dir, "p")
 		end
 		local snapshot = snapshot_dir .. os.date("/%B-%d-%Y-Time-%H:%M:%S-lazy.json")
-		vim.loop.fs_copyfile(lockfile, snapshot)
+		vim.uv.fs_copyfile(lockfile, snapshot)
+	end,
+})
+
+-- autocmd to change the directory after entering oil buffer
+vim.api.nvim_create_autocmd("BufEnter", {
+	group = api.nvim_create_augroup("OilEnterBuf", { clear = true }),
+	pattern = "oil:///*",
+	desc = "change main directory to oil directory",
+	callback = function()
+		local oil_directory = vim.fn.expand("%")
+		local true_directory = oil_directory:sub(7, #oil_directory)
+		vim.cmd("cd " .. true_directory)
 	end,
 })
