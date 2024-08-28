@@ -1,5 +1,5 @@
 set nocompatible " vi compatible mode off
-colorscheme default
+colorscheme slate
 set wrap " longer lines will wrap
 set clipboard=unnamedplus
 set dictionary=/usr/share/dict/words " set words for ins-completion in dictionary mode
@@ -49,11 +49,12 @@ set is " incremental search
 set scrolloff=5 " Minimal number of screen lines to keep above and below the cursor
 " set wildmode=longest,list,full " wildmenu options
 "set highlight options
-hi Normal ctermfg=yellow " highlight color 
+"hi Normal ctermfg=yellow " highlight color 
 hi Pmenu ctermbg=NONE ctermfg=white
 hi PmenuSel ctermfg=yellow
 highlight Normal ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE  guibg=NONE cterm=NONE
 highlight CursorLine ctermfg=NONE ctermbg=5 guifg=NONE guibg=NONE  guibg=NONE cterm=NONE
+hi ColorColumn ctermbg=yellow
 "quit all
 "enable matchit
 packadd! matchit
@@ -69,6 +70,7 @@ set title " set title of window with file name
 set wildoptions=pum "layout of the wildmenu
 set cpoptions+=>
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+set fo-=o fo-=r fo-=c
 " remap Esc to jk
 " leader key
 hi Normal ctermbg=None
@@ -95,6 +97,9 @@ augroup yank_restore_cursor
             \ call setpos('.', s:cursor) |
         \ endif
 augroup END
+
+autocmd! BufWinLeave * let b:winview = winsaveview()
+autocmd! BufWinEnter * if exists('b:winview') | call winrestview(b:winview) | unlet b:winview
 
 " wayland-clipboard.vim - Integrate with Wayland's clipboard when using the '+'
 " register. Requires wl-clipboard and the +eval and +clipboard Vim features.
