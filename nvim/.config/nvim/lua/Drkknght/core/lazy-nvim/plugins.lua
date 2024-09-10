@@ -504,6 +504,7 @@ local compile_mode = {
 			-- to add ANSI escape code support, add:
 			baleia_setup = false,
 			default_command = "pwd",
+			ask_about_save = false,
 		}
 	end,
 }

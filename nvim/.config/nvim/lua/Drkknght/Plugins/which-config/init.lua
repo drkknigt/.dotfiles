@@ -104,7 +104,7 @@ local mappings = {
 		{ "<leader>pp", "<cmd>Lazy home<cr>", desc = "open lazy-nvim" },
 		{ "<leader>pt", "<cmd>StartupTime<cr>", desc = "see startuptime for neovim" },
 		{
-			"<leader>pb",
+			"<leader>pd",
 			"<cmd>BrowseSnapshots<cr>",
 			desc = "change directory to snapshot directory for laz in nvim/snapshots ",
 		},
