@@ -142,6 +142,7 @@
    - ctrl + e + ;      ------> make a project
    - ctrl + e + \      ------> kill tmux sessions (tmux_kill.py)
    - ctrl + e + y      ------> tmux session swithch (tmux_session_switch.sh)
+   - ctrl + e + U      ------> update pacman within tmux
    - ctrl + e + g      ------> open lazy git in prefered directory (tmux_git.sh)
    - ctrl + g          ------> open lazygit in current directory
    - ctrl + v          ------> open neovim in current directory
