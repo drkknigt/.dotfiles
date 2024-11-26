@@ -38,7 +38,20 @@ require("nvim-treesitter.configs").setup({
 		-- termcolors = {} -- table of colour name strings
 	},
 	-- install treesitter parsers
-	ensure_installed = { "vim", "python", "lua", "bash", "clojure", "go", "c", "html", "css", "cpp" },
+	ensure_installed = {
+		"vim",
+		"python",
+		"lua",
+		"bash",
+		"clojure",
+		"go",
+		"c",
+		"html",
+		"css",
+		"cpp",
+		"typescript",
+		"javascript",
+	},
 	sync_install = false,
 
 	highlight = { -- enable highlighting for all file types

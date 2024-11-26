@@ -9,7 +9,7 @@ local servers = {
 	"pyright",
 	"clangd",
 	"cssls",
-	"tsserver",
+	"ts_ls",
 	"ansiblels",
 	"vimls",
 	"lua_ls",
@@ -113,7 +113,7 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "]d", '<cmd>lua vim.diagnostic.goto_next({scope="line",float={border="single"}})<CR>', opts)
 	-- buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 	local server_table = {
-		["tsserver"] = 1,
+		["ts_ls"] = 1,
 		["pyright"] = 1,
 		["html"] = 1,
 		["lua_ls"] = 1,
@@ -250,7 +250,7 @@ for _, lsp in pairs(servers) do
 		})
 	end
 end
-require("lspconfig").tsserver.setup({
+require("lspconfig").ts_ls.setup({
 	root_dir = require("lspconfig").util.root_pattern("package.json"),
 	on_attach = on_attach,
 	flags = { debounce_text_changes = 150 },

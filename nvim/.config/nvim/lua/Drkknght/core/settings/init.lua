@@ -123,6 +123,8 @@ set.fillchars = {
 	foldclose = "▸",
 }
 
+set.jumpoptions = "view" -- set the jumptions for jumplist and changelist and alternate list to view
+
 cmd([[abb py! #!/usr/bin/env python3]]) -- set abbreviation
 
 cmd([[filetype plugin indent on ]]) -- make filetype plugin on

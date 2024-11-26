@@ -188,7 +188,7 @@ local nvim_treesitter = {
 	-- https://github.com/mizlan/iswap.nvim
 	-- https://github.com/nvim-treesitter/nvim-treesitter-refactor
 	-- https://github.com/windwp/nvim-ts-autotag
-	-- https://github.com/"p00f/nvim-ts-rainbow"
+	-- https://github.com/HiPhish/rainbow-delimiters.nvim
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	event = "VeryLazy",
@@ -209,7 +209,7 @@ local nvim_treesitter = {
 		},
 		"nvim-treesitter/nvim-treesitter-refactor",
 		"windwp/nvim-ts-autotag",
-		"p00f/nvim-ts-rainbow",
+		"HiPhish/rainbow-delimiters.nvim",
 	},
 	config = function()
 		require("Drkknght.Plugins.treesitter")
@@ -515,7 +515,7 @@ local llm_gen = {
 	"David-Kunz/gen.nvim",
 	event = "VeryLazy",
 	opts = {
-		model = "phi3:latest", -- The default model to use.
+		model = "llama3.2", -- The default model to use.
 		host = "localhost", -- The host running the Ollama service.
 		port = "11434", -- The port on which the Ollama service is listening.
 		quit_map = "q", -- set keymap for close the response window
