@@ -1,5 +1,5 @@
 # lf global options
-#set cleaner ~/.dotfiles/lf/.config/lf/cleaner
+set cleaner ~/.dotfiles/lf/.config/lf/cleaner
 set previewer ~/.dotfiles/lf/.config/lf/preview
 set icons true
 set hidden true
@@ -49,12 +49,13 @@ set rulerfmt "%d | %a| %p|  \033[7;31m %m \033[0m|  \033[7;33m %c \033[0m|  \033
 set cursorpreviewfmt "\033[7m"
 
 # unarchive function
-cmd unarchive ${{
+cmd unarchive %{{
   case $f in
       *.zip) unzip $f ;;
       *.tar.gz) tar -xzvf $f ;;
       *.tar.bz2) tar -xjvf $f ;;
       *.tar) tar -xvf $f ;;
+      *.rar) unrar x $f ;;
       *) echo "Unsupported format" ;;
   esac
 }}
@@ -62,7 +63,20 @@ cmd unarchive ${{
 
 # jump to location
 cmd fzf_jump ${{
-    file=$(fdfind . "$HOME" -a -H | fzf --bind "ctrl-o:toggle-preview" --prompt="jump to position: " --preview="~/.dotfiles/lf/.config/lf/preview_fzf.sh {}" --preview-window hidden )
+    file=$(fdfind . "$HOME" -a -H | fzf --height=100% --layout=reverse --bind "ctrl-o:toggle-preview+execute-silent(kitty +kitten icat --clear --stdin no --silent --transfer-mode file </dev/null >/dev/tty)" --prompt="jump to position: " --preview="preview_fzf.sh {}" --preview-window down:8 )
+    if [ -n "$file" ]; then
+        if [ -d "$file" ]; then
+            cmd="cd"
+        else
+            cmd="select"
+        fi
+        file="$(printf '%s' "$file" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+        lf -remote "send $id $cmd \"$file\""
+    fi
+}}
+
+cmd search_files ${{
+    file=$(fdfind . "$(pwd)" -a -H | fzf --height=100% --layout=reverse --bind "ctrl-o:toggle-preview+execute-silent(kitty +kitten icat --clear --stdin no --silent --transfer-mode file </dev/null >/dev/tty)" --prompt="jump to position: " --preview="preview_fzf.sh {}" --preview-window down:8 )
     if [ -n "$file" ]; then
         if [ -d "$file" ]; then
             cmd="cd"
@@ -75,7 +89,6 @@ cmd fzf_jump ${{
 }}
 
 
-
 # Search and select
 cmd / &{{
     lf -remote "send $id set globsearch"
@@ -84,8 +97,17 @@ cmd / &{{
 
 # get size and type of file
 cmd get_size %{{
-     lf -remote "send $id echo    \"$(echo size:)\"   \"$(du -hs "$f" | awk -d' ' '{ print $1 }')\"  \"     file-type:$(file -b --mime-type "$f")\""
-     rm " " &> /dev/null
+    total_args=0
+     for i in $fx ; do
+        total_args=$((total_args + 1))
+    done
+    if [ "$total_args" -lt "2" ] ; then
+        lf -remote "send $id echo    \"$(echo size:)\"   \"$(du -hs "$f"  | tail -1 | awk -d' ' '{ print $1 }')\"  \"     file-type:$(file -b --mime-type "$f")\""
+        rm " " &> /dev/null
+     else
+        lf -remote "send $id echo \"$(echo total-size:)\"   \"$(du -hs -c $fx | tail -n 1 | awk -d' ' '{print $1 }' )\""
+        rm " " &> /dev/null
+     fi
 }}
 
 
@@ -169,6 +191,19 @@ cmd mkfile %{{
 }}
 
 
+cmd save_browser_enter %{{
+    if [ -n "$browser_run" ] ; then
+        if [ "$save" = "1" ]; then
+            name=$(basename $(echo "$path_name" ))
+            touch "$name"
+            lf -remote "send $id :select $(echo $name)"
+        fi
+        lf -remote "send $id :open"
+    fi
+    lf -remote "send $id :open"
+}}
+
+
 # copy name of file
 cmd copyname &{{
     current_wm=$(wmctrl -m | grep -Po "wlroots|i3")
@@ -229,7 +264,7 @@ map y copy
 map . set hidden!
 map p paste
 map x cut
-map <enter> open
+map <enter> save_browser_enter
 map R source-config
 map F mkfile
 map D mk_dir
@@ -239,6 +274,7 @@ map <c-l> :clear; unselect
 map <space>
 map <space> :toggle; down
 map <c-space> :toggle
+map V invert-below
 
 # goto directories mappings
 map gm cd ~/.ansible_sync
@@ -247,6 +283,7 @@ map ga cd ~/arch-pull
 map gc cd ~/.dotfiles
 map gp cd ~/Pictures
 map gd cd ~/Downloads
+map gu cd /run/media
 map gf cd ~/Documents
 map gv cd ~/Videos
 map gj fzf_jump
@@ -255,6 +292,7 @@ map gj fzf_jump
 map as get_size
 map ay copypath
 map au unarchive
+map af search_files
 map an copyname
 map ae edit_dir
 map ap give_full_path

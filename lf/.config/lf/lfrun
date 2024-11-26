@@ -6,7 +6,9 @@ cleanup() {
     # exec 3>&-
 	# rm "$FIFO_UEBERZUG"
     rm -rf ~/.cache/lf/ 
-    i3-msg workspace back_and_forth
+    if [ -n "$LF_RUNNING" ]; then
+        i3-msg workspace back_and_forth
+    fi
 }
 
 # if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
