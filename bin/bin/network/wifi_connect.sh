@@ -3,6 +3,13 @@
 
 # this script is used to turn wifi on and off
 
+# exit script if nmcli is not found
+if ! command -v nmcli 2>&1 >/dev/null; then
+    notify-send  "Nmcli not found " "script will exit" --icon=dialog-information
+    exit 1
+fi
+    
+
 wifi_status=$(nmcli radio wifi)
 echo "$wifi_status"
 

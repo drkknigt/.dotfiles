@@ -17,7 +17,8 @@ if [[ -z $selected ]]; then
 fi
 
 # read query from the user
-vared -p "Enter Query: " -c query
+# vared -p "Enter Query: " -c query
+read query\?"Enter Query: "
 echo $selected
 
 # send request for finding info on languages

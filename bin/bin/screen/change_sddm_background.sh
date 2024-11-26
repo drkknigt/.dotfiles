@@ -3,7 +3,7 @@
 # this script is used to change the background at the sddm login screen
 
 # choose wallpaper
-choosen_wallpaper="$(fdfind '.+\.(jpg|jpeg)$'  ~/Pictures  | fzf --cycle --prompt='Wallpaper for sddm: ' --bind "tab:execute(imv {} >/dev/null)")"
+choosen_wallpaper="$(fdfind '.+\.(jpg|jpeg)$' ~/Downloads ~/Pictures ~/Videos | fzf --cycle --prompt='Wallpaper for sddm: ' --bind "tab:execute(swaymsg output ${monitor} bg {} fill &> /dev/null ),ctrl-o:toggle-preview+execute-silent(kitty +kitten icat --clear --stdin no --silent --transfer-mode file </dev/null >/dev/tty)" --preview="preview_fzf.sh {}")"
 
 # exit if no wallpaper is choosen
 if [ -z "$choosen_wallpaper" ]; then

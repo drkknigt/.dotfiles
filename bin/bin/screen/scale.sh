@@ -5,12 +5,12 @@
 
 
 # Select the first monitor
-if [ $1 = '0' ]
+if [ $1 = '1' ]
 then
     echo "first"
     monitor=$(xrandr | grep -Pi '\bconnected\b' | sed -n 1,1p | cut -d " " -f1)
 # Select the 2nd monitor
-elif [ $1 = '1' ]
+elif [ $1 = '2' ]
 then
     monitor=$(xrandr | grep -Pi '\bconnected\b' | sed -n 2,2p | cut -d " " -f1)
 fi
@@ -18,7 +18,7 @@ fi
 # exit if no monitor is found
 if [ -z $monitor ] 
 then
-    notify-send "2nd monitor not found"
+    notify-send "monitor $1 not found"
     exit
 fi
 

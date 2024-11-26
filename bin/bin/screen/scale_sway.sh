@@ -3,13 +3,13 @@
 # This script sets the scale value of the monitor in sway window manager
 
 # select first monitor if the tui arg is 0
-if [ $1 = '0' ]
+if [ $1 = '1' ]
 then
     echo "first"
     monitor=$(swaymsg -t get_outputs | jq -r '.[].name' | sed -n 1,1p)
     
 # select 2nd monitor if the tui arg is 1
-elif [ $1 = '1' ]
+elif [ $1 = '2' ]
 then
     monitor=$(swaymsg -t get_outputs | jq -r '.[].name' | sed -n 2,2p)
 fi
@@ -17,7 +17,7 @@ fi
 # exit if no monitor is found
 if [ -z $monitor ] 
 then
-    notify-send "2nd monitor not found"
+    notify-send "monitor $1 not found"
     exit
 fi
 

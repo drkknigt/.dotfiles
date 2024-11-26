@@ -3,11 +3,11 @@
 # This script is used to set the background of the monitor in sway window manager
 
 # code to set wallpaper for monitor 1 or main monitor
-if [ $1 = '0' ]
+if [ $1 = '1' ]
 then
     monitor=$(swaymsg -t get_outputs | jq -r '.[].name' | sed -n 1,1p)
 # code to set wallpaper for monitor 2 or secondary monitor
-elif [ $1 = '1' ]
+elif [ $1 = '2' ]
 then
     monitor=$(swaymsg -t get_outputs | jr -r '.[].name' | sed -n 2,2p)
 fi
@@ -15,14 +15,13 @@ fi
 # exit if the monitor is not found
 if [ -z $monitor ] 
 then
-    notify-send "2nd monitor not found"
+    notify-send "monitor $1 not found"
     exit
 fi
 monitor1=$1
 
 # selected wallpaper
-# curret="$(fdfind '.+\.(jpg|jpeg)$' ~/Downloads ~/Pictures ~/Videos | fzf --cycle --prompt='change-background: ' --bind "tab:execute(swaymsg output ${monitor} bg {} fill &> /dev/null )")"
-curret="$(fdfind '.+\.(jpg|jpeg)$' ~/Downloads ~/Pictures ~/Videos | fzf --cycle --prompt='change-background: ' --bind "tab:execute(swaymsg output ${monitor} bg {} fill &> /dev/null ),ctrl-o:toggle-preview" --prompt="jump to position: " --preview="~/.dotfiles/lf/.config/lf/preview_fzf.sh {}")"
+curret="$(fdfind '.+\.(jpg|jpeg)$' ~/Downloads ~/Pictures ~/Videos | fzf --cycle --prompt='change-background: ' --bind "tab:execute(swaymsg output ${monitor} bg {} fill &> /dev/null ),ctrl-o:toggle-preview+execute-silent(kitty +kitten icat --clear --stdin no --silent --transfer-mode file </dev/null >/dev/tty)" --preview="preview_fzf.sh {}")"
 
 
 # if no wallpaper is choosen exit
@@ -36,7 +35,7 @@ fi
 echo "$curret" > $HOME/.cache/wallpaper.bg
 
 # set wallpaper for monitor 1 or main monitor
-if [ ${monitor1} = 0 ]
+if [ ${monitor1} = 1 ]
 then
     # sed -i -e "s|${wallpaper1}|file=${curret}|g" ~/.config/nitrogen/bg-saved.cfg
     # echo '1st monitor'

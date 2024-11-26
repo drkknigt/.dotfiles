@@ -14,7 +14,7 @@ fi
 date_now=$(date +"%F-%H-%M-%S")
 
 # make file name with current date
-file_name="file-$date_now"
+file_name="recording-$date_now"
 
 # select audio device used to record the audio 
 device=$(pactl list sources | grep Name |  fzf --prompt="choose audio service: " | cut -d ":" -f2)

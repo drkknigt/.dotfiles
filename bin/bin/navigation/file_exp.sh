@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-# This script seraches for files and directories  in file system from /home directory.
+# This script seraches for files and directories  in file system from /home directory. This is used by window manager
 # and then opens the  file in appropriate application or opens the directory in if directory is searched
 
 # export DE=kde
@@ -12,7 +12,7 @@ if [ ${exp} = "f" ]; then
     file=$(fdfind --type ${exp} . $disk $HOME /run/media/ /media 2> /dev/null | fzf --cycle --prompt='open files: ' --delimiter / --with-nth -1 --bind "ctrl-s:execute(setsid -f xdg-open {} &> /dev/null),tab:execute(setsid -f nemo $(basename {}) &> /dev/null),ctrl-o:toggle-preview" --preview="echo {} | batcat --theme='Monokai Extended Origin' --color=always" --keep-right --preview-window wrap --preview-window hidden)
     
 # quit if file is empty
-    if [ -z "$file" ]; then
+if [ -z "$file" ]; then
         exit
 fi
 
@@ -21,11 +21,11 @@ else
     file=$(fdfind --type ${exp} . ${disk} $HOME /run/media/ /media/ --hidden | fzf --prompt='open directories: ' --bind "tab:execute(setsid -f xdg-open {} &> /dev/null),ctrl-o:toggle-preview" --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always " --keep-right --preview-window hidden --preview-window wrap)
 
 # quit if file is empty
-    if [ -z "$file" ]; then
+if [ -z "$file" ]; then
         exit
-    fi
-    setsid -f nemo $file > /dev/null
-    exit
+fi
+setsid -f nemo $file > /dev/null
+exit
 fi
 
 # find the mime-type and open file in desired application 
@@ -58,10 +58,12 @@ case $file_type in
         ;;
     "application")
         echo "$file_format" | grep -Pi "pdf|epub" &> /dev/null
+        #open file in zathura if its pdf or epub
         if [ "$?" = "0" ]; then
             setsid -f zathura $file
             exit
         fi
+        # if its not pdf/epub then open with xdg-open
         setsid -f xdg-open $file
         ;;
     *)

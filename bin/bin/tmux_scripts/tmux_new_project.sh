@@ -11,28 +11,37 @@ recent_flag=$1
 mkdir ~/.cache/tmux -p
 touch ~/.cache/tmux/recent_dirs
 
+# exit if no directory selected to start project in
 if [[ -z $selected_directory ]] ; then exit ; fi
 
+# make directory with project name
 read -p "Enter root directory: " root_directory
+
+# exit if project already exits in the selected_directory
 if [[ -d "$selected_directory$root_directory" ]] ; then
     echo "directory already exits"
     exit
 fi
+
+# write the file/directory structure of the project with directory ending with / and file without /
+# there should be space between individual entries e.g Enter directory structure: some_project/ main.c lib/ tests/ doc/
 read -p "Enter directory structure: " directory_structure
 
 
-
+# replace spaces with newline in directory structure
 directory_structure=$(echo $directory_structure | tr ' ' '\n')
 
+# loop over directory_structure and make files or directories accoding to sturcture
 for i in $directory_structure; do
     if [[ $i == */ ]]; then
         mkdir -p "$selected_directory$root_directory/$i"
-        echo "this is working"
+        echo "$i directory created"
     else
         directory=$(dirname $i)
         file_name=$(basename $i)
         mkdir -p "$selected_directory$root_directory/$directory"
         touch "$selected_directory$root_directory/$directory/$file_name"
+        echo "$file_name file created"
     fi
 done
 

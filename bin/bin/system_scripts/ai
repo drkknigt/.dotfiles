@@ -38,6 +38,7 @@ if [ "$type_of_ai" = "offline" ] ; then
     while ! $exit_loop ; do
         echo -n "Enter prompt: "
         read -r prompt
+        prompt=$(echo $prompt | sed "s/\"/\'/g")
         echo "Prompt: $prompt\n" >> ~/ai_output
         ollama run $ai_model "$prompt" | tee -a ~/ai_output
         echo "\n------------------------------------------------------------------------------------------------------\n" >> ~/.ollama/ai_output
@@ -59,6 +60,7 @@ else
         if [ -z "$prompt" ]; then
             exit
         fi
+        prompt=$(echo $prompt | sed "s/\"/\'/g")
         echo "Prompt: $prompt\n" >> ~/ai_output
         echo "\n\n"
         echo  $(curl -s -X POST "https://api.groq.com/openai/v1/chat/completions" \

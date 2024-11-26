@@ -3,6 +3,11 @@
 
 # script used to connect to the internet using wifi
 
+# exit script if nmcli is not found
+if ! command -v nmcli 2>&1 >/dev/null; then
+    notify-send  "Nmcli not found " "script will exit" --icon=dialog-information
+    exit 1
+fi
 
 # select the wifi ssid to connect to
 selected_wifi=$(nmcli dev wifi list --rescan yes | fzf --prompt='Connect wifi: ')

@@ -9,7 +9,7 @@ second_monitor=$(xrandr | grep "\bconnected\b" | grep "\bprimary\b" -v | cut -d"
 first_monitor=$(xrandr | grep "\bconnected\b" | grep "\bprimary\b" | cut -d" " -f1)
 
 # list of resolution to change from 
-resolution_selected=$(echo "1920x1080\n1680x1050\n1400x900\n1280x1024\n1024x768\n800x600\n" | fzf)
+resolution_selected=$(echo "1920x1080\n1680x1050\n1440x900\n1280x1024\n1024x768\n800x600\n640x480\n" | fzf)
 
 # if resolution_selected is empty and exit
 if [ -z $resolution_selected ]
