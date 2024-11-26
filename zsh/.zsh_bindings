@@ -9,10 +9,7 @@ bindkey -s '^e;' 'tmux_new_project.sh^M'
 bindkey -s '^\\s' 'tmux_create.sh 3^M'
 bindkey -s '^e\\' 'tmux_kill.sh^M'
 bindkey -s '^ey' 'tmux_session_switch.sh^M'
-bindkey -s '^eg' 'tmux_git.sh^M'
 
-# bindkey for git for shell
-bindkey -s '^\\g' 'tmux_git.sh^M'
 
 # start lazygit
 bindkey -s '^g' 'lazygit -ucf ~/.config/lazygit/config.yml^M'
