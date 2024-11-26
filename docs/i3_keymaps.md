@@ -25,10 +25,10 @@
    - alt + a + b      -------> open brave browser (brave-browser)
    - alt + a + f      -------> open firefox (firefox)
    - alt + a + t      -------> open telegram (telegram-desktop)
-   - alt + a + n      -------> open file explorere nemo (nemo)
+   - alt + a + n      -------> open file explore in nemo (nemo)
    - alt + a + q      -------> open calculator (qalc)
    - alt + a + h      -------> open htop (htop)
-   - alt + a + l      -------> lock screen (i3lock -c "000000)
+   - alt + a + l      -------> lock screen (i3lock/swaylock -c "000000)
    - alt + a + k      -------> open hyprpicker
    - alt + a + m      -------> open vscode (code)
    - alt + a + g      -------> open glow markdown reader (code)
@@ -62,16 +62,16 @@
    - alt + period     -------> show previous workspace (i3-msg workspace back_and_forth)
    - alt + n          -------> next workspace (i3-msg workspace next)         
    - alt + q          -------> kill window (i3-msg kill)
-   - alt + e + h      -------> i3-msg split h
-   - alt + e + v      -------> i3-msg split v
-   - alt + e + y      -------> i3-msg layout stacking
-   - alt + e + t      -------> i3-msg layout tabbed
-   - alt + e + e      -------> i3-msg layout toggle tabbed
-   - alt + e + space  -------> i3-msg focus toggle_mode
-   - alt + e + i      -------> i3-msg focus parent
+   - alt + e + h      -------> i3-msg/sway split h
+   - alt + e + v      -------> i3-msg/sway split v
+   - alt + e + y      -------> i3-msg/sway layout stacking
+   - alt + e + t      -------> i3-msg/sway layout tabbed
+   - alt + e + e      -------> i3-msg/sway layout toggle tabbed
+   - alt + e + space  -------> i3-msg/sway focus toggle_mode
+   - alt + e + i      -------> i3-msg/sway focus parent
    - alt + e + r      -------> i3-msg restart
-   - alt + e + q      -------> i3-msg exit
-   - alt + e + w      -------> i3-msg reload config for i3wm
+   - alt + e + q      -------> i3-msg/sway exit
+   - alt + e + w      -------> i3-msg/sway reload config for i3wm
    - mouse-button-middle ----> i3-msg floating toggle
 
 ## scratchpad: 
@@ -128,28 +128,26 @@
    - alt + z + m       ------> mount disks (mount.sh)
    - alt + z + h       ------> open man pages (man_pages.sh )
    - alt + z + q       ------> kill applications (kill.sh)
-   - alt + z + k       ------> show keymaps for i3wm (keymaps.sh)
+   - alt + z + k       ------> show keymaps for i3wm/sway/zsh/tmux (keymaps.sh)
    - alt + z + x       ------> send mouse pointer to bottom (xdotool mousemove 800 1920 )
    - alt + z + e       ------> change cpu energe performance preference
    - alt + z + i       ------> info on cpu governor and driver
    - alt + z + w       ------> change wofi / rofi theme
    - alt + z + v       ------> kill all instances of wf-recorder
+   - alt + z + b       ------> switch file picker for browser 
    
 # ZSH KEYMAPS
 
    - ctrl + e + space  ------> create tmux session for any directory from home (tmux_create.sh 0)  
    - ctrl + e + r      ------> create recent tmux sessions (tmux_create.sh 1)
    - ctrl + e + ;      ------> make a project
-   - ctrl + e + \      ------> kill tmux sessions (tmux_kill.py)
+   - ctrl + e + \      ------> kill tmux sessions (tmux_kill.sh)
    - ctrl + e + y      ------> tmux session swithch (tmux_session_switch.sh)
-   - ctrl + e + U      ------> update pacman within tmux
-   - ctrl + e + g      ------> open lazy git in prefered directory (tmux_git.sh)
    - ctrl + g          ------> open lazygit in current directory
    - ctrl + v          ------> open neovim in current directory
    - ctrl + \ + d      ------> open file from dotfiles in neovim in current shell
    - ctrl + \ + f      ------> serach file in current dir and open in neovim
    - ctrl + \ + h      ------> serach file in home dir and open in neovim
-   - ctrl + \ + g      ------> open git dir
    - ctrl + \ + s      ------> start a tmux session in the current working dir in shell
    - ctrl + e + '      ------> open lf file browser in the searched directory
    - ctrl + p          ------> goto previous command in zsh
@@ -159,6 +157,8 @@
    - ctrl + k          ------> goto end of the word
    - ctrl + space      ------> go back one char
    - ctrl + a          ------> goto start of the line
+   - ctrl + b          ------> goto back of the word
+   - ctrl + f          ------> goto front of the word
    - ctrl + r          ------> search the command line history
    - ctrl + [          ------> enter vim mode
    
@@ -210,6 +210,7 @@
    - ctrl + e + m      ------> get info on command with cheat sheet
    - ctrl + e + '      ------> open lf file manger in path choosen from fzf
    - ctrl + e + Escape ------> enter the copy mode
+   - ctrl + e + U      ------> update system with pacman
    -  copy-mode - y    ------> copy the selection in copy mode
    -  copy-mode - v    ------> visually select the selection in copy mode
    -  copy-mode - q    ------> exit the copy mode
@@ -219,36 +220,106 @@
 # lf mappings
 
 
-     - d               ------> delete
-     - y               ------> copy 
-     - .               ------> set hidden!
-     - p               ------> paste
-     - x               ------> cut
-     - <enter>         ------> open
-     - R               ------> source-config
-     - F               ------> mkfile
-     - D               ------> mk_dir
-     - r               ------> bulk_rename
-     - f               ------> push :/<space> , search for file and select it
-     - <c-l>           ------> :clear; unselect , clear and unselect everything
-     - <space>         ------> :toggle; down / select / unselect item and move downwards
-     - <c-space>       ------> :toggle / select / unselct item under cursor
-     - gm              ------>  cd ~/.ansible_sync
-     - gh              ------>  cd ~
-     - ga              ------>  cd ~/arch-pull
-     - gc              ------>  cd ~/.dotfiles
-     - gp              ------>  cd ~/Pictures
-     - gd              ------>  cd ~/Downloads
-     - gf              ------>  cd ~/Documents
-     - gv              ------>  cd ~/Videos
-     - gj              ------>  fuzzy find and jump to any file/directory
-     - as              ------>  get size of the file / directory
-     - ay              ------>  copy file path
-     - au              ------>  unarchive archives like .zip and tar.gz
-     - an              ------>  copy file name 
-     - ar              ------>  edit current directory in nvim using oil.nvim
-     - ap              ------>  give full path of the file / directory under cursor
-     - O               ------>  push :open-with-gui<space> ## input application
-     - o               ------>  push :open-with-cli<space> ## input application
-     - /               ------>  normal_search
-     - <c-o>           ------>  toggle_preview
+     - ! --------------------> shell-wait -- []
+     - " --------------------> mark-remove -- []
+     - $ --------------------> shell -- []
+     - % --------------------> shell-pipe -- []
+     - & --------------------> shell-async -- []
+     - ' --------------------> mark-load -- []
+     - , --------------------> find-prev -- []
+     - . --------------------> toggle hidden files
+     - / --------------------> normal_search -- []
+     - : --------------------> read -- []
+     - ; --------------------> find-next -- []
+     - <c-b> ----------------> page-up -- []
+     - <c-d> ----------------> half-down -- []
+     - <c-e> ----------------> scroll-down -- []
+     - <c-f> ----------------> page-down -- []
+     - <c-l> ----------------> :{{ clear -- []; unselect -- []; }}
+     - <c-m-down> -----------> scroll-down -- []
+     - <c-m-up>   -----------> scroll-up -- []
+     - <c-n>      -----------> cmd-history-next -- []
+     - <c-o>      -----------> toggle_preview -- []
+     - <c-p>      -----------> cmd-history-prev -- []
+     - <c-r>      -----------> reload -- []
+     - <c-space>  -----------> :{{ toggle -- []; }}
+     - <c-u>      -----------> half-up -- []
+     - <c-y>      -----------> scroll-up -- []
+     - <down>     -----------> down -- []
+     - <end>      -----------> bottom -- []
+     - <enter>    -----------> save_browser_enter -- []
+     - <f-1>      -----------> doc -- []
+     - <home>     -----------> top -- []
+     - <left>     -----------> updir -- []
+     - <m-down>   -----------> down -- []
+     - <m-up>     -----------> up -- []
+     - <pgdn>     -----------> page-down -- []
+     - <pgup>     -----------> page-up -- []
+     - <right>    -----------> open -- []
+     - <space>    -----------> :{{ toggle -- []; down -- []; }}
+     - <up>       -----------> up -- []
+     - ?    -----------------> search-back -- []
+     - D    -----------------> mk_dir -- []
+     - F    -----------------> mkfile -- []
+     - G    -----------------> bottom -- []
+     - H    -----------------> high -- []
+     - L    -----------------> low -- []
+     - M    -----------------> middle -- []
+     - N    -----------------> search-prev -- []
+     - O    -----------------> push -- [:open-with-gui<space>]
+     - R    -----------------> source-config -- []
+     - V    -----------------> invert-below -- []
+     - [    -----------------> jump-prev -- []
+     - ]    -----------------> jump-next -- []
+     - ae   -----------------> edit_dir -- []
+     - af   -----------------> search_files -- []
+     - an   -----------------> copyname -- []
+     - ap   -----------------> give_full_path -- []
+     - as   -----------------> get_size -- []
+     - au   -----------------> unarchive -- []
+     - ay   -----------------> copypath -- []
+     - c    -----------------> clear -- []
+     - d    -----------------> delete -- []
+     - e    -----------------> ${{ $EDITOR "$f" }}
+     - f    -----------------> push -- [:/<space>]
+     - ga   -----------------> cd -- [~/arch-pull]
+     - gc   -----------------> cd -- [~/.dotfiles]
+     - gd   -----------------> cd -- [~/Downloads]
+     - gf   -----------------> cd -- [~/Documents]
+     - gg   -----------------> top -- []
+     - gh   -----------------> cd -- [~]
+     - gj   -----------------> fzf_jump -- []
+     - gm   -----------------> cd -- [~/.ansible_sync]
+     - gp   -----------------> cd -- [~/Pictures]
+     - gv   -----------------> cd -- [~/Videos]
+     - gu   -----------------> cd -- [/run/media]
+     - h    -----------------> updir -- []
+     - i    -----------------> ${{ $PAGER "$f" }}
+     - j    -----------------> down -- []
+     - k    -----------------> up -- []
+     - l    -----------------> open -- []
+     - m    -----------------> mark-save -- []
+     - n    -----------------> search-next -- []
+     - o    -----------------> push -- [:open-with-cli<space>]
+     - p    -----------------> paste -- []
+     - q    -----------------> quit -- []
+     - r    -----------------> bulk_rename -- []
+     - sa   -----------------> :{{ set sortby atime; set info atime; }}
+     - sc   -----------------> :{{ set sortby ctime; set info ctime; }}
+     - se   -----------------> :{{ set sortby ext; set info ; }}
+     - sn   -----------------> :{{ set sortby natural; set info ; }}
+     - ss   -----------------> :{{ set sortby size; set info size; }}
+     - st   -----------------> :{{ set sortby time; set info time; }}
+     - t    -----------------> tag-toggle -- []
+     - u    -----------------> unselect -- []
+     - v    -----------------> invert -- []
+     - w    -----------------> ${{ $SHELL }}
+     - x    -----------------> cut -- []
+     - y    -----------------> copy -- []
+     - za   -----------------> set info size:time
+     - zh   -----------------> set hidden!
+     - zn   -----------------> set info
+     - zr   -----------------> set reverse!
+     - zs   -----------------> set info size
+     - zt   -----------------> set info time
+
