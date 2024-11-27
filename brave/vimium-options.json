@@ -1,7 +1,17 @@
 {
-  "keyMappings": "# Insert your preferred key mappings here.\nmap ' Marks.activateGotoMode\nmap <C-j> previousTab\nmap <C-k> nextTab\nmap <C-6> visitPreviousTab\nmap <C-m> toggleMuteTab",
+  "keyMappings": "# Insert your preferred key mappings here.\nmap ' Marks.activateGotoMode\nmap <C-j> previousTab\nmap <C-k> nextTab\nmap <C-6> visitPreviousTab\nmap <C-m> toggleMuteTab\nmap H LinkHints.activateMode action=hover\nmap J LinkHints.activateMode action=focus\nmap c LinkHints.activateMode action=copy-text\nmap L LinkHints.activateModeToCopyLinkUrl\nmap <C-h>  goBack\nmap <C-l> goForward",
   "linkHintCharacters": "sadfjklewcmpghior",
   "newTabUrl": "https://www.google.com",
-  "settingsVersion": "2.0.5",
-  "userDefinedLinkHintCss": "div > .vimiumHintMarker {\n/* linkhint boxes */\nbackground: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1b1b1b),\n  color-stop(100%,#1b1b1b));\nborder: 1px solid gray;\n}\n\ndiv > .vimiumHintMarker span {\n/* linkhint text */\ncolor: white;\nfont-weight: normal;\nfont-size: 14px;\n}\n\ndiv > .vimiumHintMarker > .matchingCharacter {\n}"
+  "settingsVersion": "2.1.2",
+  "userDefinedLinkHintCss": "div > .vimiumHintMarker {\n/* linkhint boxes */\nbackground: #1b1b1b;\nborder: 1px solid gray;\n}\n\ndiv > .vimiumHintMarker span {\n/* linkhint text */\ncolor: white;\nfont-weight: normal;\nfont-size: 14px;\n}\n\ndiv > .vimiumHintMarker > .matchingCharacter {\ncolor: yellow;\nfont-weight: normal;\nfont-size: 14px;\n}",
+  "exclusionRules": [
+    {
+      "passKeys": "",
+      "pattern": "https?://mail.google.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://vim-adventures.com/*"
+    }
+  ]
 }
