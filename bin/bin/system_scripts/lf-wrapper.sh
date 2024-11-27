@@ -35,8 +35,7 @@ export save
 termcmd="kitty --class 'lf_browser'  -e"
 if [ "$save" = "1" ]; then
 	# /usr/bin/touch $path
-	set -- -selection-path "$out" "$path_name"
-'' >"$path_name"
+	set -- -selection-path "$out" "$default_dir"
 elif [ "$directory" = "1" ]; then
 	set -- -selection-path "$out" "$default_dir"
 elif [ "$multiple" = "1" ]; then
@@ -44,7 +43,6 @@ elif [ "$multiple" = "1" ]; then
 else
 	set -- -selection-path "$out" "$default_dir"
 fi
-echo $path_name | wl-copy
 $termcmd $cmd "$@"
 
 if [ "$save" = "1" ] && [ ! -s "$out" ]; then

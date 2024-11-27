@@ -196,7 +196,7 @@ cmd save_browser_enter %{{
         if [ "$save" = "1" ]; then
             name=$(basename $(echo "$path_name" ))
             touch "$name"
-            lf -remote "send $id :select $(echo $name)"
+            lf -remote "send $id :select '$name'"
         fi
         lf -remote "send $id :open"
     fi
