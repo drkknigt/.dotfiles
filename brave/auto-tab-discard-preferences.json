@@ -9,7 +9,7 @@
     "./plugins/previous/core.js": false,
     "./plugins/trash/core.js": false,
     "./plugins/unloaded/core.js": true,
-    "./plugins/youtube/core.js": false,
+    "./plugins/youtube/core.js": true,
     "audio": true,
     "battery": false,
     "click": "click.popup",
