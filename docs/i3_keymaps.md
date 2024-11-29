@@ -344,3 +344,4 @@
     - ctrl + g ----------------> settings
     - ctrl + m ----------------> mute
     - ctrl + space ------------> run commands
+    - ctrl + enter ------------> open file
