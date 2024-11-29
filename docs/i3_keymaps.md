@@ -323,3 +323,24 @@
      - zs   -----------------> set info size
      - zt   -----------------> set info time
 
+# Brave keymaps
+
+    - ctrl + o ----------------> goto previous page in history
+    - ctrl + i ----------------> goto forward page in history
+    - ctrl + r ----------------> reload
+    - ctrl + n ----------------> new-window
+    - ctrl + t ----------------> new-tab
+    - ctrl + w ----------------> close tab
+    - ctrl + k ----------------> next tab
+    - ctrl + j ----------------> previous tab
+    - ctrl + shift + l --------> move tab next
+    - ctrl + shift + h --------> move tab previous
+    - ctrl + , ----------------> bookmark tab
+    - ctrl + u ----------------> view source
+    - ctrl + shift + j --------> open js console
+    - ctrl + h ----------------> open history
+    - ctrl + b ----------------> bookmark manager
+    - ctrl + d ----------------> Download history
+    - ctrl + g ----------------> settings
+    - ctrl + m ----------------> mute
+    - ctrl + space ------------> run commands
