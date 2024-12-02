@@ -8,11 +8,11 @@
 if [ $1 = '1' ]
 then
     echo "first"
-    monitor=$(xrandr | grep -Pi '\bconnected\b' | sed -n 1,1p | cut -d " " -f1)
+    monitor=$(i3-msg -t get_outputs | jq -r '.[].name' | sed -n 1,1p)
 # Select the 2nd monitor
 elif [ $1 = '2' ]
 then
-    monitor=$(xrandr | grep -Pi '\bconnected\b' | sed -n 2,2p | cut -d " " -f1)
+    monitor=$(i3-msg -t get_outputs | jq -r '.[].name' | sed -n 2,2p)
 fi
 
 # exit if no monitor is found
@@ -30,7 +30,7 @@ if [[ -n $zoom_options ]]; then
     
   zoom_percentage=$(( -1 * $zoom_options ))
   scale_factor=$(echo "scale=1; (100+$zoom_percentage) / 100" | bc)
-  xrandr --output eDP --scale "$scale_factor"
+  xrandr --output "$monitor" --scale "$scale_factor"
   
 fi
 

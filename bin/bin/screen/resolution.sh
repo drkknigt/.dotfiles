@@ -3,10 +3,10 @@
 # This script changes the resolution of the screen 
 
 # second monitor 
-second_monitor=$(xrandr | grep "\bconnected\b" | grep "\bprimary\b" -v | cut -d" " -f1)
+second_monitor=$(i3-msg -t get_outputs | jq -r '.[].name' | sed -n 2,2p)
 
 # fist monitor
-first_monitor=$(xrandr | grep "\bconnected\b" | grep "\bprimary\b" | cut -d" " -f1)
+first_monitor=$(i3-msg -t get_outputs | jq -r '.[].name' | sed -n 1,1p)
 
 # list of resolution to change from 
 resolution_selected=$(echo "1920x1080\n1680x1050\n1440x900\n1280x1024\n1024x768\n800x600\n640x480\n" | fzf)
@@ -33,4 +33,3 @@ fi
     echo "hi"
     xrandr --addmode "$second_monitor" "$resolution_value"
     xrandr --output "$second_monitor" --right-of "$first_monitor" --mode "$resolution_value" 
-# ~/.fehbg

@@ -5,12 +5,12 @@
 # select the monitor one or the main monitor
 if [ $1 = '1' ]
 then
-    monitor=$(xrandr | grep -Pi '\bconnected\b' | sed -n 1,1p | cut -d " " -f1)
+    monitor=$(i3-msg -t get_outputs | jq -r '.[].name' | sed -n 1,1p)
     
 # select the monitor two or the secondary monitor
 elif [ $1 = '2' ]
 then
-    monitor=$(xrandr | grep -Pi '\bconnected\b' | sed -n 2,2p | cut -d " " -f1)
+    monitor=$(i3-msg -t get_outputs | jq -r '.[].name' | sed -n 2,2p)
 fi
 
 # exit if monitors are not found
