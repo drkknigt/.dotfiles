@@ -2,6 +2,7 @@
 
 # This script seraches for files and directories  in file system from /home directory. This is used by window manager
 # and then opens the  file in appropriate application or opens the directory in if directory is searched
+# the file accepts 'f' and 'd' as arg and passes it to fdfind for searching file or directory respectively
 
 # export DE=kde
 # export DE=gnome

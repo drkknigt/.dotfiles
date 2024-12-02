@@ -22,14 +22,7 @@ resolution_value=$(echo "$resolution_selected" | cut -d" " -f1 | cut -d'"' -f1)
 
 
 # set resolution for 1st monitor when 2nd monitor is not setup
-if [ -z $second_monitor ] 
-then
-    xrandr --addmode "$first_monitor" "$resolution_value"
-    xrandr --output "$first_monitor" --mode "$resolution_value"
-    exit
-fi
-
-# set resolution for 2nd monitor
-    echo "hi"
-    xrandr --addmode "$second_monitor" "$resolution_value"
-    xrandr --output "$second_monitor" --right-of "$first_monitor" --mode "$resolution_value" 
+xrandr --addmode "$first_monitor" "$resolution_value"
+xrandr --output "$first_monitor" --mode "$resolution_value"
+xrandr --addmode "$second_monitor" "$resolution_value"
+xrandr --output "$second_monitor" --right-of "$first_monitor" --mode "$resolution_value" 
