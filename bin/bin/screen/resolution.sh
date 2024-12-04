@@ -9,7 +9,7 @@ second_monitor=$(i3-msg -t get_outputs | jq -r '.[].name' | sed -n 2,2p)
 first_monitor=$(i3-msg -t get_outputs | jq -r '.[].name' | sed -n 1,1p)
 
 # list of resolution to change from 
-resolution_selected=$(echo "1920x1080\n1680x1050\n1440x900\n1280x1024\n1024x768\n800x600\n640x480\n" | fzf)
+resolution_selected=$(xrandr | awk '/^\s*[0-9]/ { print $1 }' | fzf --prompt="change resolution")
 
 # if resolution_selected is empty and exit
 if [ -z $resolution_selected ]

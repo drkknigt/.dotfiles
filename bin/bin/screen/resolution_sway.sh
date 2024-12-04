@@ -10,7 +10,7 @@ first_monitor=$(swaymsg -t get_outputs | jq -r '.[].name' | sed -n 1,1p)
 second_monitor=$(swaymsg -t get_outputs | jq -r '.[].name' | sed -n 2,2p)
 
 # choose resolution value from fzf
-resolution_selected=$(echo "1920x1080\n1680x1050\n1440x900\n1280x1024\n1024x768\n800x600\n640x480\n" | fzf)
+resolution_selected=$(wlr-randr | awk '/^\s*[0-9]/ { print $1 }' | fzf --prompt="change resolution")
 
 # exit if resolution_selected is exit
 if [ -z $resolution_selected ]
@@ -25,9 +25,11 @@ echo "$first_monitor"
 # set resolution for 1st monitor
 if [ -z $second_monitor ] 
 then
+    swaymsg -- output "$first_monitor" mode --custom "$resolution_selected"
     swaymsg output "$first_monitor" pos 0 0 res "$resolution_selected" scale "$scale_no"
     exit
 fi
 
 # set resolution for 2nd monitor
 swaymsg output "$second_monitor" pos 0 0 res "$resolution_selected" scale "$scale_no"
+swaymsg -- output "$second_monitor" mode --custom "$resolution_selected"
