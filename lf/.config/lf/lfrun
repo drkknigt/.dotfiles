@@ -1,0 +1,62 @@
+#!/bin/sh
+
+# Exit immediately if any command exits with a non-zero status.
+set -e
+
+# unique lf cache dir for each instance of lfrun
+LF_DIR_CACHE="$HOME/.cache/lf-$(uuidgen)"
+
+# Define a cleanup function to remove temporary files and perform cleanup tasks.
+cleanup() {
+
+    # Remove the LF cache directory.
+    rm -rf $LF_DIR_CACHE
+
+    # Remove the temporary file used to hold a counter.
+    rm $FILE_TO_HOLD_COUNTER
+
+    # Remove the temporary file used to store regex matches.
+    rm $FILE_TO_HOLD_REGEX_MATCHES
+
+    # Remove the temporary file used to hold a search term.
+    rm $TEMP_SEARCH
+
+    # Remove the temporary file used to store FZF (fuzzy finder) selections.
+    rm $FILE_TO_HOLD_FZF_SELECTS
+
+    # If the environment variable `LF_RUNNING` is set, switch back to the previous i3 workspace.
+    if [ -n "$LF_RUNNING" ]; then
+        i3-msg workspace back_and_forth
+    fi
+}
+
+# Check if the LF cache directory exists; if not, create it.
+[ ! -d "$LF_DIR_CACHE" ] && mkdir --parents "$LF_DIR_CACHE"
+
+# Create a temporary file to hold a counter and export its path as an environment variable.
+export FILE_TO_HOLD_COUNTER=$(mktemp -t lf_counter_file.XXXXXXX)
+
+# Create a temporary file to store regex matches and export its path as an environment variable.
+export FILE_TO_HOLD_REGEX_MATCHES=$(mktemp -t lf_regex_matches.XXXXXX)
+
+# Initialize the regex search term as an empty string and export it.
+export REGEX_SEARCH_TERM=""
+
+# Create a temporary file for storing search terms and export its path as an environment variable.
+export TEMP_SEARCH=$(mktemp -t lf_temp_search_file.XXXXXXX)
+
+# Create a temporary file to store FZF selections and export its path as an environment variable.
+export FILE_TO_HOLD_FZF_SELECTS=$(mktemp -t lf_fzf_sel_file.XXXXXXX)
+
+# 
+export LF_DIR_CACHE
+
+# Initialize the counter file with a value of 1.
+echo 1 > $FILE_TO_HOLD_COUNTER
+
+# Set up a trap to call the `cleanup` function when the script exits or receives termination signals.
+trap cleanup EXIT SIGINT SIGTERM SIGQUIT
+
+# launch lf with args
+lf "$@" 
+

@@ -1,0 +1,8 @@
+key_exit=Ctrl-bracketleft,Escape
+gtk_dark=true
+key_up=Ctrl-p
+key_down=Ctrl-n
+width=450
+height=300
+insensitive=true
+

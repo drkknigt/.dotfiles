@@ -1,0 +1,116 @@
+#!/usr/bin/env sh
+# Copyright (C) 2014 Julien Bonjean <julien@bonjean.info>
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+TYPE="${BLOCK_INSTANCE:-mem}"
+# Set the variable `TYPE` to the value of `BLOCK_INSTANCE` if it exists, otherwise default to "mem"
+
+PERCENT="${PERCENT:-true}"
+# Set the variable `PERCENT` to the value of `PERCENT` if it exists, otherwise default to "true"
+
+awk -v type=$TYPE -v percent=$PERCENT '
+# Use `awk` with the `type` and `percent` variables passed as parameters
+
+/^MemTotal:/ {
+	mem_total=$2
+}
+# When the line starts with "MemTotal:", store the second field (total memory) into `mem_total`
+
+/^MemFree:/ {
+	mem_free=$2
+}
+# When the line starts with "MemFree:", store the second field (free memory) into `mem_free`
+
+/^Buffers:/ {
+	mem_free+=$2
+}
+# When the line starts with "Buffers:", add the second field (buffers) to `mem_free`
+
+/^Cached:/ {
+	mem_free+=$2
+}
+# When the line starts with "Cached:", add the second field (cached) to `mem_free`
+
+/^SwapTotal:/ {
+	swap_total=$2
+}
+# When the line starts with "SwapTotal:", store the second field (total swap) into `swap_total`
+
+/^SwapFree:/ {
+	swap_free=$2
+}
+# When the line starts with "SwapFree:", store the second field (free swap) into `swap_free`
+
+END {
+# This block runs after processing all lines in the input
+
+	if (type == "swap") {
+		free=swap_free/1024/1024
+		# If `type` is "swap", calculate free swap memory in GB
+		used=(swap_total-swap_free)/1024/1024
+		# Calculate used swap memory in GB
+		total=swap_total/1024/1024
+		# Calculate total swap memory in GB
+	} else {
+		free=mem_free/1024/1024
+		# If `type` is not "swap", calculate free memory in GB
+		used=(mem_total-mem_free)/1024/1024
+		# Calculate used memory in GB
+		total=mem_total/1024/1024
+		# Calculate total memory in GB
+	}
+
+	pct=0
+	# Initialize the percentage variable to 0
+
+	if (total > 0) {
+		pct=used/total*100
+	}
+	# If total memory (or swap) is greater than 0, calculate the percentage of used memory
+
+	# full text
+	if (percent == "true" ) {
+        printf("RAM T:%.1fG: F:%.1fG U:%.1fG \n", total,free, used )
+	}
+	# If `percent` is "true", print the total, free, and used memory in GB with labels
+
+	else {
+		printf("%.1fG/%.1fG/%.1fG\n", used,free, total)
+	}
+	# Otherwise, print the used, free, and total memory in GB without labels
+
+	# short text
+	printf("RAM: %.f%%\n", pct)
+	# Print the percentage of used memory as a short text output
+
+	# color
+	if (pct > 90) {
+		print("#FF0000")
+	}
+	# If the used memory percentage is greater than 90%, print red color hex code
+
+	else if (pct > 80) {
+		print("#FFAE00")
+	}
+	# If the used memory percentage is between 80% and 90%, print orange color hex code
+
+	else if (pct > 70) {
+		print("#FFF600")
+	}
+	# If the used memory percentage is between 70% and 80%, print yellow color hex code
+
+}
+' /proc/meminfo
+# Run the `awk` command on the contents of `/proc/meminfo`, which contains memory-related statistics

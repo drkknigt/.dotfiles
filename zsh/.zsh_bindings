@@ -1,0 +1,39 @@
+# bindings for zsh
+# enable vi mode
+bindkey -v
+
+# bindings for tmux creation
+bindkey -s '^e ' 'tmux_create.sh 0^M'
+bindkey -s '^er' 'tmux_create.sh 1^M'
+bindkey -s '^e;' 'tmux_new_project.sh^M'
+bindkey -s '^\\s' 'tmux_create.sh 3^M'
+bindkey -s '^e\\' 'tmux_kill.sh^M'
+bindkey -s '^ey' 'tmux_session_switch.sh^M'
+
+
+# start lazygit
+bindkey -s '^g' 'lazygit -ucf ~/.config/lazygit/config.yml^M'
+# start nvim
+bindkey -s '^v' 'nvim^M'
+
+# navigate effiecently in shell
+bindkey -s '^\\d' '~/bin/navigation/navigation.sh 0^M'
+bindkey -s '^\\h' '~/bin/navigation/navigation.sh 1^M'
+bindkey -s '^\\f' '~/bin/navigation/navigation.sh 2^M'
+bindkey -s "^e'" "file_manager.sh 0^M"
+
+# go back in history
+bindkey "^P" up-line-or-search
+
+# completion by fzf
+bindkey "^T" fzf-change-widget
+
+# go forward in history
+bindkey "^N" down-line-or-search
+bindkey "^]" end-of-line
+bindkey "^a" beginning-of-line
+bindkey "^b" backward-word
+bindkey "^f" forward-word
+bindkey "^j" backward-char
+bindkey "^k" forward-char
+bindkey '^[[Z' reverse-menu-complete

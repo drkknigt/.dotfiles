@@ -1,0 +1,28 @@
+# set mod key
+set $mod Mod1
+set $refresh_i3status killall -SIGUSR1 i3status
+
+# set global workspace variables
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# set mod key for floating 
+floating_modifier $mod
+
+
+# import different configs
+include ~/.config/i3/startup_apps.config
+include ~/.config/i3/class_colors.config
+include ~/.config/i3/bindings.config
+
+#font  used (is used in the bar {} block below.)
+font pango:FiraCode 11
+

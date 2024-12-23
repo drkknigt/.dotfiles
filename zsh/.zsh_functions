@@ -1,0 +1,73 @@
+# change directory inside shell
+
+cdd(){
+    direc=$(fdfind -H --type d . "$HOME" |  fzf --cycle --prompt='change directory: ' --bind 'ctrl-o:toggle-preview' --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" )
+        if [  -n "$direc" ] ; then
+            cd $direc
+        fi
+}
+
+# jump to file location in shell
+jf(){
+    direc=$(fdfind -H --type f . "$HOME" |  fzf --cycle --prompt='change directory: ' --bind 'ctrl-o:toggle-preview' --preview="preview_fzf.sh {}" )
+    if [  -n "$direc" ] ; then
+        direc=$(dirname $direc)
+        cd $direc
+    fi
+
+}
+
+# update repo for arch linux 
+
+update_repo(){
+    if [ "$1" = "-r" ]; then
+        selected_backup=$(find /etc/pacman.d/ -maxdepth 1 -type f -iname "mirrorlist.bkp*" | fzf --prompt="select backup: ")
+        if [ -z "$selected_backup" ]; then
+            echo "exiting no file selected"
+            kill -INT $$
+        fi
+        echo "copied $selected_backup as mirrorlist"
+        sudo rm /etc/pacman.d/mirrorlist
+        sudo mv "$selected_backup" /etc/pacman.d/mirrorlist
+    else
+    mkdir -p ~/.cache/update_repo
+    current_os=$(cat /etc/os-release | grep -Pi '^name' | cut -d "=" -f2)
+    if [ "$current_os" = '"Arch Linux"' ]; then
+        country_selected=$(reflector --list-countries | fzf --prompt="select country: " | cut -d" " -f1)
+        if [ -z "$country_selected" ]; then
+            echo "no country selected, exiting"
+            kill -INT $$
+        fi
+    sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bkp-"$(date +'%F_T_%H:%M:%S')"
+    cp /etc/pacman.d/mirrorlist ~/.cache/update_repo/mirrorlist.bkp-"$(date +'%F_T_%H:%M:%S')"
+    echo "Arch: mirrorlist copied as mirrorlist.bkp"
+    sudo reflector --verbose --latest 12 --protocol https --country "$country_selected" --save /etc/pacman.d/mirrorlist
+    sudo pacman -Syyu
+elif [ "$current_os" = '"Linux Mint"' ]; then
+    echo "not on arch linux"
+    fi
+    fi
+}
+
+
+
+# set up icons for virtualenv python and pyenv
+setup_p10_icons(){
+if [ "$(cat ~/.p10k.zsh | wc -l )" -gt "3" ]; then
+    echo "typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=true" >> ~/.p10k.zsh
+    echo "typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_WITH_PYENV=true"  >> ~/.p10k.zsh
+fi
+}
+
+# set up completion for files
+fzf-change-widget() {
+    local file
+    file=$(fd . ~ -H -a  -t f  2>/dev/null | fzf --prompt="select file: " --height=40% --border) 
+    if [[ -n $file ]]; then
+        LBUFFER="${LBUFFER}\"${file}\"" 
+        zle accept-line
+    fi
+    zle reset-prompt
+    return 0
+}
+zle -N fzf-change-widget

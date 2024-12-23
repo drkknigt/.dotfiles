@@ -1,0 +1,7 @@
+//@theme "/usr/share/rofi/themes/arthur.rasi"
+//@theme "/usr/share/rofi/themes/sidebar.rasi"
+@theme "/usr/share/rofi/themes/arthur.rasi"
+window{
+width: 500px;
+height: 500px;
+}

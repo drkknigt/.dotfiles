@@ -1,0 +1,248 @@
+# lf global options
+set cleaner ~/.dotfiles/lf/.config/lf/cleaner
+set previewer ~/.dotfiles/lf/.config/lf/preview
+set icons true
+set hidden false
+
+# Main options for look of lf
+set icons
+set period 1
+set sixel
+#set relativenumber
+#set number
+set mouse
+set hidden!
+set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
+set promptfmt "
+\033[48;2;35;38;39;38;2;28;220;156m  
+\033[38;2;35;38;39;48;2;202;31;31m
+\033[38;2;202;31;31;48;2;40;47;62m
+\033[38;2;255;255;255m %w 
+\033[38;2;40;47;62;48;2;58;67;89m
+\033[38;2;255;255;255m %f 
+\033[;38;2;58;67;89;49m\033[m"
+set incsearch
+set incfilter
+set ratios 2:3:4 # 2:3:7:7
+set truncatechar "…"
+set anchorfind!
+set findlen 0
+set waitmsg "\033[1;31m⏎\033[m"
+set timefmt "02/01/2006 15:04:05 "
+set infotimefmtnew '02/01 15:04'
+set infotimefmtold '02/01/06'
+set errorfmt "\033[1;31m"
+set numberfmt "\033[38;2;75;87;116m"
+set dircounts
+set globsearch
+set smartcase
+set ignorecase
+set number
+set relativenumber
+set tabstop 4
+set scrolloff 5
+set wrapscroll
+set tempmarks 'qweryuiopasdfghjklzxcvbnm'
+set shellopts '-eu'
+set ifs "\n"
+set rulerfmt "%d | %a| %p|  \033[7;31m %m \033[0m|  \033[7;33m %c \033[0m|  \033[7;35m %s \033[0m|  \033[7;34m %f \033[0m|  %i/%t"
+set cursorpreviewfmt "\033[7m"
+
+# unarchive function
+cmd unarchive %{{
+    lf-command unarchive
+}}
+
+# jump to location or preview regex results or selected results
+cmd fzf_jump ${{
+    lf-command fzf_jump $1
+}}
+
+# search files in current or selected dirs
+cmd search_files ${{
+    lf-command search_files
+}}
+
+
+# Search and select native
+cmd / &{{
+    lf -remote "send $id set globsearch"
+    lf -remote "send $id :glob-select *$1*; search; push *$1*<enter>"
+}}
+
+# get size and type of file
+cmd get_size %{{
+    lf-command get_size
+}}
+
+
+# make directories and files
+cmd mk_dir_file %{{
+    lf-command mk_dir_file
+}}
+
+
+# bulk rename or single rename
+cmd rename_files %{{
+    lf-command rename_files
+}}
+
+# open files with specific app
+cmd open-with-gui &$@ $fx ## opens with a gui application outside lf client
+cmd open-with-cli $$@ $fx ## opens with a cli application inside lf client
+
+
+# open files
+cmd open ${{
+    lf-command open
+}}
+
+# save files/upload files from browser
+cmd save_browser_enter %{{
+    lf-command save_browser_enter
+}}
+
+
+# copy name of file
+cmd copyname &{{
+    lf-command copyname
+}}
+
+# source config file
+cmd source-config %{{
+    lf-command source-config
+}}
+
+
+# normal native search jump in cur dir
+cmd normal_search &{{
+    lf-command normal_search
+}}
+
+
+# edit dir in nvim using oil.nvim
+cmd edit_dir ${{
+    nvim .
+}}
+
+# edit file names in vim
+cmd select_rename ${{
+    lf-command select_rename $1
+}} 
+
+# toggle preview
+cmd toggle_preview %{{
+    lf-command toggle_preview
+}}
+
+# print full path of current file under cursor
+cmd give_full_path %{{
+    echo $f
+}}
+
+
+# copy path of file
+cmd copypath &{{
+    lf-command copypath
+}}
+
+# goto next regex match
+cmd search_reg &{{
+    lf-command search_reg $1
+}} 
+
+# regex search
+cmd regex_select %{{
+    lf-command regex_select $1
+}}
+
+# remove regex matched files 
+cmd remove_selected %{{
+    lf-command remove_selected $1
+}}
+
+
+# move regex matched files to cur dir
+cmd move_selected %{{
+    lf-command move_selected $1
+}}
+
+# copy regex matched files to cur dir
+cmd copy_selected %{{
+    lf-command copy_selected $1
+}}
+
+
+# Basic navigation mappings
+map d
+map d delete
+map y copy 
+map . set hidden!
+map p paste
+map x cut
+map <enter> save_browser_enter
+map R source-config
+map D mk_dir_file
+map r rename_files
+map <c-l> :clear; unselect
+map <space>
+map <c-j> :toggle; down
+map <c-k> :toggle; up
+map <c-space> :toggle
+map V invert-below
+map / normal_search
+map <c-o> toggle_preview
+
+# goto next match by regex
+map n search_reg n
+map N search_reg p
+map ]
+map [
+
+# goto next match by native
+map ] search-next
+map [ search-prev
+
+# goto directories mappings
+map gm cd ~/Music/
+map gh cd ~
+map ga cd ~/arch-pull
+map gc cd ~/.dotfiles
+map gp cd ~/Pictures
+map gd cd ~/Downloads
+map gu cd /run/media
+map gf cd ~/Documents
+map gv cd ~/Videos
+map gj fzf_jump 'jmp'
+
+# functionality mappings
+map as get_size
+map ay copypath
+map au unarchive
+map an copyname
+map ae edit_dir
+map ap give_full_path
+map af search_files
+
+# regex mapptings 
+map I fzf_jump 'reg'
+map ai fzf_jump 'sel'
+map f regex_select f 
+map F regex_select d
+map <space>ds remove_selected 'selected'
+map <space>dr remove_selected  'regex'
+map <space>cs copy_selected 'selected'
+map <space>cr copy_selected  'regex'
+map <space>xs move_selected 'selected'
+map <space>xr move_selected  'regex'
+
+# renmae mappings
+map e 
+map e. select_rename .
+map es select_rename s
+map er select_rename r
+map el select_rename ,
+
+# open mappings
+map O push :open-with-gui<space> ## input application
+map o push :open-with-cli<space> ## input application

@@ -1,0 +1,7 @@
+set recolor   
+set recolor-lightcolor \#1c1c1c
+set recolor-keephue
+set default-bg \#101010
+set page-padding 35
+set selection-clipboard clipboard
+

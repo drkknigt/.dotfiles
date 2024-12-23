@@ -1,0 +1,109 @@
+#!/usr/bin/env perl
+# Copyright 2014 Pierre Mavro <deimos@deimos.fr>
+# Copyright 2014 Vivien Didelot <vivien@didelot.org>
+# Copyright 2014 Andreas Guldstrand <andreas.guldstrand@gmail.com>
+# Copyright 2014 Benjamin Chretien <chretien at lirmm dot fr>
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+use strict;
+# Enables strict mode, which forces declaration of variables and prevents common programming errors.
+
+use warnings;
+# Enables warnings to alert the programmer about potential issues in the code.
+
+use utf8;
+# Allows the use of UTF-8 encoded characters in the script.
+
+use Getopt::Long;
+# Provides advanced command-line option processing.
+
+binmode(STDOUT, ":utf8");
+# Sets the output stream (`STDOUT`) to UTF-8 encoding to ensure proper handling of Unicode characters.
+
+# Default values
+my $t_warn = $ENV{T_WARN} || 70;
+# Sets the warning temperature threshold to the value of the `T_WARN` environment variable or defaults to 70 if not set.
+
+my $t_crit = $ENV{T_CRIT} || 90;
+# Sets the critical temperature threshold to the value of the `T_CRIT` environment variable or defaults to 90 if not set.
+
+my $chip = $ENV{SENSOR_CHIP} || "";
+# Sets the sensor chip name to the value of the `SENSOR_CHIP` environment variable or defaults to an empty string if not set.
+
+my $temperature = -9999;
+# Initializes `temperature` to -9999 to indicate an uninitialized state.
+
+sub help {
+    # Defines a function to display usage information and exit.
+    print "Usage: temperature [-w <warning>] [-c <critical>] [--chip <chip>]\n";
+    # Prints usage instructions for the script.
+    print "-w <percent>: warning threshold to become yellow\n";
+    # Describes the warning threshold option.
+    print "-c <percent>: critical threshold to become red\n";
+    # Describes the critical threshold option.
+    print "--chip <chip>: sensor chip\n";
+    # Describes the sensor chip option.
+    exit 0;
+    # Exits the program after displaying help.
+}
+
+GetOptions("help|h" => \&help,
+           # Maps `--help` or `-h` to the `help` subroutine.
+           "w=i"    => \$t_warn,
+           # Maps `-w` option to set the warning threshold (`t_warn`).
+           "c=i"    => \$t_crit,
+           # Maps `-c` option to set the critical threshold (`t_crit`).
+           "chip=s" => \$chip);
+           # Maps `--chip` option to set the sensor chip (`chip`).
+
+# Get chip temperature
+open (SENSORS, "sensors -u $chip |") or die;
+# Opens a pipe to the `sensors` command for the specified chip to retrieve sensor data or exits with an error if it fails.
+
+while (<SENSORS>) {
+    # Reads each line of output from the `sensors` command.
+    if (/^\s+temp1_input:\s+[\+]*([\-]*\d+\.\d)/) {
+        # Matches lines containing `temp1_input` and extracts the temperature value.
+        $temperature = $1;
+        # Assigns the extracted temperature to the `temperature` variable.
+        last;
+        # Exits the loop once the temperature is found.
+    }
+}
+close(SENSORS);
+# Closes the pipe to the `sensors` command.
+
+$temperature eq -9999 and die 'Cannot find temperature';
+# Exits the program with an error message if no temperature was found.
+
+# Print short_text, full_text
+print " $temperature°C\n" x2;
+# Prints the temperature with a thermometer icon (``) twice.
+
+# Print color, if needed
+if ($temperature >= $t_crit) {
+    # Checks if the temperature exceeds or equals the critical threshold.
+    print "#FF0000\n";
+    # Prints a red color code for critical temperature.
+    exit 33;
+    # Exits with status code 33 to indicate a critical condition.
+} elsif ($temperature >= $t_warn) {
+    # Checks if the temperature exceeds or equals the warning threshold.
+    print "#FFFC00\n";
+    # Prints a yellow color code for warning temperature.
+}
+
+exit 0;
+# Exits the program with a success status code.
