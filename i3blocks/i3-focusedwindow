@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+# Shebang specifying the bash interpreter for the script execution
+
+maxlen=0
+# Initialize the maximum length of the string to 0 by default
+
+if [[ $1 ]]; then
+  # Check if the first argument is provided
+  maxlen=$1
+  # Set `maxlen` to the value of the first argument
+fi
+
+align="center"
+# Set the default alignment to "center"
+
+if [[ $2 ]]; then
+  # Check if the second argument is provided
+  align=$2
+  # Set `align` to the value of the second argument
+fi
+
+format() {
+  # Define a function to format a string based on `maxlen` and `align`
+  if [[ $maxlen == 0 ]]; then
+    # If `maxlen` is 0, do not truncate or pad the string
+    echo "$1"
+    # Print the string as is
+    return 0
+    # Exit the function
+  fi
+  len=${#1}
+  # Get the length of the input string
+  if [[ $len -ge $maxlen ]]; then
+    # If the string length exceeds or equals `maxlen`
+    echo "${1:0:${maxlen}}"
+    # Truncate the string to `maxlen` characters
+  else
+    # If the string length is less than `maxlen`
+    pad=$(( maxlen - len ))
+    # Calculate the padding needed to reach `maxlen`
+    case "$align" in
+      # Determine the alignment type
+      "center" )
+        # For center alignment
+        pad=$(( pad / 2 ))
+        # Divide the padding equally on both sides
+        printf "%*s%s%*s\n" $pad "" "$1" $pad ""
+        # Print the string with spaces padded on both sides
+        ;;
+      "left" )
+        # For left alignment
+        printf "%s%*s\n" "$1" $pad "" 
+        # Print the string with spaces padded to the right
+        ;;
+      "right" )
+        # For right alignment
+        printf "%*s%s\n" $pad "" "$1"
+        # Print the string with spaces padded to the left
+        ;;
+    esac
+  fi
+}
+
+process() {
+  # Define a function to process lines of input
+  while read -r LINE; do
+    # Read each line from the input
+    format "$LINE"
+    # Format the line using the `format` function
+  done
+}
+
+i3-msg -t get_tree | jq -r '.. | select(.focused? and .window) | .name' | process
+# Query the i3 window manager for the current focused window's title
+# Use `jq` to extract the name of the focused window
+# Pass the window name to the `process` function for formatting
+
+subscribe_query='select(.container.focused and (.change == "focus" or .change == "title")) | .container.name'
+# Define a `jq` query to extract the name of a container when the focus changes or its title changes
+
+swaymsg -m -t SUBSCRIBE "['window']" | jq --unbuffered -r "$subscribe_query" | process
+# Subscribe to events from the Sway window manager
+# Use `jq` to extract container names based on focus or title changes
+# Pass the output to the `process` function for formatting
+
+i3-msg -t get_tree | jq -r '.. | select(.focused? and .window) | .name' | process
+# Re-query i3 for the focused window's name and process the result

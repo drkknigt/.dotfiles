@@ -1,0 +1,5 @@
+nvim/.config/nvim/plugin
+nvim/.config/nvim/lazy-lock.json
+vlc/.config/vlc/vlc-qt-interface.conf
+lazygit/.config/lazygit/state.yml
+tmux/recent_dirs

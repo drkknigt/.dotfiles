@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Get the current active audio output device (Speaker or Headphones) and replace with respective icons.
+current_device=$(pactl list sinks | grep -i 'Active port' | grep -i 'speaker\|headphones' -o | awk '{gsub(/Speaker/, "🔊"); gsub(/Headphones/, "🎧"); print}')
+
+# Get the current volume level and format it with `<big>` tags for potential rich-text display.
+current_value="<big>$(pactl list sinks | grep -i 'volume' | head -n1 | grep -Pi '\d+?%' -o | head -n1)</big>"
+
+# Get the mute status (yes or no) of the current sink.
+mute_value=$( pactl list sinks | grep -i 'mute' | head -n1 | grep -Pi 'yes|no' -o)
+
+# Check the mute status and print appropriate output.
+if [ "$mute_value" = "no" ]; then
+    echo $current_device $current_value
+else
+    # If muted, display the mute icon 🔇.
+    echo 🔇
+fi
+    

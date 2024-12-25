@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+
+maxlen=0
+# Initializes `maxlen` to 0, which represents the maximum length for formatting text.
+
+if [[ $1 ]]; then
+  maxlen=$1
+fi
+# If a first command-line argument is provided, assign its value to `maxlen`.
+
+align="center"
+# Sets the default alignment for text formatting to "center".
+
+if [[ $2 ]]; then
+  align=$2
+fi
+# If a second command-line argument is provided, assign its value to `align`.
+
+format() {
+  # Defines a function named `format` to format input text based on `maxlen` and `align`.
+  if [[ $maxlen == 0 ]]; then
+    # If `maxlen` is 0, no formatting is applied.
+    echo "$1"
+    # Print the input text as is.
+    return 0
+    # Exit the function.
+  fi
+  len=${#1}
+  # Calculate the length of the input string and store it in `len`.
+  if [[ $len -ge $maxlen ]]; then
+    # If the input length is greater than or equal to `maxlen`:
+    echo "${1:0:${maxlen}}"
+    # Truncate the input string to `maxlen` characters and print it.
+  else
+    pad=$(( maxlen - len ))
+    # Calculate the amount of padding needed to make the string reach `maxlen`.
+    case "$align" in
+      # Decide the alignment based on the value of `align`.
+
+      "center" )
+        # Center alignment:
+        pad=$(( pad / 2 ))
+        # Divide the padding evenly on both sides.
+        printf "%*s%s%*s\n" $pad "" "$1" $pad ""
+        # Use `printf` to add padding on both sides of the text.
+        ;;
+      "left" )
+        # Left alignment:
+        printf "%s%*s\n" "$1" $pad ""
+        # Use `printf` to add padding only to the right of the text.
+        ;;
+      "right" )
+        # Right alignment:
+        printf "%*s%s\n" $pad "" "$1"
+        # Use `printf` to add padding only to the left of the text.
+        ;;
+    esac
+  fi
+}
+
+process() {
+  # Defines a function named `process` to format each line of input.
+  while read -r LINE; do
+    # Read each line of input.
+    format "$LINE"
+    # Call the `format` function on the line.
+  done
+}
+
+swaymsg -t get_tree | jq --unbuffered -r '.. | select(.focused?) | .name' | process
+# Retrieves the window tree in Sway using `swaymsg` and filters the focused window's name with `jq`.
+# Passes the output to the `process` function for formatting.
+
+subscribe_query='select(.container.focused and (.change == "focus" or .change == "title")) | .container.name'
+# Defines a `jq` query to extract the name of a focused container when the focus or title changes.
+
+swaymsg -m -t SUBSCRIBE "['window']" | jq --unbuffered -r "$subscribe_query" | process
+# Subscribes to window events in Sway and uses `jq` to filter focused container name changes.
+# Passes the output to the `process` function for formatting.

@@ -1,0 +1,97 @@
+#theme = "Darktooth"
+
+#[[items]]
+
+#[items.colors]
+#author = "Chris Kempson"
+#name = "3024 (dark)"
+
+#[items.colors.bright]
+#black = "#5c5855"
+#blue = "#01a0e4"
+#cyan = "#b5e4f4"
+#green = "#01a252"
+#magenta = "#a16a94"
+#red = "#db2d20"
+#white = "#f7f7f7"
+#yellow = "#fded02"
+
+#[items.colors.cursor]
+#cursor = "#a5a2a2"
+#text = "#090300"
+
+#[items.colors.normal]
+#black = "#090300"
+#blue = "#01a0e4"
+#cyan = "#b5e4f4"
+#green = "#01a252"
+#magenta = "#a16a94"
+#red = "#db2d20"
+#white = "#a5a2a2"
+#yellow = "#fded02"
+
+#[items.colors.primary]
+#background = "#db2fff"
+#foreground = "#a5a2a2"
+
+#[[items]]
+#theme = "3024.dark"
+
+[font]
+
+normal = { family = "CaskaydiaCoveNerdFontMono", style= "SemiBold"}
+bold = { family = "CaskaydiaCoveNerdFont", style= "Bold"}
+italic = { family = "CaskaydiaCoveNerdFont", style= "Italic"}
+size = 10
+
+[colors.bright]
+black = "#32302f"
+blue = "#83a598"
+cyan = "#3fd7e5"
+green = "#b8bb26"
+magenta = "#d3869b"
+red = "#fb4933"
+white = "#ffffc8"
+yellow = "#fabd2f"
+
+[colors.dim]
+black = "#1d2021"
+blue = "#2b3c44"
+cyan = "#205161"
+green = "#232b0f"
+magenta = "#4e3d45"
+red = "#421e1e"
+white = "#f4e8ba"
+yellow = "#4d3b27"
+
+[colors.normal]
+black = "#282828"
+blue = "#34a678"
+cyan = "#10a7af"
+green = "#79740e"
+magenta = "#8f3f71"
+red = "#9d0006"
+white = "#fdf4c1"
+yellow = "#b57614"
+
+[colors.primary]
+background = "#00000f"
+foreground = "#fdf4c1"
+
+[env]
+TERM = "xterm-256color"
+
+[selection]
+save_to_clipboard = true
+
+[window]
+dynamic_padding = true
+opacity = 0.9
+
+[window.padding]
+x = 0
+y = 0
+
+[window.dimensions]
+columns = 240
+lines = 160

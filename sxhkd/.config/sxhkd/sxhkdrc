@@ -1,0 +1,172 @@
+# Set volume
+alt + bracketright
+    pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+
+alt + bracketleft
+    pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+
+alt + control + m
+    pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+
+# Assign extra keys on keyboard for volume control
+XF86AudioLowerVolume
+    pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+
+XF86AudioRaiseVolume
+    pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+
+XF86AudioMute
+    pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+
+# ------------------------------------------------------
+
+# Set mode for screen
+    
+alt + s; {s,1,2,l}
+    {alacritty -t "xmount" -o "colors.primary.background='#262626'"  -e $HOME/bin/screen/resolution.sh,\
+    alacritty -t "xmount"  -o "colors.primary.background='#262626'"  -e $HOME/bin/screen/scale.sh 0,\
+    alacritty -t "xmount"  -o "colors.primary.background='#262626'"  -e $HOME/bin/screen/scale.sh 1,\
+    alacritty -t "xfzfmenu"  -o "colors.primary.background='#262626'"  -e $HOME/bin/screen/change_background.sh 0,\
+    }
+
+alt + s ; r
+    alacritty -t "xfzfmenu"  -o "colors.primary.background='#262626'"  -e $HOME/bin/screen/change_background.sh 1
+
+alt + {equal,minus}
+      {brightnessctl set +3%,brightnessctl set 3%-}
+
+
+# ---------------------------------------------------------------
+
+# set mode for apps
+alt + Return
+     alacritty -t "xstartup"
+alt + a; {c, v, b, f, t, n, q, h, l,k,m,g,o}
+    {kcolorchooser,vlc,brave-browser,firefox,telegram-desktop,nemo,\
+    alacritty -t "xcal"  -o "colors.primary.background='#262626'"  -o window.opacity=0.8 -o font.size=13 -e qalc,\
+    alacritty -t "xgit"  -o "colors.primary.background='#262626'"  -e htop,\
+    i3lock -c "000000",kitty,code ,alacritty -t "xgit" -o "colors.primary.background='#262626'" -e glow,alacritty -t "xlf" -e $HOME/bin/navigation/file_manager.sh 2}
+
+alt + a; p ; {p,s,f}
+    {flameshot gui,flameshot screen,flameshot full}
+# -------------------------------------------------------------
+
+# set mode to search stuff
+
+alt + f; {t,a,w,f,d,g}
+       {rofi -show run -dpi 171,rofi -dpi 171 -show drun -show-icons,rofi -dpi 171 -show,\
+       alacritty -t "xfzfmenu-dir"  -o "colors.primary.background='#262626'"  -e $HOME/bin/navigation/file_exp.sh f,\
+       alacritty -t "xfzfmenu-dir"  -o "colors.primary.background='#262626'"  -e $HOME/bin/navigation/file_exp.sh d, alacritty -t "xgit"  -o "colors.primary.background='#262626'"  -e $HOME/bin/navigation/lazy_git.sh}
+
+# -------------------------------------------------------------
+
+# set mode for system
+
+alt + d; {s,r,f}
+     {systemctl poweroff,systemctl reboot,systemctl suspend}
+
+
+# -------------------------------------------------------------
+
+# set mode for i3 env
+
+alt + control + a 
+    i3-msg fullscreen toggle
+alt + control + f
+    i3-msg floating toggle
+button2
+    i3-msg floating toggle
+alt + p
+    i3-msg move workspace to output right
+alt + period
+    i3-msg workspace back_and_forth
+alt + q
+    i3-msg kill
+
+alt + e; {h,v,y,t,e,space,i,r,q}
+        i3-msg { split h, split v, layout stacking, layout tabbed, layout toggle split, focus toggle_mode, focus parent,restart, exit}
+
+alt + e; w
+    notify-send  'I3WM CONFIG RELOADED' 'i3 config file and its configurations are now sourced.' --icon=dialog-information ; pkill -USR1 -x sxhkd
+
+
+# -------------------------------------------------------------
+
+
+# set mode for scratchpad
+
+alt + b ; {s,d}
+        {i3-msg move scratchpad, i3-msg  scratchpad show}
+
+
+# ---------------------------------------------------------------- 
+
+# set mode for i3 navigation
+
+alt + {h,j,k,l}
+    i3-msg focus {Left,Down,Up,Right}
+    
+alt + {Left,Down,Up,Right}
+    i3-msg focus {Left,Down,Up,Right}
+    
+alt + control + {h,k,j,l}
+    i3-msg move {Left,Up,Down,Right}
+    
+alt + shift + {Left,Down,Up,Right}
+    i3-msg move {Left,Down,Up,Right}
+
+alt + {1,2,3,4,5,6,7,8,9,0}
+    i3-msg workspace {1,2,3,4,5,6,7,8,9,10}
+    
+alt + control + {1,2,3,4,5,6,7,8,9,0}
+    i3-msg move container to workspace {1,2,3,4,5,6,7,8,9,10}
+
+button9
+   i3-msg move left 
+
+# ---------------------------------------------------------
+
+# set resize mode
+
+
+#-------------------------------------------
+
+
+# set net mode
+
+alt + i; {i,l}
+    {$HOME/bin/network/wifi_connect.sh,\
+    alacritty -t "xfzfmenu"  -o "colors.primary.background='#262626'"  -e $HOME/bin/network/wifi_fzf.sh}
+
+# --------------------------------------------------------------------
+
+
+# set user mode 
+
+alt + z; {g,m,h,q}
+    {alacritty -t "xfzfmenu" -e $HOME/bin/system_scripts/governor.sh,\
+        alacritty -t "xfzfmenu" -o "colors.primary.background='#262626'" -e $HOME/bin/system_scripts/mount.sh,\
+    alacritty -t "xgit"  -o "colors.primary.background='#262626'" -o "window.opacity=0.5" -e $HOME/bin/system_scripts/man_pages.sh,\
+    alacritty -t "xfzfmenu-dir" -o "colors.primary.background='#262620'" -e $HOME/bin/system_scripts/kill.sh,\
+    }
+
+alt + z; k
+    alacritty -t "xkeymaps" -o "colors.primary.background='#000020'" -o "window.opacity=0.9" -e $HOME/bin/system_scripts/keymap.sh
+alt + z; n
+    alacritty -t "xotes"  -e $HOME/bin/system_scripts/notes.sh
+    
+alt + z; x
+    xdotool mousemove 800 1920
+
+alt + z ; e
+  alacritty -t "xfzfmenu" -e $HOME/bin/system_scripts/scaling_energy.sh
+
+alt + z ; i
+  alacritty  -t "xkeymaps" -o "colors.primary.background='#000020'" -o "window.opacity=0.9"  -e $HOME/bin/system_scripts/cpu_info.sh
+
+
+
+# ---------------------------------------------------------
+
+    
+    

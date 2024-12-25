@@ -1,0 +1,152 @@
+#!/usr/bin/env python3
+# Shebang to specify the Python interpreter for executing the script
+
+#
+# Copyright (C) 2016 James Murphy
+# Licensed under the GPL version 2 only
+# Metadata about the script's author and licensing
+
+#
+# A battery indicator blocklet script for i3blocks
+# Description of the script's purpose
+
+import os
+import re
+from subprocess import check_output
+
+# Import necessary modules: `os` for environment variables,
+# `re` for regular expressions, and `check_output` for running shell commands
+
+config = dict(os.environ)
+# Load environment variables into a dictionary for configuration purposes
+
+status = check_output(['acpi'], universal_newlines=True)
+# Run the `acpi` command to get battery status and store the output as a string
+
+if not status:
+    # If `status` is empty, it means no battery was found
+    color = config.get("color_10", "red")
+    # Use a predefined color (defaulting to red) for no battery status
+    fulltext = (
+        "<span color='{}'><span font='FontAwesome'>\uf00d \uf240</span></span>".format(
+            color
+        )
+    )
+    # Set `fulltext` to a message indicating no battery, styled with a red color
+    percentleft = 100
+    # Assume the battery percentage is 100% in this case
+else:
+    # If battery information is available
+    batteries = status.split("\n")
+    # Split the `status` string into lines for each battery
+    state_batteries = []
+    # List to store the state of each battery (e.g., Charging, Discharging)
+    commasplitstatus_batteries = []
+    # List to store comma-separated information for each battery
+    percentleft_batteries = []
+    # List to store the battery percentages
+    time = ""
+    # Initialize the time variable to an empty string
+
+    for battery in batteries:
+        # Loop through each battery's status line
+        if battery != '':
+            # Skip empty lines
+            state_batteries.append(battery.split(": ")[1].split(", ")[0])
+            # Extract and store the battery's state
+            commasplitstatus = battery.split(", ")
+            # Split the battery's information by commas
+            if not time:
+                # Check if the time variable is still unset
+                time = commasplitstatus[-1].strip()
+                # Extract the last part of the status (time remaining)
+                time = re.match(r"(\d+):(\d+)", time)
+                # Match the time string using a regular expression
+                if time:
+                    time = ":".join(time.groups())
+                    # Format the time as hours:minutes
+                    timeleft = "{}".format(time)
+                    # Assign the formatted time to `timeleft`
+                else:
+                    timeleft = ""
+                    # Set `timeleft` to an empty string if no time is found
+
+            p = int(commasplitstatus[1].rstrip("%\n"))
+            # Parse the battery percentage from the status
+            if p > 0:
+                percentleft_batteries.append(p)
+                # Add the percentage to the list if it's greater than 0
+            commasplitstatus_batteries.append(commasplitstatus)
+            # Store the comma-split status for the battery
+
+    state = state_batteries[0]
+    # Use the state of the first battery as the overall state
+    commasplitstatus = commasplitstatus_batteries[0]
+    # Use the first battery's detailed status as the overall status
+
+    if percentleft_batteries:
+        percentleft = int(sum(percentleft_batteries) / len(percentleft_batteries))
+        # Calculate the average battery percentage
+    else:
+        percentleft = 0
+        # Default to 0% if no battery percentages are available
+
+    # Define symbols and colors for various battery states
+    color = config.get("color_charging", "yellow")  # Default color for charging
+    FA_LIGHTNING = ""  # Placeholder for a lightning icon
+    FA_PLUG = "<span font='FontAwesome'>\uf1e6</span>"  # Icon for plugged-in state
+    FA_BATTERY = "<span font='FontAwesome'>\uf240</span>"  # Icon for battery usage
+    FA_QUESTION = "<span font='FontAwesome'>\uf128</span>"  # Icon for unknown state
+
+    if state == "Discharging":
+        fulltext = FA_BATTERY + "   "
+        # Display the battery icon for discharging state
+    elif state == "Full":
+        fulltext = FA_PLUG + "   "
+        # Display the plug icon for fully charged state
+        timeleft = ""
+        # No remaining time for a fully charged battery
+    elif state == "Unknown":
+        fulltext = FA_QUESTION + "   " + FA_BATTERY + "    "
+        # Display a question mark and battery icon for unknown state
+        timeleft = ""
+        # No remaining time for an unknown state
+    else:
+        fulltext = FA_PLUG + "    "
+        # Display the plug icon for other states
+
+    def color(percent):
+        # Define a function to determine the color based on battery percentage
+        if percent < 10:
+            return config.get("color_10", "#FFFFFF")  # White for <10%
+        if percent < 20:
+            return config.get("color_20", "#FF3300")  # Red for <20%
+        if percent < 30:
+            return config.get("color_30", "#FF6600")  # Orange for <30%
+        if percent < 40:
+            return config.get("color_40", "#FF9900")  # Yellow-Orange for <40%
+        if percent < 50:
+            return config.get("color_50", "#FFCC00")  # Yellow for <50%
+        if percent < 60:
+            return config.get("color_60", "#FFFF00")  # Bright Yellow for <60%
+        if percent < 70:
+            return config.get("color_70", "#FFFF33")  # Light Yellow for <70%
+        if percent < 80:
+            return config.get("color_80", "#FFFF66")  # Pale Yellow for <80%
+        return config.get("color_full", "#FFFFFF")  # Default white color for 80%+
+
+    form = '<span color="{}">{}%   </span>'
+    # Template for displaying percentage with color
+    fulltext += form.format(color(percentleft), percentleft)
+    # Add the percentage and its color to the output
+    fulltext += timeleft
+    # Append the remaining time to the output
+
+print(fulltext)
+# Print the battery information once
+print(fulltext)
+# Print the battery information again (duplicate output)
+
+if percentleft < 10:
+    exit(33)
+    # Exit with code 33 to indicate low battery (triggers background red in i3blocks)

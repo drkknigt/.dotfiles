@@ -1,0 +1,417 @@
+#!/usr/bin/env zsh
+
+
+# unarchive packages
+function unarchive(){
+
+  while IFS= read -r file; do
+    file_info=$(file -b --mime-type -L "$file")
+    file_name=$(printf "%s\n" "$(readlink -f "$file")" | awk '{print tolower($0)}')
+    output_dir="${file_name}-extracted"
+    mkdir -p "$output_dir"
+
+    case "$file_info" in
+      "application/zip") unzip "$file_name" -d "$output_dir" ;;
+      "application/gzip") tar -xzvf "$file_name" -C "$output_dir" ;;
+      "application/x-bzip2") tar -xjvf "$file_name" -C "$output_dir" ;;
+      "application/x-tar") tar -xvf "$file_name" -C "$output_dir" ;;
+      "application/vnd.rar") unrar x "$file_name" "$output_dir" ;;
+      *) echo "Unsupported format: $file_info" ;;
+    esac
+
+  done < <(echo "$fx")
+}
+
+# jump to dirs/files or preview selections / regex matches
+
+function fzf_jump() {
+    local file
+
+    # Determine source based on input arguments
+    case "$1" in
+        # jump to file or dir
+        "jmp")
+            file=$(fdfind . "$HOME" -a -H | fzf --height=100% \
+                --cycle --layout=reverse \
+                --bind "ctrl-o:toggle-preview+execute-silent(kitty +kitten icat --clear --stdin no --silent --transfer-mode file </dev/null >/dev/tty)" \
+                --prompt="jump to position: " \
+                --preview="preview_fzf.sh {}" \
+                )
+            ;;
+            # preview for regex matches or the selected fils from regex matches
+        "sel")
+                file=$(cat "$FILE_TO_HOLD_FZF_SELECTS" | fzf --height=100% \
+                --cycle --layout=reverse \
+                --bind "ctrl-o:toggle-preview+execute-silent(kitty +kitten icat --clear --stdin no --silent --transfer-mode file </dev/null >/dev/tty)" \
+                --prompt="selected files: " \
+                --preview="preview_fzf.sh {}")
+                ;;
+        "reg")
+                file=$(cat "$FILE_TO_HOLD_REGEX_MATCHES" | fzf --height=100% \
+                --cycle --layout=reverse \
+                --bind "ctrl-o:toggle-preview+execute-silent(kitty +kitten icat --clear --stdin no --silent --transfer-mode file </dev/null >/dev/tty),ctrl-f:execute(printf '%s\n' {+} > \"$FILE_TO_HOLD_FZF_SELECTS\")+abort,ctrl-l:execute(printf '%s\n' {+} >> \"$FILE_TO_HOLD_FZF_SELECTS\")+abort" \
+                --prompt="preview selections: " \
+                --preview="preview_fzf.sh {}")
+            ;;
+        *)
+                echo "wrong option"
+                exit
+            ;;
+    esac
+
+    # cd to dir or select file
+    if [ -n "$file" ]; then
+        local cmd="select"
+        [ -d "$file" ] && cmd="cd"
+        file=$(printf '%s' "$file" | sed 's/\\/\\\\/g;s/"/\\"/g')
+        lf -remote "send $id $cmd \"$file\""
+    fi
+}
+
+
+# search files in selections or current dir
+function search_files(){
+    # set path either to selected dirs or cur dir
+    paths="${fs:-$(pwd)}"
+    array_total=()
+    while IFS= read -r file; do
+        array_total+=$file
+    done < <(echo "$paths")
+
+    file=$(fd . ${array_total[@]} -a -H | fzf --cycle --height=100% --layout=reverse --bind "ctrl-o:toggle-preview+execute-silent(kitty +kitten icat --clear --stdin no --silent --transfer-mode file </dev/null >/dev/tty)" --prompt="jump to position: " --preview="preview_fzf.sh {}" --preview-window down:8 )
+     
+    # change dir or select file
+    if [ -n "$file" ]; then
+        if [ -d "$file" ]; then
+            cmd="cd"
+        else
+            cmd="select"
+        fi
+        file="$(printf '%s' "$file" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+        lf -remote "send $id $cmd \"$file\""
+    fi
+}
+
+# show current selection size or selected secions size
+function get_size(){
+    array_total=()
+
+    while IFS= read -r file; do
+        total_args=$((total_args + 1))
+        array_total+=$file
+    done < <(echo "$fx")
+
+    if [ "${#array_total[@]}" -lt "2" ] ; then
+        lf -remote "send $id echo    \"$(echo size:)\"   \"$(du -hs "$f"  | tail -1 | awk -d' ' '{ print $1 }')\"  \"     file-type:$(file -b --mime-type "$f")\""
+        rm " " &> /dev/null
+     else
+         lf -remote "send $id echo \"$(echo total-size:)\"   \"$(du -hs -c ${array_total[@]} | tail -n 1 | awk -d' ' '{print $1 }' )\""
+        rm " " &> /dev/null
+     fi
+}
+
+
+
+
+# make file or dir by appending/
+function mk_dir_file(){
+   printf "name: "
+   read ans
+   ans=$(echo $ans | tr " " "\n" )
+   while IFS= read -r file; do
+    if [ "${file[-1]}" = "/" ]; then
+        mkdir -p "$file"
+    else
+        touch "$file"
+    fi
+done < <(echo $ans)
+}
+
+# rename current or selected files sequentially
+function rename_files(){
+    array_file=()
+    while IFS= read -r file; do
+        array_file+=$file
+    done < <(echo "$fx")
+    echo ${array_file[@]}
+    for i in $array_file;do
+        printf "rename $i: "
+        read -r ans
+        mv -i $i $ans
+    done
+}
+
+# open files
+function open(){
+    export DE=kde
+    export DE=gnome
+    # find the mime-type and open file in desired application 
+    # for file_name in "$fx"; do
+    while IFS= read -r file_name; do
+    file_type=$(file -b --mime-type -L "$file_name" | cut -d "/" -f1)
+    file_format=$(file -b --mime-type -L "$file_name" | cut -d "/" -f2)
+    case "$file_type" in
+        "inode")
+            if [ "$file_format" = "x-empty" ]; then
+                echo "empty"
+                fi
+                ;;
+        "text")
+            nvim $fx 
+            ;;
+        "image")
+            setsid -f imv "$file_name"
+            ;;
+        "video")
+            setsid -f mpv "$file_name" &> /dev/null
+            ;;
+        "audio")
+            setsid -f mpv --force-window "$file_name" &> /dev/null
+            ;;
+        "application")
+            echo "$file_format" | grep -Pi "pdf|epub" &> /dev/null
+            if [ "$?" = "0" ]; then
+            setsid -f zathura "$file_name"  &> /dev/null
+            exit
+            fi
+            setsid -f xdg-open "$file_name" &> /dev/null
+            ;;
+        *)
+            echo "unknown file format"
+            sleep 1.5
+            ;;
+        esac
+    done < <(echo $fx)
+        
+}
+
+# open files in browser or lf 
+function save_browser_enter(){
+    browser_run="${browser_run:-}"
+    if [ -n "$browser_run" ] ; then
+        if [ "$save" = "1" ]; then
+            name=$(basename "$(echo "$path_name" )")
+            touch "$name"
+            lf -remote "send $id :select '$name'"
+            notify-send "lf : Downloading $name"
+            echo $(pwd) > $last_save_cache
+            lf -remote "send $id :open"
+        fi
+        echo $(pwd) > $last_open_cache
+        lf -remote "send $id :open"
+    fi
+    lf -remote "send $id :open"
+}
+
+# copy name of file under cursor
+function copyname(){
+    current_wm=$(wmctrl -m | grep -Po "wlroots|i3")
+    if [[ "$current_wm" = "i3" ]]; then
+    basename "$f" | tr -d '\n' | xclip -selection c
+    elif [[ "$current_wm" = "wlroots" ]] ; then
+    basename "$f" | tr -d '\n' |  wl-copy
+    fi
+}
+
+# source config
+function source-config(){
+    lf -remote "send $id source ~/.config/lf/lfrc"
+    lf -remote "send %echo lfrc reloaded"
+}
+
+# native normal lf search
+function normal_search(){
+    lf -remote "send $id search"
+    lf -remote "send $id set globsearch false"
+}
+
+# rename files in vim
+function select_rename(){
+    
+    old="$(mktemp -t lf_rename_old.XXXXXXX)"
+    new="$(mktemp -t lf_rename_new.XXXXXXX)"
+
+    case "$1" in
+        s) printf '%s\n' "$fs" | tee "$old" "$new" ;;
+        .) fd -H -d 1 | tee "$old" "$new" ;;
+        r) cat "$FILE_TO_HOLD_REGEX_MATCHES" | tee "$old" "$new" ;;
+        *) cat "$FILE_TO_HOLD_FZF_SELECTS" | tee "$old" "$new" ;;
+    esac
+
+    nvim "$new" 
+    rename_count=0
+    [ "$(wc -l < "$new")" -ne "$(wc -l < "$old")" ] && exit
+    while IFS=$'\t' read -r src dst; do
+        [ "$src" = "$dst" ] || [ -e "$dst" ] && continue
+        mv -- "$src" "$dst" && rename_count=$((rename_count + 1))
+    done < <(paste "$old" "$new") 
+
+    rm -- "$old" "$new"
+    notify-send "lf: $rename_count files renamed"
+}
+
+# toggle preview
+function toggle_preview(){
+    if [ "$lf_preview" = "true" ]; then
+        lf -remote "send $id :set preview false; set ratios 2:3"
+    else
+        lf -remote "send $id :set preview true; set ratios 2:3:4"
+    fi
+}
+
+# copy file path under cursor
+function copypath(){
+    current_wm=$(wmctrl -m | grep -Po "wlroots|i3")
+    if [[ "$current_wm" = "i3" ]]; then
+        echo -n "$f" | tr -d '\n' |  xclip -selection c
+    elif [[ "$current_wm" = "wlroots" ]] ; then
+        echo -n "$f" | tr -d '\n' |  wl-copy
+    fi
+}
+
+# goto next match of regex search
+function search_reg() {
+    counter=$(<"$FILE_TO_HOLD_COUNTER")
+    start_line=$(head -n1 "$FILE_TO_HOLD_REGEX_MATCHES")
+    last_line=$(tail -n1 "$FILE_TO_HOLD_REGEX_MATCHES")
+
+    current_position=$(rg -Fnx "$f" "$TEMP_SEARCH" | cut -d: -f1)
+    start=$(rg -Fnx "$start_line" "$TEMP_SEARCH" | cut -d: -f1)
+    end=$(rg -Fnx "$last_line" "$TEMP_SEARCH" | cut -d: -f1)
+
+    if rg -qFx "$f" "$FILE_TO_HOLD_REGEX_MATCHES"; then
+        counter=$(rg -Fnx "$f" "$FILE_TO_HOLD_REGEX_MATCHES" | cut -d: -f1)
+    fi
+
+    total_lines=$(wc -l < "$FILE_TO_HOLD_REGEX_MATCHES")
+    if [ "$1" = "n" ]; then
+        if [ "$current_position" -gt "$end" ] || [ "$current_position" -lt "$start" ] || [ $((counter + 1)) -gt "$total_lines" ]; then
+            counter=0
+        fi
+        counter=$((counter + 1))
+    else
+        if [ "$current_position" -gt "$end" ] || [ "$current_position" -lt "$start" ]; then
+            counter=$((total_lines + 1))
+        fi
+        counter=$((counter == 1 ? total_lines : counter - 1))
+    fi
+
+    item=$(sed -n "${counter}p" "$FILE_TO_HOLD_REGEX_MATCHES")
+    lf -remote "send $id :select '$item'"
+    lf -remote "send $id %echo $counter:$total_lines"
+    echo "$counter" > "$FILE_TO_HOLD_COUNTER"
+}
+
+
+# match files by regex
+function regex_select() {
+    echo "/ "
+    read -r args
+    [[ -z "$args" ]] && exit
+
+    type_of_search=$(echo $args | cut -d' ' -f1)
+    REGEX_SEARCH_TERM=$(echo $args | cut -d' ' -f2)
+
+    case "$1" in 
+        d) fd_type="d";;
+        f) fd_type="f";;
+        *) exit;;
+    esac
+
+    case "$type_of_search" in
+        t|.) type_search="$fd_type -t l"; depth=1 ;;
+        r) type_search="$fd_type"; depth='r' ;;
+        *) exit ;;
+    esac
+
+    fd_cmd="fd -H -a -t $type_search"
+    [[ "$depth" != "r" ]] && fd_cmd+=" -d $depth"
+    result=$(eval "$fd_cmd" | tee >(sort -V > "$TEMP_SEARCH") | sed 's:/$::' | perl -ne 'print if m{[^/]+$} && $& =~ /$ENV{REGEX_SEARCH_TERM}/')
+
+    [[ -z "$result" ]] &&  exit
+
+    echo "$result" | sort -V > "$FILE_TO_HOLD_REGEX_MATCHES"
+    echo 0 > "$FILE_TO_HOLD_COUNTER"
+
+    if [[ "$type_of_search" == "f" || "$type_of_search" == "t" ]]; then
+        new=""
+        while IFS= read -r line; do
+            new+=" \"$line\""
+        done < "$FILE_TO_HOLD_REGEX_MATCHES"
+        lf -remote "send $id :toggle$new"
+        lf -remote "send $id :select $(head -n1 $FILE_TO_HOLD_REGEX_MATCHES)"
+        exit
+    fi
+
+    lines=$(wc -l < "$FILE_TO_HOLD_REGEX_MATCHES")
+    notify-send "lf: $lines files selected successfully"
+    lf -remote "send $id push :mark-save<enter>a"
+}
+
+
+
+function remove_selected(){
+    if [ "$1" = "selected" ]; then
+        file="$FILE_TO_HOLD_FZF_SELECTS"
+    else
+        file="$FILE_TO_HOLD_REGEX_MATCHES"
+    fi
+
+    echo "do you really want to delete $1 selections: "
+    read -r ans
+    if [ "$ans" = "n"  ] || [ "$ans" = "N" ]; then
+        exit
+    fi
+    while IFS= read -r line; do
+        rm "$line" -rf
+    done < "$file"
+    notify-send "lf: removed $(wc -l $file | awk '{ print $1}') files"
+}
+
+function move_selected(){
+    if [ "$1" = "selected" ]; then
+        file="$FILE_TO_HOLD_FZF_SELECTS"
+    else
+        file="$FILE_TO_HOLD_REGEX_MATCHES"
+    fi
+    while IFS= read -r line; do
+        mv -i "$line" .
+    done < "$file"
+    notify-send "lf: moved $(wc -l $file | awk '{ print $1}') files"
+}
+
+function copy_selected(){
+    if [ "$1" = "selected" ]; then
+        file="$FILE_TO_HOLD_FZF_SELECTS"
+    else
+        file="$FILE_TO_HOLD_REGEX_MATCHES"
+    fi
+    while IFS= read -r line; do
+        cp -i "$line" .
+    done < "$file"
+    notify-send "lf: moved copied $(wc -l $file | awk '{ print $1}') files"
+}
+
+# execute function by 1st arg
+case "$1" in 
+    fzf_jump) fzf_jump $2 ;;
+    search_files) search_files ;;
+    get_size) get_size ;;
+    unarchive) unarchive ;;
+    mk_dir_file) mk_dir_file ;;
+    rename_files) rename_files ;;
+    open) open ;;
+    save_browser_enter) save_browser_enter ;;
+    copyname) copyname ;;
+    source-config) source-config ;;
+    normal_search) normal_search ;;
+    select_rename) select_rename $2 ;;
+    toggle_preview) toggle_preview ;;
+    copypath) copypath ;;
+    search_reg) search_reg $2 ;;
+    regex_select) regex_select $2 ;;
+    remove_selected) remove_selected $2;;
+    move_selected) move_selected $2 ;;
+    copy_selected) copy_selected $2 ;;
+    *) echo "nothing" ;;
+esac

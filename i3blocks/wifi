@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+# Copyright (C) 2014 Alexander Keller <github@nycroth.com>
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+#------------------------------------------------------------------------
+
+# Check if the INTERFACE variable is unset or empty. If so, determine the wireless interface.
+if [[ -z "$INTERFACE" ]] ; then
+    INTERFACE=$(iw dev | awk '$1=="Interface"{print $2}')
+fi
+#------------------------------------------------------------------------
+
+# Set default colors for various signal strength thresholds if not already defined.
+COLOR_GE80=${COLOR_GE80:-#FFFFFF}
+COLOR_GE60=${COLOR_GE60:-#FFFFFF}
+COLOR_GE40=${COLOR_GE40:-#FFF000}
+COLOR_LOWR=${COLOR_LOWR:-#F8971A}
+COLOR_DOWN=${COLOR_DOWN:-#F00000}
+
+
+# As per #36 -- It is transparent: e.g. if the machine has no battery or wireless
+# connection (think desktop), the corresponding block should not be displayed.
+
+# Check if the wireless directory for the interface exists.
+# If it does not exist, the block is not displayed (assumes no wireless hardware is present).
+[[ ! -d /sys/class/net/${INTERFACE}/wireless ]] && exit
+
+# If the wifi interface exists but no connection is active, "down" shall be displayed.
+if [[ "$(cat /sys/class/net/$INTERFACE/operstate)" = 'down' ]]; then
+    echo "down"
+    echo "down"
+    echo $COLOR_DOWN
+    exit
+fi
+
+#------------------------------------------------------------------------
+
+# Retrieve the ESSID (network name) of the connected Wi-Fi.
+ESSID=$(iwgetid -r)
+
+
+# `iw dev ${INTERFACE} link`: Gets the link details of the specified wireless interface.
+# `grep -Pio '\-?\d+(?=\sdBm$)'`: Extracts the RSSI value (signal strength in dBm).
+# `awk`: Converts the RSSI into a percentage:
+# - If RSSI > -50 dBm, set quality to 100%.
+# - If RSSI < -100 dBm, set quality to 0%.
+# - Otherwise, scale linearly between -50 and -100 dBm.
+QUALITY=$(iw dev ${INTERFACE} link | grep -Pio '\-?\d+(?=\sdBm$)' | awk '{print  ($1 > -50 ? 100 :($1 < -100 ? 0 : ($1+100)*2))}')
+
+#------------------------------------------------------------------------
+
+# Display the ESSID and signal quality percentage with the Wi-Fi icon 
+echo "  "$ESSID"($QUALITY%)" # full text
+echo "  "$ESSID"($QUALITY%)" # full text
+
+# Determine the color based on the signal quality percentage.
+if [[ $QUALITY -ge 80 ]]; then
+    echo $COLOR_GE80
+elif [[ $QUALITY -ge 50 ]]; then
+    echo $COLOR_GE60
+elif [[ $QUALITY -ge 40 ]]; then
+    echo $COLOR_GE60
+elif [[ $QUALITY -ge 30 ]]; then
+    echo $COLOR_GE40
+else
+    echo $COLOR_LOWR
+fi

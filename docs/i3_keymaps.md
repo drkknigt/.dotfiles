@@ -1,0 +1,359 @@
+# I3WM & SWAY KEYMAPS: 
+                                 
+## Volume:  
+   - alt + ]           ----->   volume up (pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status )
+   - alt + [           ----->   volume up (pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status )
+   - alt + ctrl + m    ----->   pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+   - XF86AudioLowerVolume --->   pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+   - XF86AudioRaiseVolume --->   pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+   - XF86AudioMute      ----->   pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+    
+## Monitor & Screen:  
+   - alt + s + s       ----->  set resolution for monitors (resolution.sh | resolution_sway.sh)
+   - alt + s + c       ----->  set custom resolution for monitors (sway only)
+   - alt + s + 1       ----->  scale monitor 1  (scale.sh 0 | scale_sway.sh 0)
+   - alt + s + 2       ----->  scale monitor 2  (scale.sh 1 | scale_sway.sh 1)
+   - alt + s + l       ----->  change monitor 1 background (change_background.sh 0 | change_bacground_sway.sh 0)
+   - alt + s + r       ----->  change monitor 1 background (change_background.sh 1 | change_bacground_sway.sh 1)
+   - alt + s + d       ----->  change sddm display manager background (change_sddm_background.sh)
+   - alt + "+"         ----->  screen brightness up (brightnessctl set +3%)
+   - alt + "-"         ----->  screen brightness down (brightnessctl set +3%)
+
+## Starting Applications: 
+   - alt + return     -------> open alacritty terminal (alacritty -t "startup")
+   - alt + a + c      -------> open color picker (kcolorchooser)
+   - alt + a + b      -------> open brave browser (brave-browser)
+   - alt + a + f      -------> open firefox (firefox)
+   - alt + a + t      -------> open telegram (telegram-desktop)
+   - alt + a + n      -------> open file explore in nemo (nemo)
+   - alt + a + q      -------> open calculator (qalc)
+   - alt + a + h      -------> open htop (htop)
+   - alt + a + l      -------> lock screen (i3lock/swaylock -c "000000)
+   - alt + a + k      -------> open hyprpicker
+   - alt + a + m      -------> open vscode (code)
+   - alt + a + g      -------> open glow markdown reader (code)
+   - alt + a + o      -------> open lf file explorer (lfrun)
+   - alt + a + p + p  -------> capture screen with selection
+   - alt + a + p + s  -------> capture current output screen
+   - alt + a + p + f  -------> capture full desktops all the screens
+   - alt + a + p + w  -------> capture selected window
+   - alt + a + p + a  -------> capture active window
+   - alt + a + r + r  -------> record screen with selection ( sway only)
+   - alt + a + r + s  -------> record full screen ( sway only)
+   - alt + a + r + q  -------> stop recording ( sway only) 
+   - alt + a + v + v  -------> start openvpn 
+   - alt + a + v + d  -------> close openvpn 
+
+## Search:  
+   - alt + f  + t     -------> open applications terminal mode (rofi -show run -dpi 171)
+   - alt + f  + a     -------> open applications desktop environment (rofi -dpi 171 -show drun -show-icons)
+   - alt + f  + w     -------> show all open windows in i3wm (rofi -dpi 171 -show)
+   - alt + f  + f     -------> search for files in home directory to open (file_exp.sh f)
+   - alt + f  + d     -------> search for directory to open (file_exp.sh d)
+   - alt + f  + g     -------> open lazygit in speciefied directory (lazy_git.sh)
+
+## Systemctl commands: 
+   - alt + d + s      -------> turn off the system (systemctl poweroff)
+   - alt + d + r      -------> restart the system (systemctl restart)
+   - alt + d + f      -------> send system to sleep (systemctl suspend)
+   
+## i3wm/sway movement commands: 
+   - alt + control + a  -----> toggle fullscreen  (i3-msg fullscreen toggle)
+   - alt + control + f  -----> toggle floatmode  (i3-msg floating toggle)
+   - alt + p            -----> move current workspace to different monitor (i3-msg move workspace to output right)
+   - alt + period     -------> show previous workspace (i3-msg workspace back_and_forth)
+   - alt + n          -------> next workspace (i3-msg workspace next)         
+   - alt + q          -------> kill window (i3-msg kill)
+   - alt + e + h      -------> i3-msg/sway split h
+   - alt + e + v      -------> i3-msg/sway split v
+   - alt + e + y      -------> i3-msg/sway layout stacking
+   - alt + e + t      -------> i3-msg/sway layout tabbed
+   - alt + e + e      -------> i3-msg/sway layout toggle tabbed
+   - alt + e + space  -------> i3-msg/sway focus toggle_mode
+   - alt + e + i      -------> i3-msg/sway focus parent
+   - alt + e + r      -------> i3-msg restart
+   - alt + e + q      -------> i3-msg/sway exit
+   - alt + e + w      -------> i3-msg/sway reload config for i3wm
+   - mouse-button-middle ----> i3-msg floating toggle
+
+## scratchpad: 
+   - alt + b  + b     -------> i3-msg move scratchpad
+   - alt + b  + s     -------> i3-msg scratchpad show
+
+## i3-wm navigation mode: 
+   - alt + h          -------> i3-msg focus left
+   - alt + j          -------> i3-msg focus down
+   - alt + k          -------> i3-msg focus up
+   - alt + l          -------> i3-msg focus right
+   - alt + left       -------> i3-msg focus left
+   - alt + down       -------> i3-msg focus down
+   - alt + up         -------> i3-msg focus up
+   - alt + right      -------> i3-msg focus right
+   - alt + control + h ------> i3-msg move left
+   - alt + control + j ------> i3-msg move down
+   - alt + control + k ------> i3-msg move up
+   - alt + control + l ------> i3-msg move right
+   - alt + shift + left -----> i3-msg move left
+   - alt + shift + right ----> i3-msg move down
+   - alt + shift + up  ------> i3-msg move up
+   - alt + shift + down -----> i3-msg move right
+   - alt + 1           ------> i3-msg workspace 1
+   - alt + 2           ------> i3-msg workspace 2
+   - alt + 3           ------> i3-msg workspace 3
+   - alt + 4           ------> i3-msg workspace 4
+   - alt + 5           ------> i3-msg workspace 5
+   - alt + 6           ------> i3-msg workspace 6
+   - alt + 7           ------> i3-msg workspace 7
+   - alt + 8           ------> i3-msg workspace 8
+   - alt + 9           ------> i3-msg workspace 9
+   - alt + 0           ------> i3-msg workspace 0
+   - alt + control +  1 -----> i3-msg move container to workspace 1
+   - alt + control +  2 -----> i3-msg move container to workspace 2
+   - alt + control +  3 -----> i3-msg move container to workspace 3
+   - alt + control +  4 -----> i3-msg move container to workspace 4
+   - alt + control +  5 -----> i3-msg move container to workspace 5
+   - alt + control +  6 -----> i3-msg move container to workspace 6
+   - alt + control +  7 -----> i3-msg move container to workspace 7
+   - alt + control +  8 -----> i3-msg move container to workspace 8
+   - alt + control +  9 -----> i3-msg move container to workspace 9
+   - alt + control +  0 -----> i3-msg move container to workspace 0
+   - button9            -----> i3-msg move left
+
+## Network commands: 
+   - alt + i + i       ------> toggle wifi (wifi_connect.sh)
+   - alt + i + l       ------> change wifi connection (wifi_fzf.sh)
+   - alt + i + o       ------> open network connection editor
+
+## User scripts:  
+   - alt + z + a       ------> Run Ai locally or remotely via groq
+   - alt + z + g       ------> change cpu governor (governor.sh)
+   - alt + z + m       ------> mount disks (mount.sh)
+   - alt + z + h       ------> open man pages (man_pages.sh )
+   - alt + z + q       ------> kill applications (kill.sh)
+   - alt + z + k       ------> show keymaps for i3wm/sway/zsh/tmux (keymaps.sh)
+   - alt + z + x       ------> send mouse pointer to bottom (xdotool mousemove 800 1920 )
+   - alt + z + e       ------> change cpu energe performance preference
+   - alt + z + i       ------> info on cpu governor and driver
+   - alt + z + w       ------> change wofi / rofi theme
+   - alt + z + v       ------> kill all instances of wf-recorder
+   - alt + z + b       ------> switch file picker for browser 
+   
+# ZSH KEYMAPS
+
+   - ctrl + e + space  ------> create tmux session for any directory from home (tmux_create.sh 0)  
+   - ctrl + e + r      ------> create recent tmux sessions (tmux_create.sh 1)
+   - ctrl + e + ;      ------> make a project
+   - ctrl + e + \      ------> kill tmux sessions (tmux_kill.sh)
+   - ctrl + e + y      ------> tmux session swithch (tmux_session_switch.sh)
+   - ctrl + g          ------> open lazygit in current directory
+   - ctrl + v          ------> open neovim in current directory
+   - ctrl + \ + d      ------> open file from dotfiles in neovim in current shell
+   - ctrl + \ + f      ------> serach file in current dir and open in neovim
+   - ctrl + \ + h      ------> serach file in home dir and open in neovim
+   - ctrl + \ + s      ------> start a tmux session in the current working dir in shell
+   - ctrl + e + '      ------> open lf file browser in the searched directory
+   - ctrl + p          ------> goto previous command in zsh
+   - ctrl + n          ------> goto next command in zsh
+   - ctrl + ]          ------> goto end of the line
+   - ctrl + j          ------> goto back one char
+   - ctrl + k          ------> goto forward one char
+   - ctrl + a          ------> goto start of the line
+   - ctrl + b          ------> goto back of the word
+   - ctrl + f          ------> goto front of the word
+   - ctrl + r          ------> search the command line history
+   - ctrl + [          ------> enter vim mode
+   - ctrl + t          ------> insert a file name completion to command
+   
+# TMUX KEYMAPS 
+   
+   - ctrl + e          ------> send prefix
+   - ctrl + e + v      ------> open a horizontal pane with current shell path as starting path 
+   - (ctrl + e + v)    ------> open a horizontal pane with current shell path as starting path 
+   - ctrl + e + b      ------> break current pane into a new window
+   - ctrl + e + R      ------> reload the tmux configuration
+   - ctrl + e + Z      ------> join panes from windows
+   - ctrl + e + u      ------> split windows vertically with current shell path as starting path
+   - (ctrl + e + u)    ------> split windows vertically with current shell path as starting path
+   - ctrl + e + p      ------> create new window with root tmux path
+   - ctrl + e + i      ------> create new window with current shell path as starting path
+   - ctrl + e + o      ------> kill window 
+   - ctrl + e + O      ------> kill all window  except the current ones
+   - ctrl + e + x      ------> kill pane 
+   - ctrl + e + q      ------> exit tmux 
+   - ctrl + e + /      ------> kill curent session and move to next
+   - ctrl + e + z      ------> maxamize pane
+   - ctrl + e + [      ------> enter the copy mode
+   - ( ctrl + e + ] )  ------> goto last window
+   - ( ctrl + e + n )  ------> next session
+   - ( ctrl + e + p )  ------> previous session
+   - ( ctrl + e + [ )  ------> enter the copy mode
+   - ( ctrl + e + h )  ------> move to left window
+   - ( ctrl + e + l )  ------> move to right window
+   - ( ctrl + e + o )  ------> kill all panes except the current one
+   - (ctrl + e) H      ------> resize 5 units to left
+   - (ctrl + e) L      ------> resize 5 units to right
+   - (ctrl + e) J      ------> resize 5 units to bottom
+   - (ctrl + e) K      ------> resize 5 units to top
+   - ctrl + e + l      ------> move to next right
+   - ctrl + e + x      ------> kill current pane
+   - (ctrl + e + ,)    ------> move to left pane
+   - (ctrl + e + .)    ------> move to right pane
+   - ctrl + e + k      ------> move to top pane
+   - ctrl + e + j      ------> move to bottom pane
+   - ctrl + e + n      ------> move to next window
+   - ctrl + e + space  ------> create a tmux session from home directory
+   - ctrl + e + r      ------> create a tmux session from recent sessions
+   - ctrl + e + ;      ------> create a new project  and start tmux session in it
+   - Ctrl + e + a      ------> run ai in tmux locally using ollama and groq remotely
+   - ctrl + e + y      ------> switch tmux session
+   - ctrl + e + \      ------> kill tmux session from the list
+   - ctrl + e + c      ------> open a new window with selected directory from fzf
+   - ctrl + e + g      ------> open a lazygit in selected directory from fzf
+   - ctrl + e + m      ------> open lf file manager in project root
+   - ctrl + e + '      ------> open lf file manger in current working directory
+   - ctrl + e + Escape ------> enter the copy mode
+   - ctrl + e + U      ------> update system with pacman
+   - copy-mode - y    ------> copy the selection in copy mode
+   - copy-mode - v    ------> visually select the selection in copy mode
+   - copy-mode - q    ------> exit the copy mode
+   
+
+
+# lf mappings
+
+   -   !                         ------> run shell command in key press mode
+   -   "                         ------> remove marks
+   -   $                         ------> run shell in normal stdout/in mode shell 
+   -   %                         ------> run shell with output visible only in cmdline
+   -   &                         ------> run async shell
+   -   '                         ------> load mark 
+   -   ,                         ------> find previous
+   -   .                         ------> set hidden!
+   -   /                         ------> normal native search
+   -   :                         ------> read  command
+   -   ;                         ------> find next 
+   -   ctrl + b                  ------> page up 
+   -   ctrl + d                  ------> half down 
+   -   ctrl + e                  ------> scroll down 
+   -   ctrl + f                  ------> page down 
+   -   ctrl + j                  ------> toggle selection and move down
+   -   ctrl + k                  ------> toggle selection and move up
+   -   ctrl + l                  ------> clear all selections
+   -   ctrl + m + down           ------> scroll down 
+   -   ctrl + m + up             ------> scroll up
+   -   ctrl + n                  ------> cmd history next 
+   -   ctrl + o                  ------> toggle preview 
+   -   ctrl + p                  ------> cmd history prev 
+   -   ctrl + r                  ------> reload 
+   -   ctrl + space              ------> toggle  selection but stay at place
+   -   ctrl + u                  ------> half up 
+   -   ctrl + y                  ------> scroll up 
+   -   down                      ------> move down
+   -   end                       ------> goto bottom 
+   -   enter                     ------> open file under selection if normal lf instance, if in browser instance, then select or save 
+   -   f + 1                     ------> open docs
+   -   home                      ------> goto top 
+   -   left                      ------> go to previous dir 
+   -   pgdn                      ------> page down 
+   -   pgup                      ------> page up 
+   -   right                     ------> open file or enter dir
+   -   space + c + r             ------> copy files in regex selections to current dir
+   -   space + c + s             ------> copy files in selected selection from fzf to current dir
+   -   space + d + r             ------> delete files in regex selections 
+   -   space + d + s             ------> delete files in selected selections from fzf 
+   -   space + x + r             ------> move files in regex selectiosn to current dir
+   -   space + x + s             ------> move files in selected selectiosn from fzf
+   -   up                        ------> move selection up 
+   -   ?                         ------> native search back 
+   -   D                         ------> make dir or file if name ends with / make dir else file
+   -   F                         ------> search file with pcre regex
+   -   G                         ------> goto bottom
+   -   H                         ------> goto highest position on screen
+   -   I                         ------> preview all regex selections
+   -   L                         ------> goto lowest position on screen
+   -   M                         ------> goto middle selection on screen
+   -   N                         ------> goto previos match in regex
+   -   O                         ------> open with gui
+   -   R                         ------> source config 
+   -   V                         ------> toggle selection below current cursor
+   -   [                         ------> native search prev 
+   -   ]                         ------> native search next
+   -   a + e                     ------> edit current dir in oil
+   -   a + f                     ------> search files in current dir or selected dirs
+   -   a + i                     ------> preview selected files
+   -   a + n                     ------> copy current cursor file name
+   -   a + p                     ------> print current path
+   -   a + s                     ------> get size in Mb,Kb, or Gb or current file or selected files
+   -   a + u                     ------> unarchive packages
+   -   a + y                     ------> copy current cursor path
+   -   c                         ------> clear copied, cut selections
+   -   d                         ------> delete current cursor selection or toggled selections
+   -   e + .                     ------> rename current dir files
+   -   e + l                     ------> rename current files in fzf select lists
+   -   e + r                     ------> rename regex selected files
+   -   e + s                     ------> rename toggled files
+   -   f                         ------> regex search files
+   -   g + a                     ------> change dir to ~/.arch-pull
+   -   g + c                     ------> change dir to ~/.dotfiles
+   -   g + d                     ------> change dir to ~/Downloads
+   -   g + f                     ------> change dir to ~/Documents
+   -   g + g                     ------> goto top
+   -   g + h                     ------> change dir to $HOME
+   -   g + j                     ------> jump to any file or dir using fzf
+   -   g + m                     ------> change dir to ~/Music
+   -   g + p                     ------> change dir to ~/Pictures
+   -   g + u                     ------> change dir to /run/media
+   -   g + v                     ------> change dir to ~/Videos
+   -   h                         ------> goto back dir
+   -   i                         ------> open current selection in less and preview
+   -   j                         ------> go down 
+   -   k                         ------> go up 
+   -   l                         ------> open file or go inside dir
+   -   m                         ------> save mark
+   -   n                         ------> go to next match in regex file
+   -   o                         ------> open in cli
+   -   p                         ------> paste files
+   -   q                         ------> quit lf
+   -   r                         ------> rename selected files or current cursor file
+   -   s + a                     ------> set sortby atime; set info atime
+   -   s + c                     ------> set sortby ctime; set info ctime
+   -   s + e                     ------> set sortby ext; set info 
+   -   s + n                     ------> set sortby natural; set info 
+   -   s + s                     ------> set sortby size; set info size
+   -   s + t                     ------> set sortby time; set info time
+   -   t                         ------> tag toggle files
+   -   u                         ------> unselect  files
+   -   v                         ------> invert files
+   -   w                         ------> ${{ $SHELL }}
+   -   x                         ------> cut  files
+   -   y                         ------> copy files
+   -   z + a                     ------> set info size:time
+   -   z + h                     ------> set hidden!
+   -   z + n                     ------> set info
+   -   z + r                     ------> set reverse!
+   -   z + s                     ------> set info size
+   -   z + t                     ------> set info time
+
+# Brave keymaps
+
+    - ctrl + o ----------------> goto previous page in history
+    - ctrl + i ----------------> goto forward page in history
+    - ctrl + r ----------------> reload
+    - ctrl + n ----------------> new-window
+    - ctrl + t ----------------> new-tab
+    - ctrl + w ----------------> close tab
+    - ctrl + k ----------------> next tab
+    - ctrl + j ----------------> previous tab
+    - ctrl + shift + l --------> move tab next
+    - ctrl + shift + h --------> move tab previous
+    - ctrl + , ----------------> bookmark tab
+    - ctrl + u ----------------> view source
+    - ctrl + shift + j --------> open js console
+    - ctrl + h ----------------> open history
+    - ctrl + b ----------------> bookmark manager
+    - ctrl + d ----------------> Download history
+    - ctrl + g ----------------> settings
+    - ctrl + m ----------------> mute
+    - ctrl + space ------------> run commands
+    - ctrl + enter ------------> open file
+    - ctrl + . ----------------> copy link of current page

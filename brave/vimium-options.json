@@ -1,0 +1,14 @@
+{
+  "keyMappings": "# Insert your preferred key mappings here.\nmap ' Marks.activateGotoMode\nmap <C-j> previousTab\nmap <C-k> nextTab\nmap <C-6> visitPreviousTab\nmap <C-m> toggleMuteTab\nmap H LinkHints.activateMode action=hover\nmap J LinkHints.activateMode action=focus\nmap c LinkHints.activateMode action=copy-text\nmap L LinkHints.activateModeToCopyLinkUrl\nmap <C-o>  goBack\nmap <C-i> goForward\nmap gf LinkHints.activateModeWithQueue",
+  "linkHintCharacters": "sadfjklewcmpghior",
+  "newTabUrl": "https://www.google.com",
+  "searchEngines": "w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia\n\n# More examples.\n#\n# (Vimium supports search completion Wikipedia, as\n# above, and for these.)\n#\ng: https://www.google.com/search?q=%s Google\nl: https://www.google.com/search?q=%s&btnI I'm feeling lucky...\ny: https://www.youtube.com/results?search_query=%s Youtube\ngm: https://www.google.com/maps?q=%s Google maps\nb: https://www.bing.com/search?q=%s Bing\nd: https://duckduckgo.com/?q=%s DuckDuckGo\naz: https://www.amazon.com/s/?field-keywords=%s\nqw: https://www.qwant.com/?q=%s Qwant\n\n# Dictionary (Merriam-Webster).\ndw: http://www.merriam-webster.com/dictionary/%s Merriam-Webster",
+  "settingsVersion": "2.1.2",
+  "userDefinedLinkHintCss": "div > .vimiumHintMarker {\n/* linkhint boxes */\nbackground: #1b1b1b;\nborder: 1px solid gray;\n}\n\ndiv > .vimiumHintMarker span {\n/* linkhint text */\ncolor: white;\nfont-weight: normal;\nfont-size: 14px;\n}\n\ndiv > .vimiumHintMarker > .matchingCharacter {\ncolor: yellow;\nfont-weight: normal;\nfont-size: 14px;\n}",
+  "exclusionRules": [
+    {
+      "passKeys": "",
+      "pattern": "https?://vim-adventures.com/*"
+    }
+  ]
+}

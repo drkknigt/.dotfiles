@@ -1,0 +1,122 @@
+#!/usr/bin/env perl
+
+# Copyright 2014 Pierre Mavro <deimos@deimos.fr>
+# Copyright 2014 Vivien Didelot <vivien@didelot.org>
+# Copyright 2014 Andreas Guldstrand <andreas.guldstrand@gmail.com>
+# Metadata about the script's authors and licensing
+#
+# Licensed under the terms of the GNU GPL v3, or any later version.
+
+use strict;
+# Enforce strict variable declaration rules to prevent common errors
+
+use warnings;
+# Enable warnings to catch potential issues in the script
+
+use utf8;
+# Ensure the script can handle UTF-8 encoded characters
+
+use Getopt::Long;
+# Import the Getopt::Long module for parsing command-line options
+
+# default values
+my $t_warn = $ENV{T_WARN} // 50;
+# Set the warning threshold for CPU usage (default: 50%, or from environment variable)
+
+my $t_crit = $ENV{T_CRIT} // 80;
+# Set the critical threshold for CPU usage (default: 80%, or from environment variable)
+
+my $cpu_usage = -1;
+# Initialize the CPU usage variable with a default invalid value
+
+my $decimals = $ENV{DECIMALS} // 2;
+# Number of decimal places for CPU usage (default: 2, or from environment variable)
+
+my $label = $ENV{LABEL} // "";
+# Optional label for the CPU usage output (default: empty, or from environment variable)
+
+my $color_normal = $ENV{COLOR_NORMAL} // "#EBDBB2";
+# Color for normal CPU usage (default: a neutral color, or from environment variable)
+
+my $color_warn = $ENV{COLOR_WARN} // "#FFFC00";
+# Color for warning-level CPU usage (default: yellow, or from environment variable)
+
+my $color_crit = $ENV{COLOR_CRIT} // "#FF0000";
+# Color for critical-level CPU usage (default: red, or from environment variable)
+
+# Define a subroutine to display usage help
+sub help {
+    print "Usage: cpu_usage [-w <warning>] [-c <critical>] [-d <decimals>]\n";
+    # Print usage instructions
+    print "-w <percent>: warning threshold to become yellow\n";
+    # Describe the warning threshold option
+    print "-c <percent>: critical threshold to become red\n";
+    # Describe the critical threshold option
+    print "-d <decimals>:  Use <decimals> decimals for percentage (default is $decimals) \n";
+    # Describe the decimals option
+    exit 0;
+    # Exit the script after displaying help
+}
+
+# Map the `--help` or `-h` option to the `help` subroutine
+GetOptions("help|h" => \&help,
+           "w=i"    => \$t_warn,
+           # Map the `-w` option to the `$t_warn` variable
+           "c=i"    => \$t_crit,
+           # Map the `-c` option to the `$t_crit` variable
+           "d=i"    => \$decimals,
+           # Map the `-d` option to the `$decimals` variable
+);
+
+# Get CPU usage
+$ENV{LC_ALL}="en_US";
+# Set the locale to `en_US` to ensure consistent output from `mpstat`
+
+open (MPSTAT, 'mpstat 1 1 |') or die;
+# Run the `mpstat` command to get CPU usage and open its output for reading
+
+while (<MPSTAT>) {
+    # Read each line from the `mpstat` output
+    if (/^.*\s+(\d+\.\d+)[\s\x00]?$/) {
+        # Match a line containing a floating-point number (idle CPU percentage)
+        $cpu_usage = 100 - $1;
+        # Calculate CPU usage as `100% - %idle`
+        last;
+        # Exit the loop once CPU usage is found
+    }
+}
+
+close(MPSTAT);
+# Close the `mpstat` output stream
+
+$cpu_usage eq -1 and die 'Can\'t find CPU information';
+# If CPU usage is still the default invalid value, print an error and exit
+
+# Print short_text, full_text
+print "CPU: ${label}";
+# Print the CPU label as part of the output
+printf "%.${decimals}f%%\n", $cpu_usage;
+# Print the CPU usage percentage with the specified number of decimals
+
+print "CPU: ${label}";
+# Print the CPU label again for full text output
+printf "%.${decimals}f%%\n", $cpu_usage;
+# Print the CPU usage percentage again for full text output
+
+# Print color, if needed
+if ($cpu_usage >= $t_crit) {
+    # If CPU usage is above the critical threshold
+    print "${color_crit}\n";
+    # Print the critical color
+} elsif ($cpu_usage >= $t_warn) {
+    # If CPU usage is above the warning threshold
+    print "${color_warn}\n";
+    # Print the warning color
+} else {
+    # If CPU usage is within the normal range
+    print "${color_normal}\n";
+    # Print the normal color
+}
+
+exit 0;
+# Exit the script with a successful status

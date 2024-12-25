@@ -1,0 +1,15 @@
+#sudo systemctl disable NetworkManager-wait-online.service blueman-mechanism.service bluetooth.service ModemManager.service accounts-daemon.service plymouth networkd-dispatcher.service systemd-udev-settle.service gpu-manager.service cups.service cups-browsed.service avahi-daemon.service apt-daily-upgrade.timer apt-daily.timer tor.service ubuntu-system-adjustments.service zfs-load-module.service modprobe@chromeos_pstore.service rsyslog.service grub-common.service networking.service libvirt-guests.service 
+mimeopen --ask-default abc.txt
+mimeopen --ask-default abc.pdf
+mimeopen --ask-default abc.epub
+mimeopen --ask-default abc.mp4
+mimeopen --ask-default abc.jpg
+mimeopen --ask-default abc.png
+mimeopen --ask-default abc.epub
+mimeopen --ask-default abc.gif
+mimeopen --ask-default abc.webp
+
+# set browser
+# set powertop and tlp
+# set vpn 
+# set ollama
