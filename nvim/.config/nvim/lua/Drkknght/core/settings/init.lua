@@ -149,7 +149,6 @@ cmd([[ set path+=~/.dotfiles/** ]]) -- add -- add extra directory for cmds that 
 
 -- native vim syntax off by default
 cmd([[syntax off]])
-vim.g.cmp_user_enabled = true
 
 -- set syntax highlight bash for all sh extension files
 vim.filetype.add({

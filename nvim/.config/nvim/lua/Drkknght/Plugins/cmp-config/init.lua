@@ -15,16 +15,18 @@ local prefered_sources = {
 }
 
 -- toggle cmp function
+local cmp_enabled = true
 local cmp_toggle = function()
-	if vim.g.cmp_user_enabled then
+	if cmp_enabled then
+		-- Disable cmp by setting the sources to an empty table
+		cmp.setup({ enabled = false })
 		cmp.abort()
-		cmp.setup.buffer({ enabled = false })
-		vim.g.cmp_user_enabled = false
 	else
-		cmp.setup.buffer({ enabled = true })
+		-- Enable cmp by restoring the default behavior
+		cmp.setup({ enabled = true })
 		cmp.complete()
-		vim.g.cmp_user_enabled = true
 	end
+	cmp_enabled = not cmp_enabled
 end
 
 cmp.setup({

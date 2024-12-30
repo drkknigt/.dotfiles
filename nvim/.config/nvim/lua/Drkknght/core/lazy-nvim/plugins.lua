@@ -13,9 +13,8 @@ local custom = {
 		require("Drkknght.core.keymaps")
 		-- lazy load statusline and winbar
 		vim.api.nvim_set_hl(0, "Statusline", { bg = "Black", fg = "gray" })
-		vim.opt.statusline = "%{%v:lua.require('Drkknght.core.statusline').current()%}"
-		vim.opt.winbar =
-			": %F   󱕱 %{%v:lua.require('Drkknght.core.userFunctions').buffer_number()%}   󰉻 Total buffers:%{%v:lua.require('Drkknght.core.userFunctions').total_buffers()%}"
+		vim.opt.statusline = require("Drkknght.core.userFunctions").get_winbar("status")
+		vim.opt.winbar = require("Drkknght.core.userFunctions").get_winbar("global")
 	end,
 	event = "VeryLazy",
 }

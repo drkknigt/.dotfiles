@@ -1,7 +1,7 @@
+local autocmd = vim.api.nvim_create_autocmd
 local api = vim.api
-
 -- Highlight on yank
-api.nvim_create_autocmd("TextYankPost", {
+autocmd("TextYankPost", {
 	desc = "highlight when yanking text",
 	group = api.nvim_create_augroup("YankHighlight", { clear = true }),
 	callback = function()
@@ -10,21 +10,21 @@ api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- set formatting options and remove comments while using 'o' and <Enter> in insert mode
-api.nvim_create_autocmd("BufEnter", {
+autocmd("BufEnter", {
 	desc = "set formatting options and remove comments while using 'o' and <enter> in insert mode",
 	group = api.nvim_create_augroup("FoldGrp", { clear = true }),
 	command = "set fo-=c fo-=r fo-=o",
 })
 
 -- set current directory for current window only
-api.nvim_create_autocmd("BufEnter", {
+autocmd("BufEnter", {
 	desc = "set current directory for current window only",
 	command = "silent! lcd %:p:h",
 	group = api.nvim_create_augroup("ChngeDir", { clear = true }),
 })
 
 -- set keymaps to browse lsp symbols  in quickfix and copies '/' register to 'x' register
-api.nvim_create_autocmd("BufReadPost", {
+autocmd("BufReadPost", {
 	desc = "set keymaps to browse lsp symbols  in quickfix",
 	group = api.nvim_create_augroup("lsp_details", { clear = true }),
 	pattern = { "quickfix" },
@@ -44,7 +44,7 @@ api.nvim_create_autocmd("BufReadPost", {
 })
 
 -- preserve serach register value on exiting the quickfix list by copying value of 'x' reg to '/' reg
-api.nvim_create_autocmd("BufLeave", {
+autocmd("BufLeave", {
 	desc = "preserve serach register value on exiting the quickfix list",
 	group = api.nvim_create_augroup("paste_search", { clear = true }),
 	callback = function()
@@ -60,14 +60,14 @@ api.nvim_create_autocmd("BufLeave", {
 -- vim.cmd([[autocmd! BufWinLeave * let b:winview = winsaveview()
 -- autocmd! BufWinEnter * if exists('b:winview') | call winrestview(b:winview) | unlet b:winview]])
 
--- api.nvim_create_autocmd("TermOpen", {
+-- autocmd("TermOpen", {
 -- 	desc = "preserve the window view after chaning the buffer ,
 -- 	command = "autocmd! BufWinLeave * let b:winview = winsaveview() autocmd! BufWinEnter * if exists('b:winview') | call winrestview(b:winview) | unlet b:winview",
 -- 	group = api.nvim_create_augroup("winSaveView", { clear = true }),
 -- })
 
 -- no relative numbers and number line in terminal mode
-api.nvim_create_autocmd("TermOpen", {
+autocmd("TermOpen", {
 	desc = "remove relative numbers and number line in terminal mode",
 	command = "setlocal nonumber norelativenumber",
 	group = api.nvim_create_augroup("TermNoLine", { clear = true }),
@@ -105,12 +105,12 @@ for group, commands in pairs(augroups) do
 		local event = opts.event
 		opts.event = nil
 		opts.group = augroup
-		vim.api.nvim_create_autocmd(event, opts)
+		autocmd(event, opts)
 	end
 end
 
 -- autocmd to set height for oil.nvim
-api.nvim_create_autocmd("BufEnter", {
+autocmd("BufEnter", {
 	desc = "autocmd to set height for oil.nvim",
 	group = api.nvim_create_augroup("OilRelPathFix", { clear = true }),
 	pattern = "oil:///*",
@@ -125,7 +125,7 @@ local lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json"
 
 vim.api.nvim_create_user_command("BrowseSnapshots", "edit " .. snapshot_dir, {})
 
-vim.api.nvim_create_autocmd("User", {
+autocmd("User", {
 	group = api.nvim_create_augroup("lazy_cmds", { clear = true }),
 	pattern = "LazyUpdatePre",
 	desc = "Backup lazy.nvim lockfile",
@@ -139,7 +139,7 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 -- autocmd to change the directory after entering oil buffer
-vim.api.nvim_create_autocmd("BufEnter", {
+autocmd("BufEnter", {
 	group = api.nvim_create_augroup("OilEnterBuf", { clear = true }),
 	pattern = "oil:///*",
 	desc = "change main directory to oil directory",
@@ -151,11 +151,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 -- autocmd to start terminal mode in insert mode
-vim.api.nvim_create_autocmd("TermOPen", {
+autocmd("TermOpen", {
 	group = api.nvim_create_augroup("TerminalMode", { clear = true }),
 	pattern = "*",
 	desc = "enter insert mode in terminal mode",
 	callback = function()
 		vim.cmd("startinsert")
+		-- require("Drkknght.core.userFunctions").get_winbar("local")
 	end,
 })

@@ -1,5 +1,4 @@
 -- setup fzf-lua
-
 local actions = require("fzf-lua.actions")
 require("fzf-lua").setup({
 	global_resume = true, -- enable global `resume`?
@@ -7,33 +6,34 @@ require("fzf-lua").setup({
 	-- `<any_function>.({ gl ... })`
 	global_resume_query = true, -- include typed query in `resume`?
 	winopts = {
-		-- split         = "belowright new",-- open in a split instead?
+		-- split = "belowright new", -- open in a split instead?
 		-- "belowright new"  : split below
 		-- "aboveleft new"   : split above
 		-- "belowright vnew" : split right
 		-- "aboveleft vnew   : split left
 		-- Only valid when using a float window
 		-- (i.e. when 'split' is not defined)
-		height = 0.85, -- window height
-		width = 0.80, -- window width
-		row = 0.35, -- window row position (0=top, 1=bottom)
-		col = 0.50, -- window col position (0=left, 1=right)
+		height = 0.6,
+		width = 1, -- window width
+		row = 1, -- window row position (0=top, 1=bottom)
+		col = 1, -- window col position (0=left, 1=right)
 		-- border argument passthrough to nvim_open_win(), also used
 		-- to manually draw the border characters around the preview
 		-- window, can be set to 'false' to remove all borders or to
 		-- 'none', 'single', 'double' or 'rounded' (default)
-		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+		-- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+		border = "none",
 		fullscreen = false, -- start fullscreen?
-		hl = {
-			normal = "Normal", -- window normal color (fg+bg)
-			border = "Normal", -- border color (try 'FloatBorder')
-			-- Only valid with the builtin previewer:
-			cursor = "Cursor", -- cursor highlight (grep/LSP matches)
-			cursorline = "CursorLine", -- cursor line
-			title = "file", -- preview border title (file/buffer)
-			-- scrollbar_f = 'PmenuThumb',    -- scrollbar "full" section highlight
-			-- scrollbar_e = 'PmenuSbar',     -- scrollbar "empty" section highlight
-		},
+		-- hl = {
+		-- 	normal = "Normal", -- window normal color (fg+bg)
+		-- 	border = "Normal", -- border color (try 'FloatBorder')
+		-- 	-- Only valid with the builtin previewer:
+		-- 	cursor = "Cursor", -- cursor highlight (grep/LSP matches)
+		-- 	cursorline = "CursorLine", -- cursor line
+		-- 	title = "buffer", -- preview border title (file/buffer)
+		-- 	-- scrollbar_f = 'PmenuThumb',    -- scrollbar "full" section highlight
+		-- 	-- scrollbar_e = 'PmenuSbar',     -- scrollbar "empty" section highlight
+		-- },
 		preview = {
 			-- default     = 'bat',           -- override the default previewer?
 			-- default uses the 'builtin' previewer
@@ -73,6 +73,7 @@ require("fzf-lua").setup({
 			-- can be used to add custom fzf-lua mappings, e.g:
 			--   vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", "<Down>",
 			--     { silent = true, noremap = true })
+			-- vim.cmd("wincmd 5+")
 		end,
 	},
 
@@ -144,6 +145,14 @@ require("fzf-lua").setup({
 		["--prompt"] = " ",
 		["--info"] = "default",
 		["--preview-window"] = "size:50%",
+		["--color"] = "border:-1",
+		["--color"] = "gutter:-1,pointer:-1,border:-1,bg+:#273842",
+		["--pointer"] = "",
+		["--border"] = "top",
+		["--info"] = "inline-right",
+		["--no-separator"] = "",
+		["--no-bold"] = "",
+		["--cycle"] = "",
 	},
 	previewers = {
 		cat = {
@@ -181,7 +190,7 @@ require("fzf-lua").setup({
 		-- (name from 'previewers' table)
 		-- set to 'false' to disable
 		-- prompt            = 'Files❯ ',
-		prompt = " ",
+		prompt = "  ",
 		multiprocess = true, -- run command in a separate process
 		git_icons = true, -- show git icons?
 		file_icons = true, -- show file icons?
@@ -191,11 +200,13 @@ require("fzf-lua").setup({
 		-- default options are controlled by 'fd|rg|find|_opts'
 		-- NOTE: 'find -printf' requires GNU find
 		-- cmd            = "find . -type f -printf '%P\n'",
+		cwd_prompt = false,
+		cwd_header = false,
 
-		cmd = "fdfind --type f -H --follow --exclude .git --exclude .config --exclude .wine",
+		cmd = "fdfind --type f -H --exclude .git --exclude .config --exclude .wine",
 		-- find_opts         = [[-type f -not -path '*/\.git/*' -printf '%P\n']],
 		rg_opts = "--color=never --files --hidden --follow -g '!.git'",
-		fdfind_opts = "--color=never --type f --hidden --follow --exclude .git .config .mozilla .wine",
+		fdfind_opts = "--color=never --type f --hidden --exclude .git .config .mozilla .wine",
 		-- find_opts         = [[-type f -not -path '*/\.git/*' -printf '%P\n']],
 		-- rg_opts           = "--color=never --files --hidden --follow -g '!.git'",
 		-- fd_opts           = "--color=never --type f --hidden --follow --exclude .git",
@@ -203,6 +214,7 @@ require("fzf-lua").setup({
 			-- inherits from 'actions.files', here we can override
 			-- or set bind to 'false' to disable a default action
 			["default"] = actions.file_edit,
+			["ctrl-g"] = "",
 
 			--       ["ctrl-i"]       = "toggle-all",
 			-- custom actions are available too
@@ -277,12 +289,19 @@ require("fzf-lua").setup({
 		},
 	},
 	grep = {
-		prompt = "Rg❯ ",
+		prompt = " ",
 		input_prompt = "Grep For❯ ",
 		multiprocess = true, -- run command in a separate process
 		git_icons = true, -- show git icons?
 		file_icons = true, -- show file icons?
 		color_icons = true, -- colorize file|git icons
+		actions = {
+			-- actions inherit from 'actions.files' and merge
+			-- this action toggles between 'grep' and 'live_grep'
+			["ctrl-g"] = "",
+			-- uncomment to enable '.gitignore' toggle for grep
+			-- ["ctrl-r"]   = { actions.toggle_ignore }
+		},
 		-- executed command priority is 'cmd' (if exists)
 		-- otherwise auto-detect prioritizes `rg` over `grep`
 		-- default options are controlled by 'rg|grep_opts'
@@ -295,17 +314,23 @@ require("fzf-lua").setup({
 		glob_separator = "%s%-%-", -- query separator pattern (lua): ' --'
 	},
 	args = {
-		prompt = "Args❯ ",
+		prompt = " ",
 		files_only = true,
 		-- actions inherit from 'actions.files' and merge
 		actions = { ["ctrl-x"] = actions.arg_del },
 	},
 	oldfiles = {
-		prompt = "History❯ ",
+		prompt = " ",
 		cwd_only = false,
+		fzf_opts = {
+			-- options are sent as `<left>=<right>`
+			-- set to `false` to remove a flag
+			-- set to '' for a non-value flag
+			-- for raw args use `fzf_args` instead
+		},
 	},
 	buffers = {
-		prompt = "Buffers❯ ",
+		prompt = " ",
 		file_icons = true, -- show file icons?
 		color_icons = true, -- colorize file|git icons
 		sort_lastused = true, -- sort buffers() by last used
@@ -320,7 +345,7 @@ require("fzf-lua").setup({
 	},
 	lines = {
 		previewer = "builtin", -- set to 'false' to disable
-		prompt = "Lines❯ ",
+		prompt = " ",
 		show_unlisted = false, -- exclude 'help' buffers
 		no_term_buffers = true, -- exclude 'term' buffers
 		fzf_opts = {
@@ -334,7 +359,7 @@ require("fzf-lua").setup({
 	},
 	blines = {
 		previewer = "builtin", -- set to 'false' to disable
-		prompt = "BLines❯ ",
+		prompt = " ",
 		show_unlisted = true, -- include 'help' buffers
 		no_term_buffers = false, -- include 'term' buffers
 		fzf_opts = {
@@ -346,10 +371,10 @@ require("fzf-lua").setup({
 		-- actions inherit from 'actions.buffers'
 	},
 	colorschemes = {
-		prompt = "Colorschemes❯ ",
+		prompt = " ",
 		live_preview = true, -- apply the colorscheme on preview?
 		actions = { ["default"] = actions.colorscheme },
-		winopts = { height = 0.55, width = 0.30 },
+		winopts = { height = 0.53, width = 1 },
 		post_reset_cb = function()
 			-- reset statusline highlights after
 			-- a live_preview of the colorscheme
@@ -361,7 +386,7 @@ require("fzf-lua").setup({
 		git_icons = true,
 	},
 	lsp = {
-		prompt_postfix = "❯ ", -- will be appended to the LSP label
+		prompt_postfix = " ", -- will be appended to the LSP label
 		-- to override use 'prompt' instead
 		cwd_only = false, -- LSP/diagnostics for cwd only?
 		async_or_timeout = 5000, -- timeout(ms) or 'true' for async calls

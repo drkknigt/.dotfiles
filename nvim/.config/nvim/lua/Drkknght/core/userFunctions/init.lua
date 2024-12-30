@@ -132,32 +132,41 @@ end
 
 -- search files in dotfiles
 M.search_dotfiles = function()
-	require("telescope.builtin").find_files({
+	require("telescope.builtin").find_files(require("telescope.themes").get_ivy({
 		file_ignore_patterns = { "%.git", "node_modules/.*", "BraveSoftware/" },
-		prompt_title = "<--DOTFILES-->",
+		layout_config = {
+			height = 0.6,
+		},
+		prompt_title = "Dotfiles",
 		search_dirs = { "~/.dotfiles", "~/.cache/tmux" },
 		hidden = true,
-	})
+	}))
 end
 
 -- search files in stdpath for plugins
 M.search_plugins = function()
-	require("telescope.builtin").find_files({
+	require("telescope.builtin").find_files(require("telescope.themes").get_ivy({
 		file_ignore_patterns = { "%.git", "node_modules/.*", "BraveSoftware/" },
+		layout_config = {
+			height = 0.6,
+		},
 		cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy"),
-		prompt_title = "<--PLUGINS-->",
+		prompt_title = "Search Plugins",
 		hidden = true,
-	})
+	}))
 end
 
 -- search files in arch and mint ansible bootstrap
 M.search_ansible = function()
-	require("telescope.builtin").find_files({
+	require("telescope.builtin").find_files(require("telescope.themes").get_ivy({
 		file_ignore_patterns = { "%.git" },
-		prompt_title = "<--Arch-Mint-ansible-->",
+		layout_config = {
+			height = 0.6,
+		},
+		prompt_title = "Arch-Mint-ansible",
 		search_dirs = { "~/.ansible_sync", "~/arch-pull" },
 		hidden = true,
-	})
+	}))
 end
 
 -- make backup of lazy snapshots
@@ -180,16 +189,20 @@ local back_up_lazy = function(prompt_bufnr)
 end
 
 M.backup_lazy = function()
-	require("telescope.builtin").find_files({
+	require("telescope.builtin").find_files(require("telescope.themes").get_ivy({
+		prompt_title = "Lazy Snapshots",
 		attach_mappings = function(_, map)
 			map("n", "<cr>", back_up_lazy)
 			map("i", "<cr>", back_up_lazy)
 			return true
 		end,
 		search_dirs = { "~/.dotfiles/nvim/.config/nvim/snapshots" },
+		layout_config = {
+			height = 0.6,
+		},
 		path_display = { "tail" },
 		wrap_results = true,
-	})
+	}))
 end
 
 --- open oil via telescope in choosen directory
@@ -202,22 +215,29 @@ local function open_oil_telescope(prompt_bufnr)
 end
 
 M.open_dir_telescope = function()
-	require("telescope.builtin").find_files({
+	require("telescope.builtin").find_files(require("telescope.themes").get_ivy({
+		prompt_title = "Goto Directory",
 		attach_mappings = function(_, map)
 			map("n", "<cr>", open_oil_telescope)
 			map("i", "<cr>", open_oil_telescope)
 			return true
 		end,
 		search_dirs = { "$HOME" },
+		layout_config = {
+			height = 0.6,
+		},
 		wrap_results = true,
 		find_command = { "fd", "--type", "d", "--hidden", "--max-depth", "10" },
-	})
+	}))
 end
 
 -- search for dotfiles
 M.open_dotfiles_fzf = function()
 	require("fzf-lua").fzf_exec("fd . ~/.dotfiles ~/.cache/tmux/ -H -t f", {
-		prompt = "search dotfiles: ",
+		prompt = "  ",
+		fzf_opts = {
+			["--border-label"] = " Dotfiles ",
+		},
 		actions = {
 			-- Use fzf-lua builtin actions or your own handler
 			["default"] = require("fzf-lua").actions.file_edit,
@@ -231,7 +251,10 @@ end
 -- search for arch-pull and ansible_sync
 M.open_ansible_fzf = function()
 	require("fzf-lua").fzf_exec("fd . ~/arch-pull ~/.ansible_sync -H -t f", {
-		prompt = "search ansible: ",
+		prompt = "  ",
+		fzf_opts = {
+			["--border-label"] = " Arch-Mint-ansible ",
+		},
 		actions = {
 			-- Use fzf-lua builtin actions or your own handler
 			["default"] = require("fzf-lua").actions.file_edit,
@@ -245,7 +268,10 @@ end
 M.open_plugins_fzf = function()
 	local cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")
 	require("fzf-lua").fzf_exec("fd . " .. cwd .. " -t d -H -d 11", {
-		prompt = "search plugins: ",
+		prompt = "  ",
+		fzf_opts = {
+			["--border-label"] = " Search Plugins ",
+		},
 		actions = {
 			-- Use fzf-lua builtin actions or your own handler
 			["default"] = require("fzf-lua").actions.file_edit,
@@ -259,7 +285,10 @@ end
 -- open oil via fzf lua in choosen directory
 M.open_dir_fzf = function()
 	require("fzf-lua").fzf_exec("fd . ~ -t d -H -d 11", {
-		prompt = "goto directory: ",
+		prompt = "  ",
+		fzf_opts = {
+			["--border-label"] = " Goto Directory ",
+		},
 		actions = {
 			-- Use fzf-lua builtin actions or your own handler
 			["default"] = function(selected)
@@ -269,6 +298,28 @@ M.open_dir_fzf = function()
 			["ctrl-y"] = function(selected, opts)
 				vim.cmd("e " .. selected[1])
 				vim.cmd("cd " .. selected[1])
+			end,
+		},
+	})
+end
+
+M.fzf_search_files = function(dir)
+	local current_dir = vim.loop.cwd()
+	local label = " find-files "
+	if dir == "Home" then
+		current_dir = "~"
+		label = " find-files-home "
+	end
+	require("fzf-lua").fzf_exec("fd . " .. current_dir .. " -t f -H -a", {
+		prompt = "  ",
+		fzf_opts = {
+			["--border-label"] = label,
+		},
+		actions = {
+			-- Use fzf-lua builtin actions or your own handler
+			["default"] = function(selected)
+				vim.cmd("e " .. selected[1])
+				-- vim.cmd("cd " .. selected[1])
 			end,
 		},
 	})
@@ -394,10 +445,13 @@ M.delete_buffers_telescope = function()
 	local actions_state = require("telescope.actions.state")
 	local actions = require("telescope.actions")
 	local action_state = require("telescope.actions.state")
-	require("telescope.builtin").buffers({
+	require("telescope.builtin").buffers(require("telescope.themes").get_ivy({
 		sort_mru = true,
-		layout_strategy = "vertical",
-		layout_config = { width = 0.4, height = 0.5, anchor = "SE" },
+		layout_config = {
+			width = 1,
+			height = 0.6,
+			anchor = "SE",
+		},
 		attach_mappings = function(prompt_bufnr, map)
 			local delete_buf = function()
 				local current_picker = action_state.get_current_picker(prompt_bufnr)
@@ -412,7 +466,19 @@ M.delete_buffers_telescope = function()
 
 			return true
 		end,
-	})
+	}))
+end
+
+--- make winbar
+M.get_winbar = function(global)
+	if global == "global" then
+		return ": %F   󱕱  %{%v:lua.require('Drkknght.core.userFunctions').buffer_number()%} 󰉻 Total buffers:%{%v:lua.require('Drkknght.core.userFunctions').total_buffers()%}"
+	elseif global == "status" then
+		return "%{%v:lua.require('Drkknght.core.statusline').current()%}"
+	else
+		local string_value = " "
+		vim.api.nvim_set_option_value("winbar", string_value, { scope = "local" })
+	end
 end
 
 -- return functions

@@ -2,6 +2,8 @@
 
 local api = vim.api
 
+local sign_define = vim.fn.sign_define
+
 vim.g.gruvbox_baby_telescope_theme = 1
 
 -- Enable transparent mode
@@ -88,3 +90,10 @@ api.nvim_set_hl(0, "GruvboxYellowSign", { fg = "#fabb2f", bg = "None" })
 api.nvim_set_hl(0, "GruvboxRedSign", { fg = "#fb4934", bg = "None" })
 api.nvim_set_hl(0, "GruvboxAquaSign", { fg = "#8ec07c", bg = "None" })
 api.nvim_set_hl(0, "GruvboxBlueSign", { fg = "#83a598", bg = "None" })
+
+-- set signs for telescope Diagnostitcs
+
+sign_define("DiagnosticSignError", { text = "✖", texthl = "DiagnosticSignError", numhl = "", linehl = "", icon = "" })
+sign_define("DiagnosticSignWarn", { text = "☢", texthl = "DiagnosticSignWarn", numhl = "", linehl = "", icon = "" })
+sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo", numhl = "", linehl = "", icon = "" })
+sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint", numhl = "", linehl = "", icon = "" })

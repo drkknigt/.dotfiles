@@ -17,29 +17,28 @@ require("telescope").setup({
 			n = {
 				["<c-o>"] = action_layout.toggle_preview,
 				["<c-e>"] = actions.close,
-				["<c-w>"] = actions.select_all,
+				["<c-l>"] = actions.select_all,
 				["<c-q>"] = actions.drop_all,
 				["<c-j>"] = actions.toggle_selection + actions.move_selection_next,
 				["<c-k>"] = actions.toggle_selection + actions.move_selection_previous,
 				["<c-i>"] = actions.toggle_selection,
-				["<c-d>"] = actions.delete_buffer,
 			},
 			i = {
 				["<c-j>"] = actions.toggle_selection + actions.move_selection_next,
 				["<c-k>"] = actions.toggle_selection + actions.move_selection_previous,
 				["<c-o>"] = action_layout.toggle_preview,
-				["<c-w>"] = actions.select_all,
+				["<c-l>"] = actions.select_all,
 				["<c-q>"] = actions.drop_all,
 				["<c-e>"] = actions.close,
 				["<C-s>"] = actions.smart_send_to_qflist,
 				["<c-i>"] = actions.toggle_selection,
 				["<C-f>"] = actions.smart_send_to_qflist + actions.open_qflist,
-				["<c-d>"] = actions.delete_buffer,
 			},
 		},
 		layout_config = {
 			-- width = 0.75,
-			prompt_position = "bottom",
+			height = 0.6,
+			prompt_position = "top",
 			preview_cutoff = 80,
 			-- horizontal = {mirror = false,width=0.7},
 			vertical = { mirror = true, width = 0.8 },
@@ -76,15 +75,6 @@ require("telescope").setup({
 		-- file_sorter = require("telescope.sorters").get_fzf_sorter,
 		-- file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
 	},
-	pickers = {
-		find_files = {
-			-- hidden = true,
-			find_command = { "rg", "--files", "--smart-case", "--hidden" },
-		},
-		-- file_browser = {
-		--     -- hidden = true,
-		-- }
-	},
 	extensions = {
 		fzf = {
 			fuzzy = true, -- false will only do exact matching
@@ -97,9 +87,7 @@ require("telescope").setup({
 			require("telescope.themes").get_cursor({}),
 		},
 		file_browser = {
-			-- theme = "ivy",
 			depth = false,
-			-- cwd = "$HOME",
 			files = false,
 			grouped = true,
 			mappings = {
@@ -149,18 +137,6 @@ require("telescope").load_extension("ui-select")
 
 -- telescope browser bookmarks
 require("browser_bookmarks").setup({
-	-- override default configuration values
 	selected_browser = "brave",
 	url_open_command = "xdg-open >file.txt",
 })
-
--- require('telescope').load_extension('harpoon')
-
--- custom pickers and finders for dotfiles, lazy etc
-
--- local pickers = require("telescope.pickers")
--- local finders = require("telescope.finders")
--- local conf = require("telescope.config").values
--- local command = vim.api.nvim_command
--- local actions = require("telescope.actions")
--- local action_state = require("telescope.actions.state")
