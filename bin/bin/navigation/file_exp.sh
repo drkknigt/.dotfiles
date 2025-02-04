@@ -9,9 +9,6 @@
 # 'f' for file search and 'd' for directory search.
 search_type=$1
 
-# Directories to search within
-search_dirs="$HOME /run/media/ /media"
-
 # Function to search for files using fdfind and fzf
 search_files() {
 
@@ -56,9 +53,11 @@ file_format=$(file -b --mime-type -L "$file" | cut -d "/" -f2)
 # Open the file based on its type
 case $file_type in
     "inode")
-        if [ "$file_format" = "directory" ]; then
-            setsid -f nemo "$file" > /dev/null
-        fi
+        case $file_format in 
+            "directory") setsid -f nemo "$file" > /dev/null;;
+            "x-empty") setsid -f alacritty -e nvim "$file" ;;
+            *) setsid -f xdg-open "$file";;
+        esac
         ;;
     "text")
         if [ "$file_format" = "html" ]; then
@@ -66,9 +65,6 @@ case $file_type in
             read open_in_browser
             if [ "$open_in_browser" = "yes" ]; then
                 brave "$file"
-                exit
-            else
-                setsid -f alacritty -e nvim "$file"
                 exit
             fi
         fi
@@ -78,7 +74,7 @@ case $file_type in
         setsid -f imv "$file"
         ;;
     "video" | "audio")
-        setsid -f mpv "$file"
+        setsid -f mpv --force-window "$file" &> /dev/null
         ;;
     "application")
         if echo "$file_format" | grep -Pi "pdf|epub" &>/dev/null; then

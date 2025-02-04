@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-# This script is used to change directory in a new window pane using fzf
+# This script is used to change directory in a new window pane using fzf inside tmux and is invoked by keybind in tmux
 
 is_active=$(echo $TMUX)
 

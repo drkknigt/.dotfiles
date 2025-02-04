@@ -20,8 +20,12 @@ HISTFILE="$HOME/.zsh_history"
 HISTSIZE=500000
 SAVEHIST=500000
 setopt appendhistory
-setopt histignorespace           # skip cmds w/ leading space from history
-export HSTR_CONFIG=hicolor       # get more colors
+
+# skip cmds w/ leading space from history
+setopt histignorespace           
+
+# get more colors
+export HSTR_CONFIG=hicolor       
 
 #---------------------------------- completiona and suggestion settings ----------------------#
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#747474,bold"

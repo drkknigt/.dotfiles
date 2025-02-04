@@ -1,4 +1,6 @@
-# change directory inside shell
+# This script adds various helper function for user in shell and is sourced by .zshrc
+
+# change directory inside shell using fzf
 
 cdd(){
     direc=$(fdfind -H --type d . "$HOME" |  fzf --cycle --prompt='change directory: ' --bind 'ctrl-o:toggle-preview' --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" )
@@ -7,7 +9,7 @@ cdd(){
         fi
 }
 
-# jump to file location in shell
+# jump to file location in shell using shell
 jf(){
     direc=$(fdfind -H --type f . "$HOME" |  fzf --cycle --prompt='change directory: ' --bind 'ctrl-o:toggle-preview' --preview="preview_fzf.sh {}" )
     if [  -n "$direc" ] ; then
@@ -17,11 +19,17 @@ jf(){
 
 }
 
-# update repo for arch linux 
+# make the backup of pacman mirrolist and update repo with reflector and then update the system 
 
 update_repo(){
-    if [ "$1" = "-r" ]; then
-        selected_backup=$(find /etc/pacman.d/ -maxdepth 1 -type f -iname "mirrorlist.bkp*" | fzf --prompt="select backup: ")
+    # restore the backedup mirrorlist
+    if [ "$1" = "-restore" ]; then
+        if [ ! -z "$( ls -A ~/.cache/update_repo)" ]; then
+            selected_backup=$(find $HOME/.cache/update_repo -maxdepth 1 -type f -iname "mirrorlist.bkp*" | fzf --prompt="select backup: ")
+        else
+            echo "no backups found"
+            kill -INT $$
+        fi
         if [ -z "$selected_backup" ]; then
             echo "exiting no file selected"
             kill -INT $$
@@ -29,23 +37,23 @@ update_repo(){
         echo "copied $selected_backup as mirrorlist"
         sudo rm /etc/pacman.d/mirrorlist
         sudo mv "$selected_backup" /etc/pacman.d/mirrorlist
+
+    # update with reflector and update system
     else
-    mkdir -p ~/.cache/update_repo
-    current_os=$(cat /etc/os-release | grep -Pi '^name' | cut -d "=" -f2)
-    if [ "$current_os" = '"Arch Linux"' ]; then
-        country_selected=$(reflector --list-countries | fzf --prompt="select country: " | cut -d" " -f1)
-        if [ -z "$country_selected" ]; then
-            echo "no country selected, exiting"
-            kill -INT $$
+        mkdir -p ~/.cache/update_repo
+        if grep -i 'arch linux' /etc/os-release &> /dev/null; then
+            country_selected=$(reflector --list-countries | fzf --prompt="select country: " | cut -d" " -f1)
+            if [ -z "$country_selected" ]; then
+                echo "no country selected, exiting"
+                kill -INT $$
+            fi
+            cp /etc/pacman.d/mirrorlist ~/.cache/update_repo/mirrorlist.bkp-"$(date +'%F_T_%H:%M:%S')"
+            echo "Arch: mirrorlist copied as mirrorlist.bkp"
+            sudo reflector --verbose --latest 12 --protocol https --country "$country_selected" --save /etc/pacman.d/mirrorlist
+            sudo pacman -Syyu
+        else
+            echo "not on arch linux"
         fi
-    sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bkp-"$(date +'%F_T_%H:%M:%S')"
-    cp /etc/pacman.d/mirrorlist ~/.cache/update_repo/mirrorlist.bkp-"$(date +'%F_T_%H:%M:%S')"
-    echo "Arch: mirrorlist copied as mirrorlist.bkp"
-    sudo reflector --verbose --latest 12 --protocol https --country "$country_selected" --save /etc/pacman.d/mirrorlist
-    sudo pacman -Syyu
-elif [ "$current_os" = '"Linux Mint"' ]; then
-    echo "not on arch linux"
-    fi
     fi
 }
 

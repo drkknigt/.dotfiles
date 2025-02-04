@@ -9,7 +9,7 @@ mkdir "$HOME/.cache/fzf/$dir_name" -p
 
 # set unique name for each cache file
 CACHE="$HOME/.cache/fzf/$dir_name/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' \
-	-- "$(readlink -f "$1")" | sha256sum | awk '{print $1}'))"
+	-- "$(readlink -f "$1")" | sha256sum | awk '{print $1}')"
 
 # clear image from the terminal when script exits and remove fzf cache
 clear_image() {

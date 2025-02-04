@@ -1,5 +1,22 @@
 --------------------------------------------- lsp-config ----------------------------------------
 
+servers = {
+	"ansiblels",
+	"bashls",
+	"clangd",
+	"cssls",
+	"emmet_ls",
+	"gopls",
+	"html",
+	"jsonls",
+	"lua_ls",
+	"pyright",
+	"ts_ls",
+	"vimls",
+	"yamlls",
+	"zls",
+}
+
 -- setup mason
 require("Drkknght.Plugins.lsp-config.mason").mason_setup(servers)
 

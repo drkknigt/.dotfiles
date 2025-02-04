@@ -24,11 +24,7 @@ fi
 
 # select protocol and set corresponding directory
 protocol=$(echo "udp\ntcp" | fzf --prompt="select protocol: " --cycle) || exit
-if [ "$protocol" = "udp" ]; then
-    dir="$HOME/.config/openvpn/config/$protocol"
-else
-    dir="$HOME/.config/openvpn/config/$protocol"
-fi
+dir="$HOME/.config/openvpn/config/$protocol"
 
 # Use fd to find and select a config file for OpenVPN
 config_file=$(fd . $dir -a -H -t f | fzf --prompt='Select config file: ' --cycle --delimiter / --with-nth -1) || exit

@@ -1,5 +1,6 @@
-# source bindings for fzf in zsh
+# this script is sourced by .zshrc and it adds completions, highlights, fzf bindings and sets pyenv 
 
+# source fzf script to add builtin fzf bindings
 if [ -f ~/.fzf/shell/key-bindings.zsh ]; then
     source ~/.fzf/shell/key-bindings.zsh
 else 

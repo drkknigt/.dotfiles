@@ -1,6 +1,10 @@
 #!/usr/bin/env zsh
 
 # This script creates a new tmux session  either in cur dir or any choosen dir via fzf or from recent created sessions
+# argumetns :
+    # 1: recently created 
+    # 0: create a new session in any directory from home,
+    # 3: create session in current pwd
 
 # make cache file 
 recent_flag=$1
@@ -8,19 +12,22 @@ mkdir ~/.cache/tmux -p
 touch ~/.cache/tmux/recent_dirs
 
 
-# create tmux sessions with 1: recently created , 0: create a new session in any directory from home, 3: create session in current pwd
 
+# create a new session in any directory searching from home directory with depth of 6
 if [ "$recent_flag" = "0" ] ; then
     
 selected_directory=$(find ~ -mindepth 1 -maxdepth 6 -type d | fzf --cycle --prompt="make-session: "  --bind "ctrl-f:preview-down,ctrl-u:preview-up" --bind "ctrl-o:toggle-preview" --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" --preview-window hidden)
 
 
+# create session from recently created sessions in ~/.cache/tmux/recent_dirs
 elif [ "$recent_flag" = "1" ] ; then
 
     
 selected_directory=$(cat ~/.cache/tmux/recent_dirs | sort -k2,2 -n -r |  fzf --cycle --with-nth -2 --prompt="make-session: "  --bind "ctrl-f:preview-down,ctrl-u:preview-up" --bind "ctrl-o:toggle-preview" --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" --preview-window hidden)
 recent_counter=$(echo $selected_directory | awk '{ print $2 }')
 selected_directory=$(echo $selected_directory | awk '{ print $1 }')
+
+# create session in current directory
 
 elif [ "$recent_flag" = "3" ] ; then
     selected_directory=$(pwd)
@@ -45,7 +52,7 @@ then
     exit 0
 fi
 
-# check if tmux already as session you are about to create
+# check if tmux already has session you are about to create
 tmux has -t "$session_name" > /dev/null
 if [ "0" = "$?" ]; then echo "session with this directory already running"; exit 0 ; fi
 
@@ -65,7 +72,7 @@ else
 fi
 
 
-# create session if tmux is not running
+# create session with 2 windows with nvim in 1st window and shell in 2nd , if tmux is not running 
 
 if [ -z "$TMUX" ]; then
     tmux new -s $session_name -c $selected_directory -n Main -d
@@ -78,7 +85,7 @@ if [ -z "$TMUX" ]; then
     tmux attach -t $session_name
 else
 
-# create session if tmux is running
+# create session with 2 windows with nvim in 1st window and shell in 2nd and attach to it
     tmux new -s $session_name -c $selected_directory -n Main -d
     tmux setenv PROJECT_ROOT $selected_directory
     tmux new-window -n Terminal -t $session_name -c $selected_directory

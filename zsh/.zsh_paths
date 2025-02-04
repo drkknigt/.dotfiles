@@ -1,4 +1,5 @@
-# export paths
+# this script is called called by .zprofile to set the paths for the user
+
 export PATH=$HOME/usr/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=/usr/local/go/bin:$PATH

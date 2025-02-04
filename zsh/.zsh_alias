@@ -1,3 +1,5 @@
+# this zsh script is sourced by .zshrc and it sets all the alias for the system
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -23,8 +25,7 @@ alias lf='lfrun'
 alias hh=hstr                    # hh to be alias for hstr
 alias xdg-open='xdg-open 2>/dev/null'
 alias wifi='nmcli radio wifi'
-alias vpn='protonvpn-cli '
-alias ch='tmux_cht.sh'
+alias vpn='vpn.sh'
 
 
 # Add an "alert" alias for long running commands.  Use like so:

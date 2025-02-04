@@ -1,39 +1,75 @@
-# bindings for zsh
-# enable vi mode
+# this script sets keybinds for zsh and is sourced by .zshrc
+
+# enable vi mode for zsh shell
 bindkey -v
 
-# bindings for tmux creation
+# bindings for tmux 
+
+# create a new tmux session in selected directory
 bindkey -s '^e ' 'tmux_create.sh 0^M'
+
+# create a new tmux session from recently created sessions
 bindkey -s '^er' 'tmux_create.sh 1^M'
+
+# create a project structure in tmux and make sessions for the project
 bindkey -s '^e;' 'tmux_new_project.sh^M'
+
+# create session in current directory
 bindkey -s '^\\s' 'tmux_create.sh 3^M'
+
+# kill selected tmux session
 bindkey -s '^e\\' 'tmux_kill.sh^M'
+
+# switch to selected tmux session 
 bindkey -s '^ey' 'tmux_session_switch.sh^M'
 
-
-# start lazygit
+# launch lazygit
 bindkey -s '^g' 'lazygit -ucf ~/.config/lazygit/config.yml^M'
-# start nvim
+
+# launch nvim
 bindkey -s '^v' 'nvim^M'
 
 # navigate effiecently in shell
+
+# binding to search for files in dotfiles,.ansible_sync,arch-pull
 bindkey -s '^\\d' '~/bin/navigation/navigation.sh 0^M'
+
+# binding to search files from home directory
 bindkey -s '^\\h' '~/bin/navigation/navigation.sh 1^M'
+
+# binding to search files from current directory
 bindkey -s '^\\f' '~/bin/navigation/navigation.sh 2^M'
+
+# launch lf file manager
 bindkey -s "^e'" "file_manager.sh 0^M"
 
-# go back in history
+# go back in history of shell 
 bindkey "^P" up-line-or-search
 
-# completion by fzf
+
+# go forward in history of shell
+bindkey "^N" down-line-or-search
+
+# completion of paths by fzf
 bindkey "^T" fzf-change-widget
 
-# go forward in history
-bindkey "^N" down-line-or-search
+# goto end of line in shell
 bindkey "^]" end-of-line
+
+# goto beginning of line in shell
 bindkey "^a" beginning-of-line
+
+# go back word in shell
 bindkey "^b" backward-word
+
+# go forward a word in shell
 bindkey "^f" forward-word
+
+# go backward a word in shell
 bindkey "^j" backward-char
+
+# go forward a word in shell
 bindkey "^k" forward-char
+
+# cycle backwards through completion menu
 bindkey '^[[Z' reverse-menu-complete

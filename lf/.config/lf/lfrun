@@ -24,7 +24,7 @@ cleanup() {
     # Remove the temporary file used to store FZF (fuzzy finder) selections.
     rm $FILE_TO_HOLD_FZF_SELECTS
 
-    # If the environment variable `LF_RUNNING` is set, switch back to the previous i3 workspace.
+    # If the environment variable `LF_RUNNING` is set, switch back to the previous i3 workspace. This is set by file_manager.sh script
     if [ -n "$LF_RUNNING" ]; then
         i3-msg workspace back_and_forth
     fi

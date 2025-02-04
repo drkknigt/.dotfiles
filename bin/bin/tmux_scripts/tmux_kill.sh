@@ -12,14 +12,16 @@ fi
 
 # set vars for tmux sessions
 selected_session=$(tmux ls |  cut -d ":" -f1  | fzf --cycle --prompt="select session to delete: ")
-current_sessions=$(tmux ls |  cut -d ":" -f1 )
-total_sessions=$(tmux ls | wc -l )
-active_session=$(tmux ls | grep attached | cut -d ":" -f1 )
 
 # exit if no session is selected to delete
 if [[ -z "$selected_session" ]]; then
     exit
 fi
+
+current_sessions=$(tmux ls |  cut -d ":" -f1 )
+total_sessions=$(tmux ls | wc -l )
+active_session=$(tmux ls | grep attached | cut -d ":" -f1 )
+
 
 #  kill selected session
 if [[ "$selected_session" = "$active_session" ]]; then
@@ -39,7 +41,3 @@ if [[ "$selected_session" = "$active_session" ]]; then
 else
         tmux kill-session -t "$selected_session"
 fi
-
-    
-    
-

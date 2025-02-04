@@ -6,7 +6,7 @@ function unarchive(){
 
   while IFS= read -r file; do
     file_info=$(file -b --mime-type -L "$file")
-    file_name=$(printf "%s\n" "$(readlink -f "$file")" | awk '{print tolower($0)}')
+    file_name=$(printf "%s\n" "$(readlink -f "$file")")
     output_dir="${file_name}-extracted"
     mkdir -p "$output_dir"
 
@@ -16,6 +16,7 @@ function unarchive(){
       "application/x-bzip2") tar -xjvf "$file_name" -C "$output_dir" ;;
       "application/x-tar") tar -xvf "$file_name" -C "$output_dir" ;;
       "application/vnd.rar") unrar x "$file_name" "$output_dir" ;;
+      "application/x-7z-compressed") 7za x "$file"  -o"$output_dir" ;;
       *) echo "Unsupported format: $file_info" ;;
     esac
 
@@ -117,7 +118,7 @@ function get_size(){
 function mk_dir_file(){
    printf "name: "
    read ans
-   ans=$(echo $ans | tr " " "\n" )
+   ans=$(echo $ans | tr ":" "\n" )
    while IFS= read -r file; do
     if [ "${file[-1]}" = "/" ]; then
         mkdir -p "$file"
@@ -192,12 +193,13 @@ function save_browser_enter(){
         if [ "$save" = "1" ]; then
             name=$(basename "$(echo "$path_name" )")
             touch "$name"
-            lf -remote "send $id :select '$name'"
+            name=$(echo $name | sed 's/\s/\\\0/g')
+            lf -remote "send $id :select $name"
             notify-send "lf : Downloading $name"
             echo $(pwd) > $last_save_cache
-            lf -remote "send $id :open"
+        else
+            echo $(pwd) > $last_open_cache
         fi
-        echo $(pwd) > $last_open_cache
         lf -remote "send $id :open"
     fi
     lf -remote "send $id :open"
@@ -296,8 +298,8 @@ function search_reg() {
         counter=$((counter == 1 ? total_lines : counter - 1))
     fi
 
-    item=$(sed -n "${counter}p" "$FILE_TO_HOLD_REGEX_MATCHES")
-    lf -remote "send $id :select '$item'"
+    item=$(sed -n "${counter}p" "$FILE_TO_HOLD_REGEX_MATCHES" | sed 's/\s/\\\0/g')
+    lf -remote "send $id :select $item"
     lf -remote "send $id %echo $counter:$total_lines"
     echo "$counter" > "$FILE_TO_HOLD_COUNTER"
 }
@@ -333,7 +335,7 @@ function regex_select() {
     echo "$result" | sort -V > "$FILE_TO_HOLD_REGEX_MATCHES"
     echo 0 > "$FILE_TO_HOLD_COUNTER"
 
-    if [[ "$type_of_search" == "f" || "$type_of_search" == "t" ]]; then
+    if [[ "$type_of_search" == "t" ]]; then
         new=""
         while IFS= read -r line; do
             new+=" \"$line\""

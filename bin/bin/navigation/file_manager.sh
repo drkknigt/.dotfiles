@@ -1,8 +1,9 @@
 #!/usr/bin/env zsh
 
-# This script is used to open lf file manager for wm and tmux or from terminal
+# This script is used to open lf file manager in wm or in tmux or in terminal
 
-# variable that distinguishes lf running as browser file picker or as simple file manager
+# This env variable distinguishes if lf is running as browser file picker or as simple file manager , and is used later for functionality in lf
+# Script that starts lf as browser file picker sets the value for browser_run as "running"
 export browser_run=""
 
 # set initial variables
@@ -10,7 +11,10 @@ current_dir_flag=$1
 
 # open lf in window manager as file manager
 run_lf_in_wm() {
+
     alias lf=lfrun
+
+    # this env variable is true only if lf runs from window manager keybind
     export LF_RUNNING="true"
     lfrun "$HOME"
     exit

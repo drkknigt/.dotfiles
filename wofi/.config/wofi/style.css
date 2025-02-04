@@ -1,12 +1,12 @@
-/* Macchiato Blue */
-@define-color accent #8aadf4;
+/* Frappe Blue */
+@define-color accent #8caaee;
 @define-color txt #cad3f5;
-@define-color bg #24273a;
-@define-color bg2 #494d64;
+@define-color bg #303446;
+@define-color bg2 #51576d;
 
  * {
-    font-family: 'CaskaydiaCoveNerdFont Bold', Bold;
-    font-size: 15px;
+    font-family: 'JetBrains Mono Nerd Font', monospace;
+    font-size: 10px;
  }
 
  /* Window */
@@ -32,8 +32,8 @@
 
  /* Inner Box */
  #inner-box {
-    margin: 1px;
-    padding: 5px;
+    margin: 5px;
+    padding: 10px;
     border: none;
     background-color: @bg;
     

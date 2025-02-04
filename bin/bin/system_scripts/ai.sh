@@ -15,18 +15,12 @@ run_local_ai() {
     ollama serve &> /dev/null &
     sleep 1  # Allow the server to initialize
 
-    # Prompt user to select a model
-    local model=$(ollama list | tail +2 | fzf --prompt="Select a offline model: " | awk '{print $1}')
-
-    # exit if no model is selected
-    if [ -z "$model" ]; then
-        exit
-    fi
+    # Prompt user to select a model or exit if no model is selected
+    local model=$(ollama list | tail +2 | fzf --prompt="Select a offline model: " | awk '{print $1}') || exit
 
     # Main interaction loop for local AI
     while true; do
-        echo -n "($1 -> $model) Enter prompt: "
-        read -r prompt
+        vared -p "($1 -> $model) Enter prompt: " -c prompt
         if [ -z "$prompt" ]; then
             echo "No prompt provided. Exiting."
             exit
@@ -35,6 +29,7 @@ run_local_ai() {
         echo -e "($1-> $model) Prompt: $prompt\n" >> ~/ai_output
         stdbuf -oL ollama run "$model" "$prompt" | tee -a ~/ai_output 
         echo -e "\n------------------------------------------------------------------------------------------------------\n" >> ~/ai_output
+        prompt=""
     done
 }
 
@@ -43,15 +38,12 @@ run_remote_ai() {
     local GROQ_API_KEY=$(cat ~/llm_groq)
 
     # Prompt user to select a remote model
-    local model=$(printf "Gemma-7b-It\nLlama3-70b-8192\nLlama3-8b-8192\nMixtral-8x7b-32768\nLlama-3.1-405b-Reasoning\nLlama-3.1-70b-Versatile\nLlama-3.1-8b-Instant" | fzf --prompt="Select a online model: ")
-    if [ -z "$model" ]; then
-        exit
-    fi
+    local model=$(curl -s https://api.groq.com/openai/v1/models  -H "Authorization: Bearer $GROQ_API_KEY" \
+        | jq '.data[].id' | tr -d '"' | fzf --prompt="Select a online model") || exit
 
     # Main interaction loop for remote AI
     while true; do
-        echo -n "($1 -> $model) Enter prompt: "
-        read -r prompt
+        vared -p "($1 -> $model) Enter prompt: " -c prompt
         if [ -z "$prompt" ]; then
             echo "No prompt provided. Exiting."
             exit
@@ -66,6 +58,7 @@ run_remote_ai() {
             jq '.choices[0].message.content' ) | tee -a ~/ai_output | glow -p | cat
         echo -e "\n------------------------------------------------------------------------------------------------------\n" >> ~/ai_output
         echo -e "\n\n"
+        prompt=""
     done
 }
 

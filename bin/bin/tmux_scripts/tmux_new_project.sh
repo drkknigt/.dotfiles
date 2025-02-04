@@ -2,6 +2,7 @@
 
 # This script is used to create a new project inside tmux and then start a tmux session in it
 
+#direcotry to create project in
 selected_directory=$(fdfind . ~ --type d -d 4 -H | fzf --cycle --prompt="choose directory: ")
 
 
@@ -51,7 +52,7 @@ done
 # create a session name for session
 selected_directory="$selected_directory$root_directory"
 
-name_first_part=$(basename $(dirname "$selected_directory"))
+name_first_part=$(basename $(dirname "$selected_directory") | tr "." "_")
 name_second_part=$(basename "$selected_directory" | tr "." "_")
 session_name="${name_first_part}/${name_second_part}"
 

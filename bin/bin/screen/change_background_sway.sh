@@ -5,7 +5,7 @@
 # Function to get monitor name based on input (1 for primary, 2 for secondary)
 get_monitor() {
     local monitor_index=$1
-    swaymsg -t get_outputs | jq -r '.[].name' | sed -n "${monitor_index}p"
+    swaymsg -t get_outputs | jq -r '.[] | select(.active == true).name' | sed -n "${monitor_index}p"
 }
 
 monitor=$(get_monitor $1)

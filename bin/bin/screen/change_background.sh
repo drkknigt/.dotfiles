@@ -39,7 +39,7 @@ if [ -z "$selected_wallpaper" ]; then
     exit 1
 fi
 
-# Save the selected wallpaper to cache
+# Save the selected wallpaper to cache (used by startup wm script: .brightness.sh to set wallpaper at login)
 echo "$selected_wallpaper" > "$HOME/.cache/wallpaper.bg"
 
 # Apply the wallpaper to the appropriate monitor

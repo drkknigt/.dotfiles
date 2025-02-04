@@ -27,7 +27,7 @@ select_monitor() {
 custom_res() {
     resolutions=( "3840x2160" "3440x1440" "2560x1600" "2560x1400" "2048x1536" "2048x1152" "1920x1200" "1920x1080" "1680x1050" "1600x1200" "1600x900" "1536x864" "1440x900" "1366x768" "1360x768" "1280x1020" "1280x800" "1280x720" "1024x768" "800x600" "640x480" "640x360")
 # Resolution selection using fzf
-    resolution_selected=$(printf "%s\n" "${resolutions[@]}" | fzf --prompt="Select resolution: " --cycle)
+    resolution_selected=$(printf "%s\n" "${resolutions[@]}" | fzf --prompt="Select custom resolution: " --cycle)
 # exit if no resolution selected
     if [ -z $resolution_selected ]; then
         exit

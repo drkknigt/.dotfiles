@@ -11,6 +11,7 @@ choosen_wallpaper="$(fdfind '.+\.(jpg|jpeg)$' ~/Pictures | \
 
 # exit if no wallpaper is choosen
 if [ -z "$choosen_wallpaper" ]; then
+    notify-send "Error" "No wallpaper choosen for login screen" --icon=dialog-warning
     exit
 fi
 

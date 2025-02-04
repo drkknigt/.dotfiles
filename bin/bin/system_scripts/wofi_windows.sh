@@ -17,8 +17,8 @@ else
   all_windows=$floating_windows
 fi
 
-# Select window with rofi
-selected=$(echo "$all_windows" | wofi --key_exit=Delete --show dmenu --prompt="open windows: "  | awk '{print $1}')
+# Select window with fzf
+selected=$(echo "$all_windows" | fzf --prompt="select windows: " --cycle | awk '{print $1}')
 
 # Tell sway to focus said window
 swaymsg [con_id="$selected"] focus
