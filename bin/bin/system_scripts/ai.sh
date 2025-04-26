@@ -39,7 +39,7 @@ run_remote_ai() {
 
     # Prompt user to select a remote model
     local model=$(curl -s https://api.groq.com/openai/v1/models  -H "Authorization: Bearer $GROQ_API_KEY" \
-        | jq '.data[].id' | tr -d '"' | fzf --prompt="Select a online model") || exit
+        | jq '.data[].id' | tr -d '"' | fzf --prompt="Select a online model: ") || exit
 
     # Main interaction loop for remote AI
     while true; do

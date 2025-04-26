@@ -1,7 +1,7 @@
 local set = vim.opt -- api to interact with vim options
 local macro = vim.fn -- Invokes |vim-function| or |user-function| {func} with arguments {...}.
 local cmd = vim.cmd -- execute vim commands
-local api = vim.api -- vim api
+local undo_dir = vim.fn.expand("~") .. "/.textedit/nvim/undodir"
 
 set.compatible = false -- disable vi-mode and enable vim-mode
 
@@ -73,7 +73,6 @@ set.sidescrolloff = 8 -- set sidescroffoff to 8
 
 set.undofile = true -- sets undo file
 
-undo_dir = vim.fn.expand("~") .. "/.textedit/nvim/undodir"
 set.undodir = undo_dir -- undo file location
 
 set.colorcolumn = "100" -- set colorcolumn to 100
@@ -110,6 +109,8 @@ set.laststatus = 3 -- neovim specific to get a global statusline
 -- set.statusline = "%{%v:lua.require('core.statusline').current()%}"
 
 set.cpoptions = set.cpoptions + ">" -- A sequence of single character flags.
+
+set.timeoutlen = 100 -- Time in milliseconds to wait for a mapped sequence to complete.
 
 --set.fillchars = {fold='\',vert='\|',eob='\',msgsep='‾'} -- characters to fille the statuslines and vertical separators.
 set.fillchars = {

@@ -23,12 +23,13 @@ api.nvim_set_hl(0, "ColorColumn", { bg = "#ed9f2b" })
 api.nvim_set_hl(0, "Visual", { bg = "#264F78", ctermbg = 242 })
 api.nvim_set_hl(0, "Normal", { bg = "None", fg = "None" })
 api.nvim_set_hl(0, "FloatBorder", { fg = "Orange", bg = "None" })
-api.nvim_set_hl(0, "DiagnosticError", { fg = "#335fcb", ctermfg = 1 })
+api.nvim_set_hl(0, "DiagnosticError", { fg = "#ed9f2b", ctermfg = 1 })
 api.nvim_set_hl(0, "WinSeparator", { fg = "#ffffff", bg = "None" })
 api.nvim_set_hl(0, "LineHighlight", { bg = "darkgray", ctermbg = "darkgray" })
 api.nvim_set_hl(0, "QuickFixLine", { bg = "#b5820c", fg = "Black" })
 api.nvim_set_hl(0, "LineHighlight", { bg = "#264F78", ctermbg = 242 })
 api.nvim_set_hl(0, "Statusline", { bg = "Black", fg = "gray" })
+api.nvim_set_hl(0, "StatusLineTerm", { bg = "Black", fg = "gray" })
 api.nvim_set_hl(0, "LspSignatureActiveParameter", { bg = "green" })
 
 ---------------------------------------------plugins highlights------------------------------------
@@ -55,6 +56,17 @@ api.nvim_set_hl(0, "TelescopePreviewTitle", { bg = "None", fg = "white" })
 -- git signs highlights
 
 api.nvim_set_hl(0, "GitSignsAdd", { fg = "green" })
+api.nvim_set_hl(0, "GitSignsAddLn", { link = "GitSignsAddLn" })
+api.nvim_set_hl(0, "GitSignsAddNr", { link = "GitSignsAddNr" })
+api.nvim_set_hl(0, "GitSignsChangeLn", { link = "GitSignsChangeLn" })
+api.nvim_set_hl(0, "GitSignsChangeNr", { link = "GitSignsChangeNr" })
+api.nvim_set_hl(0, "GitSignsChangedeleteLn", { link = "GitSignsChangedeleteLn" })
+api.nvim_set_hl(0, "GitSignsChangedelelteLn", { link = "GitSignsChangedeleteLn" })
+api.nvim_set_hl(0, "GitSignsChangedelelteNr", { link = "GitSignsChangedeleteNr" })
+api.nvim_set_hl(0, "GitSignsDeleteLn", { link = "GitSignsDeleteLn" })
+api.nvim_set_hl(0, "GitSignsDeleteNr", { link = "GitSignsDeleteNr" })
+api.nvim_set_hl(0, "GitSignsTopdeleteLn", { link = "GitSignsDeleteLn" })
+api.nvim_set_hl(0, "GitSignsTopdeleteNr", { link = "GitSignsDeleteNr" })
 api.nvim_set_hl(0, "GitSignsChange", { fg = "blue" })
 api.nvim_set_hl(0, "GitSignsDelete", { fg = "red" })
 api.nvim_set_hl(0, "GitSignsAddstatus", { fg = "green", bg = "black" })
@@ -91,9 +103,17 @@ api.nvim_set_hl(0, "GruvboxRedSign", { fg = "#fb4934", bg = "None" })
 api.nvim_set_hl(0, "GruvboxAquaSign", { fg = "#8ec07c", bg = "None" })
 api.nvim_set_hl(0, "GruvboxBlueSign", { fg = "#83a598", bg = "None" })
 
--- set signs for telescope Diagnostitcs
 
-sign_define("DiagnosticSignError", { text = "✖", texthl = "DiagnosticSignError", numhl = "", linehl = "", icon = "" })
-sign_define("DiagnosticSignWarn", { text = "☢", texthl = "DiagnosticSignWarn", numhl = "", linehl = "", icon = "" })
-sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo", numhl = "", linehl = "", icon = "" })
-sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint", numhl = "", linehl = "", icon = "" })
+-- highlights for lsp warn, hint , info , error
+
+
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { undercurl = true, sp = "Red" })
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { undercurl = true, sp = "Orange" })
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { undercurl = true, sp = "Blue" })
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { undercurl = true, sp = "Green" })
+
+
+-- blink.cmp highlights
+
+api.nvim_set_hl(0, "PmenuKind", { bg = "None" })
+api.nvim_set_hl(0, "Pmenu", { bg = "None" })

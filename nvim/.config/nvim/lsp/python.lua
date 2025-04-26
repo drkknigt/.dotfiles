@@ -1,6 +1,6 @@
-M = {}
-M.pyright = function(capabilities, on_attach)
-	require("lspconfig").pyright.setup({
+return {
+        cmd = { "pyright-langserver", "--stdio" },
+        filetypes = { "python" },
 		settings = {
 			python = {
 				analysis = {
@@ -14,9 +14,6 @@ M.pyright = function(capabilities, on_attach)
 			},
 		},
 		single_file_support = true,
-		on_attach = on_attach,
-		flags = { debounce_text_changes = 500 },
-		capabilities = capabilities,
-	})
-end
-return M
+	}
+
+

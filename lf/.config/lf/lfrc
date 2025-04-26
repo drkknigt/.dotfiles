@@ -49,7 +49,7 @@ set rulerfmt "%d | %a| %p|  \033[7;31m %m \033[0m|  \033[7;33m %c \033[0m|  \033
 set cursorpreviewfmt "\033[7m"
 
 # unarchive function
-cmd unarchive %{{
+cmd unarchive ${{
     lf-command unarchive
 }}
 
@@ -167,6 +167,11 @@ cmd move_selected %{{
     lf-command move_selected $1
 }}
 
+# goto copy buffer
+cmd goto_copy_buffer ${{
+    lf-command goto_copy_buffer
+}}
+
 # copy regex matched files to cur dir
 cmd copy_selected %{{
     lf-command copy_selected $1
@@ -214,6 +219,7 @@ map gu cd /run/media
 map gf cd ~/Documents
 map gv cd ~/Videos
 map gj fzf_jump 'jmp'
+map gb goto_copy_buffer
 
 # functionality mappings
 map as get_size

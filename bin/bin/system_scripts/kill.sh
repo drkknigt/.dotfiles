@@ -3,7 +3,7 @@
 # This script is used to kill processes by signal passed as $1 or sigkill if $1 is empty
 
 # get the pid of the application from currently running applications
-output=$(ps -ef | sed 1d | fzf -m )
+output=$(ps -ef | sed 1d | fzf -m --prompt="kill process: " --cycle )
 
 # user owning the process
 user=$(echo $output | awk '{ print $1 }')

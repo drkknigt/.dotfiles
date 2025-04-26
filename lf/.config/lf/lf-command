@@ -17,6 +17,7 @@ function unarchive(){
       "application/x-tar") tar -xvf "$file_name" -C "$output_dir" ;;
       "application/vnd.rar") unrar x "$file_name" "$output_dir" ;;
       "application/x-7z-compressed") 7za x "$file"  -o"$output_dir" ;;
+      "application/x-udf-image") 7z x "$file"  -o"$output_dir" ;;
       *) echo "Unsupported format: $file_info" ;;
     esac
 
@@ -305,7 +306,7 @@ function search_reg() {
 }
 
 
-# match files by regex
+# match files by regex search of the names
 function regex_select() {
     echo "/ "
     read -r args
@@ -352,6 +353,7 @@ function regex_select() {
 
 
 
+# remove the file path inside the FILE_TO_HOLD_REGEX_MATCHES or FILE_TO_HOLD_FZF_SELECTS 
 function remove_selected(){
     if [ "$1" = "selected" ]; then
         file="$FILE_TO_HOLD_FZF_SELECTS"
@@ -370,6 +372,7 @@ function remove_selected(){
     notify-send "lf: removed $(wc -l $file | awk '{ print $1}') files"
 }
 
+# move the file path inside the FILE_TO_HOLD_REGEX_MATCHES or FILE_TO_HOLD_FZF_SELECTS to current path
 function move_selected(){
     if [ "$1" = "selected" ]; then
         file="$FILE_TO_HOLD_FZF_SELECTS"
@@ -382,6 +385,7 @@ function move_selected(){
     notify-send "lf: moved $(wc -l $file | awk '{ print $1}') files"
 }
 
+# copy the file path inside the FILE_TO_HOLD_REGEX_MATCHES or FILE_TO_HOLD_FZF_SELECTS to current path
 function copy_selected(){
     if [ "$1" = "selected" ]; then
         file="$FILE_TO_HOLD_FZF_SELECTS"
@@ -392,6 +396,15 @@ function copy_selected(){
         cp -i "$line" .
     done < "$file"
     notify-send "lf: moved copied $(wc -l $file | awk '{ print $1}') files"
+}
+
+# goto the file path in the cop buffer inside lf
+function goto_copy_buffer(){
+    copy_buffer=$(wl-paste)
+    local cmd="select"
+    [ -d "$file" ] && cmd="cd"
+    file=$(printf '%s' "$copy_buffer" | sed 's/\\/\\\\/g;s/"/\\"/g')
+    lf -remote "send $id $cmd \"$file\""
 }
 
 # execute function by 1st arg
@@ -415,5 +428,6 @@ case "$1" in
     remove_selected) remove_selected $2;;
     move_selected) move_selected $2 ;;
     copy_selected) copy_selected $2 ;;
+    goto_copy_buffer) goto_copy_buffer ;;
     *) echo "nothing" ;;
 esac
