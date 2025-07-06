@@ -8,13 +8,14 @@
 # The first argument passed to the script defines the type of search:
 # 'f' for file search and 'd' for directory search.
 search_type=$1
+export FZF_DEFAULT_OPTS='--layout=reverse --border=none -m'
 
 # Function to search for files using fdfind and fzf
 search_files() {
 
     file=$(fdfind --type f . $HOME /run/media /media 2>/dev/null | fzf \
         --cycle \
-        --prompt="Search for files: " \
+        --prompt=" Search for files: " \
         --delimiter / \
         --with-nth -1 \
         --bind "ctrl-s:execute(setsid -f xdg-open {} &> /dev/null),tab:execute(setsid -f nemo $(basename {}) &> /dev/null),ctrl-o:toggle-preview" \
@@ -28,7 +29,7 @@ search_files() {
 search_directories() {
 
     file=$(fdfind --type d . $HOME /run/media /media --hidden 2>/dev/null | fzf \
-        --prompt="Search for directories: " \
+        --prompt=" Search for directories: " \
         --bind "tab:execute(setsid -f xdg-open {} &> /dev/null),ctrl-o:toggle-preview" \
         --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" \
         --keep-right \

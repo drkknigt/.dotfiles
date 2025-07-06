@@ -245,9 +245,9 @@ local gitsigns = {
     "lewis6991/gitsigns.nvim",
     tag = "release",
     event = "CursorHold",
-    -- config = function()
-    --     require("Drkknght.Plugins.gitsigns-config")
-    -- end,
+    config = function()
+        require("Drkknght.Plugins.gitsigns-config")
+    end,
     config = true,
 }
 

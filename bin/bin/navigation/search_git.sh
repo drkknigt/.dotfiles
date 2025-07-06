@@ -3,6 +3,7 @@
 # Script to search for and open git directories using fzf and lazygit.
 # It searches for git repositories within the home directory up to 8 levels deep.
 
+export FZF_DEFAULT_OPTS='--layout=reverse --border=none -m'
 # Search for all git directories
 fzf_dir=$(fdfind '.git$' "$HOME" -I -d 8 -t d -H -x dirname {} | \
     fzf --cycle \

@@ -64,7 +64,7 @@ export last_save_cache # Export the file which saves path for the last saved fil
 export last_open_cache # Export the file which saves where browser opened the file from last time 
 
 # Command to launch a terminal with specific properties (class name for window management).
-termcmd="kitty --class 'lf_browser' -e"
+termcmd="kitty --class="lf_browser" -e"
 
 
 # Use the last opened directory (from cache ) or default to Downloads if not set.

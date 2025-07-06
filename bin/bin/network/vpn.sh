@@ -6,6 +6,7 @@
 
 
 # Check if OpenVPN is running by searching for its process
+export FZF_DEFAULT_OPTS='--layout=reverse --border=none -m'
 vpn_running() {
     pgrep -f openvpn &> /dev/null
 }
