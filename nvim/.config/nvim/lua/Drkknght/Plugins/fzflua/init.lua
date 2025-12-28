@@ -160,8 +160,9 @@ fzf_lua.setup({
         -- for raw args use `fzf_args` instead
         ["--ansi"] = "",
         ["--prompt"] = " ",
+        ["--gutter"] = " ",
         -- ["--preview-window"] = "size:50%",
-        ["--color"] = "gutter:-3,pointer:-1,border:-1,bg+:3",
+        ["--color"] = "gutter:-1,pointer:-1,border:-1,bg+:234",
         -- ["--color"] = "bg+:#000000",
         ["--pointer"] = "",
         -- ["--border"] = "none",
@@ -229,7 +230,7 @@ fzf_lua.setup({
             -- inherits from 'actions.files', here we can override
             -- or set bind to 'false' to disable a default action
             ["default"] = actions.file_edit,
-            ["ctrl-g"] = "",
+            -- ["ctrl-g"] = "",
 
             --       ["ctrl-i"]       = "toggle-all",
             -- custom actions are available too
@@ -313,7 +314,7 @@ fzf_lua.setup({
         actions = {
             -- actions inherit from 'actions.files' and merge
             -- this action toggles between 'grep' and 'live_grep'
-            ["ctrl-g"] = "",
+            -- ["ctrl-g"] = "",
             -- uncomment to enable '.gitignore' toggle for grep
             -- ["ctrl-r"]   = { actions.toggle_ignore }
         },
@@ -323,7 +324,8 @@ fzf_lua.setup({
         -- otherwise auto-detect prioritizes `rg` over `grep`
         -- default options are controlled by 'rg|grep_opts'
         -- cmd            = "rg --vimgrep",
-        cmd = "rg --vimgrep --hidden --column --line-number --no-heading --color=always --smart-case --max-columns=512",
+        cmd =
+        "rg --vimgrep --hidden --column --line-number --no-heading --color=always --smart-case --max-columns=512 -g '!.git'",
         rg_opts = "--vimgrep --column --line-number --no-heading --color=always --smart-case --max-columns=512",
         grep_opts = "--binary-files=without-match --line-number --recursive --color=auto --perl-regexp",
         -- 'live_grep_glob' options:

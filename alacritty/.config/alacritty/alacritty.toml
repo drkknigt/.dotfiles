@@ -5,6 +5,8 @@
 #[items.colors]
 #author = "Chris Kempson"
 #name = "3024 (dark)"
+[general]
+live_config_reload = true
 
 #[items.colors.bright]
 #black = "#5c5855"
@@ -95,3 +97,8 @@ y = 0
 [window.dimensions]
 columns = 240
 lines = 160
+
+[keyboard]
+bindings = [
+    {key = "P", mods = "Control|Shift",action="Paste"},
+]

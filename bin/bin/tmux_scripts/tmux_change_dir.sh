@@ -2,10 +2,9 @@
 
 # This script is used to change directory in a new window pane using fzf inside tmux and is invoked by keybind in tmux
 
-is_active=$(echo $TMUX)
 
 # exit if not inside tmux
-if [ -z "$is_active" ] ; then
+if [ -z "$TMUX" ] ; then
     exit
 fi
 

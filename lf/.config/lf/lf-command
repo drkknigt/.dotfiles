@@ -194,7 +194,7 @@ function save_browser_enter(){
         if [ "$save" = "1" ]; then
             name=$(basename "$(echo "$path_name" )")
             touch "$name"
-            name=$(echo $name | sed 's/\s/\\\0/g')
+            name=$(echo $name | sed 's/\s/\\\0/g' | sed 's/\\/\\\\/g;s/"/\\"/g')
             lf -remote "send $id :select $name"
             notify-send "lf : Downloading $name"
             echo $(pwd) > $last_save_cache

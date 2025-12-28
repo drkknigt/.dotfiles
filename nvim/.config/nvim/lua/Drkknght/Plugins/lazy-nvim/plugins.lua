@@ -30,6 +30,7 @@ local oil = {
 local gruvbox_baby = {
     -- https://github.com/luisiacc/gruvbox-baby
     "luisiacc/gruvbox-baby",
+    branch = "main",
     event = "BufEnter",
     config = function()
         require("Drkknght.core.color-config")
@@ -119,15 +120,19 @@ local nvim_treesitter = {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = "VeryLazy",
+    -- lazy = false,
     dependencies = {
-        "nvim-treesitter/nvim-treesitter-textobjects",
+        {
+            "nvim-treesitter/nvim-treesitter-textobjects",
+            branch = "main",
+        },
         {
             "JoosepAlviste/nvim-ts-context-commentstring",
             config = function()
                 vim.g.skip_ts_context_commentstring_module = true
             end,
         },
-        "nvim-treesitter/nvim-treesitter-refactor",
+        -- "nvim-treesitter/nvim-treesitter-refactor",
         "windwp/nvim-ts-autotag",
         "HiPhish/rainbow-delimiters.nvim",
     },
@@ -248,7 +253,6 @@ local gitsigns = {
     config = function()
         require("Drkknght.Plugins.gitsigns-config")
     end,
-    config = true,
 }
 
 local vim_fugitive = {

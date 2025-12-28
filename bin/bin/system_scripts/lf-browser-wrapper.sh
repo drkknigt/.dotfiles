@@ -57,6 +57,10 @@ cmd="lfrun"
 
 # Variable to indicate if the script is being run from a browser context.
 browser_run="running"
+export multiple
+export directory
+export save
+export out
 export browser_run     # Export the variable so it can be accessed by child processes. 
 export path_name       # Export the path name for file that is to be saved (i.e name of file)
 export save            # Export the save flag for use in child processes.

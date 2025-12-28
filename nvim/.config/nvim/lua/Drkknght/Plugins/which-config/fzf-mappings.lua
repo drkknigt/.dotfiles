@@ -106,7 +106,7 @@ local FZF_MAPPINGS = {
                 cwd = "$PROJECT_ROOT"
             })
         end,
-        desc = "Search Commands",
+        desc = "Search files in Project_Root of tmux",
     },
     {
         "<leader>sg",
@@ -149,7 +149,7 @@ local FZF_MAPPINGS = {
                 prompt = "  ",
             })
         end,
-        desc = "Search Commands",
+        desc = "Search quickfix list entries",
     },
     {
         "<leader>ss",
@@ -228,7 +228,7 @@ local FZF_MAPPINGS = {
         desc = "find files fzf from dotfiles directory",
     },
     {
-        "<leader>sw",
+        "<leader>sn",
         function()
             vim.api.nvim_set_keymap("t", "kj", [[<C-\><C-n>]], { silent = true })
             require("Drkknght.core.userFunctions").open_plugins_fzf()
@@ -242,7 +242,7 @@ local FZF_MAPPINGS = {
             require("Drkknght.core.userFunctions").fzf_search_files("current")
         end,
         -- ":lua require('fzf-lua').files({cwd = '~'})<CR>",
-        desc = "find files fzf from home directory",
+        desc = "find files fzf from current directory",
     },
     {
         "<leader>se",

@@ -22,7 +22,8 @@ search_files() {
         --bind "ctrl-f:preview-down,ctrl-u:preview-up" \
         --bind "ctrl-o:toggle-preview" \
         --preview="tree -L 1 {} | batcat --theme='Monokai Extended Origin' --color=always" \
-        --preview-window hidden
+        --preview-window hidden \
+        --preview-window wrap
 }
 
 # Search based on the provided flag

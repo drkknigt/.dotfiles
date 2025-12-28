@@ -4,7 +4,7 @@
 set -e
 
 # unique lf cache dir for each instance of lfrun
-LF_DIR_CACHE="$HOME/.cache/lf-$(uuidgen)"
+LF_DIR_CACHE="/tmp/lf-$(uuidgen)"
 
 # Define a cleanup function to remove temporary files and perform cleanup tasks.
 cleanup() {

@@ -9,7 +9,7 @@
 # Introduction  
 Within this repository, you can find my Linux-based Nvim configuration. It encompasses the overall layout of my nvim setup, along with crucial plugins and mappings that I regularly utilize.
 
-This repo hosts my Nvim configuration for Linux.**  
+**This repo hosts my Nvim configuration for Linux.**  
 
 ## FOLDER STRUCTURE
                   
@@ -33,7 +33,7 @@ This repo hosts my Nvim configuration for Linux.**
 │   └── yaml.lua
 ├── lua                                                                 # Plugins and config for editor
 │   └── Drkknght
-│       ├── core
+│       ├── core                                                        # Core editor configuration and functions
 │       │   ├── autocmds                                                # auto commands for neovim
 │       │   │   └── init.lua
 │       │   ├── color-config                                            # highlights config for neovim

@@ -57,11 +57,11 @@ vim.api.nvim_create_user_command(
     "RunTmux", -- Command name
     function(opts)
         M.run_tmux_pane_commands(opts.args)
-    end,                                -- Command callback
+    end,                                    -- Command callback
     {
-        nargs = "*",                    -- Number of arguments (0 or 1 in this case)
-        complete = "shellcmdline",      -- Completion type (e.g., 'file' for file paths)
-        desc = "Say hello to someone!", -- Command description
+        nargs = "*",                        -- Number of arguments (0 or 1 in this case)
+        complete = "shellcmdline",          -- Completion type (e.g., 'file' for file paths)
+        desc = "run commands in tmux pane", -- Command description
     }
 )
 
@@ -161,7 +161,7 @@ local function copy_lazy_to_snapshots()
     local snapshot_dir = vim.fn.stdpath("config") .. "/snapshots"
     local snapshot = snapshot_dir .. os.date("/%B-%d-%Y-Time-%H:%M:%S-lazy.json")
     local lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json"
-    vim.loop.fs_copyfile(lockfile, snapshot)
+    vim.uv.fs_copyfile(lockfile, snapshot)
 end
 
 local back_up_lazy = function(prompt_bufnr)
@@ -190,6 +190,27 @@ M.backup_lazy = function()
         path_display = { "tail" },
         wrap_results = true,
     }))
+end
+
+-- resotre to previous lazy plugin manager state
+
+M.backup_lazy_fzf = function()
+    local current_dir = "$HOME/.dotfiles/nvim/.config/nvim/snapshots"
+    require("fzf-lua").fzf_exec("fd . " .. current_dir .. " -t f -H -a", {
+        prompt = "  ",
+        fzf_opts = {
+            ["--border-label"] = label,
+        },
+        actions = {
+            -- Use fzf-lua builtin actions or your own handler
+            ["default"] = function(selected)
+                copy_lazy_to_snapshots()
+                local lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json"
+                vim.uv.fs_copyfile(selected[1], lockfile)
+                require("lazy").restore()
+            end,
+        },
+    })
 end
 
 --- open oil via telescope in choosen directory with telescope

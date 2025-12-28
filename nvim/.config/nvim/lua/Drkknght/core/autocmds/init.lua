@@ -76,6 +76,7 @@ autocmd("TermOpen", {
 
 -- autocmd to restore cursor position after yank
 local augroups = {}
+local cursor_pos = 0
 
 augroups.yankpost = {
 
@@ -200,4 +201,15 @@ autocmd("CursorHold", {
             },
         })
     end,
+})
+
+-- autocmd to set treesitter highlights
+
+autocmd("BufEnter", {
+    group = api.nvim_create_augroup("treesitter_highlight", { clear = true }),
+    pattern = '*',
+    desc = "Sets highlights for all file types via treesitter",
+    callback = function()
+        pcall(vim.treesitter.start)
+    end
 })

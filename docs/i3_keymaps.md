@@ -1,12 +1,12 @@
 # I3WM & SWAY KEYMAPS: 
                                  
 ## Volume:  
-   - alt + ]           ----->   volume up (pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status )
-   - alt + [           ----->   volume up (pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status )
-   - alt + ctrl + m    ----->   pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-   - XF86AudioLowerVolume --->   pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-   - XF86AudioRaiseVolume --->   pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-   - XF86AudioMute      ----->   pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+   - alt + ]               ----->   volume up 10% (pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status )
+   - alt + [               ----->   volume down 10% (pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status )
+   - alt + ctrl + m        ----->   mute volume (pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status)
+   - XF86AudioLowerVolume  --->  volume down 10% pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+   - XF86AudioRaiseVolume  --->  volume up 10% (pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status)
+   - XF86AudioMute         ----->  mute volume (pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status)
     
 ## Monitor & Screen:  
    - alt + s + s       ----->  set resolution for monitors (resolution.sh | resolution_sway.sh)
@@ -41,13 +41,12 @@
    - alt + a + r + r  -------> record screen with selection ( sway only)
    - alt + a + r + s  -------> record full screen ( sway only)
    - alt + a + r + q  -------> stop recording ( sway only) 
-   - alt + a + v + v  -------> start openvpn 
-   - alt + a + v + d  -------> close openvpn 
+   - alt + a + v      -------> start vpn / close openvpn 
 
 ## Search:  
    - alt + f  + t     -------> open applications terminal mode (rofi -show run -dpi 171)
-   - alt + f  + a     -------> open applications desktop environment (rofi -dpi 171 -show drun -show-icons)
-   - alt + f  + w     -------> show all open windows in i3wm (rofi -dpi 171 -show)
+   - alt + f  + a     -------> open gui application (rofi -dpi 171 -show drun -show-icons)
+   - alt + f  + w     -------> show all open windows in i3wm/sway (rofi -dpi 171 -show)
    - alt + f  + f     -------> search for files in home directory to open (file_exp.sh f)
    - alt + f  + d     -------> search for directory to open (file_exp.sh d)
    - alt + f  + g     -------> open lazygit in speciefied directory (lazy_git.sh)
@@ -64,16 +63,16 @@
    - alt + period     -------> show previous workspace (i3-msg workspace back_and_forth)
    - alt + n          -------> next workspace (i3-msg workspace next)         
    - alt + q          -------> kill window (i3-msg kill)
-   - alt + e + h      -------> i3-msg/sway split h
-   - alt + e + v      -------> i3-msg/sway split v
-   - alt + e + y      -------> i3-msg/sway layout stacking
-   - alt + e + t      -------> i3-msg/sway layout tabbed
-   - alt + e + e      -------> i3-msg/sway layout toggle tabbed
-   - alt + e + space  -------> i3-msg/sway focus toggle_mode
-   - alt + e + i      -------> i3-msg/sway focus parent
+   - alt + e + h      -------> i3-msg/sway open new window in horizontal split ( split h)
+   - alt + e + v      -------> i3-msg/sway open new window in vertical split (split v) 
+   - alt + e + y      -------> i3-msg/sway open new window in stacking layout (layout stacking)
+   - alt + e + t      -------> i3-msg/sway set layout to tabbed mode  (layout tabbed)
+   - alt + e + e      -------> i3-msg/sway toggle tabbed mode for windows (layout toggle tabbed)
+   - alt + e + space  -------> i3-msg/sway focus on floating window/main window ( focus toggle_mode)
+   - alt + e + i      -------> i3-msg/sway focus on parent ( focus parent)
    - alt + e + r      -------> i3-msg restart
    - alt + e + q      -------> i3-msg/sway exit
-   - alt + e + w      -------> i3-msg/sway reload config for i3wm
+   - alt + e + w      -------> i3-msg/sway reload config 
    - mouse-button-middle ----> i3-msg floating toggle
 
 ## scratchpad: 
@@ -81,43 +80,43 @@
    - alt + b  + s     -------> i3-msg scratchpad show
 
 ## i3-wm navigation mode: 
-   - alt + h          -------> i3-msg focus left
-   - alt + j          -------> i3-msg focus down
-   - alt + k          -------> i3-msg focus up
-   - alt + l          -------> i3-msg focus right
-   - alt + left       -------> i3-msg focus left
-   - alt + down       -------> i3-msg focus down
-   - alt + up         -------> i3-msg focus up
-   - alt + right      -------> i3-msg focus right
-   - alt + control + h ------> i3-msg move left
-   - alt + control + j ------> i3-msg move down
-   - alt + control + k ------> i3-msg move up
-   - alt + control + l ------> i3-msg move right
-   - alt + shift + left -----> i3-msg move left
-   - alt + shift + right ----> i3-msg move down
-   - alt + shift + up  ------> i3-msg move up
-   - alt + shift + down -----> i3-msg move right
-   - alt + 1           ------> i3-msg workspace 1
-   - alt + 2           ------> i3-msg workspace 2
-   - alt + 3           ------> i3-msg workspace 3
-   - alt + 4           ------> i3-msg workspace 4
-   - alt + 5           ------> i3-msg workspace 5
-   - alt + 6           ------> i3-msg workspace 6
-   - alt + 7           ------> i3-msg workspace 7
-   - alt + 8           ------> i3-msg workspace 8
-   - alt + 9           ------> i3-msg workspace 9
-   - alt + 0           ------> i3-msg workspace 0
-   - alt + control +  1 -----> i3-msg move container to workspace 1
-   - alt + control +  2 -----> i3-msg move container to workspace 2
-   - alt + control +  3 -----> i3-msg move container to workspace 3
-   - alt + control +  4 -----> i3-msg move container to workspace 4
-   - alt + control +  5 -----> i3-msg move container to workspace 5
-   - alt + control +  6 -----> i3-msg move container to workspace 6
-   - alt + control +  7 -----> i3-msg move container to workspace 7
-   - alt + control +  8 -----> i3-msg move container to workspace 8
-   - alt + control +  9 -----> i3-msg move container to workspace 9
-   - alt + control +  0 -----> i3-msg move container to workspace 0
-   - button9            -----> i3-msg move left
+   - alt + h          -------> goto left window ( i3-msg focus left )
+   - alt + j          -------> goto down window ( i3-msg focus down )
+   - alt + k          -------> goto top window (i3-msg focus up)
+   - alt + l          -------> goto right window ( i3-msg focus right )
+   - alt + left       -------> goto left window (i3-msg focus left)
+   - alt + down       -------> goto down window ( i3-msg focus down )
+   - alt + up         -------> goto up window ( i3-msg focus up )
+   - alt + right      -------> goto right window ( i3-msg focus right )
+   - alt + control + h ------> move window to left (i3-msg move left)
+   - alt + control + j ------> move window to down (i3-msg move down)
+   - alt + control + k ------> move window upwards (i3-msg move up)
+   - alt + control + l ------> move window right (i3-msg move right)
+   - alt + shift + left -----> move window to left (i3-msg move left)
+   - alt + shift + right ----> move window to right (i3-msg move down)
+   - alt + shift + up  ------> move window to up (i3-msg move up)
+   - alt + shift + down -----> move window downwards (i3-msg move right)
+   - alt + 1           ------> goto workspace 1 (i3-msg workspace 1)
+   - alt + 2           ------> goto workspace 2 ( i3-msg workspace 2 )
+   - alt + 3           ------> goto workspace 3 ( i3-msg workspace 3 )
+   - alt + 4           ------> goto workspace 4 ( i3-msg workspace 4 )
+   - alt + 5           ------> goto workspace 5 ( i3-msg workspace 5 )
+   - alt + 6           ------> goto workspace 6 ( i3-msg workspace 6 )
+   - alt + 7           ------> goto workspace 7 ( i3-msg workspace 7 )
+   - alt + 8           ------> goto workspace 8 ( i3-msg workspace 8 )
+   - alt + 9           ------> goto workspace 9 ( i3-msg workspace 9 )
+   - alt + 0           ------> goto workspace 10 ( i3-msg workspace 0 )
+   - alt + control +  1 -----> move window to workspace 1
+   - alt + control +  2 -----> move window to workspace 2
+   - alt + control +  3 -----> move window to workspace 3
+   - alt + control +  4 -----> move window to workspace 4
+   - alt + control +  5 -----> move window to workspace 5
+   - alt + control +  6 -----> move window to workspace 6
+   - alt + control +  7 -----> move window to workspace 7
+   - alt + control +  8 -----> move window to workspace 8
+   - alt + control +  9 -----> move window to workspace 9
+   - alt + control +  0 -----> move window to workspace 0
+   - button9            -----> move left
 
 ## Network commands: 
    - alt + i + i       ------> toggle wifi (wifi_connect.sh)
@@ -137,12 +136,15 @@
    - alt + z + w       ------> change wofi / rofi theme
    - alt + z + v       ------> kill all instances of wf-recorder
    - alt + z + b       ------> switch file picker for browser 
+
+
+---------------------------------------------------------------------------------------------------
    
 # ZSH KEYMAPS
 
    - ctrl + e + space  ------> create tmux session for any directory from home (tmux_create.sh 0)  
    - ctrl + e + r      ------> create recent tmux sessions (tmux_create.sh 1)
-   - ctrl + e + ;      ------> make a project
+   - ctrl + e + ;      ------> make a project inside tmux
    - ctrl + e + \      ------> kill tmux sessions (tmux_kill.sh)
    - ctrl + e + y      ------> tmux session swithch (tmux_session_switch.sh)
    - ctrl + g          ------> open lazygit in current directory
@@ -163,61 +165,62 @@
    - ctrl + r          ------> search the command line history
    - ctrl + [          ------> enter vim mode
    - ctrl + t          ------> insert a file name completion to command
+
+---------------------------------------------------------------------------------------------------
    
 # TMUX KEYMAPS 
    
-   - ctrl + e          ------> send prefix
-   - ctrl + e + v      ------> open a horizontal pane with current shell path as starting path 
-   - (ctrl + e + v)    ------> open a horizontal pane with current shell path as starting path 
-   - ctrl + e + b      ------> break current pane into a new window
-   - ctrl + e + R      ------> reload the tmux configuration
-   - ctrl + e + Z      ------> join panes from windows
-   - ctrl + e + u      ------> split windows vertically with current shell path as starting path
-   - (ctrl + e + u)    ------> split windows vertically with current shell path as starting path
-   - ctrl + e + p      ------> create new window with root tmux path
-   - ctrl + e + i      ------> create new window with current shell path as starting path
-   - ctrl + e + o      ------> kill window 
-   - ctrl + e + O      ------> kill all window  except the current ones
-   - ctrl + e + x      ------> kill pane 
-   - ctrl + e + q      ------> exit tmux 
-   - ctrl + e + /      ------> kill curent session and move to next
-   - ctrl + e + z      ------> maxamize pane
-   - ctrl + e + [      ------> enter the copy mode
-   - ( ctrl + e + ] )  ------> goto last window
-   - ( ctrl + e + n )  ------> next session
-   - ( ctrl + e + p )  ------> previous session
-   - ( ctrl + e + [ )  ------> enter the copy mode
-   - ( ctrl + e + h )  ------> move to left window
-   - ( ctrl + e + l )  ------> move to right window
-   - ( ctrl + e + o )  ------> kill all panes except the current one
-   - (ctrl + e) H      ------> resize 5 units to left
-   - (ctrl + e) L      ------> resize 5 units to right
-   - (ctrl + e) J      ------> resize 5 units to bottom
-   - (ctrl + e) K      ------> resize 5 units to top
-   - ctrl + e + l      ------> move to next right
-   - ctrl + e + x      ------> kill current pane
-   - (ctrl + e + ,)    ------> move to left pane
-   - (ctrl + e + .)    ------> move to right pane
-   - ctrl + e + k      ------> move to top pane
-   - ctrl + e + j      ------> move to bottom pane
-   - ctrl + e + n      ------> move to next window
-   - ctrl + e + space  ------> create a tmux session from home directory
-   - ctrl + e + r      ------> create a tmux session from recent sessions
-   - ctrl + e + ;      ------> create a new project  and start tmux session in it
-   - Ctrl + e + a      ------> run ai in tmux locally using ollama and groq remotely
-   - ctrl + e + y      ------> switch tmux session
-   - ctrl + e + \      ------> kill tmux session from the list
-   - ctrl + e + c      ------> open a new window with selected directory from fzf
-   - ctrl + e + g      ------> open a lazygit in selected directory from fzf
-   - ctrl + e + m      ------> open lf file manager in project root
-   - ctrl + e + '      ------> open lf file manger in current working directory
-   - ctrl + e + Escape ------> enter the copy mode
-   - ctrl + e + U      ------> update system with pacman
-   - copy-mode - y    ------> copy the selection in copy mode
-   - copy-mode - v    ------> visually select the selection in copy mode
-   - copy-mode - q    ------> exit the copy mode
-   
+   - (ctrl + e)                            : send-prefix
+   - (ctrl + e) + v                        : splits window horizontal with path as current path
+   - (ctrl + e) + (ctrl + v)               :  splits window horizontal with path as current path 
+   - (ctrl + e) + u                        : splits window vertical with path as current path
+   - (ctrl + e) + (ctrl + u)               : splits window vertical with path as current path
+   - (ctrl + e) + b                        : convert/break pane into window
+   - (ctrl + e) + z                        : maximaze pane into window
+   - (ctrl + e) + R                        : source .tmux.conf file on runtime
+   - (ctrl + e) + Z                        : merge window (number) to a pane in current window
+   - (ctrl + e) + /                        : kill session and move to next
+   - (ctrl + e) + \                        :  Create a new project inside tmux and then start a tmux session in it
+   - (ctrl + e) + y                        : This binding  is used to switch session in tmux
+   - (ctrl + e) + Space                    :  This binding creates a new session in any directory from home,
+   - (ctrl + e) + r                        : This binding creates a recently created  session( fzf list) 
+   - (ctrl + e) + \                        : Kill selected session
+   - (ctrl + e) + c                        : open a new window in selected directory from fzf
+   - (ctrl + e) + g                        : search git directory and open the selected directory in lazy git
+   - (ctrl + e) + m                        : open lf file manager in PROJECT ROOT
+   - (ctrl + e) + a                        : run ai locally or online
+   - (ctrl + e) + '                        : open lf file manager in directory from where binding was pressed
+   - (ctrl + e) + i                        : create new window with current shell path as starting directory
+   - (ctrl + e) + p                        : create new window in tmux root directory
+   - (ctrl + e) + o                        : kill window
+   - (ctrl + e) + x                        : kill pane
+   - ( ctrl + e ) + ;                      : create a new project  and start tmux session in it
+   - (ctrl + e) + (ctrl + o)               : kill all panes except the current one
+   - (ctrl + e + o)                        : kill all panes except the current one
+   - (ctrl + e) + O                        : kill all windows except the current active one
+   - (ctrl + e + n )                       : goto next session
+   - (ctrl + e + p )                       : goto previous session
+   - (ctrl + e + ] )                       : goto previous active window
+   - (ctrl + e) + q                        : kill tmux 
+   - (ctrl + e + h )                       : goto next towards right
+   - (ctrl + e + l )                       : goto next towards left
+   - (ctrl + e + . )                       : goto right pane
+   - (ctrl + e + , )                       : goto left pane
+   - (ctrl + e) + k                        : goto upper pane
+   - (ctrl + e) + j                        : goto lower pane
+   - (ctrl + e) + U  (repeat)              : update pacman and notify if failed
+   - (ctrl + e) + H  (repeat)              : resize pane towards left 5 units
+   - (ctrl + e) + J  (repeat)              : resize pane towards down 5 units
+   - (ctrl + e) + K  (repeat)              : resize pane towads up 5 units
+   - (ctrl + e) + L  (repeat)              : resize pane towards right direction 5 units
+   - (ctrl + e) + l                        : move to previous active window just like (ctrl + e) + ]
+   - (ctrl + e  + [ )                      : goto copy mode
+   - (ctrl + e) + Esc                      : enter the copy mode
+   - v (copy-mode)                         : select text in copy mode
+   - y (copy-mode)                         : copy selected in copy mode
+   - q (copy-mode)                         : exit copy-mode
 
+---------------------------------------------------------------------------------------------------
 
 # lf mappings
 
@@ -230,6 +233,8 @@
    -   ,                         ------> find previous
    -   .                         ------> set hidden!
    -   /                         ------> normal native search
+   -   [                         ------> native search prev 
+   -   ]                         ------> native search next
    -   :                         ------> read  command
    -   ;                         ------> find next 
    -   ctrl + b                  ------> page up 
@@ -251,12 +256,16 @@
    -   down                      ------> move down
    -   end                       ------> goto bottom 
    -   enter                     ------> open file under selection if normal lf instance, if in browser instance, then select or save 
-   -   f + 1                     ------> open docs
+   -   f1                        ------> open docs
    -   home                      ------> goto top 
    -   left                      ------> go to previous dir 
    -   pgdn                      ------> page down 
    -   pgup                      ------> page up 
    -   right                     ------> open file or enter dir
+   -   F                         ------> search dir with pcre regex
+   -   f                         ------> search file with pcre regex
+   -   n                         ------> go to next match in regex file
+   -   N                         ------> goto previos match in regex
    -   space + c + r             ------> copy files in regex selections to current dir
    -   space + c + s             ------> copy files in selected selection from fzf to current dir
    -   space + d + r             ------> delete files in regex selections 
@@ -266,18 +275,14 @@
    -   up                        ------> move selection up 
    -   ?                         ------> native search back 
    -   D                         ------> make dir or file if name ends with / make dir else file
-   -   F                         ------> search file with pcre regex
    -   G                         ------> goto bottom
    -   H                         ------> goto highest position on screen
    -   I                         ------> preview all regex selections
    -   L                         ------> goto lowest position on screen
    -   M                         ------> goto middle selection on screen
-   -   N                         ------> goto previos match in regex
    -   O                         ------> open with gui
    -   R                         ------> source config 
    -   V                         ------> toggle selection below current cursor
-   -   [                         ------> native search prev 
-   -   ]                         ------> native search next
    -   a + e                     ------> edit current dir in oil
    -   a + f                     ------> search files in current dir or selected dirs
    -   a + i                     ------> preview selected files
@@ -310,7 +315,6 @@
    -   k                         ------> go up 
    -   l                         ------> open file or go inside dir
    -   m                         ------> save mark
-   -   n                         ------> go to next match in regex file
    -   o                         ------> open in cli
    -   p                         ------> paste files
    -   q                         ------> quit lf
@@ -333,6 +337,9 @@
    -   z + r                     ------> set reverse!
    -   z + s                     ------> set info size
    -   z + t                     ------> set info time
+
+
+---------------------------------------------------------------------------------------------------
 
 # Brave keymaps
 
@@ -357,3 +364,256 @@
     - ctrl + space ------------> run commands
     - ctrl + enter ------------> open file
     - ctrl + . ----------------> copy link of current page
+    - ctrl + ; ----------------> bring all the tabs in any window to the current window
+
+
+---------------------------------------------------------------------------------------------------
+
+# Neovim user keymaps
+
+### Plugin mappings
+
+-- Misc mappings 
+
+- `<leader>e`      -> show  oil explorer
+- `<leader>r`      -> run current file in terminal according to its type
+- `<leader>,`      -> open previous session
+
+
+-- Lazy mappings
+
+- `<leader>pz`     -> open plugins.lua inside lazy-nvim directory
+- `<leader>ps`     -> source current lua file 
+- `<leader>pi`     -> run Lazy install clean and install missing plugins
+- `<leader>pu`     -> run Lazy update
+- `<leader>pc`     -> remove plugins that are no longer needed
+- `<leader>pp`     -> open Lazy.nvim UI
+- `<leader>pt`     -> see startup time for nvim using vim-startuptime plugin
+- `<leader>pd`     -> open lazy snapshots directory inside oil.nvim
+- `<leader>pb`     -> goto prevoiusly saved snapshots of plugin saved via fzf and then running lazy restore
+
+
+-- Git mappings 
+
+- `<leader>gg`     -> open git fugitive
+- `<leader>gw`     -> see all the changes in the current git directory inside quickfix list
+- `<leader>ga`     -> list all the changes in current file inside location list
+- `<leader>gl`     -> show git blame line
+- `<leader>gp`     -> show git hunk previews
+- `<leader>gr`     -> reset git hunk
+- `<leader>gR`     -> reset current buffer
+- `<leader>gs`     -> stage git hunk under cursor
+- `<leader>gf`     -> stage entire buffer to git staging area
+- `<leader>gu`     -> undo staged hunks
+- `<leader>gd`     -> use gitdiff with the head
+
+
+-- quickfix mappings
+
+
+- `<leader>qw`     ->  find word under the cursor and list in quickfix list
+- `<leader>qq`     ->  open quickfix list
+- `<leader>qe`     ->  close quickfix list
+- `<leader>ql`     ->  open location list
+- `<leader>ql`     ->  open location list
+- `<leader>qf`     ->  see current word under cursor in fzf-lua
+- `<leader>qo`     -> close location list
+
+-- Lsp mappings
+
+
+- `<leader>la`     -> show code actions from lsp
+- `<leader>ld`     -> list document diagnostics in quickfix list
+- `<leader>lx`     -> make current file executable
+- `<leader>lw`     -> list workspace diagnostics in the quickfix list
+- `<leader>li`     -> checkhealth LSP
+- `<leader>lI`     -> open mason installer
+- `<leader>lk`     -> :pwd ( show current working directory in the commandline)
+- `<leader>lh`     -> change current working directory to the tmux $PROJECT_ROOT
+- `<leader>lp`     -> open goto-preview and preview current function/class/variable in a floating window
+- `<leader>ll`     -> start lsps
+- `<leader>lq`     -> stop lsps
+- `<leader>lr`     -> show document references in quickfix list
+- `<leader>lg`     -> show document implementation in quickfix list
+- `<leader>ls`     -> list document symbols inside quickfix list
+- `<leader>le`     -> list document error of current line in floating box
+- `<leader>lS`     -> list document Symbols in quickfix  list
+- `<C-s>`          -> toggle signature help for lsp
+- `gd`             -> goto defintion
+- `gD`             -> goto type definition
+- `K`              ->  Displays hover information about the symbol under the cursor in a floating window
+
+
+-- Fzf-lua mappings
+
+- `<leader>st`     -> show lsp symbols in fzf
+- `<leader>sd`     -> open directory in oil.nvim via fzf-lua
+- `<leader>so`     -> open oldfiles
+- `<leader>sR`     -> resume fzf-lua
+- `<leader>sm`     -> open nvim help manual in fzf-lua
+- `<leader>sk`     -> search keymaps in fzf-lua
+- `<leader>sC`     -> search commands in fzf-lua
+- `<leader>sp`     -> search file in PROJECT_ROOT of tmux
+- `<leader>sp`     -> live grep inside PROJECT_ROOT of tmux
+- `<leader>sg`     -> live grep inside PROJECT_ROOT of tmux
+- `<leader>sr`     -> open PROJECT_ROOT of tmux inside oil.nvim
+- `<leader>sq`     -> search quickfix list entries
+- `<leader>ss`     -> live grep from current directory
+- `<leader>sc`     -> browse colorschemes with fzf-lua
+- `<leader>sb`     -> search for buffer lines in fzf-lua
+- `<leader>sl`     -> search for buffer lines in all open buffers in fzf-lua
+- `<leader>sh`     -> search for dotfiles with fzf-lua
+- `<leader>sa`     -> search for ansible_sync/.arch_pull with fzf-lua
+- `<leader>sn`     -> search for files inside plugin source code in .local/share/nvim/
+- `<leader>sf`     -> search for files from current directory
+- `<leader>o`      -> list buffers in fzf-lua 
+
+
+-- Terminal mappings 
+
+- `<leader>tn`     -> open terminal in floating window with node running
+- `<leader>tm`     -> open terminal in floating window with glow markdown reader running
+- `<leader>tt`     -> open terminal in floating window with htop running in it
+- `<leader>tp`     -> open terminal in floating window with python shell running in it
+- `<leader>tg`     -> open terminal in floating window with lazy git running in it
+- `<leader>tl`     -> open terminal in floating window with lua shell running in it
+- `<leader>tf`     -> open terminal in floating window  with zsh shell running
+- `<leader>th`     -> open terminal in vertical window  with zsh shell running
+- `<leader>tv`     -> open terminal in horizontal window  with zsh shell running
+
+
+
+-- Buffer mappings
+
+
+- `<leader>bo`     ->  Delete all buffers except current one
+- `<leader>be`     ->  Delete all empty buffers
+- `<leader>bb`     ->  run shell command in adjacent tmux pane
+- `<leader>bl`     ->  Run current lines under cursor in tmux pane
+- `<leader>br`     ->  run commands like emacs in a buffer
+- `<C-k>`           -> goto next buffer
+- `<C-j>`           -> goto previous buffer
+
+
+
+-- Treesitter mappings
+
+
+- `af`              -> inside a function object
+- `if`              -> outside a function object
+- `ac`              -> inside a class object
+- `ic`              -> outside a class object
+- `ar`              -> inside a loop object
+- `ir`              -> outside a loop object
+- `aq`              -> inside a condition object
+- `iq`              -> outside a condition object
+- `aa`              -> inside a parameter object
+- `ia`              -> outside a condition object
+- `<leader>an`      -> swap parameter inside function to next parameter
+- `<leader>ap`      -> swap parameter inside function to previous parameter
+- `<leader>aN`      -> swap parameter of current function to parameter of next parameter
+- `<leader>aP`      -> swap parameter of current function to parameter of previous parameter
+- `<leader>fn`      -> swap function code of current fucntion with next function
+- `<leader>fp`      -> swap function code of current fucntion with previous function
+- `<leader>fN`      -> swap function declartion of current function with next function
+- `<leader>fP`      -> swap function declartion of current function with previous function
+- `]f`              -> goto next function declaration
+- `[f`              -> goto previous function declaration
+- `<leader>nf`      -> goto end of next function
+- `<leader>mf`      -> goto end of previous function
+- `]c`              -> goto next class declaration
+- `[c`              -> goto previous class declaration
+- `<leader>nc`      -> goto end of next class
+- `<leader>mc`      -> goto end of previous class
+- `]q`              -> goto next condition declaration
+- `[q`              -> goto previous condition declaration
+- `<leader>nq`      -> goto end of next condition
+- `<leader>mq`      -> goto end of previous condition
+- `]r`              -> goto next loop declaration
+- `[r`              -> goto previous loop declaration
+- `<leader>nr`      -> goto end of next loop
+- `<leader>mr`      -> goto end of previous loop
+- `]s`              -> goto next statment declartion
+- `[s`              -> goto previous statment declartion
+- `<leader>ns`      -> goto end of next statement
+- `<leader>ms`      -> goto end of previous statement
+
+
+-- flash-plugin mappings
+
+- `[w`              -> jump to next char
+- `[t`              -> jump to next treesitter node
+- `[a`              -> remote flash
+- `[z`              -> treesitter search
+
+
+-- Normal mode keymap
+
+- `j/k` -> maps j & k to gj and gk to move along virtual lines as well
+- `<leader>hh` -> higlights current line 
+- `<leader>lf` -> create new with !touch 
+- `<leader>lc` -> create new directory / subdirectories
+- `<leader>hv` -> clear highlighted lines ( highlighed lines from <leader>hh)
+- `<leader>bk` ->  send ctrl-d signal to the adjacent tmux pane
+- `<leader>bx` -> send ctrl-c signal to the adjacent tmux pane
+- `kj`  ->  goto normal mode
+- `<leader>d` -> force delete current buffer
+- `<leader>w` -> write the buffer to file / also create directories 
+- `<leader>k` -> open man page for the keyword under the cursor
+- `<leader>c` -> exit vim but also save current session before exiting
+- `<leader>y` -> copy full file
+- `n` -> goto next match but also center the window 
+- `N` -> goto previous match but also center the window 
+- `<leader>z` -> open init.lua 
+- `<leader>n)` -> goto next bracket `)`
+- `<leader>m)` -> goto previous bracket `)`
+- `<leader>n(` -> goto next bracket `(`
+- `<leader>m(` -> goto previous bracket `(`
+- `<leader>n]` -> goto previous bracket `]`
+- `<leader>m]` -> goto previous bracket `]`
+- `<leader>n[` -> goto previous bracket `[`
+- `<leader>m[` -> goto previous bracket `[`
+- `<leader>n{` -> goto previous bracket `{`
+- `<leader>m{` -> goto previous bracket `{`
+- `<leader>n}` -> goto previous bracket `}`
+- `<leader>m}` -> goto previous bracket `}`
+- `<leader>n'` -> goto previous bracket `'`
+- `<leader>m'` -> goto previous bracket `'`
+- `<leader>n"` -> goto previous bracket `"`
+- `<leader>m"` -> goto previous bracket `"`
+- `<leader>n`` -> goto previous bracket ```
+- `<leader>m`` -> goto previous bracket ```
+- `<leader>ne` -> goto previous = (equal to)
+- `<leader>me` -> goto previous = (equal to)
+- `<leader>na` -> goto previous + (add)
+- `<leader>ma` -> goto previous +  (add)
+- `<leader>ns` -> goto previous -  (minus)
+- `<leader>ms` -> goto previous -  (minus)
+- `<leader>nd` -> goto previous _  (dash)
+- `<leader>md` -> goto previous _  (dash)
+- `<leader>nn` -> goto previous number  (number)
+- `<leader>mn` -> goto previous number  (number)
+- `<leader>nt` -> goto previous tag  (<...>)
+- `<leader>mt` -> goto previous tag  (<...>)
+- `<leader>nv` -> goto previous variable
+- `<leader>mv` -> goto previous variable
+- `]a`  -->  convert words into arrays with bracket syntax and surround each item with `'` quotes
+- `]e`  -->  convert words into arrays with bracket syntax but do not surround each item with `'` quotes
+
+-- terminal mode keymaps
+- `<c-[>` -> goto normal mode in terminal mode
+- `kj` -> goto normal mode in terminal mode
+- `<C-d>` -> exit terminal mode
+
+-- visual mode keymaps 
+- `.` -> repeat dot command in visual mode
+- `<leader>bl` -> send current selected text in nvim to the adjacent tmux pane
+- `J` -> in visual mode move the current selection downwards
+- `K` -> in visual mode move the current selection upwards
+- `>` -> in visual mode move the selection towards right but preserve the selection
+- `<` -> in visual mode move the selection towards left but preserve the selection
+- `il/al` -> selects current line visually inside/outside
+
+-- Command line keymaps
+- `<C-J>`  --> behave like down arrow in command line mode
+- `<C-K>`  --> behave like up arrow in command line mode

@@ -8,7 +8,7 @@
 # The first argument passed to the script defines the type of search:
 # 'f' for file search and 'd' for directory search.
 search_type=$1
-export FZF_DEFAULT_OPTS='--layout=reverse --border=none -m'
+# export FZF_DEFAULT_OPTS='--layout=reverse --border=none -m'
 
 # Function to search for files using fdfind and fzf
 search_files() {

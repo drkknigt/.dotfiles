@@ -3,13 +3,10 @@ vim.g.mapleader = " "
 local map = vim.api.nvim_set_keymap
 local map_func = vim.keymap.set
 
--- visually select inside and outside the line
-map("x", "il", "g_o^", { noremap = true, silent = true })
-map("o", "il", ":normal vil<cr>", { noremap = true, silent = true })
-map("x", "al", "$o^", { noremap = true, silent = true })
-map("o", "al", ":normal val<cr>", { noremap = true, silent = true })
 
 -- editor keymaps
+map("n", "j", "gj", { noremap = true, silent = true, desc = "move cursor down including on wrapped line" })
+map("n", "k", "gk", { noremap = true, silent = true, desc = "move cursor up including on wrapped line" })
 map(
     "n",
     "<leader>hh",
@@ -39,10 +36,6 @@ map(
 map("n", "<leader>y", 'magg"+yG`a', { noremap = true, silent = true, desc = "copy full file" })
 map("n", "n", "nzznN", { noremap = true, silent = true })
 map("n", "N", "NzznN", { noremap = true, silent = true })
-map("x", "J", ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
-map("x", "K", ":move '<-2<CR>gv-gv", { noremap = true, silent = true })
-map("v", ">", ">gv", { noremap = true, silent = true })
-map("v", "<", "<gv", { noremap = true, silent = true })
 map("n", "<leader>z", ":e ~/.config/nvim/init.lua<cr>", { noremap = true, silent = true, desc = "open init.lua" })
 
 -- jump keymaps
@@ -72,10 +65,10 @@ map("n", "<leader>ns", "/-<cr>", { noremap = true, silent = true })
 map("n", "<leader>ms", "?-<cr>", { noremap = true, silent = true })
 map("n", "<leader>nd", "/_<cr>", { noremap = true, silent = true })
 map("n", "<leader>md", "?_<cr>", { noremap = true, silent = true })
-map("n", "<leader>nb", "//<cr>", { noremap = true, silent = true })
-map("n", "<leader>mb", "?/<.\\{-}><cr>", { noremap = true, silent = true })
+-- map("n", "<leader>nb", "//<cr>", { noremap = true, silent = true })
+-- map("n", "<leader>mb", "?/<.\\{-}><cr>", { noremap = true, silent = true })
 map("n", "<leader>nt", "/<.\\{-}><cr>", { noremap = true, silent = true })
-map("n", "<leader>mt", "?><cr>", { noremap = true, silent = true })
+map("n", "<leader>mt", "?<.\\{-}><cr>", { noremap = true, silent = true })
 map("n", "<leader>nn", "/\\d\\+<cr>", { noremap = true, silent = true })
 map("n", "<leader>mn", "?\\d\\+<cr>", { noremap = true, silent = true })
 -- map("n", "<leader>o", "O<Esc>jo<Esc>k", { noremap = true, silent = true })
@@ -95,6 +88,16 @@ map("t", "<C-d>", [[<C-\><C-n><bar>:bd!<cr>:lua print(" ")<cr>]], { silent = tru
 
 map("v", ".", ":normal .<CR>", { noremap = true, silent = true })
 map("v", "<leader>bl", ":VtrSendLinesToRunner<cr>", { silent = true, noremap = true })
+map("v", ">", ">gv", { noremap = true, silent = true })
+map("v", "<", "<gv", { noremap = true, silent = true })
+map("x", "J", ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
+map("x", "K", ":move '<-2<CR>gv-gv", { noremap = true, silent = true })
+
+-- visually select inside and outside the line
+map("x", "il", "g_o^", { noremap = true, silent = true })
+map("o", "il", ":normal vil<cr>", { noremap = true, silent = true })
+map("x", "al", "$o^", { noremap = true, silent = true })
+map("o", "al", ":normal val<cr>", { noremap = true, silent = true })
 
 -- command line keypmaps
 

@@ -2,8 +2,8 @@ local map_func = vim.keymap.set
 MISC_MAPPINGS = {
     { "<leader>p", group = "misc" },
 
-    { "<leader>a", "<cmd>:ISwap<cr>",                                 desc = "swap variables in list or array or tables" }, -- swap variables in list or array,
-    { "<leader>e", require("Drkknght.core.userFunctions").toggle_oil, desc = "Explorer" },                                  -- open file explorer
+    -- { "<leader>a", "<cmd>:ISwap<cr>",                                 desc = "swap variables in list or array or tables" }, -- swap variables in list or array,
+    { "<leader>e", require("Drkknght.core.userFunctions").toggle_oil, desc = "Explorer" }, -- open file explorer
     {
         "<leader>r",
         function()

@@ -4,16 +4,17 @@
 # this script is used to preview files in fzf preview window
 
 # set unique fzf cache dir name for each preview
-dir_name="fzf-$(uuidgen)"
-mkdir "$HOME/.cache/fzf/$dir_name" -p
+# dir_name="fzf-$(uuidgen)"
+mkdir "/tmp/fzf/" -p
 
 # set unique name for each cache file
-CACHE="$HOME/.cache/fzf/$dir_name/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' \
-	-- "$(readlink -f "$1")" | sha256sum | awk '{print $1}')"
+# CACHE="$HOME/.cache/fzf/$dir_name/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' \
+	# -- "$(readlink -f "$1")" | sha256sum | awk '{print $1}')"
+CACHE="/tmp/fzf/fzf_cached_image"
 
 # clear image from the terminal when script exits and remove fzf cache
 clear_image() {
-    rm "$HOME/.cache/fzf" -rf
+    # rm "$HOME/.cache/fzf" -rf
     exec kitty +kitten icat --clear --stdin no --silent --transfer-mode file </dev/null >/dev/tty
 }
 
@@ -74,16 +75,17 @@ case "$file_type"  in
             *.docx) docx2txt "$1" ;;
             *.doc) catdoc "$1" ;;
             *.cbz|*.cbr|*.cbt)
-                [ ! -f "$CACHE" ] && comicthumb "$1" "$CACHE" 1024
+                comicthumb "$1" "$CACHE" 1024
                 image "$CACHE" "$2" "$3" "$4" "$5"
                 ;;
             *.epub)
-                [ ! -f "$CACHE" ] && epub-thumbnailer "$1" "$CACHE" 1024
-                image "$CACHE" "$2" "$3" "$4" "$5"
+                gnome-epub-thumbnailer "$1" "$CACHE"  
+                image "${CACHE}" "$2" "$3" "$4" "$5"
                 ;;
             *.pdf)
-                [ ! -f "${CACHE}.jpg" ] && pdftoppm -jpeg -f 1 -singlefile "$1" "$CACHE"
-                image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
+                pdftoppm -jpeg -f 1 -singlefile "$1" "$CACHE"
+                [ -f "${CACHE}.jpg" ] && mv "${CACHE}.jpg" "$CACHE"
+                image "${CACHE}" "$3" "$4" "$5"
                 ;;
             *.xls|*.xlsx)
                 ssconvert --export-type=Gnumeric_stf:stf_csv "$1" "fd://1" | batorcat --language=csv
@@ -109,8 +111,7 @@ case "$file_type"  in
     "video")
         case "$file_name" in
             *)
-                [ ! -f "${CACHE}.jpg" ] && \
-                    ffmpegthumbnailer -i "$1" -o "${CACHE}.jpg" -s 0 -q 5
+                ffmpegthumbnailer -i "$1" -o "${CACHE}.jpg" -s 0 -q 8
                 image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
                 ;;
         esac

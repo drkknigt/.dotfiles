@@ -1,8 +1,9 @@
 #!/bin/sh
 # sciprt to preview files in lf
 
-CACHE="$LF_DIR_CACHE/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' \
-	-- "$(readlink -f "$1")" | sha256sum | awk '{print $1}')"
+# CACHE="$LF_DIR_CACHE/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' \
+	# -- "$(readlink -f "$1")" | sha256sum | awk '{print $1}')"
+CACHE="$LF_DIR_CACHE/lf_current_cached_thumbnail_files"
 
 # preview images with kitty +kiten icat
 image() {
@@ -68,16 +69,18 @@ case "$file_type"  in
             *.docx) docx2txt "$1" ;;
             *.doc) catdoc "$1" ;;
             *.cbz|*.cbr|*.cbt)
-                [ ! -f "$CACHE" ] && comicthumb "$1" "$CACHE" 1024
+                comicthumb "$1" "$CACHE" 1024
                 image "$CACHE" "$2" "$3" "$4" "$5"
                 ;;
             *.epub)
-                [ ! -f "$CACHE" ] && epub-thumbnailer "$1" "$CACHE" 1024
-                image "$CACHE" "$2" "$3" "$4" "$5"
+                gnome-epub-thumbnailer "$1" "$CACHE" 
+                image "$CACHE" "$2" "$3" "$4" "$5" || image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
                 ;;
             *.pdf)
-                [ ! -f "${CACHE}.jpg" ] && pdftoppm -jpeg -f 1 -singlefile "$1" "$CACHE"
-                image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
+                # [ ! -f "${CACHE}.jpg" ] && pdftoppm -jpeg -f 1 -singlefile "$1" "$CACHE"
+                pdftoppm -jpeg -f 1 -singlefile "$1" "$CACHE" 
+                [ -f "${CACHE}.jpg" ] && mv "${CACHE}.jpg" "$CACHE"
+                image "${CACHE}" "$2" "$3" "$4" "$5"
                 ;;
             *.xls|*.xlsx)
                 ssconvert --export-type=Gnumeric_stf:stf_csv "$1" "fd://1" | batorcat --language=csv
@@ -103,7 +106,7 @@ case "$file_type"  in
     "video")
         case "$file_name" in
             *)
-                [ ! -f "${CACHE}.jpg" ] &&  ffmpegthumbnailer -i "$1" -o "${CACHE}.jpg" -s 0 -q 5
+                ffmpegthumbnailer -i "$1" -o "${CACHE}.jpg" -s 0 -q 5
                 image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
                 ;;
         esac

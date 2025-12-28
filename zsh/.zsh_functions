@@ -19,6 +19,14 @@ jf(){
 
 }
 
+
+# jump to the PROJECT_ROOT if inside TMUX
+if [[ -n "$TMUX" ]]; then
+gp(){
+        cd $PROJECT_ROOT
+}
+fi
+
 # make the backup of pacman mirrolist and update repo with reflector and then update the system 
 
 update_repo(){

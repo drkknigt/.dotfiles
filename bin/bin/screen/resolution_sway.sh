@@ -33,7 +33,7 @@ custom_res() {
         exit
     fi
 # set custom resolution for 2nd monitor
-    swaymsg -- output "$output" mode --custom "$resolution_selected"
+    swaymsg -- output "$output" mode --custom "$resolution_selected" 
     exit
 }
 
@@ -50,5 +50,5 @@ else
 if [ -z $resolution_selected ]; then
     exit
 fi
-    swaymsg output "$output" pos 0 0 res "$resolution_selected" 
+    swaymsg output "$output" pos 0 0 res "$resolution_selected"  transform normal
 fi

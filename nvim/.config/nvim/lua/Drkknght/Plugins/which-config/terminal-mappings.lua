@@ -53,7 +53,7 @@ TERMINAL_MAPPINGS = {
                         [[<C-\><C-n><bar>:q!<cr>:lua print(" ")<cr>]],
                         { silent = true, noremap = true }
                     )
-                    vim.api.nvim_del_keymap("t", "kj")
+                    pcall(vim.api.nvim_del_keymap, "t", "kj")
                 end,
                 0.9,
                 0.9
